@@ -48,12 +48,12 @@ function App() {
         const file = e.target.files[0];
         setFormData({ ...formData, image: file.name });
         await Storage.put(file.name, file);
-        fetchNotes();
+        await fetchNotes();
     }
 
     return (
         <div className="App">
-            <h1>My Notes App</h1>
+            <h1>Notes App</h1>
             <input
                 onChange={e => setFormData({ ...formData, 'name': e.target.value})}
                 placeholder="Note name"
@@ -77,7 +77,7 @@ function App() {
                             <p>{note.description}</p>
                             <button onClick={() => deleteNote(note)}>Delete note</button>
                             {
-                                note.image && <img src={note.image} style={{width: 400}} />
+                                note.image && <img src={note.image} style={{width: 400}} alt='user-generated'/>
                             }
                         </div>
                     ))
