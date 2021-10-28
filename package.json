@@ -2,6 +2,9 @@
   "name": "brainbreker",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  },
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.20",
     "@testing-library/jest-dom": "^5.14.1",
