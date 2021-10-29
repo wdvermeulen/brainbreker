@@ -1,0 +1,81 @@
+$color-light: #B5179E;
+$color-medium: #7209B7;
+$color-dark: #29006C;
+$box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+$font-family-default: 'Josefin Sans', Helvetica, sans-serif;
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/Josefin_Sans/static/JosefinSans-Medium.ttf') format('ttf');
+}
+
+:root {
+  --amplify-primary-color: $color-light;
+  --amplify-primary-tint: $color-dark;
+  --amplify-font-family: $font-family-default;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-dark;
+  background-image: radial-gradient(farthest-side at bottom right, #E53790, $color-dark);
+  font-family: $font-family-default;
+  text-align: center;
+}
+
+button {
+  font-family: $font-family-default;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: $color-light;
+  background-image: linear-gradient(to bottom right, $color-light, #7209B7);
+  box-shadow: $box-shadow;
+  border: none;
+  margin: 5px;
+  flex-grow: 1;
+
+  &:active {
+    background-image: linear-gradient(to top left, $color-light, $color-medium);
+    box-shadow: inset $box-shadow;
+  }
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  padding: 5vmin;
+  margin: 0 auto;
+  max-width: 1000px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

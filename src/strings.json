@@ -1,5 +1,6 @@
 {
   "nl": {
+    "============AUTH=========": "",
     "Back to Sign In": "Terug naar inloggen",
     "Change": "Wijzigen",
     "Change Password": "Wijzig wachtwoord",
@@ -66,6 +67,14 @@
     "Sign Up": "Aanmaken",
     "Log Out": "Aanmaken",
     "Confirm Sign Up Failed": "Bevestigen mislukt",
-    "Sign Up Failed": "Inloggen mislukt"
+    "Sign Up Failed": "Inloggen mislukt",
+    "Setup a standard quiz": "Standaard quiz maken",
+    "Setup a pub quiz": "Pubquiz maken",
+    "Setup an online escape room": "Escape room maken",
+    "Play a solo puzzle": "Solo puzzels spelen",
+    "Custom game": "Zelf een spel maken",
+    "Load stored games": "Opgeslagen spellen inladen",
+    "Question": "Vraag",
+    "Tap on text to edit. Swipe to go to the next question.": "Tik op tekst om deze te bewerken. Swipe om naar de volgende vraag te gaan"
   }
 }
