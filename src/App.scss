@@ -1,21 +1,6 @@
-$color-light: #B5179E;
-$color-medium: #7209B7;
-$color-dark: #29006C;
-$box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
-$font-family-default: 'Josefin Sans', Helvetica, sans-serif;
-
-@font-face {
-  font-family: 'Josefin Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/Josefin_Sans/static/JosefinSans-Medium.ttf') format('ttf');
-}
-
-:root {
-  --amplify-primary-color: $color-light;
-  --amplify-primary-tint: $color-dark;
-  --amplify-font-family: $font-family-default;
-}
+@import 'GlobalStyles/variables';
+@import 'GlobalStyles/fonts';
+@import 'GlobalStyles/mixins';
 
 * {
   box-sizing: border-box;
@@ -24,16 +9,20 @@ $font-family-default: 'Josefin Sans', Helvetica, sans-serif;
 body {
   width: 100vw;
   height: 100vh;
+  margin: 0;
   background-color: $color-dark;
   background-image: radial-gradient(farthest-side at bottom right, #E53790, $color-dark);
   font-family: $font-family-default;
+  color: $color-text-light;
   text-align: center;
 }
 
 button {
   font-family: $font-family-default;
+  font-size: 1rem;
+  color: $color-text-light;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   background-color: $color-light;
   background-image: linear-gradient(to bottom right, $color-light, #7209B7);
   box-shadow: $box-shadow;
@@ -47,8 +36,24 @@ button {
   }
 }
 
-#root {
-  height: 100%;
+h2 {
+  @include serif-header;
+}
+
+input, textarea {
+  font-family: $font-family-default;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input {
+  border-radius: 30px;
+  background-color: #FFF;
+  color: $color-dark;
+  border: $color-dark thin solid;
+  box-shadow: inset 4px 4px 4px 0 rgba(0,0,0,.25);
+  padding: 10px 20px;
 }
 
 .App {
@@ -74,8 +79,10 @@ button {
   flex-grow: 1;
 }
 
-.half {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.glass-tile {
+  @include glassTile;
+
+  h2 {
+    margin-block-start: initial;
+  }
 }

@@ -8,6 +8,7 @@ import {
   AmplifySignOut,
   AmplifySignUp,
 } from "@aws-amplify/ui-react";
+import "./Authenticated.scss";
 
 const Authenticated = ({ children }) => {
   const [authState, setAuthState] = useState();
@@ -29,8 +30,10 @@ const Authenticated = ({ children }) => {
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      <div>{user?.attributes.email}</div>
-      <AmplifySignOut buttonText={I18n.get("Sign Out")} />
+      <div className="logout-bar">
+        <div>{user?.attributes.email}</div>
+        <AmplifySignOut buttonText={I18n.get("Sign Out")} />
+      </div>
       {children}
     </>
   ) : (

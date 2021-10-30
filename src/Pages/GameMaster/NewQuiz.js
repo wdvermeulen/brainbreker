@@ -1,43 +1,88 @@
 import React, { useState } from "react";
 import { I18n } from "aws-amplify";
+import "./NewQuiz.scss";
 
 const NewQuiz = () => {
   const title = useFormInput(I18n.get("Question") + " 1");
   const question = useFormInput(
-    I18n.get("Tap on text to edit. Drag to go to the next question")
+    I18n.get("Tap on text to edit. Swipe to go to the next question.")
   );
-  const answer = useFormInput(I18n.get("Answer"));
+  const answers = useFormInput([
+    I18n.get(["Answer"]),
+    I18n.get(["Answer"]),
+    I18n.get(["Answer"]),
+    I18n.get(["Answer"]),
+  ]);
 
-  const [editing, setEditing] = useState();
+  const sqrtAnswers = Math.ceil(Math.sqrt(answers.length));
+
+  const Answers = () => {
+    const array = [];
+    for (let i = 0; i < sqrtAnswers; i++) {
+      array.push(
+        <div className="row">
+          <button onClick={console.log}>{answers[i].value}</button>
+          <button onClick={console.log}>{answers[i].value}</button>
+        </div>
+      );
+    }
+    return array;
+  };
+
+  const [editing, setEditing] = useState("");
 
   return (
     <div className="container">
       <div className="top half">
-        {editing === "title" ? (
-          <h2
-            onClick={() => {
-              setEditing("title");
+        <div className="glass-tile">
+          {editing === "title" ? (
+            <>
+              <label htmlFor="title">Naam vraag: </label>
+              <input
+                autoFocus
+                id="title"
+                type="text"
+                onBlur={() => {
+                  setEditing("");
+                }}
+                {...title}
+              />
+            </>
+          ) : (
+            <h2
+              onClick={() => {
+                setEditing("title");
+              }}
+            >
+              {title.value}
+            </h2>
+          )}
+          <textarea
+            autoFocus
+            id="question"
+            name="question"
+            onBlur={() => {
+              setEditing("");
             }}
-          >
-            {title.value}
-          </h2>
-        ) : (
-          <>
-            <label for="title">Naam vraag:</label>
-            <input id="title" type="text" {...title} />
-          </>
-        )}
-        <div onClick={console.log}>{question.value}</div>
+            {...question}
+          />
+          {editing === "question" ? (
+            <>
+              <label htmlFor="question">Vraag: </label>
+            </>
+          ) : (
+            <div
+              onClick={() => {
+                setEditing("question");
+              }}
+            >
+              {question.value}
+            </div>
+          )}
+        </div>
       </div>
       <div className="bottom half">
-        <div className="row">
-          <button onClick={console.log}>{answer.value}</button>
-          <button onClick={console.log}>{answer.value}</button>
-        </div>
-        <div className="row">
-          <button onClick={console.log}>{answer.value}</button>
-          <button onClick={console.log}>{answer.value}</button>
-        </div>
+        <Answers />
       </div>
     </div>
   );

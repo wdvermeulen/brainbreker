@@ -1,0 +1,36 @@
+@import '../../GlobalStyles/variables';
+@import '../../GlobalStyles/fonts';
+@import '../../GlobalStyles/mixins';
+
+:root {
+  --amplify-primary-color: #B5179E;
+  --amplify-primary-tint: $color-dark;
+  --amplify-font-family: $font-family-default;
+}
+
+amplify-authenticator {
+  height: 100%;
+}
+
+.logout-bar {
+  @include glassTile;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -5vmin -5vmin 20px -5vmin;
+  border-top-width: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  button.button {
+    background-color: red;
+  }
+}
+
+#root {
+  height: 100%;
+}

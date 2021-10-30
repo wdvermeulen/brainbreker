@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Authenticated from "./Authenticated";
+import Authenticated from "./Pages/Authenticated/Authenticated";
 import GameTypeSelection from "./Pages/GameMaster/GameTypeSelection";
 import Root from "./Pages/Root";
 import NewQuiz from "./Pages/GameMaster/NewQuiz";

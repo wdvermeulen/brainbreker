@@ -1,0 +1,15 @@
+@mixin glassTile {
+  border: $color-glass-tile-border thin solid;
+  box-shadow: $box-shadow-glass-tile;
+  background-color: rgba(0,0,0,.3);
+  backdrop-filter: blur(20px);
+  border-radius: $border-radius;
+  padding: 20px;
+  text-align: left;
+}
+
+@mixin serif-header {
+  font-family: $font-family-secondary;
+  font-weight: normal;
+  font-size: 1.125em;
+}
