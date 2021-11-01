@@ -1,11 +1,14 @@
 $color-light: #B5179E;
 $color-medium: #7209B7;
 $color-dark: #29006C;
-$color-text-light: #FFF;
-$color-glass-tile-border: $color-text-light;
+$color-lightest: #FFF;
+$color-text-light: $color-lightest;
+$color-text-dark: $color-dark;
+$color-glass-tile-border: $color-lightest;
 $color-glass-tile-background: rgba(0, 0, 0, .3);
+$color-answer-button-background: $color-lightest;
 $box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
-$box-shadow-glass-tile: inset 0 0 20px $color-glass-tile-border;
+$box-shadow-glass-tile: inset 0 0 20px $color-lightest;
 $border-radius: 5px;
 $font-family-default: 'Josefin Sans', Helvetica, sans-serif;
 $font-family-secondary: 'Playfair Display', serif;

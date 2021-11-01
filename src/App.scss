@@ -36,7 +36,7 @@ button {
   }
 }
 
-h2 {
+h2, h3 {
   @include serif-header;
 }
 
@@ -45,15 +45,12 @@ input, textarea {
   font-size: 1rem;
   margin-bottom: 10px;
   margin-top: 10px;
-}
-
-input {
   border-radius: 30px;
+  padding: 10px 20px;
   background-color: #FFF;
-  color: $color-dark;
+  color: $color-text-dark;
   border: $color-dark thin solid;
   box-shadow: inset 4px 4px 4px 0 rgba(0,0,0,.25);
-  padding: 10px 20px;
 }
 
 .App {
@@ -81,8 +78,4 @@ input {
 
 .glass-tile {
   @include glassTile;
-
-  h2 {
-    margin-block-start: initial;
-  }
 }

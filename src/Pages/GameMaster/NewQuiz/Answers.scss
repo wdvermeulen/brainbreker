@@ -1,0 +1,77 @@
+@import '../../../GlobalStyles/variables';
+@import '../../../GlobalStyles/fonts';
+@import '../../../GlobalStyles/mixins';
+
+.bottom {
+  button {
+    border-radius: 10px;
+    background: $color-answer-button-background;
+    color: $color-text-dark;
+    border: blue solid 2px;
+    box-shadow: 0 5px 0 0 blue;
+
+    :first-child {
+      margin-top: 0;
+    }
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  .bottom.half {
+    min-height: 45vh;
+  }
+
+  .row {
+    &:first-of-type {
+      button {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    button:first-of-type {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:last-of-type {
+      button {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    button:last-of-type {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .row {
+    &:first-of-type {
+      button:first-of-type {
+        border-top-left-radius: 20px;
+      }
+
+      button:last-of-type {
+        border-top-right-radius: 20px;
+      }
+    }
+
+    &:last-of-type {
+      button:first-of-type {
+        border-bottom-left-radius: 20px;
+      }
+
+      button:last-of-type {
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
+}

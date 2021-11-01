@@ -1,0 +1,10 @@
+@import '../../../GlobalStyles/mixins';
+
+.top {
+  input, textarea {
+    color: $color-text-light;
+  }
+  input {
+    @include serif-header;
+  }
+}

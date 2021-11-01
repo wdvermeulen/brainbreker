@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import logo from "../logo.svg";
 
 const Root = () => (
   <div>
-    <h1>Quizzish</h1>
+    <h1>
+      <img src={logo} alt="Logo" /> Quizzish
+    </h1>
     <div>Startcode</div>
     <form action="/">
       <input
