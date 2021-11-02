@@ -4,11 +4,11 @@ import React from "react";
 const Button = ({ editing, setEditing, answer, i }) => (
   <button
     onClick={() => {
-      setEditing("answers" + i);
+      setEditing("answer" + i);
     }}
     style={{
-      borderColor: colors[i].color,
-      boxShadow: "0 5px 0 0 " + colors[i].color,
+      borderColor: colors[i % colors.length].color,
+      boxShadow: "0 5px 0 0 " + colors[i % colors.length].color,
     }}
     key={i}
   >

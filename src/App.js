@@ -1,4 +1,5 @@
 import React from "react";
+import "./GlobalStyles/normalize.css";
 import "./App.scss";
 import Amplify, { I18n } from "aws-amplify";
 import awsconfig from "./aws-exports";

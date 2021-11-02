@@ -3,12 +3,23 @@
 @import '../../../GlobalStyles/mixins';
 
 .bottom {
+  border-top: thin solid $color-light;
+
   button {
     border-radius: 10px;
     background: $color-answer-button-background;
     color: $color-text-dark;
     border: blue solid 2px;
     box-shadow: 0 5px 0 0 blue;
+    max-width: calc(78vw - 50px);
+    word-wrap: break-word;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex: 1 1 auto;
+
+    :active {
+      box-shadow: none;
+    }
 
     :first-child {
       margin-top: 0;
@@ -21,10 +32,6 @@
 
   h3 {
     font-size: 2rem;
-  }
-
-  .bottom.half {
-    min-height: 45vh;
   }
 
   .row {

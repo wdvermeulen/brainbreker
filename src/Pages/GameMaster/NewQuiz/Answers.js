@@ -10,32 +10,48 @@ const Answers = ({ editing, setEditing }) => {
     useFormInput(I18n.get("Antwoord")),
     useFormInput(I18n.get("Antwoord")),
     useFormInput(I18n.get("Antwoord")),
+    useFormInput(I18n.get("Antwoord")),
   ];
 
-  console.log(editing, answers);
+  console.log(editing);
 
   return (
     <div className="bottom half">
-      {answers.map((answer, i) => {
+      {answers.reduce((previous, answer, i, array) => {
         if (i % 2 === 1) {
-          return (
+          previous.push(
+            <div className="row">
+              <Button
+                editing={editing}
+                setEditing={setEditing}
+                answer={array[i - 1]}
+                i={i - 1}
+                key={i - 1}
+              />
+              <Button
+                editing={editing}
+                setEditing={setEditing}
+                answer={answer}
+                i={i}
+                key={i}
+              />
+            </div>
+          );
+        } else if (i === array.length - 1) {
+          previous.push(
             <div className="row">
               <Button
                 editing={editing}
                 setEditing={setEditing}
                 answer={answer}
                 i={i}
-              />
-              <Button
-                editing={editing}
-                setEditing={setEditing}
-                answer={answer}
-                i={i}
+                key={i}
               />
             </div>
           );
         }
-      })}
+        return previous;
+      }, [])}
     </div>
   );
 };
