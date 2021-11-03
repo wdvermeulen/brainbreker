@@ -1,21 +1,22 @@
 @import '../../../GlobalStyles/variables';
-@import '../../../GlobalStyles/fonts';
-@import '../../../GlobalStyles/mixins';
 
 .bottom {
   border-top: thin solid $color-light;
+  flex: 1 1 67%;
 
-  button {
+  .AnswerButton {
     border-radius: 10px;
     background: $color-answer-button-background;
     color: $color-text-dark;
     border: blue solid 2px;
     box-shadow: 0 5px 0 0 blue;
-    max-width: calc(78vw - 50px);
     word-wrap: break-word;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px 10px 10px;
     flex: 1 1 100%;
+
+    textarea {
+      text-align: center
+    }
 
     :active {
       box-shadow: none;
@@ -32,29 +33,30 @@
 
   h3 {
     font-size: 2rem;
+    margin-bottom: 0;
   }
 
   .row {
     &:first-of-type {
-      button {
+      .AnswerButton {
         border-top-right-radius: 0;
         border-top-left-radius: 0;
       }
     }
 
-    button:first-of-type {
+    .AnswerButton:first-of-type {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
 
     &:last-of-type {
-      button {
+      .AnswerButton {
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
       }
     }
 
-    button:last-of-type {
+    .AnswerButton:last-of-type {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -62,21 +64,21 @@
 
   .row {
     &:first-of-type {
-      button:first-of-type {
+      .AnswerButton:first-of-type {
         border-top-left-radius: 20px;
       }
 
-      button:last-of-type {
+      .AnswerButton:last-of-type {
         border-top-right-radius: 20px;
       }
     }
 
     &:last-of-type {
-      button:first-of-type {
+      .AnswerButton:first-of-type {
         border-bottom-left-radius: 20px;
       }
 
-      button:last-of-type {
+      .AnswerButton:last-of-type {
         border-bottom-right-radius: 20px;
       }
     }

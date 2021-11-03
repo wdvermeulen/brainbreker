@@ -1,7 +1,3 @@
-@import '../../../GlobalStyles/variables';
-@import '../../../GlobalStyles/fonts';
-@import '../../../GlobalStyles/mixins';
-
 .container {
   @keyframes fade-in {
     from {
@@ -28,8 +24,7 @@
   .half {
     display: flex;
     flex-direction: column;
-    flex: 1 1 50%;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }

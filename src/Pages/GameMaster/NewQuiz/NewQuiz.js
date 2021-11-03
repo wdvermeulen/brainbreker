@@ -6,10 +6,14 @@ import Questions from "./Question";
 const NewQuiz = () => {
   const [editing, setEditing] = useState("");
 
+  function onBlur() {
+    setEditing("");
+  }
+
   return (
     <div className="container">
-      <Questions editing={editing} setEditing={setEditing} />
-      <Answers editing={editing} setEditing={setEditing} />
+      <Questions editing={editing} setEditing={setEditing} onBlur={onBlur} />
+      <Answers editing={editing} setEditing={setEditing} onBlur={onBlur} />
     </div>
   );
 };

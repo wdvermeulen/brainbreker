@@ -1,6 +1,7 @@
 @import '../../../GlobalStyles/mixins';
 
 .top {
+  flex: 1 1 33%;
   input, textarea {
     color: $color-text-light;
   }

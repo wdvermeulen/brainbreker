@@ -36,6 +36,13 @@ button {
     background-image: linear-gradient(to top left, $color-light, $color-medium);
     box-shadow: inset $box-shadow;
   }
+
+  &.outline {
+    background: white;
+    border: white solid thin;
+    border-radius: 30px;
+    color: $color-text-dark;
+  }
 }
 
 h2, h3 {
@@ -46,12 +53,13 @@ input, textarea {
   font-size: 1rem;
   margin-bottom: 10px;
   margin-top: 10px;
-  border-radius: 30px;
-  padding: 10px 20px;
+  border-radius: 15px;
+  padding: 5px 10px;
   background-color: #FFF;
   color: $color-text-dark;
   border: $color-dark thin solid;
-  box-shadow: inset 4px 4px 4px 0 rgba(0,0,0,.25);
+  box-shadow: inset 4px 4px 4px 0 rgba(0, 0, 0, .25);
+  resize: none;
 }
 
 .App {
@@ -75,9 +83,13 @@ input, textarea {
 
 .row {
   display: flex;
-  align-items: stretch;
-  align-content: stretch;
   justify-content: center;
+  flex: 1 1 auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
 }
 

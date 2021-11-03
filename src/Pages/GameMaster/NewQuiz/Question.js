@@ -5,7 +5,7 @@ import "./Question.scss";
 import { useFormInput } from "../../../Utils";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
-const Question = ({ editing, setEditing }) => {
+const Question = ({ editing, setEditing, onBlur }) => {
   const title = useFormInput(I18n.get("Question") + " 1");
   const question = useFormInput(
     I18n.get("Tap on text to edit. Swipe to go to the next question.")
@@ -21,9 +21,7 @@ const Question = ({ editing, setEditing }) => {
               autoFocus
               id="title"
               type="text"
-              onBlur={() => {
-                setEditing("");
-              }}
+              onBlur={onBlur}
               {...title}
             />
           </>
@@ -43,9 +41,7 @@ const Question = ({ editing, setEditing }) => {
               autoFocus
               id="question"
               name="question"
-              onBlur={() => {
-                setEditing("");
-              }}
+              onBlur={onBlur}
               {...question}
             />
           </>

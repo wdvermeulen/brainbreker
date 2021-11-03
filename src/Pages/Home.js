@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
-const Root = () => (
-  <>
+const Home = () => (
+  <div id="home">
     <h1>
       <img src={logo} alt="Logo" /> Quizzish
     </h1>
@@ -25,7 +25,7 @@ const Root = () => (
         <button type="button">Nieuw spel beginnen</button>
       </Link>
     </div>
-  </>
+  </div>
 );
 
-export default Root;
+export default Home;
