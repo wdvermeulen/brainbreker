@@ -1,5 +1,6 @@
 import colors from "../../../enums/orderedAnswerAttributes.json";
 import React from "react";
+import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
 const Button = ({ editing, setEditing, answer, i }) => (
   <button
@@ -15,7 +16,7 @@ const Button = ({ editing, setEditing, answer, i }) => (
     {editing === "answer" + i ? (
       <>
         <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>
-        <input
+        <AutosizeInput
           autoFocus
           id={"answer" + i}
           type="text"

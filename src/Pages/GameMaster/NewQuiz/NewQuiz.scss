@@ -2,32 +2,34 @@
 @import '../../../GlobalStyles/fonts';
 @import '../../../GlobalStyles/mixins';
 
-@keyframes fade-in {
-  from {
-    max-height: 0;
-    opacity: 0;
+.container {
+  @keyframes fade-in {
+    from {
+      max-height: 0;
+      opacity: 0;
+    }
+    to {
+      max-height: 5rem;
+      opacity: 1;
+    }
   }
-  to {
-    max-height: 5rem;
-    opacity: 1;
+
+  input, textarea {
+    background: none;
+    width: 100%;
   }
-}
 
-input, textarea {
-  background: none;
-  width: 100%;
-}
+  label {
+    display: block;
+    animation-name: fade-in;
+    animation-duration: .3s;
+  }
 
-label {
-  display: block;
-  animation-name: fade-in;
-  animation-duration: .3s;
-}
-
-.half {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  .half {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }

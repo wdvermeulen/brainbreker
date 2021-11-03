@@ -3,6 +3,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import "./Question.scss";
 import { useFormInput } from "../../../Utils";
+import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
 const Question = ({ editing, setEditing }) => {
   const title = useFormInput(I18n.get("Question") + " 1");
@@ -16,7 +17,7 @@ const Question = ({ editing, setEditing }) => {
         {editing === "title" ? (
           <>
             <label htmlFor="title">Naam vraag: </label>
-            <input
+            <AutosizeInput
               autoFocus
               id="title"
               type="text"
