@@ -5,13 +5,15 @@ const GameTypeSelection = () => (
   <>
     <h1>Quizzish</h1>
     <Link to="./gamemaster/new-quiz">
-      <button className="button">{I18n.get("Setup a standard quiz")}</button>
+      <button className="button">
+        {I18n.get("SetupButton a standard quiz")}
+      </button>
     </Link>
     <Link to="#">
-      <button>{I18n.get("Setup a pub quiz")}</button>
+      <button>{I18n.get("SetupButton a pub quiz")}</button>
     </Link>
     <Link to="#">
-      <button>{I18n.get("Setup an online escape room")}</button>
+      <button>{I18n.get("SetupButton an online escape room")}</button>
     </Link>
     <Link to="#">
       <button>{I18n.get("Play a solo puzzle")}</button>

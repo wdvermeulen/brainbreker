@@ -1,6 +1,5 @@
 import colors from "../../../enums/orderedAnswerAttributes.json";
 import React from "react";
-import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import TextareaAutosize from "react-textarea-autosize";
 
 const AnswerButton = ({ editing, setEditing, onBlur, answer, i }) => {

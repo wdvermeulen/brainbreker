@@ -3,7 +3,7 @@ import "./Answers.scss";
 import { I18n } from "aws-amplify";
 import { useFormInput } from "../../../Utils";
 import AnswerButton from "./AnswerButton";
-import PlusMinus from "./PlusMinus";
+import SetupButton from "./SetupButton";
 
 const Answers = ({ editing, setEditing, onBlur }) => {
   const answers = [
@@ -19,14 +19,13 @@ const Answers = ({ editing, setEditing, onBlur }) => {
         {answers.reduce((previous, answer, i, array) => {
           if (i % 2 === 1) {
             previous.push(
-              <div className="row">
+              <div className="row" key={i}>
                 <AnswerButton
                   editing={editing}
                   setEditing={setEditing}
                   onBlur={onBlur}
                   answer={array[i - 1]}
                   i={i - 1}
-                  key={i - 1}
                 />
                 <AnswerButton
                   editing={editing}
@@ -34,20 +33,18 @@ const Answers = ({ editing, setEditing, onBlur }) => {
                   onBlur={onBlur}
                   answer={answer}
                   i={i}
-                  key={i}
                 />
               </div>
             );
           } else if (i === array.length - 1) {
             previous.push(
-              <div className="row">
+              <div className="row" key={i}>
                 <AnswerButton
                   editing={editing}
                   setEditing={setEditing}
                   onBlur={onBlur}
                   answer={answer}
                   i={i}
-                  key={i}
                 />
               </div>
             );
@@ -55,7 +52,7 @@ const Answers = ({ editing, setEditing, onBlur }) => {
           return previous;
         }, [])}
       </div>
-      <PlusMinus />
+      <SetupButton />
     </>
   );
 };
