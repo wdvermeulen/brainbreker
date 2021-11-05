@@ -1,0 +1,15 @@
+@import '../../../../GlobalStyles/mixins';
+
+#Question {
+  flex: 1 1 auto;
+
+  input, textarea {
+    color: $color-text-light;
+    background: none;
+    width: 100%;
+  }
+
+  input {
+    @include serif-header;
+  }
+}

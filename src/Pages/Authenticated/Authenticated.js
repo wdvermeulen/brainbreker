@@ -5,7 +5,7 @@ import {
   AmplifyAuthenticator,
   AmplifyConfirmSignIn,
   AmplifySignIn,
-  AmplifySignOut,
+  // AmplifySignOut,
   AmplifySignUp,
 } from "@aws-amplify/ui-react";
 import "./Authenticated.scss";
@@ -28,12 +28,23 @@ const Authenticated = ({ children }) => {
     });
   });
 
+  // async function signOut() {
+  //   try {
+  //     await Auth.signOut({ global: true });
+  //     setAuthState(AuthState.SignedOut);
+  //   } catch (error) {
+  //     console.warn("error signing out: ", error);
+  //   }
+  // }
+
   return authState === AuthState.SignedIn && user ? (
     <>
-      <div className="logout-bar">
-        <div>{user?.attributes.email}</div>
-        <AmplifySignOut buttonText={I18n.get("Sign Out")} />
-      </div>
+      {/*<div className="logout-bar">*/}
+      {/*  <div>{user?.attributes.email}</div>*/}
+      {/*  <button onClick={signOut} className="outline">*/}
+      {/*    {I18n.get("Sign Out")}*/}
+      {/*  </button>*/}
+      {/*</div>*/}
       {children}
     </>
   ) : (

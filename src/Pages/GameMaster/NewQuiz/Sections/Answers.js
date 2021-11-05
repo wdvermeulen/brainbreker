@@ -1,21 +1,21 @@
 import React from "react";
 import "./Answers.scss";
 import { I18n } from "aws-amplify";
-import { useFormInput } from "../../../Utils";
+import { useFormInput } from "../../../../Utils";
 import AnswerButton from "./AnswerButton";
-import SetupButton from "./SetupButton";
+import SetupBar from "./SetupBar";
 
 const Answers = ({ editing, setEditing, onBlur }) => {
   const answers = [
-    useFormInput(I18n.get("Antwoord")),
-    useFormInput(I18n.get("Antwoord")),
-    useFormInput(I18n.get("Antwoord")),
-    useFormInput(I18n.get("Antwoord")),
+    useFormInput(""),
+    useFormInput(""),
+    useFormInput(""),
+    useFormInput(""),
   ];
 
   return (
     <>
-      <div id="answers" className="bottom half">
+      <div id="answers" className="section">
         {answers.reduce((previous, answer, i, array) => {
           if (i % 2 === 1) {
             previous.push(
@@ -52,7 +52,6 @@ const Answers = ({ editing, setEditing, onBlur }) => {
           return previous;
         }, [])}
       </div>
-      <SetupButton />
     </>
   );
 };

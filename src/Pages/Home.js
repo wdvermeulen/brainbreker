@@ -1,12 +1,11 @@
+import "./Home.scss";
 import { Link } from "react-router-dom";
-import logo from "../logo.svg";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
+import Logo from "../Components/Logo";
 
 const Home = () => (
   <div id="home">
-    <h1>
-      <img src={logo} alt="Logo" /> Quizzish
-    </h1>
+    <Logo />
     <div className="glass-tile center">
       <div>Startcode</div>
       <form action="/">
@@ -20,7 +19,7 @@ const Home = () => (
         <br />
         <button type="submit">Meespelen</button>
       </form>
-      <div>of</div>
+      <div className="or">of</div>
       <Link to="/gamemaster">
         <button type="button">Nieuw spel beginnen</button>
       </Link>

@@ -1,4 +1,5 @@
-import colors from "../../../enums/orderedAnswerAttributes.json";
+import colors from "../../../../orderedOptions/colors.json";
+import symbols from "../../../../orderedOptions/symbols.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
@@ -9,17 +10,16 @@ const AnswerButton = ({ editing, setEditing, onBlur, answer, i }) => {
 
   return (
     <button
-      className="AnswerButton"
+      className="button big answer"
       onClick={() => {
         setEditing("answer" + i);
       }}
       style={{
-        borderColor: colors[i % colors.length].color,
-        boxShadow: "0 5px 0 0 " + colors[i % colors.length].color,
+        borderColor: colors[i % colors.length],
       }}
       key={i}
     >
-      <h3>{i + 1}</h3>
+      <h3>{symbols[i % symbols.length]}</h3>
       {editing === "answer" + i ? (
         <>
           <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>
@@ -33,7 +33,7 @@ const AnswerButton = ({ editing, setEditing, onBlur, answer, i }) => {
           />
         </>
       ) : (
-        answer.value
+        <span>{answer.value}</span>
       )}
     </button>
   );

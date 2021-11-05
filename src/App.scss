@@ -1,6 +1,7 @@
 @import 'GlobalStyles/variables';
 @import 'GlobalStyles/fonts';
 @import 'GlobalStyles/mixins';
+@import 'GlobalStyles/button';
 
 * {
   box-sizing: border-box;
@@ -19,29 +20,10 @@ body {
   overflow: hidden;
 }
 
-button {
-  font-family: $font-family-default;
-  font-size: 1rem;
-  color: $color-text-light;
-  padding: 10px 20px;
-  border-radius: $border-radius;
-  background-color: $color-light;
-  background-image: linear-gradient(to bottom right, $color-light, #7209B7);
-  box-shadow: $box-shadow;
-  border: none;
-  margin: 5px;
-  flex: 0 1 auto;
-
+a {
+  color: inherit;
   &:active {
-    background-image: linear-gradient(to top left, $color-light, $color-medium);
-    box-shadow: inset $box-shadow;
-  }
-
-  &.outline {
-    background: white;
-    border: white solid thin;
-    border-radius: 30px;
-    color: $color-text-dark;
+    opacity: .8
   }
 }
 
@@ -73,12 +55,6 @@ input, textarea {
 
 .center {
   text-align: center !important;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
 }
 
 .row {

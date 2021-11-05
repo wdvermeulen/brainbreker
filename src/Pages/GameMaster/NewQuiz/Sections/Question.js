@@ -2,17 +2,15 @@ import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import "./Question.scss";
-import { useFormInput } from "../../../Utils";
+import { useFormInput } from "../../../../Utils";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
 const Question = ({ editing, setEditing, onBlur }) => {
   const title = useFormInput(I18n.get("Question") + " 1");
-  const question = useFormInput(
-    I18n.get("Tap on text to edit. Swipe to go to the next question.")
-  );
+  const question = useFormInput("");
 
   return (
-    <div className="top half">
+    <div id="Question" className="section">
       <div className="glass-tile">
         {editing === "title" ? (
           <>
@@ -51,7 +49,10 @@ const Question = ({ editing, setEditing, onBlur }) => {
               setEditing("question");
             }}
           >
-            {question.value}
+            {question.value ||
+              I18n.get(
+                "Tap on text to edit. Swipe to go to the next question."
+              )}
           </div>
         )}
       </div>

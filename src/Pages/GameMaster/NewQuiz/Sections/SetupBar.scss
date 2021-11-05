@@ -1,0 +1,5 @@
+@import '../../../../GlobalStyles/mixins';
+
+#SetupBar {
+  @include glassTile;
+}

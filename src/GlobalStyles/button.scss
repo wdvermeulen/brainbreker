@@ -1,0 +1,68 @@
+@import './variables';
+
+button {
+  font-family: $font-family-default;
+  font-size: 1rem;
+  color: $color-text-light;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  background-color: $color-light;
+  background-image: linear-gradient(to bottom right, $color-light, #7209B7);
+  box-shadow: $box-shadow;
+  border: none;
+  margin: 5px;
+  flex: 0 1 auto;
+  cursor: pointer;
+
+  &:active {
+    background-image: linear-gradient(to top left, $color-light, $color-medium);
+    box-shadow: inset $box-shadow;
+  }
+
+  &.secondary {
+    background: white;
+    border: white solid thin;
+    color: $color-text-dark;
+  }
+
+  &.outline {
+    background: transparent;
+    border: #FFF solid thin;
+    color: #FFF;
+  }
+
+  &.big {
+    border-radius: 10px;
+    border: solid 2px;
+    border-bottom-width: 5px;
+    word-wrap: break-word;
+    padding: 5px 10px 10px 10px;
+    flex: 1 1 100%;
+
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    &.answer {
+      background: $color-answer-button-background;
+      color: $color-text-dark;
+    }
+
+    textarea {
+      text-align: center
+    }
+
+    :active {
+      box-shadow: none;
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

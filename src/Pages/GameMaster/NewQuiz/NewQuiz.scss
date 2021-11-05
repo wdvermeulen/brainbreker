@@ -1,4 +1,4 @@
-.container {
+#NewQuiz {
   @keyframes fade-in {
     from {
       max-height: 0;
@@ -10,18 +10,13 @@
     }
   }
 
-  input, textarea {
-    background: none;
-    width: 100%;
-  }
-
   label {
     display: block;
     animation-name: fade-in;
     animation-duration: .3s;
   }
 
-  .half {
+  .section {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;

@@ -1,0 +1,54 @@
+@import '../../../../GlobalStyles/variables';
+
+#answers {
+  border-top: thin solid $color-light;
+  flex: 2 1 auto;
+
+  .row {
+    &:first-of-type {
+      button.answer {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+    }
+
+    button.answer:first-of-type {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:last-of-type {
+      button.answer {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    button.answer:last-of-type {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .row {
+    &:first-of-type {
+      button.answer:first-of-type {
+        border-top-left-radius: 20px;
+      }
+
+      button.answer:last-of-type {
+        border-top-right-radius: 20px;
+      }
+    }
+
+    &:last-of-type {
+      button.answer:first-of-type {
+        border-bottom-left-radius: 20px;
+      }
+
+      button.answer:last-of-type {
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
+}

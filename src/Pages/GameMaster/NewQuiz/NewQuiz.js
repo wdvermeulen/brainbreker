@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./NewQuiz.scss";
-import Answers from "./Answers";
-import Questions from "./Question";
+import Answers from "./Sections/Answers";
+import Questions from "./Sections/Question";
+import SetupBar from "./Sections/SetupBar";
 
 const NewQuiz = () => {
   const [editing, setEditing] = useState("");
@@ -11,9 +12,10 @@ const NewQuiz = () => {
   }
 
   return (
-    <div className="container">
+    <div id="NewQuiz" className="column">
       <Questions editing={editing} setEditing={setEditing} onBlur={onBlur} />
       <Answers editing={editing} setEditing={setEditing} onBlur={onBlur} />
+      <SetupBar />
     </div>
   );
 };
