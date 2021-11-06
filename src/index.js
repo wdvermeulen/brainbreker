@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import Amplify from "aws-amplify";
-import config from "./aws-exports";
+import config from "./app/aws-exports";
+import store from "./app/store";
+import { Provider } from "react-redux";
 
 Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,0 +1,17 @@
+@import '../../../../GlobalStyles/mixins';
+
+#SetupBar {
+  @include glassTile;
+
+  input {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .row {
+    justify-content: initial;
+    gap: 5px;
+    align-items: center;
+    margin: 5px 0;
+  }
+}

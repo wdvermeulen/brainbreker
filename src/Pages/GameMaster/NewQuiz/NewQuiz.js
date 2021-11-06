@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "./NewQuiz.scss";
-import Answers from "./Sections/Answers";
-import Questions from "./Sections/Question";
-import SetupBar from "./Sections/SetupBar";
+import Answers from "./Slide/Answers";
+import Questions from "./Slide/Question";
+import SetupBar from "./Slide/SetupBar";
+import { useEditing } from "./hooks";
 
 const NewQuiz = () => {
-  const [editing, setEditing] = useState("");
+  const [, setEditing] = useEditing();
 
   function onBlur() {
-    setEditing("");
+    return setEditing("");
   }
 
   return (
     <div id="NewQuiz" className="column">
-      <Questions editing={editing} setEditing={setEditing} onBlur={onBlur} />
-      <Answers editing={editing} setEditing={setEditing} onBlur={onBlur} />
+      <div className="slide column">
+        <Questions onBlur={onBlur} />
+        <Answers onBlur={onBlur} />
+      </div>
       <SetupBar />
     </div>
   );

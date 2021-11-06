@@ -1,6 +1,6 @@
 import { I18n } from "aws-amplify";
 import { Link } from "react-router-dom";
-import Logo from "../../Components/Logo";
+import Logo from "../../components/logo/Logo";
 
 const GameTypeSelection = () => (
   <>

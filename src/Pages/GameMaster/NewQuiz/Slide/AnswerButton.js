@@ -2,8 +2,11 @@ import colors from "../../../../orderedOptions/colors.json";
 import symbols from "../../../../orderedOptions/symbols.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { useEditing } from "../hooks";
 
-const AnswerButton = ({ editing, setEditing, onBlur, answer, i }) => {
+const AnswerButton = ({ onBlur, answer, i }) => {
+  const [editing, setEditing] = useEditing();
+
   function onKeyDown(e) {
     if (e.key === "Enter") setEditing("");
   }

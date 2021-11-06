@@ -1,7 +1,7 @@
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import Logo from "../Components/Logo";
+import Logo from "../components/logo/Logo";
 
 const Home = () => (
   <div id="home">

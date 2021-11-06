@@ -1,9 +1,9 @@
 import React from "react";
-import "./GlobalStyles/normalize.css";
+import "../GlobalStyles/normalize.css";
 import "./App.scss";
 import Amplify, { I18n } from "aws-amplify";
 import awsconfig from "./aws-exports";
-import * as STRINGS from "./strings.json";
+import * as STRINGS from "../strings.json";
 import SiteRoute from "./SiteRoute";
 
 Amplify.configure(awsconfig);

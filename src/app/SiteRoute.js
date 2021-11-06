@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Authenticated from "./Pages/Authenticated/Authenticated";
-import GameTypeSelection from "./Pages/GameMaster/GameTypeSelection";
-import Home from "./Pages/Home";
-import NewQuiz from "./Pages/GameMaster/NewQuiz/NewQuiz";
+import Authenticated from "./authenticated/Authenticated";
+import GameTypeSelection from "../Pages/GameMaster/GameTypeSelection";
+import Home from "../Pages/Home";
+import NewQuiz from "../Pages/GameMaster/NewQuiz/NewQuiz";
 
 const SiteRoute = () => (
   <Router>

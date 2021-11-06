@@ -4,8 +4,10 @@ import { I18n } from "aws-amplify";
 import "./Question.scss";
 import { useFormInput } from "../../../../Utils";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
+import { useEditing } from "../hooks";
 
-const Question = ({ editing, setEditing, onBlur }) => {
+const Question = ({ onBlur }) => {
+  const [editing, setEditing] = useEditing();
   const title = useFormInput(I18n.get("Question") + " 1");
   const question = useFormInput("");
 

@@ -1,11 +1,12 @@
 import React from "react";
 import "./Answers.scss";
-import { I18n } from "aws-amplify";
 import { useFormInput } from "../../../../Utils";
 import AnswerButton from "./AnswerButton";
-import SetupBar from "./SetupBar";
+import { useEditing } from "../hooks";
 
-const Answers = ({ editing, setEditing, onBlur }) => {
+const Answers = ({ onBlur }) => {
+  const [, setEditing] = useEditing();
+
   const answers = [
     useFormInput(""),
     useFormInput(""),
@@ -21,14 +22,12 @@ const Answers = ({ editing, setEditing, onBlur }) => {
             previous.push(
               <div className="row" key={i}>
                 <AnswerButton
-                  editing={editing}
                   setEditing={setEditing}
                   onBlur={onBlur}
                   answer={array[i - 1]}
                   i={i - 1}
                 />
                 <AnswerButton
-                  editing={editing}
                   setEditing={setEditing}
                   onBlur={onBlur}
                   answer={answer}
@@ -40,7 +39,6 @@ const Answers = ({ editing, setEditing, onBlur }) => {
             previous.push(
               <div className="row" key={i}>
                 <AnswerButton
-                  editing={editing}
                   setEditing={setEditing}
                   onBlur={onBlur}
                   answer={answer}
