@@ -6,6 +6,9 @@ import {
   setTimeLimit,
   setAutoCheck,
   setPointsForSpeed,
+  setNumberOfOptions,
+  setAnswerValue,
+  setAnswerDescription,
 } from "./slice";
 
 function useQuestionTitle() {
@@ -76,6 +79,60 @@ function usePointsForSpeed() {
   return { checked, onChange: handleChange };
 }
 
+function useNumberOfOptions() {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.newQuiz.slide.numberOfOptions);
+
+  const handleChange = (e) => {
+    dispatch(setNumberOfOptions(e.target.value));
+  };
+
+  return { value, onChange: handleChange };
+}
+
+function useAnswerValue() {
+  const dispatch = useDispatch();
+  const values = useSelector((state) =>
+    state.newQuiz.slide.answers.map((answer) => answer.value)
+  );
+
+  const handleChange = (e) => {
+    console.log(e);
+    dispatch(
+      setAnswerValue({
+        answerIndex: e.target.name.match(/(\d+)/),
+        value: e.target.value,
+      })
+    );
+  };
+
+  return {
+    values,
+    onChange: handleChange,
+  };
+}
+
+function useAnswerDescription(answerIndex) {
+  const dispatch = useDispatch();
+  const value = useSelector(
+    (state) => state.newQuiz.slide.answers[answerIndex].description
+  );
+
+  const handleChange = (e) => {
+    dispatch(
+      setAnswerDescription({
+        answerIndex,
+        description: e.target.value,
+      })
+    );
+  };
+
+  return {
+    value,
+    onChange: handleChange,
+  };
+}
+
 export {
   useQuestionTitle,
   useQuestionDescription,
@@ -83,4 +140,7 @@ export {
   useTimeLimit,
   useAutoCheck,
   usePointsForSpeed,
+  useNumberOfOptions,
+  useAnswerValue,
+  useAnswerDescription,
 };

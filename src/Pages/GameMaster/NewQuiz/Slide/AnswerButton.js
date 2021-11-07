@@ -3,9 +3,12 @@ import symbols from "../../../../sharedResources/symbols.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useEditing } from "../hooks";
+import { useAnswerDescription } from "./hooks";
 
-const AnswerButton = ({ onBlur, answer, i }) => {
+const AnswerButton = ({ onBlur, i }) => {
   const [editing, setEditing] = useEditing();
+
+  const answerDescription = useAnswerDescription(i);
 
   function onKeyDown(e) {
     if (e.key === "Enter") setEditing("");
@@ -32,11 +35,11 @@ const AnswerButton = ({ onBlur, answer, i }) => {
             type="text"
             onBlur={onBlur}
             onKeyDown={onKeyDown}
-            {...answer}
+            {...answerDescription}
           />
         </>
       ) : (
-        <span>{answer.value}</span>
+        <span>{answerDescription.value}</span>
       )}
     </button>
   );

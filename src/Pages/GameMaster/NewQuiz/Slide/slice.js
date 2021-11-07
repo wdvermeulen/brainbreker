@@ -32,7 +32,7 @@ const slice = createSlice({
       state.hasTimeLimit = action.payload;
     },
     setTimeLimit: (state, action) => {
-      state.timeLimit = action.payload;
+      state.timeLimit = Math.min(Math.max(action.payload, 5), 1800);
     },
     setAutoCheck: (state, action) => {
       state.autoCheck = action.payload;
@@ -47,24 +47,29 @@ const slice = createSlice({
       state.type = action.payload;
     },
     setAnswerDescription: (state, action) => {
-      state.answers[action.payload.answer].description =
+      state.answers[action.payload.answerIndex].description =
         action.payload.description;
     },
-    setValue: (state, action) => {
-      state.answers[action.payload.answer].value = action.payload.value;
-    },
-    setNumberOfOptions: (state, { payload }) => {
-      state.numberOfOptions = Math.max(Math.min(payload, 99), 0);
-      while (state.answers < 98 && state.answers.length < payload) {
+    //TODO: currently causes crashes
+    setNumberOfOptions: (state, action) => {
+      state.numberOfOptions = Math.max(Math.min(action.payload, 99), 0);
+      while (state.answers < 98 && state.answers.length < action.payload) {
         state.answers.push({ description: "", value: 0 });
       }
       while (
         state.answers > 1 &&
-        state.answers.length > payload &&
+        state.answers.length > action.payload &&
         state.answers[state.answers.length - 1].description === ""
       ) {
         state.answers.pop();
       }
+    },
+    setAnswerValue: (state, action) => {
+      console.log(
+        state.answers[action.payload.answerIndex].value,
+        action.payload
+      );
+      state.answers[action.payload.answerIndex].value = action.payload.value;
     },
   },
 });
@@ -76,11 +81,12 @@ export const {
   setTimeLimit,
   setPointsForSpeed,
   setAutoCheck,
-  setFile,
-  setType,
+  //TODO
+  // setFile,
+  // setType,
   setAnswerDescription,
-  setValue,
   setNumberOfOptions,
+  setAnswerValue,
 } = slice.actions;
 
 export default slice.reducer;

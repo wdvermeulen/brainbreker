@@ -17,6 +17,7 @@ const Home = () => (
           size={4}
         />
         <br />
+        {/*TODO*/}
         <button type="submit">Meespelen</button>
       </form>
       <div className="or">of</div>
