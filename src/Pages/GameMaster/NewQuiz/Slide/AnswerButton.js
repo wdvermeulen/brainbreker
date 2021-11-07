@@ -1,5 +1,5 @@
-import colors from "../../../../orderedOptions/colors.json";
-import symbols from "../../../../orderedOptions/symbols.json";
+import colors from "../../../../sharedResources/colors.json";
+import symbols from "../../../../sharedResources/symbols.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useEditing } from "../hooks";

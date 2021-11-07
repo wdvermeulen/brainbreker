@@ -4,7 +4,7 @@ import { nextSlide, previousSlide, setCurrentSlide, setEditing } from "./slice";
 function useEditing() {
   const dispatch = useDispatch();
   return [
-    useSelector((state) => state.newQuiz.editing),
+    useSelector((state) => state.newQuiz.current.editing),
     (s) => dispatch(setEditing(s)),
   ];
 }
@@ -12,7 +12,7 @@ function useEditing() {
 function useCurrentSlide() {
   const dispatch = useDispatch();
   return [
-    useSelector((state) => state.newQuiz.currentSlide),
+    useSelector((state) => state.newQuiz.current.currentSlide),
     (i) => dispatch(setCurrentSlide(i)),
   ];
 }

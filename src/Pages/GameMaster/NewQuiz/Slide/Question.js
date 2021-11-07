@@ -2,14 +2,16 @@ import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import "./Question.scss";
-import { useFormInput } from "../../../../Utils";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { useEditing } from "../hooks";
+import { useQuestionDescription, useQuestionTitle } from "./hooks";
 
 const Question = ({ onBlur }) => {
+  const title = useQuestionTitle();
   const [editing, setEditing] = useEditing();
-  const title = useFormInput(I18n.get("Question") + " 1");
-  const question = useFormInput("");
+  const question = useQuestionDescription();
+
+  console.log(title);
 
   return (
     <div id="Question" className="section">

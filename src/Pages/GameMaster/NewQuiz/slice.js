@@ -1,29 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { combineReducers, createSlice } from "@reduxjs/toolkit";
+import slide from "./Slide/slice";
 
 const slice = createSlice({
   name: "newQuiz",
   initialState: {
     currentSlide: 0,
     editing: "",
-    slide: [
-      {
-        question: {
-          title: "",
-          description: "",
-        },
-        type: 0,
-        numberOfOptions: 4,
-        autoCheck: true,
-        time: 500,
-        file: "",
-        answers: [
-          { description: "", value: 0 },
-          { description: "", value: 0 },
-          { description: "", value: 0 },
-          { description: "", value: 0 },
-        ],
-      },
-    ],
   },
   reducers: {
     setEditing: (state, action) => {
@@ -44,4 +26,7 @@ const slice = createSlice({
 export const { setEditing, setCurrentSlide, nextSlide, previousSlide } =
   slice.actions;
 
-export default slice.reducer;
+export default combineReducers({
+  current: slice.reducer,
+  slide: slide,
+});
