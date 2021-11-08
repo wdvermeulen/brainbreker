@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import Amplify from "aws-amplify";
-import config from "./app/aws-exports";
+import config from "./aws-exports";
 import store from "./app/store";
 import { Provider } from "react-redux";
 

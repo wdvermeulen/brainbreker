@@ -1,12 +1,10 @@
 import React from "react";
 import "../sharedStyles/normalize.css";
 import "./App.scss";
-import Amplify, { I18n } from "aws-amplify";
-import awsconfig from "./aws-exports";
+import { I18n } from "aws-amplify";
 import * as STRINGS from "../strings.json";
 import SiteRoute from "./SiteRoute";
 
-Amplify.configure(awsconfig);
 I18n.setLanguage("nl");
 I18n.putVocabulariesForLanguage("nl", STRINGS.nl);
 
