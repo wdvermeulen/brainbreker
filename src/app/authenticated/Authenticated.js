@@ -5,10 +5,12 @@ import {
   AmplifyAuthenticator,
   AmplifyConfirmSignIn,
   AmplifySignIn,
-  // AmplifySignOut,
   AmplifySignUp,
 } from "@aws-amplify/ui-react";
 import "./Authenticated.scss";
+import Logo from "../../components/logo/Logo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Authenticated = ({ children }) => {
   const [authState, setAuthState] = useState();
@@ -28,23 +30,25 @@ const Authenticated = ({ children }) => {
     });
   });
 
-  // async function signOut() {
-  //   try {
-  //     await Auth.signOut({ global: true });
-  //     setAuthState(AuthState.SignedOut);
-  //   } catch (error) {
-  //     console.warn("error signing out: ", error);
-  //   }
-  // }
+  async function signOut() {
+    try {
+      await Auth.signOut({ global: true });
+      setAuthState(AuthState.SignedOut);
+    } catch (error) {
+      console.warn("error signing out: ", error);
+    }
+  }
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      {/*<div className="logout-bar">*/}
-      {/*  <div>{user?.attributes.email}</div>*/}
-      {/*  <button onClick={signOut} className="outline">*/}
-      {/*    {I18n.get("Sign Out")}*/}
-      {/*  </button>*/}
-      {/*</div>*/}
+      <div className="logout-bar">
+        {/*<div>{user?.attributes.email}</div>*/}
+        {/*TODO build a user menu*/}
+        <button onClick={signOut} className="outline">
+          <FontAwesomeIcon icon={faUser} />
+        </button>
+        <Logo />
+      </div>
       {children}
     </>
   ) : (

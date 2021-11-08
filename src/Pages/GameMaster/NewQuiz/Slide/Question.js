@@ -11,8 +11,6 @@ const Question = ({ onBlur }) => {
   const [editing, setEditing] = useEditing();
   const question = useQuestionDescription();
 
-  console.log(title);
-
   return (
     <div id="Question" className="section">
       <div className="glass-tile">

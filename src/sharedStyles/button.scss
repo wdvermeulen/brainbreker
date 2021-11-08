@@ -29,6 +29,11 @@ button {
     background: transparent;
     border: #FFF solid thin;
     color: #FFF;
+
+    &:active {
+      background: rgba(255,255,255,.2);
+      box-shadow: inset $box-shadow;
+    }
   }
 
   &.big {

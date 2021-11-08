@@ -10,14 +10,14 @@ const Answers = ({ onBlur }) => {
   for (let i = 0; i < value; i++) {
     if (i % 2 === 1) {
       rows.push(
-        <div className="row" key={i}>
+        <div className="row" key={"AnswersRow" + i}>
           <AnswerButton onBlur={onBlur} i={i - 1} />
           <AnswerButton onBlur={onBlur} i={i} />
         </div>
       );
     } else if (i === value - 1) {
       rows.push(
-        <div className="row" key={i}>
+        <div className="row" key={"AnswersRow" + i}>
           <AnswerButton onBlur={onBlur} i={i} />
         </div>
       );

@@ -2,6 +2,14 @@
 
 #SetupBar {
   @include glassTile;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -20px;
+  padding-right: 40px;
+  max-width: 350px;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: right .3s;
 
   input {
     margin-top: 0;
@@ -13,5 +21,14 @@
     gap: 5px;
     align-items: center;
     margin: 5px 0;
+    min-height: 30px;
   }
+}
+
+.menubutton {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+  max-width: calc(100vw - 196px);
 }

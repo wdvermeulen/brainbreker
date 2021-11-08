@@ -25,7 +25,7 @@ const AnswerButton = ({ onBlur, i }) => {
       }}
       key={i}
     >
-      <h3>{symbols[i % symbols.length]}</h3>
+      <h3>{i + 1}</h3>
       {editing === "answer" + i ? (
         <>
           <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>

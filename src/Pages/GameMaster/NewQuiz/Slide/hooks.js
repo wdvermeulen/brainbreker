@@ -93,15 +93,16 @@ function useNumberOfOptions() {
 function useAnswerValue() {
   const dispatch = useDispatch();
   const values = useSelector((state) =>
-    state.newQuiz.slide.answers.map((answer) => answer.value)
+    state.newQuiz.slide.answers
+      .slice(0, state.newQuiz.slide.numberOfOptions)
+      .map((answer) => answer.value)
   );
 
-  const handleChange = (e) => {
-    console.log(e);
+  const handleChange = (answerIndex, value) => {
     dispatch(
       setAnswerValue({
-        answerIndex: e.target.name.match(/(\d+)/),
-        value: e.target.value,
+        answerIndex,
+        value,
       })
     );
   };

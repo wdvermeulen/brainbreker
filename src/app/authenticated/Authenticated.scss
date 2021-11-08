@@ -13,21 +13,34 @@ amplify-authenticator {
 }
 
 .logout-bar {
-  @include glassTile;
+  border-bottom: solid white thin;
+  border-right: solid white thin;
+  background-color: rgba(0,0,0,.5);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: -5vmin -5vmin 20px -5vmin;
-  border-top-width: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  margin: 0 auto 5px 0;
+  border-bottom-right-radius: 10px;
+
+
   div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  button.button {
-    background-color: red;
+
+  button {
+    margin: 0;
+    border-width: 0 1px 0 0;
+    border-radius: 0;
+  }
+
+  #Logo {
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    h1 {
+      margin: 0;
+    }
   }
 }
 
