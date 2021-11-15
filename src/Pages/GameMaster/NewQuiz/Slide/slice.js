@@ -4,7 +4,7 @@ const slice = createSlice({
   name: "slide",
   initialState: {
     question: {
-      title: "Question 1",
+      title: "Vraag 1",
       description: "",
     },
     hasTimeLimit: true,

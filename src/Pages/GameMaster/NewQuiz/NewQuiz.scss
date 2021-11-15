@@ -1,6 +1,4 @@
 #NewQuiz {
-  margin: 0 auto;
-  padding: 10px;
 
   .slide {
     @keyframes fade-in {
@@ -26,5 +24,11 @@
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  .slide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
   }
 }

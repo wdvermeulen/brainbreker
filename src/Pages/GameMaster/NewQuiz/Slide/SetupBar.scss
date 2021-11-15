@@ -1,15 +1,25 @@
 @import '../../../../sharedStyles/mixins';
 
 #SetupBar {
-  @include glassTile;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: -20px;
-  padding-right: 40px;
-  max-width: 350px;
-  background-color: rgba(0, 0, 0, 0.6);
-  transition: right .3s;
+  margin-top: -45px;
+  margin-left: -45px;
+  padding: 0;
+  overflow: visible;
+  display: flex;
+  pointer-events: none;
+
+  .collapsible-container {
+    pointer-events: auto;
+    transition: max-width .3s, max-height .3s;
+  }
+
+  .glass-container {
+    @include glassTile;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-top-left-radius: 0;
+  }
 
   input {
     margin-top: 0;
@@ -26,9 +36,11 @@
 }
 
 .menubutton {
-  position: absolute;
-  margin: 0;
-  top: 0;
-  right: 0;
-  max-width: calc(100vw - 196px);
+  pointer-events: auto;
+  margin: 0 0 auto 0;
+  width: 45px;
+  padding-left: 0;
+  padding-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
