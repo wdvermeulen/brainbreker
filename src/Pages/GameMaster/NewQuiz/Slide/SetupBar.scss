@@ -2,14 +2,11 @@
 
 #SetupBar {
   margin-top: -45px;
-  margin-left: -45px;
   padding: 0;
   overflow: visible;
   display: flex;
-  pointer-events: none;
 
   .collapsible-container {
-    pointer-events: auto;
     transition: max-width .3s, max-height .3s;
   }
 
@@ -36,8 +33,7 @@
 }
 
 .menubutton {
-  pointer-events: auto;
-  margin: 0 0 auto 0;
+  margin: 0 0 auto -45px;
   width: 45px;
   padding-left: 0;
   padding-right: 0;
