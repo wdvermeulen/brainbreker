@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { questionTypes } from "../../../../sharedResources/enum";
@@ -11,12 +11,12 @@ import {
   useAnswerValue,
   useQuestionTitle,
 } from "./hooks";
-import { useFormInput } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useFormInputWithSet } from "../../../../Utils";
 
 const SetupBar = ({ collapse, collapsed }) => {
   const questionTitle = useQuestionTitle().value;
@@ -27,7 +27,10 @@ const SetupBar = ({ collapse, collapsed }) => {
   const numberOfOptions = useNumberOfOptions();
   const answerValue = useAnswerValue();
 
-  const selectAnswer = useFormInput(0);
+  const { setValue, ...selectAnswer } = useFormInputWithSet(0);
+
+  if (selectAnswer.value >= numberOfOptions.value)
+    setValue(numberOfOptions.value - 1);
 
   return (
     <div id="SetupBar">
@@ -45,7 +48,11 @@ const SetupBar = ({ collapse, collapsed }) => {
 
           <div className="row">
             <label htmlFor="questionType">Soort vraag: </label>
-            <select id="questionType" name="questionType">
+            <select
+              id="questionType"
+              name="questionType"
+              aria-label="soort vraag"
+            >
               {Object.entries(questionTypes).map(([, type], i) => (
                 <option key={"questionType-" + i} value={i}>
                   {type}
@@ -59,6 +66,7 @@ const SetupBar = ({ collapse, collapsed }) => {
             <AutosizeInput
               id="numberOfOptions"
               name="numberOfOptions"
+              aria-label="Aantal opties"
               text="number"
               min="1"
               max="99"
@@ -70,6 +78,7 @@ const SetupBar = ({ collapse, collapsed }) => {
             <input
               id="hasTimeLimit"
               name="hasTimeLimit"
+              aria-label="heeft een tijdslimiet"
               type="checkbox"
               {...hasTimeLimit}
             />
@@ -83,6 +92,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                 <AutosizeInput
                   id="timeLimit"
                   name="timeLimit"
+                  aria-label="tijdslimiet in seconden"
                   text="number"
                   min="5"
                   max="1800"
@@ -97,6 +107,7 @@ const SetupBar = ({ collapse, collapsed }) => {
             <input
               id="autoCheck"
               name="autoCheck"
+              aria-label="automatisch controleren"
               type="checkbox"
               {...autoCheck}
             />
@@ -109,6 +120,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                 <input
                   id="pointsForSpeed"
                   name="pointsForSpeed"
+                  aria-label="Punten voor snelheid"
                   type="checkbox"
                   {...pointsForSpeed}
                 />
@@ -120,8 +132,12 @@ const SetupBar = ({ collapse, collapsed }) => {
           <div className="row">
             {autoCheck.checked && (
               <>
-                <label>Juiste antwoord: </label>
-                <select {...selectAnswer}>
+                <label htmlFor="correctAnswer">Juiste antwoord: </label>
+                <select
+                  id="correctAnswer"
+                  aria-label="Juiste antwoord"
+                  {...selectAnswer}
+                >
                   {answerValue.values.map((value, i) => (
                     <option key={"answerValue-" + i} value={i}>
                       {"Antwoord " + (i + 1)}
@@ -135,14 +151,18 @@ const SetupBar = ({ collapse, collapsed }) => {
           <div className="row">
             {autoCheck.checked && (
               <>
-                Beloning voor Antwoord {parseInt(selectAnswer.value) + 1}:
+                <label htmlFor="rewardValue">
+                  {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
+                  Antwoord {parseInt(selectAnswer.value) + 1}:
+                </label>
                 <AutosizeInput
+                  id="rewardValue"
                   text="number"
                   value={answerValue.values[selectAnswer.value]}
                   onChange={(e) => {
                     answerValue.onChange(selectAnswer.value, e.target.value);
                   }}
-                />{" "}
+                />
                 punt{answerValue.values[selectAnswer.value] !== "1" && "en"}
               </>
             )}
@@ -150,17 +170,25 @@ const SetupBar = ({ collapse, collapsed }) => {
 
           {autoCheck.checked &&
             answerValue.values.map((value, i) => {
-              if (parseInt(selectAnswer.value) !== i && value !== 0) {
+              if (
+                parseInt(selectAnswer.value) !== i &&
+                value !== 0 &&
+                i < numberOfOptions.value
+              ) {
                 return (
                   <div className="row" key={"answerValue-" + i}>
-                    Beloning voor Antwoord {i + 1}:
+                    <label htmlFor={"answerValue-" + i}>
+                      {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
+                      Antwoord {i + 1}:
+                    </label>
                     <AutosizeInput
+                      id={"answerValue-" + i}
                       text="number"
                       value={answerValue.values[i]}
                       onChange={(e) => {
                         answerValue.onChange(i, e.target.value);
                       }}
-                    />{" "}
+                    />
                     punt{answerValue.values[i] !== "1" && "en"}
                   </div>
                 );
@@ -170,6 +198,10 @@ const SetupBar = ({ collapse, collapsed }) => {
 
           <button className="secondary">Vorige</button>
           <button>Volgende vraag</button>
+
+          <hr />
+
+          <h3>Overzicht</h3>
         </div>
       </div>
     </div>

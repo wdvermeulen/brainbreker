@@ -50,34 +50,23 @@ const slice = createSlice({
       state.answers[action.payload.answerIndex].description =
         action.payload.description;
     },
-    //TODO: currently causes crashes
     setNumberOfOptions: (state, action) => {
-      console.log("Access", state.numberOfOptions, action.payload);
       state.numberOfOptions = Math.max(Math.min(action.payload, 99), 0);
-      console.log("2", state.numberOfOptions, action.payload);
       while (
         state.answers.length < 98 &&
         state.answers.length < action.payload
       ) {
-        console.log("3", state.answers, action.payload);
         state.answers.push({ description: "", value: 0 });
-        console.log("4", state.answers, action.payload);
       }
       while (
         state.answers.length > 1 &&
         state.answers.length > action.payload &&
         state.answers[state.answers.length - 1].description === ""
       ) {
-        console.log("5", state.answers, action.payload);
         state.answers.pop();
       }
-      console.log("6", state.answers);
     },
     setAnswerValue: (state, action) => {
-      console.log(
-        state.answers[action.payload.answerIndex].value,
-        action.payload
-      );
       state.answers[action.payload.answerIndex].value = action.payload.value;
     },
   },

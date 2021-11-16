@@ -9,3 +9,13 @@ export function useFormInput(defaultState) {
 
   return { value, onChange: handleChange };
 }
+
+export function useFormInputWithSet(defaultState) {
+  const [value, setValue] = useState(defaultState);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return { value, onChange: handleChange, setValue };
+}

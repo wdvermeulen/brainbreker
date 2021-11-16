@@ -1,4 +1,6 @@
 #NewQuiz {
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .slide {
     @keyframes fade-in {
@@ -27,8 +29,10 @@
   }
 
   .slide {
+    max-height: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
+    overflow: auto;
   }
 }

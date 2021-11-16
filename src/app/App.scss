@@ -42,6 +42,50 @@ input, textarea {
   border: $color-dark thin solid;
   box-shadow: inset 4px 4px 4px 0 rgba(0, 0, 0, .25);
   resize: none;
+  &:hover {
+    background-color: darken(white,10%);
+    cursor: pointer;
+  }
+}
+
+[type=checkbox] {
+  -webkit-appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: white;
+  border: 1px solid $color-dark;
+  border-radius: .25em;
+  position: relative;
+  top: -.1em;
+  text-align: center;
+  font-family: "Font Awesome", sans-serif;
+
+  &:active {
+    border: 1px dashed $color-light;
+  }
+  &:focus {
+    border: 2px dashed $color-light;
+  }
+  &:hover {
+    background-color: darken(white,20%);
+  }
+  &:checked {
+    background-color: $color-dark;
+    border-color: white;
+    &:hover {
+      background-color: lighten($color-dark,20%);
+    }
+    &::after {
+      position: relative;
+      top: .06em;
+      color: white;
+      content: '\f00c';
+    }
+  }
+}
+
+label[for]:hover {
+  cursor: pointer;
 }
 
 .App {
