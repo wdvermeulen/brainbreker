@@ -9,22 +9,22 @@ function useEditing() {
   ];
 }
 
-function useCurrentSlide() {
+function useSlideNavigation() {
   const dispatch = useDispatch();
-  return [
-    useSelector((state) => state.newQuiz.current.currentSlide),
-    (i) => dispatch(setCurrentSlide(i)),
-  ];
+  const slide = useSelector((state) => state.newQuiz.slide);
+  // const currentSlide = useSelector(
+  //   (state) => state.current.slides[state.current.slideNumber]
+  // );
+  const gotoNextSlide = () => {
+    dispatch(nextSlide(slide));
+  };
+  const gotoPreviousSlide = () => {
+    dispatch(previousSlide(slide));
+  };
+  const gotoSlide = (slideNumber) => {
+    dispatch(setCurrentSlide({ slide, slideNumber }));
+  };
+  return { gotoNextSlide, gotoPreviousSlide, gotoSlide /*, currentSlide */ };
 }
 
-function useNextSlide() {
-  const dispatch = useDispatch();
-  return dispatch(nextSlide());
-}
-
-function usePreviousSlide() {
-  const dispatch = useDispatch();
-  return dispatch(previousSlide());
-}
-
-export { useEditing, useCurrentSlide, useNextSlide, usePreviousSlide };
+export { useEditing, useSlideNavigation };

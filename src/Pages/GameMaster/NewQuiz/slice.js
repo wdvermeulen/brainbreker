@@ -1,23 +1,34 @@
 import { combineReducers, createSlice } from "@reduxjs/toolkit";
 import slide from "./Slide/slice";
 
+function storeCurrentSlide(state, slide) {
+  if (state.currentSlide <= state.slides.length) state.slides.push(slide);
+  else state.slides[state.currentSlide] = slide;
+}
+
 const slice = createSlice({
   name: "newQuiz",
   initialState: {
     currentSlide: 0,
     editing: "",
+    slides: [],
   },
   reducers: {
     setEditing: (state, action) => {
       state.editing = action.payload;
     },
     setCurrentSlide: (state, action) => {
-      state.currentSlide = action.payload;
+      storeCurrentSlide(state, action.payload.slide);
+      state.currentSlide = action.payload.slideNumber;
     },
-    nextSlide: (state) => {
+    nextSlide: (state, action) => {
+      console.log(state.currentSlide);
+
+      storeCurrentSlide(state, action.payload);
       state.currentSlide += 1;
     },
-    previousSlide: (state) => {
+    previousSlide: (state, action) => {
+      storeCurrentSlide(state, action.payload);
       state.currentSlide -= 1;
     },
   },

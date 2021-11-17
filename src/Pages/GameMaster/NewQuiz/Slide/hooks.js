@@ -10,6 +10,7 @@ import {
   setAnswerValue,
   setAnswerDescription,
 } from "./slice";
+import { nextSlide, previousSlide, setCurrentSlide } from "../slice";
 
 function useQuestionTitle() {
   const dispatch = useDispatch();
@@ -134,6 +135,11 @@ function useAnswerDescription(answerIndex) {
   };
 }
 
+function useSlide() {
+  const value = useSelector((state) => state.newQuiz.slide);
+  return value;
+}
+
 export {
   useQuestionTitle,
   useQuestionDescription,
@@ -144,4 +150,5 @@ export {
   useNumberOfOptions,
   useAnswerValue,
   useAnswerDescription,
+  useSlide,
 };

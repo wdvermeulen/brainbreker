@@ -11,12 +11,13 @@ import {
   useAnswerValue,
   useQuestionTitle,
 } from "./hooks";
+import { useSlideNavigation } from "../hooks";
+import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useFormInputWithSet } from "../../../../Utils";
 
 const SetupBar = ({ collapse, collapsed }) => {
   const questionTitle = useQuestionTitle().value;
@@ -26,6 +27,7 @@ const SetupBar = ({ collapse, collapsed }) => {
   const pointsForSpeed = usePointsForSpeed();
   const numberOfOptions = useNumberOfOptions();
   const answerValue = useAnswerValue();
+  const slideNavigation = useSlideNavigation();
 
   const { setValue, ...selectAnswer } = useFormInputWithSet(0);
 
@@ -45,6 +47,8 @@ const SetupBar = ({ collapse, collapsed }) => {
       >
         <div className="glass-container">
           <h3>Instellingen voor {questionTitle}</h3>
+          <button className="outline">Reset</button>
+          <button className="outline">Verwijderen</button>
 
           <div className="row">
             <label htmlFor="questionType">Soort vraag: </label>
@@ -196,8 +200,15 @@ const SetupBar = ({ collapse, collapsed }) => {
               return null;
             })}
 
-          <button className="secondary">Vorige</button>
-          <button>Volgende vraag</button>
+          <button
+            className="secondary"
+            onClick={slideNavigation.gotoPreviousSlide}
+          >
+            Vorige
+          </button>
+          <button onClick={slideNavigation.gotoNextSlide}>
+            Volgende vraag
+          </button>
 
           <hr />
 
