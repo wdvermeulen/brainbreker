@@ -179,6 +179,10 @@ function useSlideNavigation() {
   return { gotoNextSlide, gotoPreviousSlide, gotoSlide };
 }
 
+function useCurrentSlide() {
+  return useSelector((state) => state.newQuiz.currentSlide);
+}
+
 export {
   useEditing,
   useQuestionTitle,
@@ -191,4 +195,5 @@ export {
   useAnswerValue,
   useAnswerDescription,
   useSlideNavigation,
+  useCurrentSlide,
 };

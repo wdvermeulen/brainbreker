@@ -3,13 +3,18 @@ import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import "./Question.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import { useEditing } from "../hooks";
-import { useQuestionDescription, useQuestionTitle } from "../hooks";
+import {
+  useCurrentSlide,
+  useEditing,
+  useQuestionDescription,
+  useQuestionTitle,
+} from "../hooks";
 
 const Question = ({ onBlur }) => {
   const title = useQuestionTitle();
   const [editing, setEditing] = useEditing();
   const question = useQuestionDescription();
+  const currentSlide = useCurrentSlide();
 
   return (
     <div id="Question" className="section">
@@ -31,7 +36,7 @@ const Question = ({ onBlur }) => {
               setEditing("title");
             }}
           >
-            {title.value}
+            {currentSlide + 1 + ". " + title.value}
           </h2>
         )}
         {editing === "question" ? (

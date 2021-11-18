@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const defaultSlide = {
   question: {
-    title: "Vraag 1",
+    title: "Vraag",
     description: "",
   },
   hasTimeLimit: true,
@@ -37,12 +37,12 @@ const slice = createSlice({
         0
       );
     },
-    nextSlide: (state, action) => {
+    nextSlide: (state) => {
       if (state.currentSlide <= state.slides.length)
         state.slides.push(defaultSlide);
       state.currentSlide += 1;
     },
-    previousSlide: (state, action) => {
+    previousSlide: (state) => {
       state.currentSlide = Math.max(state.currentSlide - 1, 0);
     },
 
