@@ -1,9 +1,7 @@
 import colors from "../../../../sharedResources/colors.json";
-import symbols from "../../../../sharedResources/symbols.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { useEditing } from "../hooks";
-import { useAnswerDescription } from "./hooks";
+import { useEditing, useAnswerDescription } from "../hooks";
 
 const AnswerButton = ({ onBlur, i }) => {
   const [editing, setEditing] = useEditing();

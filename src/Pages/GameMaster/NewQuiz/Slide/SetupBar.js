@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { questionTypes } from "../../../../sharedResources/enum";
@@ -10,8 +10,8 @@ import {
   useNumberOfOptions,
   useAnswerValue,
   useQuestionTitle,
-} from "./hooks";
-import { useSlideNavigation } from "../hooks";
+  useSlideNavigation,
+} from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

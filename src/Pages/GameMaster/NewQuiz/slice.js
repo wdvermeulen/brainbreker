@@ -1,43 +1,132 @@
-import { combineReducers, createSlice } from "@reduxjs/toolkit";
-import slide from "./Slide/slice";
+import { createSlice } from "@reduxjs/toolkit";
 
-function storeCurrentSlide(state, slide) {
-  if (state.currentSlide <= state.slides.length) state.slides.push(slide);
-  else state.slides[state.currentSlide] = slide;
-}
+const defaultSlide = {
+  question: {
+    title: "Vraag 1",
+    description: "",
+  },
+  hasTimeLimit: true,
+  timeLimit: 10,
+  autoCheck: true,
+  pointsForSpeed: true,
+  file: "",
+  type: 0,
+  numberOfOptions: 4,
+  answers: [
+    { description: "", value: 0 },
+    { description: "", value: 0 },
+    { description: "", value: 0 },
+    { description: "", value: 0 },
+  ],
+};
 
 const slice = createSlice({
   name: "newQuiz",
   initialState: {
     currentSlide: 0,
     editing: "",
-    slides: [],
+    slides: [defaultSlide],
   },
   reducers: {
     setEditing: (state, action) => {
       state.editing = action.payload;
     },
     setCurrentSlide: (state, action) => {
-      storeCurrentSlide(state, action.payload.slide);
-      state.currentSlide = action.payload.slideNumber;
+      state.currentSlide = Math.max(
+        Math.min(action.payload.slideNumber, state.slides.length),
+        0
+      );
     },
     nextSlide: (state, action) => {
-      console.log(state.currentSlide);
-
-      storeCurrentSlide(state, action.payload);
+      if (state.currentSlide <= state.slides.length)
+        state.slides.push(defaultSlide);
       state.currentSlide += 1;
     },
     previousSlide: (state, action) => {
-      storeCurrentSlide(state, action.payload);
-      state.currentSlide -= 1;
+      state.currentSlide = Math.max(state.currentSlide - 1, 0);
+    },
+
+    setQuestionTitle: (state, action) => {
+      state.question.title = action.payload;
+    },
+    setQuestionDescription: (state, action) => {
+      state.question.description = action.payload;
+    },
+    setHasTimeLimit: (state, action) => {
+      state.slides[state.currentSlide].hasTimeLimit = action.payload;
+    },
+    setTimeLimit: (state, action) => {
+      state.slides[state.currentSlide].timeLimit = Math.min(
+        Math.max(action.payload, 5),
+        1800
+      );
+    },
+    setAutoCheck: (state, action) => {
+      state.slides[state.currentSlide].autoCheck = action.payload;
+    },
+    setPointsForSpeed: (state, action) => {
+      state.slides[state.currentSlide].pointsForSpeed = action.payload;
+    },
+    setFile: (state, action) => {
+      state.slides[state.currentSlide].file = action.payload;
+    },
+    setType: (state, action) => {
+      state.slides[state.currentSlide].type = action.payload;
+    },
+    setAnswerDescription: (state, action) => {
+      state.slides[state.currentSlide].answers[
+        action.payload.answerIndex
+      ].description = action.payload.description;
+    },
+    setNumberOfOptions: (state, action) => {
+      state.slides[state.currentSlide].numberOfOptions = Math.max(
+        Math.min(action.payload, 99),
+        0
+      );
+      while (
+        state.slides[state.currentSlide].answers.length < 98 &&
+        state.slides[state.currentSlide].answers.length < action.payload
+      ) {
+        state.slides[state.currentSlide].answers.push({
+          description: "",
+          value: 0,
+        });
+      }
+      while (
+        state.slides[state.currentSlide].answers.length > 1 &&
+        state.slides[state.currentSlide].answers.length > action.payload &&
+        state.slides[state.currentSlide].answers[
+          state.slides[state.currentSlide].answers.length - 1
+        ].description === ""
+      ) {
+        state.slides[state.currentSlide].answers.pop();
+      }
+    },
+    setAnswerValue: (state, action) => {
+      state.slides[state.currentSlide].answers[
+        action.payload.answerIndex
+      ].value = action.payload.value;
     },
   },
 });
 
-export const { setEditing, setCurrentSlide, nextSlide, previousSlide } =
-  slice.actions;
+export const {
+  setEditing,
+  setCurrentSlide,
+  nextSlide,
+  previousSlide,
+  setQuestionTitle,
+  setQuestionDescription,
+  setHasTimeLimit,
+  setTimeLimit,
+  setPointsForSpeed,
+  setAutoCheck,
+  //TODO
+  // setFile,
+  // setType,
+  setAnswerDescription,
+  setNumberOfOptions,
+  setAnswerValue,
+} = slice.actions;
 
-export default combineReducers({
-  current: slice.reducer,
-  slide: slide,
-});
+export default slice.reducer;

@@ -4,7 +4,7 @@ import { I18n } from "aws-amplify";
 import "./Question.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { useEditing } from "../hooks";
-import { useQuestionDescription, useQuestionTitle } from "./hooks";
+import { useQuestionDescription, useQuestionTitle } from "../hooks";
 
 const Question = ({ onBlur }) => {
   const title = useQuestionTitle();

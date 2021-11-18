@@ -1,7 +1,7 @@
 import React from "react";
 import "./Answers.scss";
 import AnswerButton from "./AnswerButton";
-import { useNumberOfOptions } from "./hooks";
+import { useNumberOfOptions } from "../hooks";
 
 const Answers = ({ onBlur }) => {
   const { value } = useNumberOfOptions();
