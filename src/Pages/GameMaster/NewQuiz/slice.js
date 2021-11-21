@@ -23,11 +23,15 @@ const defaultSlide = {
 const slice = createSlice({
   name: "newQuiz",
   initialState: {
+    title: "Quiz 1",
     currentSlide: 0,
     editing: "",
     slides: [defaultSlide],
   },
   reducers: {
+    setTitle: (state, action) => {
+      state.title = action.payload;
+    },
     setEditing: (state, action) => {
       state.editing = action.payload;
     },
@@ -125,6 +129,7 @@ const slice = createSlice({
 });
 
 export const {
+  setTitle,
   setEditing,
   setCurrentSlide,
   nextSlide,

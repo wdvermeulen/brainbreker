@@ -3,6 +3,7 @@ import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { questionTypes } from "../../../../sharedResources/enum";
 import {
+  useTitle,
   useHasTimeLimit,
   useTimeLimit,
   useAutoCheck,
@@ -25,6 +26,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SetupBar = ({ collapse, collapsed }) => {
+  const title = useTitle();
   const questionTitle = useQuestionTitle().value;
   const hasTimeLimit = useHasTimeLimit();
   const timeLimit = useTimeLimit();
@@ -88,7 +90,7 @@ const SetupBar = ({ collapse, collapsed }) => {
               id="numberOfOptions"
               name="numberOfOptions"
               aria-label="Aantal opties"
-              text="number"
+              type="number"
               min="1"
               max="99"
               {...numberOfOptions}
@@ -182,7 +184,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                 </label>
                 <AutosizeInput
                   id="rewardValue"
-                  text="number"
+                  type="number"
                   value={answerValue.values[selectAnswer.value]}
                   onChange={(e) => {
                     answerValue.onChange(selectAnswer.value, e.target.value);
@@ -208,7 +210,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                     </label>
                     <AutosizeInput
                       id={"answerValue-" + i}
-                      text="number"
+                      type="number"
                       value={answerValue.values[i]}
                       onChange={(e) => {
                         answerValue.onChange(i, e.target.value);
@@ -226,14 +228,14 @@ const SetupBar = ({ collapse, collapsed }) => {
           <h3>Overzicht</h3>
           {slideNavigation.slides.map((slide, i) => {
             return (
-              <div className="row" key={slide.question.title + i}>
-                <a
-                  onClick={() => {
-                    slideNavigation.gotoSlide(i);
-                  }}
-                >
-                  {i + 1}. {slide.question.title}
-                </a>
+              <div
+                className="row"
+                key={slide.question.title + i}
+                onClick={() => {
+                  slideNavigation.gotoSlide(i);
+                }}
+              >
+                {i + 1}. {slide.question.title}
               </div>
             );
           })}
@@ -246,6 +248,14 @@ const SetupBar = ({ collapse, collapsed }) => {
           <button onClick={slideNavigation.gotoNextSlide}>
             Volgende vraag <FontAwesomeIcon icon={faChevronRight} />
           </button>
+          <label htmlFor="title">Titel van deze quiz: </label>
+          <AutosizeInput
+            id="numberOfOptions"
+            name="numberOfOptions"
+            aria-label="Aantal opties"
+            type="text"
+            {...title}
+          />
           <button onClick={slideNavigation.gotoNextSlide}>
             <FontAwesomeIcon icon={faSave} /> Opslaan
           </button>

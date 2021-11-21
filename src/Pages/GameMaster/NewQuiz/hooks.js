@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setTitle,
   nextSlide,
   previousSlide,
   removeCurrentSlide,
@@ -16,6 +17,17 @@ import {
   setQuestionTitle,
   setTimeLimit,
 } from "./slice";
+
+function useTitle() {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.newQuiz.title);
+
+  const handleChange = (e) => {
+    dispatch(setTitle(e.target.value));
+  };
+
+  return { value, onChange: handleChange };
+}
 
 function useEditing() {
   const dispatch = useDispatch();
@@ -220,6 +232,7 @@ function useSlideInput() {
 }
 
 export {
+  useTitle,
   useEditing,
   useQuestionTitle,
   useQuestionDescription,
