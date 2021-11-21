@@ -11,12 +11,17 @@ import {
   useAnswerValue,
   useQuestionTitle,
   useSlideNavigation,
+  useRemoveSlide,
+  useResetSlide,
 } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faSave,
+  faTrash,
+  faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 
 const SetupBar = ({ collapse, collapsed }) => {
@@ -29,6 +34,9 @@ const SetupBar = ({ collapse, collapsed }) => {
   const answerValue = useAnswerValue();
   const slideNavigation = useSlideNavigation();
 
+  const resetSlide = useResetSlide();
+  const removeSlide = useRemoveSlide();
+
   const { setValue, ...selectAnswer } = useFormInputWithSet(0);
 
   if (selectAnswer.value >= numberOfOptions.value)
@@ -36,7 +44,7 @@ const SetupBar = ({ collapse, collapsed }) => {
 
   return (
     <div id="SetupBar">
-      <button className="secondary menubutton" onClick={collapse}>
+      <button className="menubutton secondary" onClick={collapse}>
         <FontAwesomeIcon icon={collapsed ? faChevronLeft : faChevronRight} />
       </button>
       <div
@@ -46,9 +54,18 @@ const SetupBar = ({ collapse, collapsed }) => {
         }}
       >
         <div className="glass-container">
-          <h3>Instellingen voor {questionTitle}</h3>
-          <button className="outline">Reset</button>
-          <button className="outline">Verwijderen</button>
+          <h3>
+            Instellingen voor {slideNavigation.currentSlide + 1}.{" "}
+            {questionTitle}
+          </h3>
+          <button className="outline" onClick={resetSlide}>
+            <FontAwesomeIcon icon={faUndo} /> Reset
+          </button>
+          <button className="outline" onClick={removeSlide}>
+            <FontAwesomeIcon icon={faTrash} /> Verwijderen
+          </button>
+
+          <hr />
 
           <div className="row">
             <label htmlFor="questionType">Soort vraag: </label>
@@ -77,6 +94,8 @@ const SetupBar = ({ collapse, collapsed }) => {
               {...numberOfOptions}
             />
           </div>
+
+          <hr />
 
           <div className="row">
             <input
@@ -107,6 +126,8 @@ const SetupBar = ({ collapse, collapsed }) => {
             )}
           </div>
 
+          <hr />
+
           <div className="row">
             <input
               id="autoCheck"
@@ -136,7 +157,7 @@ const SetupBar = ({ collapse, collapsed }) => {
           <div className="row">
             {autoCheck.checked && (
               <>
-                <label htmlFor="correctAnswer">Juiste antwoord: </label>
+                <label htmlFor="correctAnswer">Punten voor: </label>
                 <select
                   id="correctAnswer"
                   aria-label="Juiste antwoord"
@@ -144,7 +165,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                 >
                   {answerValue.values.map((value, i) => (
                     <option key={"answerValue-" + i} value={i}>
-                      {"Antwoord " + (i + 1)}
+                      {"antwoord " + (i + 1)}
                     </option>
                   ))}
                 </select>
@@ -157,7 +178,7 @@ const SetupBar = ({ collapse, collapsed }) => {
               <>
                 <label htmlFor="rewardValue">
                   {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
-                  Antwoord {parseInt(selectAnswer.value) + 1}:
+                  antwoord {parseInt(selectAnswer.value) + 1}:
                 </label>
                 <AutosizeInput
                   id="rewardValue"
@@ -183,7 +204,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                   <div className="row" key={"answerValue-" + i}>
                     <label htmlFor={"answerValue-" + i}>
                       {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
-                      Antwoord {i + 1}:
+                      antwoord {i + 1}:
                     </label>
                     <AutosizeInput
                       id={"answerValue-" + i}
@@ -200,19 +221,34 @@ const SetupBar = ({ collapse, collapsed }) => {
               return null;
             })}
 
+          <hr />
+
+          <h3>Overzicht</h3>
+          {slideNavigation.slides.map((slide, i) => {
+            return (
+              <div className="row" key={slide.question.title + i}>
+                <a
+                  onClick={() => {
+                    slideNavigation.gotoSlide(i);
+                  }}
+                >
+                  {i + 1}. {slide.question.title}
+                </a>
+              </div>
+            );
+          })}
           <button
             className="secondary"
             onClick={slideNavigation.gotoPreviousSlide}
           >
-            Vorige
+            <FontAwesomeIcon icon={faChevronLeft} /> Vorige
           </button>
           <button onClick={slideNavigation.gotoNextSlide}>
-            Volgende vraag
+            Volgende vraag <FontAwesomeIcon icon={faChevronRight} />
           </button>
-
-          <hr />
-
-          <h3>Overzicht</h3>
+          <button onClick={slideNavigation.gotoNextSlide}>
+            <FontAwesomeIcon icon={faSave} /> Opslaan
+          </button>
         </div>
       </div>
     </div>

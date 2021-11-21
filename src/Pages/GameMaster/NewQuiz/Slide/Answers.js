@@ -3,7 +3,7 @@ import "./Answers.scss";
 import AnswerButton from "./AnswerButton";
 import { useNumberOfOptions } from "../hooks";
 
-const Answers = ({ onBlur }) => {
+const Answers = () => {
   const { value } = useNumberOfOptions();
   const rows = [];
 
@@ -11,14 +11,14 @@ const Answers = ({ onBlur }) => {
     if (i % 2 === 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton onBlur={onBlur} i={i - 1} />
-          <AnswerButton onBlur={onBlur} i={i} />
+          <AnswerButton i={i - 1} />
+          <AnswerButton i={i} />
         </div>
       );
     } else if (i === value - 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton onBlur={onBlur} i={i} />
+          <AnswerButton i={i} />
         </div>
       );
     }

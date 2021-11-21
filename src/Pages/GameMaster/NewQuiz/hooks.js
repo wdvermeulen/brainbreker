@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   nextSlide,
   previousSlide,
+  removeCurrentSlide,
+  resetCurrentSlide,
   setAnswerDescription,
   setAnswerValue,
   setAutoCheck,
@@ -167,6 +169,9 @@ function useAnswerDescription(answerIndex) {
 function useSlideNavigation() {
   const dispatch = useDispatch();
   const slide = useSelector((state) => state.newQuiz.slide);
+  const slides = useSelector((state) => state.newQuiz.slides);
+  const currentSlide = useSelector((state) => state.newQuiz.currentSlide);
+
   const gotoNextSlide = () => {
     dispatch(nextSlide(slide));
   };
@@ -176,11 +181,42 @@ function useSlideNavigation() {
   const gotoSlide = (slideNumber) => {
     dispatch(setCurrentSlide({ slide, slideNumber }));
   };
-  return { gotoNextSlide, gotoPreviousSlide, gotoSlide };
+
+  return { gotoNextSlide, gotoPreviousSlide, gotoSlide, slides, currentSlide };
 }
 
 function useCurrentSlide() {
   return useSelector((state) => state.newQuiz.currentSlide);
+}
+
+function useResetSlide() {
+  const dispatch = useDispatch();
+  const resetSlide = () => {
+    dispatch(resetCurrentSlide());
+  };
+  return resetSlide;
+}
+
+function useRemoveSlide() {
+  const dispatch = useDispatch();
+  const removeSlide = () => {
+    dispatch(removeCurrentSlide());
+  };
+  return removeSlide;
+}
+
+function useSlideInput() {
+  const dispatch = useDispatch();
+
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") dispatch(setEditing(""));
+  };
+
+  const onBlur = () => {
+    dispatch(setEditing(""));
+  };
+
+  return { onBlur, onKeyDown };
 }
 
 export {
@@ -196,4 +232,7 @@ export {
   useAnswerDescription,
   useSlideNavigation,
   useCurrentSlide,
+  useResetSlide,
+  useRemoveSlide,
+  useSlideInput,
 };

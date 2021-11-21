@@ -8,13 +8,16 @@ import {
   useEditing,
   useQuestionDescription,
   useQuestionTitle,
+  useSlideInput,
 } from "../hooks";
 
-const Question = ({ onBlur }) => {
+const Question = () => {
   const title = useQuestionTitle();
   const [editing, setEditing] = useEditing();
   const question = useQuestionDescription();
   const currentSlide = useCurrentSlide();
+  const slideInput = useSlideInput();
+
   return (
     <div id="Question" className="section">
       <div className="glass-tile">
@@ -25,7 +28,7 @@ const Question = ({ onBlur }) => {
               autoFocus
               id="title"
               type="text"
-              onBlur={onBlur}
+              {...slideInput}
               {...title}
             />
           </>
@@ -45,7 +48,7 @@ const Question = ({ onBlur }) => {
               autoFocus
               id="question"
               name="question"
-              onBlur={onBlur}
+              {...slideInput}
               {...question}
             />
           </>

@@ -1,16 +1,13 @@
 import colors from "../../../../sharedResources/colors.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { useEditing, useAnswerDescription } from "../hooks";
+import { useEditing, useAnswerDescription, useSlideInput } from "../hooks";
 
-const AnswerButton = ({ onBlur, i }) => {
+const AnswerButton = ({ i }) => {
   const [editing, setEditing] = useEditing();
 
   const answerDescription = useAnswerDescription(i);
-
-  function onKeyDown(e) {
-    if (e.key === "Enter") setEditing("");
-  }
+  const slideInput = useSlideInput();
 
   return (
     <button
@@ -31,8 +28,7 @@ const AnswerButton = ({ onBlur, i }) => {
             autoFocus
             id={"answer" + i}
             type="text"
-            onBlur={onBlur}
-            onKeyDown={onKeyDown}
+            {...slideInput}
             {...answerDescription}
           />
         </>

@@ -46,11 +46,25 @@ const slice = createSlice({
       state.currentSlide = Math.max(state.currentSlide - 1, 0);
     },
 
+    resetCurrentSlide: (state) => {
+      console.log("resetSlice");
+      state.slides[state.currentSlide] = defaultSlide;
+    },
+    removeCurrentSlide: (state) => {
+      if (state.currentSlide >= state.slides.length) {
+        state.currentSlide -= 1;
+        state.slides.splice(state.currentSlide + 1, 1);
+      } else if (state.slides.length !== 0) {
+        state.slides.splice(state.currentSlide, 1);
+      } else {
+        state.slides[state.currentSlide] = defaultSlide;
+      }
+    },
     setQuestionTitle: (state, action) => {
-      state.question.title = action.payload;
+      state.slides[state.currentSlide].question.title = action.payload;
     },
     setQuestionDescription: (state, action) => {
-      state.question.description = action.payload;
+      state.slides[state.currentSlide].question.description = action.payload;
     },
     setHasTimeLimit: (state, action) => {
       state.slides[state.currentSlide].hasTimeLimit = action.payload;
@@ -115,6 +129,8 @@ export const {
   setCurrentSlide,
   nextSlide,
   previousSlide,
+  resetCurrentSlide,
+  removeCurrentSlide,
   setQuestionTitle,
   setQuestionDescription,
   setHasTimeLimit,
