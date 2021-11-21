@@ -1,5 +1,41 @@
 @import './variables';
 
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+@function sample($list) {
+  @return nth($list, random(length($list)));
+}
+
+@keyframes morph {
+  0% {
+    border-radius: #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} / #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)}
+  }
+  50% {
+    border-radius: #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} / #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)} #{random_range(30%, 70%)}
+  }
+  100% {
+    border-radius: #{random_range(30%, 70%)} #{random_range(30%, 70%)}
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn)
+  }
+}
+
+@keyframes counter-spin {
+  to {
+    transform: rotate(-1turn)
+  }
+}
+
+$spin-direction: "spin", "counter-spin";
+
 @mixin glassTile {
   border: $color-glass-tile-border thin solid;
   box-shadow: $box-shadow-glass-tile;
@@ -20,4 +56,42 @@
   font-family: $font-family-secondary;
   font-weight: normal;
   font-size: 1.125em;
+}
+
+$liquid-shape-colors: #4CC9F0, #7209B7, #7209B7, #29006C;
+
+@mixin liquid-shape {
+  --width: #{random_range(10vmax, 15vmax)};
+  --height: #{random_range(10vmax, 15vmax)};
+  --speed-of-morph: #{random_range(30s,60s)};
+  --speed-of-spin: #{random_range(60s,120s)};
+  --direction: #{sample($spin-direction)};
+  --left: #{random_range(90vw, 10vw)};
+  --top: #{random_range(90vh, 10vh)};
+  --origin: #{random_range(-100%, 100%)} #{random_range(-100%, 100%)};
+  &::before {
+    content: '';
+    width: var(--width);
+    height: var(--height);
+    animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear -1s infinite;
+    transform-origin: var(--origin);
+    background-color: sample($liquid-shape-colors);
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    pointer-events: none;
+    z-index: -2;
+  }
+  &::after {
+    content: '';
+    width: calc(var(--width) + 3px);
+    height: calc(var(--height) + 3px);
+    border: solid white thin;
+    animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear #{random_range(-2000ms, 0ms)} infinite;
+    transform-origin: var(--origin);
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    z-index: -1;
+  }
 }

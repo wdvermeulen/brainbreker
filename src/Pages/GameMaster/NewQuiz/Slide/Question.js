@@ -15,13 +15,12 @@ const Question = ({ onBlur }) => {
   const [editing, setEditing] = useEditing();
   const question = useQuestionDescription();
   const currentSlide = useCurrentSlide();
-
   return (
     <div id="Question" className="section">
       <div className="glass-tile">
         {editing === "title" ? (
           <>
-            <label htmlFor="title">Naam vraag: </label>
+            <label htmlFor="title">Titel: </label>
             <AutosizeInput
               autoFocus
               id="title"
@@ -36,7 +35,7 @@ const Question = ({ onBlur }) => {
               setEditing("title");
             }}
           >
-            {currentSlide + 1 + ". " + title.value}
+            {currentSlide + 1 + ". " + (title.value || "Titel")}
           </h2>
         )}
         {editing === "question" ? (

@@ -3,11 +3,29 @@
 @import '../sharedStyles/mixins';
 @import '../sharedStyles/button';
 
-* {
-  box-sizing: border-box;
+@keyframes body-background-size {
+  from {
+    background-size: 100%
+  }
+  to {
+    background-size: 175%
+  }
+}
+
+html {
+  @include liquid-shape;
+}
+
+#root {
+  @include liquid-shape;
+}
+
+.App {
+  @include liquid-shape;
 }
 
 body {
+  @include liquid-shape;
   width: 100vw;
   height: 100vh;
   background-color: $color-dark;
@@ -18,10 +36,16 @@ body {
   color: $color-text-light;
   text-align: center;
   overflow: hidden;
+  animation: body-background-size 10s infinite alternate;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
   color: inherit;
+
   &:active {
     opacity: .8
   }
@@ -42,8 +66,9 @@ input, textarea {
   border: $color-dark thin solid;
   box-shadow: inset 4px 4px 4px 0 rgba(0, 0, 0, .25);
   resize: none;
+
   &:hover {
-    background-color: darken(white,10%);
+    background-color: darken(white, 10%);
     cursor: pointer;
   }
 }
@@ -58,29 +83,34 @@ input, textarea {
   position: relative;
   top: -.1em;
   text-align: center;
-  font-family: "Font Awesome", sans-serif;
-  font-weight: 900;
 
   &:active {
     border: 1px dashed $color-light;
   }
+
   &:focus {
     border: 2px dashed $color-light;
   }
+
   &:hover {
-    background-color: darken(white,20%);
+    background-color: darken(white, 20%);
   }
+
   &:checked {
     background-color: $color-dark;
     border-color: white;
+
     &:hover {
-      background-color: lighten($color-dark,20%);
+      background-color: lighten($color-dark, 20%);
     }
+
     &::after {
+      font-family: 'Font Awesome', sans-serif;
+      font-weight: 900;
+      content: '\f00c';
       position: relative;
       top: .06em;
       color: white;
-      content: '\f00c';
     }
   }
 }

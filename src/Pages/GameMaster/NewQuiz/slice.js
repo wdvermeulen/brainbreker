@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const defaultSlide = {
   question: {
-    title: "Vraag",
+    title: "",
     description: "",
   },
   hasTimeLimit: true,
