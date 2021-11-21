@@ -1,0 +1,69 @@
+type Quiz @model @key(name: "byPin", fields: ["pin"]) {
+  id: ID!
+  name: String!
+  pin: ID
+  currentSlide: Int
+  slides: [Slide] @connection(keyName: "bySlide", fields: ["id"])
+  connectedUsers: [User] @connection(keyName: "byUser", fields: ["id"])
+  connectedGamemasters: [Gamemaster] @connection(keyName: "byGamemaster", fields: ["id"])
+  connectedTeams: [Team] @connection(keyName: "byTeam", fields: ["id"])
+}
+
+type Slide @model @key(name: "bySlide", fields: ["slideID"]) {
+  id: ID!
+  slideID: ID!
+  title: String!
+  description: String
+  hasTimeLimit: Boolean!
+  timeLimit: Int
+  autoCheck: Boolean!
+  pointsForSpeed: Boolean
+  file: String!
+  type: [QuestionType]!
+  numberOfOptions: Int
+  blogID: ID!
+  quiz: Quiz @connection(fields: ["slideID"])
+  answers: [Answer] @connection(keyName: "byAnswer", fields: ["id"])
+}
+
+type Answer @model @key(name: "byAnswer", fields: ["answerID"]) {
+  id: ID!
+  answerID: ID!
+  Slide: Slide @connection(fields: ["answerID"])
+  content: String!
+}
+
+type User @model @key(name: "byUser", fields: ["userID"]) {
+  id: ID!
+  userID: ID!
+  name: String!
+  points: Int
+  currentSlide: Int
+  quiz: Quiz @connection(fields: ["userID"])
+}
+
+type Team @model @key(name: "byTeam", fields: ["teamID"]) {
+  id: ID!
+  teamID: ID!
+  name: String!
+  points: Int
+  users: [User] @connection(keyName: "byUser", fields: ["teamID"])
+  quiz: Quiz @connection(fields: ["teamID"])
+}
+
+type Gamemaster @model @key(name: "byGamemaster", fields: ["gamemasterID"]) {
+  id: ID!
+  gamemasterID: ID!
+  quiz: Quiz @connection(fields: ["gamemasterID"])
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE,
+  OPEN,
+  OPEN_LIST,
+  APPROXIMATION,
+  ORDER,
+  TITLE_CARD,
+  PUZZLE,
+  VOTE,
+}

@@ -7,6 +7,7 @@ const questionTypes = {
   // ORDER: "Order",
   // TITLE_CARD: "Title card",
   // PUZZLE: "Puzzle",
+  // VOTE: "Voting"
 };
 
 export { questionTypes };

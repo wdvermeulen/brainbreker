@@ -3,7 +3,7 @@ import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import { questionTypes } from "../../../../sharedResources/enum";
 import {
-  useTitle,
+  useName,
   useHasTimeLimit,
   useTimeLimit,
   useAutoCheck,
@@ -26,7 +26,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SetupBar = ({ collapse, collapsed }) => {
-  const title = useTitle();
+  const name = useName();
   const questionTitle = useQuestionTitle().value;
   const hasTimeLimit = useHasTimeLimit();
   const timeLimit = useTimeLimit();
@@ -248,13 +248,13 @@ const SetupBar = ({ collapse, collapsed }) => {
           <button onClick={slideNavigation.gotoNextSlide}>
             Volgende vraag <FontAwesomeIcon icon={faChevronRight} />
           </button>
-          <label htmlFor="title">Titel van deze quiz: </label>
+          <label htmlFor="title">Naam van deze quiz: </label>
           <AutosizeInput
             id="numberOfOptions"
             name="numberOfOptions"
             aria-label="Aantal opties"
             type="text"
-            {...title}
+            {...name}
           />
           <button onClick={slideNavigation.gotoNextSlide}>
             <FontAwesomeIcon icon={faSave} /> Opslaan

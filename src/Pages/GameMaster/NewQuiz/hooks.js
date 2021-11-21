@@ -18,9 +18,9 @@ import {
   setTimeLimit,
 } from "./slice";
 
-function useTitle() {
+function useName() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.newQuiz.title);
+  const value = useSelector((state) => state.newQuiz.name);
 
   const handleChange = (e) => {
     dispatch(setTitle(e.target.value));
@@ -232,7 +232,7 @@ function useSlideInput() {
 }
 
 export {
-  useTitle,
+  useName,
   useEditing,
   useQuestionTitle,
   useQuestionDescription,
