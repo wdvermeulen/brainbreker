@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setTitle,
+  setName,
   nextSlide,
   previousSlide,
   removeCurrentSlide,
@@ -16,14 +16,16 @@ import {
   setQuestionDescription,
   setQuestionTitle,
   setTimeLimit,
+  setQuestionType,
 } from "./slice";
+import QuizService from "../../../services/QuizService";
 
 function useName() {
   const dispatch = useDispatch();
   const value = useSelector((state) => state.newQuiz.name);
 
   const handleChange = (e) => {
-    dispatch(setTitle(e.target.value));
+    dispatch(setName(e.target.value));
   };
 
   return { value, onChange: handleChange };
@@ -40,7 +42,7 @@ function useEditing() {
 function useQuestionTitle() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].question.title
+    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].title
   );
 
   const handleChange = (e) => {
@@ -53,12 +55,22 @@ function useQuestionTitle() {
 function useQuestionDescription() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) =>
-      state.newQuiz.slides[state.newQuiz.currentSlide].question.description
+    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].description
   );
 
   const handleChange = (e) => {
     dispatch(setQuestionDescription(e.target.value));
+  };
+
+  return { value, onChange: handleChange };
+}
+
+function useQuestionType() {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.newQuiz.questionType);
+
+  const handleChange = (e) => {
+    dispatch(setQuestionType(e.target.value));
   };
 
   return { value, onChange: handleChange };
@@ -73,7 +85,6 @@ function useHasTimeLimit() {
   const handleChange = () => {
     dispatch(setHasTimeLimit(!checked));
   };
-
   return { checked, onChange: handleChange };
 }
 
@@ -231,11 +242,23 @@ function useSlideInput() {
   return { onBlur, onKeyDown };
 }
 
+function useSaveQuiz() {
+  const quiz = useSelector((state) => state.newQuiz);
+  const quizService = new QuizService();
+
+  async function saveQuiz() {
+    await quizService.post(quiz);
+  }
+
+  return saveQuiz;
+}
+
 export {
   useName,
   useEditing,
   useQuestionTitle,
   useQuestionDescription,
+  useQuestionType,
   useHasTimeLimit,
   useTimeLimit,
   useAutoCheck,
@@ -248,4 +271,5 @@ export {
   useResetSlide,
   useRemoveSlide,
   useSlideInput,
+  useSaveQuiz,
 };

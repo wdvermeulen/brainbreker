@@ -11,7 +11,6 @@ export const getQuiz = /* GraphQL */ `
       slides {
         items {
           id
-          slideID
           title
           description
           hasTimeLimit
@@ -21,7 +20,6 @@ export const getQuiz = /* GraphQL */ `
           file
           type
           numberOfOptions
-          blogID
           createdAt
           updatedAt
         }
@@ -30,7 +28,6 @@ export const getQuiz = /* GraphQL */ `
       connectedUsers {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -42,7 +39,6 @@ export const getQuiz = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
-          gamemasterID
           createdAt
           updatedAt
         }
@@ -51,7 +47,6 @@ export const getQuiz = /* GraphQL */ `
       connectedTeams {
         items {
           id
-          teamID
           name
           points
           createdAt
@@ -99,7 +94,6 @@ export const getSlide = /* GraphQL */ `
   query GetSlide($id: ID!) {
     getSlide(id: $id) {
       id
-      slideID
       title
       description
       hasTimeLimit
@@ -109,7 +103,6 @@ export const getSlide = /* GraphQL */ `
       file
       type
       numberOfOptions
-      blogID
       quiz {
         id
         name
@@ -133,8 +126,8 @@ export const getSlide = /* GraphQL */ `
       answers {
         items {
           id
-          answerID
-          content
+          description
+          value
           createdAt
           updatedAt
         }
@@ -154,7 +147,6 @@ export const listSlides = /* GraphQL */ `
     listSlides(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        slideID
         title
         description
         hasTimeLimit
@@ -164,7 +156,6 @@ export const listSlides = /* GraphQL */ `
         file
         type
         numberOfOptions
-        blogID
         quiz {
           id
           name
@@ -187,10 +178,8 @@ export const getAnswer = /* GraphQL */ `
   query GetAnswer($id: ID!) {
     getAnswer(id: $id) {
       id
-      answerID
       Slide {
         id
-        slideID
         title
         description
         hasTimeLimit
@@ -200,7 +189,6 @@ export const getAnswer = /* GraphQL */ `
         file
         type
         numberOfOptions
-        blogID
         quiz {
           id
           name
@@ -215,7 +203,8 @@ export const getAnswer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      content
+      description
+      value
       createdAt
       updatedAt
     }
@@ -230,10 +219,8 @@ export const listAnswers = /* GraphQL */ `
     listAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        answerID
         Slide {
           id
-          slideID
           title
           description
           hasTimeLimit
@@ -243,11 +230,11 @@ export const listAnswers = /* GraphQL */ `
           file
           type
           numberOfOptions
-          blogID
           createdAt
           updatedAt
         }
-        content
+        description
+        value
         createdAt
         updatedAt
       }
@@ -259,7 +246,6 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
-      userID
       name
       points
       currentSlide
@@ -283,6 +269,24 @@ export const getUser = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      team {
+        id
+        name
+        points
+        users {
+          nextToken
+        }
+        quiz {
+          id
+          name
+          pin
+          currentSlide
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -297,7 +301,6 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        userID
         name
         points
         currentSlide
@@ -306,6 +309,13 @@ export const listUsers = /* GraphQL */ `
           name
           pin
           currentSlide
+          createdAt
+          updatedAt
+        }
+        team {
+          id
+          name
+          points
           createdAt
           updatedAt
         }
@@ -320,13 +330,11 @@ export const getTeam = /* GraphQL */ `
   query GetTeam($id: ID!) {
     getTeam(id: $id) {
       id
-      teamID
       name
       points
       users {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -369,7 +377,6 @@ export const listTeams = /* GraphQL */ `
     listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        teamID
         name
         points
         users {
@@ -394,7 +401,6 @@ export const getGamemaster = /* GraphQL */ `
   query GetGamemaster($id: ID!) {
     getGamemaster(id: $id) {
       id
-      gamemasterID
       quiz {
         id
         name
@@ -429,7 +435,6 @@ export const listGamemasters = /* GraphQL */ `
     listGamemasters(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        gamemasterID
         quiz {
           id
           name

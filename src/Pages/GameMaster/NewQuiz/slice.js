@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { checkType, questionType } from "../../../sharedResources/enum";
 
 const defaultSlide = {
-  question: {
-    title: "",
-    description: "",
-  },
+  title: "",
+  description: "",
   hasTimeLimit: true,
   timeLimit: 10,
-  autoCheck: true,
+  checkType: checkType.PREDEFINED_ANSWER,
   pointsForSpeed: true,
   file: "",
-  type: 0,
+  questionType: questionType.MULTIPLE_CHOICE,
   numberOfOptions: 4,
   answers: [
     { description: "", value: 0 },
@@ -25,7 +24,6 @@ const slice = createSlice({
   initialState: {
     name: "Quiz 1",
     currentSlide: 0,
-    editing: "",
     slides: [defaultSlide],
   },
   reducers: {
@@ -65,10 +63,10 @@ const slice = createSlice({
       }
     },
     setQuestionTitle: (state, action) => {
-      state.slides[state.currentSlide].question.title = action.payload;
+      state.slides[state.currentSlide].title = action.payload;
     },
     setQuestionDescription: (state, action) => {
-      state.slides[state.currentSlide].question.description = action.payload;
+      state.slides[state.currentSlide].description = action.payload;
     },
     setHasTimeLimit: (state, action) => {
       state.slides[state.currentSlide].hasTimeLimit = action.payload;
@@ -88,8 +86,8 @@ const slice = createSlice({
     setFile: (state, action) => {
       state.slides[state.currentSlide].file = action.payload;
     },
-    setType: (state, action) => {
-      state.slides[state.currentSlide].type = action.payload;
+    setQuestionType: (state, action) => {
+      state.slides[state.currentSlide].questionType = action.payload;
     },
     setAnswerDescription: (state, action) => {
       state.slides[state.currentSlide].answers[
@@ -129,7 +127,7 @@ const slice = createSlice({
 });
 
 export const {
-  setTitle,
+  setName,
   setEditing,
   setCurrentSlide,
   nextSlide,
@@ -144,7 +142,7 @@ export const {
   setAutoCheck,
   //TODO
   // setFile,
-  // setType,
+  setQuestionType,
   setAnswerDescription,
   setNumberOfOptions,
   setAnswerValue,

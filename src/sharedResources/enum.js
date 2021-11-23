@@ -1,4 +1,4 @@
-const questionTypes = {
+const questionType = {
   MULTIPLE_CHOICE: "Multiple choice",
   //TODO
   // OPEN: "Open",
@@ -10,4 +10,12 @@ const questionTypes = {
   // VOTE: "Voting"
 };
 
-export { questionTypes };
+const checkType = {
+  PREDEFINED_ANSWER: "Predefined answer",
+  GAMEMASTERS_AFTERWARDS: "Check answers afterwards",
+  //TODO
+  // USERS_VOTE: "Players vote for the correct answer",
+  // GAME_MASTERS_VOTE: "Game masters vote for the correct answer",
+};
+
+export { questionType, checkType };

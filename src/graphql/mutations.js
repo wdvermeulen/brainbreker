@@ -14,7 +14,6 @@ export const createQuiz = /* GraphQL */ `
       slides {
         items {
           id
-          slideID
           title
           description
           hasTimeLimit
@@ -24,7 +23,6 @@ export const createQuiz = /* GraphQL */ `
           file
           type
           numberOfOptions
-          blogID
           createdAt
           updatedAt
         }
@@ -33,7 +31,6 @@ export const createQuiz = /* GraphQL */ `
       connectedUsers {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -45,7 +42,6 @@ export const createQuiz = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
-          gamemasterID
           createdAt
           updatedAt
         }
@@ -54,7 +50,6 @@ export const createQuiz = /* GraphQL */ `
       connectedTeams {
         items {
           id
-          teamID
           name
           points
           createdAt
@@ -80,7 +75,6 @@ export const updateQuiz = /* GraphQL */ `
       slides {
         items {
           id
-          slideID
           title
           description
           hasTimeLimit
@@ -90,7 +84,6 @@ export const updateQuiz = /* GraphQL */ `
           file
           type
           numberOfOptions
-          blogID
           createdAt
           updatedAt
         }
@@ -99,7 +92,6 @@ export const updateQuiz = /* GraphQL */ `
       connectedUsers {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -111,7 +103,6 @@ export const updateQuiz = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
-          gamemasterID
           createdAt
           updatedAt
         }
@@ -120,7 +111,6 @@ export const updateQuiz = /* GraphQL */ `
       connectedTeams {
         items {
           id
-          teamID
           name
           points
           createdAt
@@ -146,7 +136,6 @@ export const deleteQuiz = /* GraphQL */ `
       slides {
         items {
           id
-          slideID
           title
           description
           hasTimeLimit
@@ -156,7 +145,6 @@ export const deleteQuiz = /* GraphQL */ `
           file
           type
           numberOfOptions
-          blogID
           createdAt
           updatedAt
         }
@@ -165,7 +153,6 @@ export const deleteQuiz = /* GraphQL */ `
       connectedUsers {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -177,7 +164,6 @@ export const deleteQuiz = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
-          gamemasterID
           createdAt
           updatedAt
         }
@@ -186,7 +172,6 @@ export const deleteQuiz = /* GraphQL */ `
       connectedTeams {
         items {
           id
-          teamID
           name
           points
           createdAt
@@ -206,7 +191,6 @@ export const createSlide = /* GraphQL */ `
   ) {
     createSlide(input: $input, condition: $condition) {
       id
-      slideID
       title
       description
       hasTimeLimit
@@ -216,7 +200,6 @@ export const createSlide = /* GraphQL */ `
       file
       type
       numberOfOptions
-      blogID
       quiz {
         id
         name
@@ -240,8 +223,8 @@ export const createSlide = /* GraphQL */ `
       answers {
         items {
           id
-          answerID
-          content
+          description
+          value
           createdAt
           updatedAt
         }
@@ -259,7 +242,6 @@ export const updateSlide = /* GraphQL */ `
   ) {
     updateSlide(input: $input, condition: $condition) {
       id
-      slideID
       title
       description
       hasTimeLimit
@@ -269,7 +251,6 @@ export const updateSlide = /* GraphQL */ `
       file
       type
       numberOfOptions
-      blogID
       quiz {
         id
         name
@@ -293,8 +274,8 @@ export const updateSlide = /* GraphQL */ `
       answers {
         items {
           id
-          answerID
-          content
+          description
+          value
           createdAt
           updatedAt
         }
@@ -312,7 +293,6 @@ export const deleteSlide = /* GraphQL */ `
   ) {
     deleteSlide(input: $input, condition: $condition) {
       id
-      slideID
       title
       description
       hasTimeLimit
@@ -322,7 +302,6 @@ export const deleteSlide = /* GraphQL */ `
       file
       type
       numberOfOptions
-      blogID
       quiz {
         id
         name
@@ -346,8 +325,8 @@ export const deleteSlide = /* GraphQL */ `
       answers {
         items {
           id
-          answerID
-          content
+          description
+          value
           createdAt
           updatedAt
         }
@@ -365,10 +344,8 @@ export const createAnswer = /* GraphQL */ `
   ) {
     createAnswer(input: $input, condition: $condition) {
       id
-      answerID
       Slide {
         id
-        slideID
         title
         description
         hasTimeLimit
@@ -378,7 +355,6 @@ export const createAnswer = /* GraphQL */ `
         file
         type
         numberOfOptions
-        blogID
         quiz {
           id
           name
@@ -393,7 +369,8 @@ export const createAnswer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      content
+      description
+      value
       createdAt
       updatedAt
     }
@@ -406,10 +383,8 @@ export const updateAnswer = /* GraphQL */ `
   ) {
     updateAnswer(input: $input, condition: $condition) {
       id
-      answerID
       Slide {
         id
-        slideID
         title
         description
         hasTimeLimit
@@ -419,7 +394,6 @@ export const updateAnswer = /* GraphQL */ `
         file
         type
         numberOfOptions
-        blogID
         quiz {
           id
           name
@@ -434,7 +408,8 @@ export const updateAnswer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      content
+      description
+      value
       createdAt
       updatedAt
     }
@@ -447,10 +422,8 @@ export const deleteAnswer = /* GraphQL */ `
   ) {
     deleteAnswer(input: $input, condition: $condition) {
       id
-      answerID
       Slide {
         id
-        slideID
         title
         description
         hasTimeLimit
@@ -460,7 +433,6 @@ export const deleteAnswer = /* GraphQL */ `
         file
         type
         numberOfOptions
-        blogID
         quiz {
           id
           name
@@ -475,7 +447,8 @@ export const deleteAnswer = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      content
+      description
+      value
       createdAt
       updatedAt
     }
@@ -488,7 +461,6 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       id
-      userID
       name
       points
       currentSlide
@@ -508,6 +480,24 @@ export const createUser = /* GraphQL */ `
         }
         connectedTeams {
           nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      team {
+        id
+        name
+        points
+        users {
+          nextToken
+        }
+        quiz {
+          id
+          name
+          pin
+          currentSlide
+          createdAt
+          updatedAt
         }
         createdAt
         updatedAt
@@ -524,7 +514,6 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       id
-      userID
       name
       points
       currentSlide
@@ -544,6 +533,24 @@ export const updateUser = /* GraphQL */ `
         }
         connectedTeams {
           nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      team {
+        id
+        name
+        points
+        users {
+          nextToken
+        }
+        quiz {
+          id
+          name
+          pin
+          currentSlide
+          createdAt
+          updatedAt
         }
         createdAt
         updatedAt
@@ -560,7 +567,6 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       id
-      userID
       name
       points
       currentSlide
@@ -584,6 +590,24 @@ export const deleteUser = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      team {
+        id
+        name
+        points
+        users {
+          nextToken
+        }
+        quiz {
+          id
+          name
+          pin
+          currentSlide
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -596,13 +620,11 @@ export const createTeam = /* GraphQL */ `
   ) {
     createTeam(input: $input, condition: $condition) {
       id
-      teamID
       name
       points
       users {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -643,13 +665,11 @@ export const updateTeam = /* GraphQL */ `
   ) {
     updateTeam(input: $input, condition: $condition) {
       id
-      teamID
       name
       points
       users {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -690,13 +710,11 @@ export const deleteTeam = /* GraphQL */ `
   ) {
     deleteTeam(input: $input, condition: $condition) {
       id
-      teamID
       name
       points
       users {
         items {
           id
-          userID
           name
           points
           currentSlide
@@ -737,7 +755,6 @@ export const createGamemaster = /* GraphQL */ `
   ) {
     createGamemaster(input: $input, condition: $condition) {
       id
-      gamemasterID
       quiz {
         id
         name
@@ -770,7 +787,6 @@ export const updateGamemaster = /* GraphQL */ `
   ) {
     updateGamemaster(input: $input, condition: $condition) {
       id
-      gamemasterID
       quiz {
         id
         name
@@ -803,7 +819,6 @@ export const deleteGamemaster = /* GraphQL */ `
   ) {
     deleteGamemaster(input: $input, condition: $condition) {
       id
-      gamemasterID
       quiz {
         id
         name

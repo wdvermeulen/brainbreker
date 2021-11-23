@@ -1,7 +1,7 @@
 import React from "react";
 import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import { questionTypes } from "../../../../sharedResources/enum";
+import { questionType } from "../../../../sharedResources/enum";
 import {
   useName,
   useHasTimeLimit,
@@ -14,6 +14,8 @@ import {
   useSlideNavigation,
   useRemoveSlide,
   useResetSlide,
+  useSaveQuiz,
+  useQuestionType,
 } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,6 +30,7 @@ import {
 const SetupBar = ({ collapse, collapsed }) => {
   const name = useName();
   const questionTitle = useQuestionTitle().value;
+  const questionType = useQuestionType();
   const hasTimeLimit = useHasTimeLimit();
   const timeLimit = useTimeLimit();
   const autoCheck = useAutoCheck();
@@ -38,6 +41,7 @@ const SetupBar = ({ collapse, collapsed }) => {
 
   const resetSlide = useResetSlide();
   const removeSlide = useRemoveSlide();
+  const saveQuiz = useSaveQuiz();
 
   const { setValue, ...selectAnswer } = useFormInputWithSet(0);
 
@@ -75,9 +79,10 @@ const SetupBar = ({ collapse, collapsed }) => {
               id="questionType"
               name="questionType"
               aria-label="soort vraag"
+              {...questionType}
             >
-              {Object.entries(questionTypes).map(([, type], i) => (
-                <option key={"questionType-" + i} value={i}>
+              {Object.entries(questionType).map(([key, type]) => (
+                <option key={"questionType-" + key} value={key}>
                   {type}
                 </option>
               ))}
@@ -230,12 +235,12 @@ const SetupBar = ({ collapse, collapsed }) => {
             return (
               <div
                 className="row"
-                key={slide.question.title + i}
+                key={slide.title + i}
                 onClick={() => {
                   slideNavigation.gotoSlide(i);
                 }}
               >
-                {i + 1}. {slide.question.title}
+                {i + 1}. {slide.title}
               </div>
             );
           })}
@@ -256,7 +261,7 @@ const SetupBar = ({ collapse, collapsed }) => {
             type="text"
             {...name}
           />
-          <button onClick={slideNavigation.gotoNextSlide}>
+          <button onClick={saveQuiz}>
             <FontAwesomeIcon icon={faSave} /> Opslaan
           </button>
         </div>

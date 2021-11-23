@@ -1,60 +1,56 @@
-type Quiz @model @key(name: "byPin", fields: ["pin"]) {
+type Quiz @model {
   id: ID!
   name: String!
   pin: ID
   currentSlide: Int
-  slides: [Slide] @connection(keyName: "bySlide", fields: ["id"])
-  connectedUsers: [User] @connection(keyName: "byUser", fields: ["id"])
-  connectedGamemasters: [Gamemaster] @connection(keyName: "byGamemaster", fields: ["id"])
-  connectedTeams: [Team] @connection(keyName: "byTeam", fields: ["id"])
+  slides: [Slide!]! @connection(name: "QuizSlides")
+  connectedUsers: [User]! @connection(name: "QuizUsers")
+  connectedGamemasters: [Gamemaster]! @connection(name: "QuizGamemasters")
+  connectedTeams: [Team]! @connection(name: "QuizTeams")
 }
 
-type Slide @model @key(name: "bySlide", fields: ["slideID"]) {
+type Slide @model {
   id: ID!
-  slideID: ID!
   title: String!
   description: String
   hasTimeLimit: Boolean!
   timeLimit: Int
   autoCheck: Boolean!
   pointsForSpeed: Boolean
-  file: String!
+  file: String
   type: [QuestionType]!
   numberOfOptions: Int
-  blogID: ID!
-  quiz: Quiz @connection(fields: ["slideID"])
-  answers: [Answer] @connection(keyName: "byAnswer", fields: ["id"])
+  quiz: Quiz! @connection(name: "QuizSlides")
+  answers: [Answer]! @connection(name: "SlideAnswers")
 }
 
-type Answer @model @key(name: "byAnswer", fields: ["answerID"]) {
+type Answer @model {
   id: ID!
-  answerID: ID!
-  Slide: Slide @connection(fields: ["answerID"])
-  content: String!
+  Slide: Slide! @connection(name: "SlideAnswers")
+  description: String!
+  value: Int!
 }
 
-type User @model @key(name: "byUser", fields: ["userID"]) {
+type User @model {
   id: ID!
-  userID: ID!
   name: String!
   points: Int
   currentSlide: Int
-  quiz: Quiz @connection(fields: ["userID"])
+  quiz: Quiz! @connection(name: "QuizUsers")
+  team: Team @connection(name: "TeamUsers")
 }
 
-type Team @model @key(name: "byTeam", fields: ["teamID"]) {
+type Team @model {
   id: ID!
-  teamID: ID!
   name: String!
   points: Int
-  users: [User] @connection(keyName: "byUser", fields: ["teamID"])
-  quiz: Quiz @connection(fields: ["teamID"])
+  users: [User]! @connection(name: "TeamUsers")
+  quiz: Quiz! @connection(name: "QuizTeams")
 }
 
-type Gamemaster @model @key(name: "byGamemaster", fields: ["gamemasterID"]) {
+type Gamemaster @model {
   id: ID!
-  gamemasterID: ID!
-  quiz: Quiz @connection(fields: ["gamemasterID"])
+  quiz: Quiz! @connection(name: "QuizGamemasters")
 }
 
 enum QuestionType {
