@@ -15,7 +15,7 @@ export const getQuiz = /* GraphQL */ `
           description
           hasTimeLimit
           timeLimit
-          autoCheck
+          checkType
           pointsForSpeed
           file
           type
@@ -98,7 +98,7 @@ export const getSlide = /* GraphQL */ `
       description
       hasTimeLimit
       timeLimit
-      autoCheck
+      checkType
       pointsForSpeed
       file
       type
@@ -151,7 +151,7 @@ export const listSlides = /* GraphQL */ `
         description
         hasTimeLimit
         timeLimit
-        autoCheck
+        checkType
         pointsForSpeed
         file
         type
@@ -184,7 +184,7 @@ export const getAnswer = /* GraphQL */ `
         description
         hasTimeLimit
         timeLimit
-        autoCheck
+        checkType
         pointsForSpeed
         file
         type
@@ -225,7 +225,7 @@ export const listAnswers = /* GraphQL */ `
           description
           hasTimeLimit
           timeLimit
-          autoCheck
+          checkType
           pointsForSpeed
           file
           type

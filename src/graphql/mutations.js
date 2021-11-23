@@ -18,7 +18,7 @@ export const createQuiz = /* GraphQL */ `
           description
           hasTimeLimit
           timeLimit
-          autoCheck
+          checkType
           pointsForSpeed
           file
           type
@@ -79,7 +79,7 @@ export const updateQuiz = /* GraphQL */ `
           description
           hasTimeLimit
           timeLimit
-          autoCheck
+          checkType
           pointsForSpeed
           file
           type
@@ -140,7 +140,7 @@ export const deleteQuiz = /* GraphQL */ `
           description
           hasTimeLimit
           timeLimit
-          autoCheck
+          checkType
           pointsForSpeed
           file
           type
@@ -195,7 +195,7 @@ export const createSlide = /* GraphQL */ `
       description
       hasTimeLimit
       timeLimit
-      autoCheck
+      checkType
       pointsForSpeed
       file
       type
@@ -246,7 +246,7 @@ export const updateSlide = /* GraphQL */ `
       description
       hasTimeLimit
       timeLimit
-      autoCheck
+      checkType
       pointsForSpeed
       file
       type
@@ -297,7 +297,7 @@ export const deleteSlide = /* GraphQL */ `
       description
       hasTimeLimit
       timeLimit
-      autoCheck
+      checkType
       pointsForSpeed
       file
       type
@@ -350,7 +350,7 @@ export const createAnswer = /* GraphQL */ `
         description
         hasTimeLimit
         timeLimit
-        autoCheck
+        checkType
         pointsForSpeed
         file
         type
@@ -389,7 +389,7 @@ export const updateAnswer = /* GraphQL */ `
         description
         hasTimeLimit
         timeLimit
-        autoCheck
+        checkType
         pointsForSpeed
         file
         type
@@ -428,7 +428,7 @@ export const deleteAnswer = /* GraphQL */ `
         description
         hasTimeLimit
         timeLimit
-        autoCheck
+        checkType
         pointsForSpeed
         file
         type

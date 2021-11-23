@@ -15,7 +15,7 @@ type Slide @model {
   description: String
   hasTimeLimit: Boolean!
   timeLimit: Int
-  autoCheck: Boolean!
+  checkType: CheckType!
   pointsForSpeed: Boolean
   file: String
   type: [QuestionType]!
@@ -62,4 +62,11 @@ enum QuestionType {
   TITLE_CARD,
   PUZZLE,
   VOTE,
+}
+
+enum CheckType {
+  PREDEFINED_ANSWER,
+  GAMEMASTERS_AFTERWARDS,
+  USERS_VOTE,
+  GAMEMASTERS_VOTE
 }

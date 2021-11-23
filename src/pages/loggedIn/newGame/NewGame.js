@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./NewGame.scss";
-import Answers from "./Slide/Answers";
-import Questions from "./Slide/Question";
-import SetupBar from "./Slide/SetupBar";
+import Answers from "./slide/Answers";
+import Questions from "./slide/Question";
+import SetupBar from "./setupBar/SetupBar";
 
 const NewGame = () => {
   const [collapsed, setCollapsed] = useState(false);

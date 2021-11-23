@@ -1,7 +1,7 @@
 const questionTypeEnum = {
   MULTIPLE_CHOICE: "Multiple choice",
   //TODO
-  OPEN: "Open",
+  // OPEN: "Open",
   // OPEN_LIST: "Open list",
   // APPROXIMATION: "Approximation",
   // ORDER: "Order",
@@ -15,7 +15,7 @@ const checkTypeEnum = {
   GAMEMASTERS_AFTERWARDS: "Check answers afterwards",
   //TODO
   // USERS_VOTE: "Players vote for the correct answer",
-  // GAME_MASTERS_VOTE: "Game masters vote for the correct answer",
+  // GAMEMASTERS_VOTE: "Game masters vote for the correct answer",
 };
 
 export { questionTypeEnum, checkTypeEnum };
