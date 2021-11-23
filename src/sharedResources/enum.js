@@ -1,7 +1,7 @@
-const questionType = {
+const questionTypeEnum = {
   MULTIPLE_CHOICE: "Multiple choice",
   //TODO
-  // OPEN: "Open",
+  OPEN: "Open",
   // OPEN_LIST: "Open list",
   // APPROXIMATION: "Approximation",
   // ORDER: "Order",
@@ -10,7 +10,7 @@ const questionType = {
   // VOTE: "Voting"
 };
 
-const checkType = {
+const checkTypeEnum = {
   PREDEFINED_ANSWER: "Predefined answer",
   GAMEMASTERS_AFTERWARDS: "Check answers afterwards",
   //TODO
@@ -18,4 +18,4 @@ const checkType = {
   // GAME_MASTERS_VOTE: "Game masters vote for the correct answer",
 };
 
-export { questionType, checkType };
+export { questionTypeEnum, checkTypeEnum };

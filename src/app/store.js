@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import newQuiz from "../Pages/GameMaster/NewQuiz/slice";
+import newGame from "../pages/loggedIn/newGame/slice";
 
 export default configureStore({
   reducer: combineReducers({
-    newQuiz,
+    newGame,
   }),
 });

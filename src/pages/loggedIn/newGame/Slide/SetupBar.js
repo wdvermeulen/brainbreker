@@ -1,12 +1,15 @@
 import React from "react";
 import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import { questionType } from "../../../../sharedResources/enum";
+import {
+  checkTypeEnum,
+  questionTypeEnum,
+} from "../../../../sharedResources/enum";
 import {
   useName,
   useHasTimeLimit,
   useTimeLimit,
-  useAutoCheck,
+  useCheckType,
   usePointsForSpeed,
   useNumberOfOptions,
   useAnswerValue,
@@ -33,7 +36,7 @@ const SetupBar = ({ collapse, collapsed }) => {
   const questionType = useQuestionType();
   const hasTimeLimit = useHasTimeLimit();
   const timeLimit = useTimeLimit();
-  const autoCheck = useAutoCheck();
+  const checkType = useCheckType();
   const pointsForSpeed = usePointsForSpeed();
   const numberOfOptions = useNumberOfOptions();
   const answerValue = useAnswerValue();
@@ -47,6 +50,8 @@ const SetupBar = ({ collapse, collapsed }) => {
 
   if (selectAnswer.value >= numberOfOptions.value)
     setValue(numberOfOptions.value - 1);
+
+  let predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
 
   return (
     <div id="SetupBar">
@@ -81,7 +86,7 @@ const SetupBar = ({ collapse, collapsed }) => {
               aria-label="soort vraag"
               {...questionType}
             >
-              {Object.entries(questionType).map(([key, type]) => (
+              {Object.entries(questionTypeEnum).map(([key, type]) => (
                 <option key={"questionType-" + key} value={key}>
                   {type}
                 </option>
@@ -136,18 +141,23 @@ const SetupBar = ({ collapse, collapsed }) => {
           <hr />
 
           <div className="row">
-            <input
-              id="autoCheck"
-              name="autoCheck"
-              aria-label="automatisch controleren"
-              type="checkbox"
-              {...autoCheck}
-            />
-            <label htmlFor="autoCheck">Automatisch controleren</label>
+            <label htmlFor="checkType">Controleren: </label>
+            <select
+              id="checkType"
+              name="checkType"
+              aria-label="Manier van controleren"
+              {...checkType}
+            >
+              {Object.entries(checkTypeEnum).map(([key, type]) => (
+                <option key={"checkType-" + key} value={key}>
+                  {type}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="row">
-            {hasTimeLimit.checked && autoCheck.checked && (
+            {hasTimeLimit.checked && predefinedAnswer && (
               <>
                 <input
                   id="pointsForSpeed"
@@ -162,7 +172,7 @@ const SetupBar = ({ collapse, collapsed }) => {
           </div>
 
           <div className="row">
-            {autoCheck.checked && (
+            {predefinedAnswer && (
               <>
                 <label htmlFor="correctAnswer">Punten voor: </label>
                 <select
@@ -181,7 +191,7 @@ const SetupBar = ({ collapse, collapsed }) => {
           </div>
 
           <div className="row">
-            {autoCheck.checked && (
+            {predefinedAnswer && (
               <>
                 <label htmlFor="rewardValue">
                   {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
@@ -200,7 +210,7 @@ const SetupBar = ({ collapse, collapsed }) => {
             )}
           </div>
 
-          {autoCheck.checked &&
+          {predefinedAnswer &&
             answerValue.values.map((value, i) => {
               if (
                 parseInt(selectAnswer.value) !== i &&

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./NewQuiz.scss";
+import "./NewGame.scss";
 import Answers from "./Slide/Answers";
 import Questions from "./Slide/Question";
 import SetupBar from "./Slide/SetupBar";
 
-const NewQuiz = () => {
+const NewGame = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   function collapse() {
@@ -12,7 +12,7 @@ const NewQuiz = () => {
   }
 
   return (
-    <div id="NewQuiz" className="row">
+    <div id="NewGame" className="row">
       <div className="slide column">
         <Questions />
         <Answers />
@@ -22,4 +22,4 @@ const NewQuiz = () => {
   );
 };
 
-export default NewQuiz;
+export default NewGame;

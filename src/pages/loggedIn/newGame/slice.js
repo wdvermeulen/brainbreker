@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkType, questionType } from "../../../sharedResources/enum";
+import { checkTypeEnum, questionTypeEnum } from "../../../sharedResources/enum";
 
 const defaultSlide = {
   title: "",
   description: "",
   hasTimeLimit: true,
   timeLimit: 10,
-  checkType: checkType.PREDEFINED_ANSWER,
+  checkType: Object.keys(checkTypeEnum)[0],
   pointsForSpeed: true,
   file: "",
-  questionType: questionType.MULTIPLE_CHOICE,
+  questionType: Object.keys(questionTypeEnum)[0],
   numberOfOptions: 4,
   answers: [
     { description: "", value: 0 },
@@ -20,7 +20,7 @@ const defaultSlide = {
 };
 
 const slice = createSlice({
-  name: "newQuiz",
+  name: "newGame",
   initialState: {
     name: "Quiz 1",
     currentSlide: 0,
@@ -77,8 +77,8 @@ const slice = createSlice({
         1800
       );
     },
-    setAutoCheck: (state, action) => {
-      state.slides[state.currentSlide].autoCheck = action.payload;
+    setCheckType: (state, action) => {
+      state.slides[state.currentSlide].checkType = action.payload;
     },
     setPointsForSpeed: (state, action) => {
       state.slides[state.currentSlide].pointsForSpeed = action.payload;
@@ -139,7 +139,7 @@ export const {
   setHasTimeLimit,
   setTimeLimit,
   setPointsForSpeed,
-  setAutoCheck,
+  setCheckType,
   //TODO
   // setFile,
   setQuestionType,

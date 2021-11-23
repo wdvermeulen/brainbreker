@@ -7,7 +7,7 @@ import {
   resetCurrentSlide,
   setAnswerDescription,
   setAnswerValue,
-  setAutoCheck,
+  setCheckType,
   setCurrentSlide,
   setEditing,
   setHasTimeLimit,
@@ -22,7 +22,7 @@ import QuizService from "../../../services/QuizService";
 
 function useName() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.newQuiz.name);
+  const value = useSelector((state) => state.newGame.name);
 
   const handleChange = (e) => {
     dispatch(setName(e.target.value));
@@ -34,7 +34,7 @@ function useName() {
 function useEditing() {
   const dispatch = useDispatch();
   return [
-    useSelector((state) => state.newQuiz.editing),
+    useSelector((state) => state.newGame.editing),
     (s) => dispatch(setEditing(s)),
   ];
 }
@@ -42,7 +42,7 @@ function useEditing() {
 function useQuestionTitle() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].title
+    (state) => state.newGame.slides[state.newGame.currentSlide].title
   );
 
   const handleChange = (e) => {
@@ -55,7 +55,7 @@ function useQuestionTitle() {
 function useQuestionDescription() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].description
+    (state) => state.newGame.slides[state.newGame.currentSlide].description
   );
 
   const handleChange = (e) => {
@@ -67,7 +67,7 @@ function useQuestionDescription() {
 
 function useQuestionType() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.newQuiz.questionType);
+  const value = useSelector((state) => state.newGame.type);
 
   const handleChange = (e) => {
     dispatch(setQuestionType(e.target.value));
@@ -79,7 +79,7 @@ function useQuestionType() {
 function useHasTimeLimit() {
   const dispatch = useDispatch();
   const checked = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].hasTimeLimit
+    (state) => state.newGame.slides[state.newGame.currentSlide].hasTimeLimit
   );
 
   const handleChange = () => {
@@ -91,7 +91,7 @@ function useHasTimeLimit() {
 function useTimeLimit() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].timeLimit
+    (state) => state.newGame.slides[state.newGame.currentSlide].timeLimit
   );
 
   const handleChange = (e) => {
@@ -101,23 +101,23 @@ function useTimeLimit() {
   return { value, onChange: handleChange };
 }
 
-function useAutoCheck() {
+function useCheckType() {
   const dispatch = useDispatch();
-  const checked = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].autoCheck
+  const value = useSelector(
+    (state) => state.newGame.slides[state.newGame.currentSlide].checkType
   );
 
-  const handleChange = () => {
-    dispatch(setAutoCheck(!checked));
+  const handleChange = (e) => {
+    dispatch(setCheckType(e.target.value));
   };
 
-  return { checked, onChange: handleChange };
+  return { value, onChange: handleChange };
 }
 
 function usePointsForSpeed() {
   const dispatch = useDispatch();
   const checked = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].pointsForSpeed
+    (state) => state.newGame.slides[state.newGame.currentSlide].pointsForSpeed
   );
 
   const handleChange = () => {
@@ -130,7 +130,7 @@ function usePointsForSpeed() {
 function useNumberOfOptions() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.newQuiz.slides[state.newQuiz.currentSlide].numberOfOptions
+    (state) => state.newGame.slides[state.newGame.currentSlide].numberOfOptions
   );
 
   const handleChange = (e) => {
@@ -143,10 +143,10 @@ function useNumberOfOptions() {
 function useAnswerValue() {
   const dispatch = useDispatch();
   const values = useSelector((state) =>
-    state.newQuiz.slides[state.newQuiz.currentSlide].answers
+    state.newGame.slides[state.newGame.currentSlide].answers
       .slice(
         0,
-        state.newQuiz.slides[state.newQuiz.currentSlide].numberOfOptions
+        state.newGame.slides[state.newGame.currentSlide].numberOfOptions
       )
       .map((answer) => answer.value)
   );
@@ -170,7 +170,7 @@ function useAnswerDescription(answerIndex) {
   const dispatch = useDispatch();
   const value = useSelector(
     (state) =>
-      state.newQuiz.slides[state.newQuiz.currentSlide].answers[answerIndex]
+      state.newGame.slides[state.newGame.currentSlide].answers[answerIndex]
         .description
   );
 
@@ -191,9 +191,9 @@ function useAnswerDescription(answerIndex) {
 
 function useSlideNavigation() {
   const dispatch = useDispatch();
-  const slide = useSelector((state) => state.newQuiz.slide);
-  const slides = useSelector((state) => state.newQuiz.slides);
-  const currentSlide = useSelector((state) => state.newQuiz.currentSlide);
+  const slide = useSelector((state) => state.newGame.slide);
+  const slides = useSelector((state) => state.newGame.slides);
+  const currentSlide = useSelector((state) => state.newGame.currentSlide);
 
   const gotoNextSlide = () => {
     dispatch(nextSlide(slide));
@@ -209,7 +209,7 @@ function useSlideNavigation() {
 }
 
 function useCurrentSlide() {
-  return useSelector((state) => state.newQuiz.currentSlide);
+  return useSelector((state) => state.newGame.currentSlide);
 }
 
 function useResetSlide() {
@@ -243,7 +243,7 @@ function useSlideInput() {
 }
 
 function useSaveQuiz() {
-  const quiz = useSelector((state) => state.newQuiz);
+  const quiz = useSelector((state) => state.newGame);
   const quizService = new QuizService();
 
   async function saveQuiz() {
@@ -261,7 +261,7 @@ export {
   useQuestionType,
   useHasTimeLimit,
   useTimeLimit,
-  useAutoCheck,
+  useCheckType,
   usePointsForSpeed,
   useNumberOfOptions,
   useAnswerValue,
