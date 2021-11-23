@@ -4,10 +4,10 @@ export default class Slide {
     this.description = reduxSlide.description;
     this.hasTimeLimit = reduxSlide.hasTimeLimit;
     this.timeLimit = reduxSlide.timeLimit;
-    this.autoCheck = reduxSlide.autoCheck;
+    this.checkType = reduxSlide.checkType;
     this.pointsForSpeed = reduxSlide.pointsForSpeed;
     this.file = reduxSlide.file;
-    this.type = reduxSlide.type;
+    this.questionType = reduxSlide.questionType;
     this.numberOfOptions = reduxSlide.numberOfOptions;
     this.slideQuizId = quizId;
   }

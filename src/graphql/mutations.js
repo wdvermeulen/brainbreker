@@ -21,7 +21,7 @@ export const createQuiz = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          type
+          questionType
           numberOfOptions
           createdAt
           updatedAt
@@ -82,7 +82,7 @@ export const updateQuiz = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          type
+          questionType
           numberOfOptions
           createdAt
           updatedAt
@@ -143,7 +143,7 @@ export const deleteQuiz = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          type
+          questionType
           numberOfOptions
           createdAt
           updatedAt
@@ -198,7 +198,7 @@ export const createSlide = /* GraphQL */ `
       checkType
       pointsForSpeed
       file
-      type
+      questionType
       numberOfOptions
       quiz {
         id
@@ -249,7 +249,7 @@ export const updateSlide = /* GraphQL */ `
       checkType
       pointsForSpeed
       file
-      type
+      questionType
       numberOfOptions
       quiz {
         id
@@ -300,7 +300,7 @@ export const deleteSlide = /* GraphQL */ `
       checkType
       pointsForSpeed
       file
-      type
+      questionType
       numberOfOptions
       quiz {
         id
@@ -353,7 +353,7 @@ export const createAnswer = /* GraphQL */ `
         checkType
         pointsForSpeed
         file
-        type
+        questionType
         numberOfOptions
         quiz {
           id
@@ -392,7 +392,7 @@ export const updateAnswer = /* GraphQL */ `
         checkType
         pointsForSpeed
         file
-        type
+        questionType
         numberOfOptions
         quiz {
           id
@@ -431,7 +431,7 @@ export const deleteAnswer = /* GraphQL */ `
         checkType
         pointsForSpeed
         file
-        type
+        questionType
         numberOfOptions
         quiz {
           id

@@ -85,11 +85,11 @@ input, textarea, select {
   text-align: center;
 
   &:active {
-    border: 1px dashed $color-light;
+    outline: 1px dashed $color-light;
   }
 
   &:focus {
-    border: 2px dashed $color-light;
+    outline: 2px dashed $color-light;
   }
 
   &:hover {

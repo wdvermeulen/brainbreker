@@ -3,6 +3,7 @@ import { createAnswer, createQuiz, createSlide } from "../graphql/mutations";
 import Quiz from "../dataObjects/Quiz";
 import Slide from "../dataObjects/Slide";
 import Answer from "../dataObjects/Answer";
+import { listQuizs } from "../graphql/queries";
 
 class QuizService {
   post = async (reduxQuiz) => {
@@ -33,6 +34,15 @@ class QuizService {
         }
       }
       return quizId;
+    } catch (e) {
+      console.error(e.errors[0].message, e);
+    }
+  };
+  get = async () => {
+    try {
+      const { data } = await API.graphql(graphqlOperation(listQuizs));
+      console.log(data);
+      return data;
     } catch (e) {
       console.error(e.errors[0].message, e);
     }

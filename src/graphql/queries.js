@@ -18,7 +18,7 @@ export const getQuiz = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          type
+          questionType
           numberOfOptions
           createdAt
           updatedAt
@@ -101,7 +101,7 @@ export const getSlide = /* GraphQL */ `
       checkType
       pointsForSpeed
       file
-      type
+      questionType
       numberOfOptions
       quiz {
         id
@@ -154,7 +154,7 @@ export const listSlides = /* GraphQL */ `
         checkType
         pointsForSpeed
         file
-        type
+        questionType
         numberOfOptions
         quiz {
           id
@@ -187,7 +187,7 @@ export const getAnswer = /* GraphQL */ `
         checkType
         pointsForSpeed
         file
-        type
+        questionType
         numberOfOptions
         quiz {
           id
@@ -228,7 +228,7 @@ export const listAnswers = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          type
+          questionType
           numberOfOptions
           createdAt
           updatedAt

@@ -18,7 +18,7 @@ type Slide @model {
   checkType: CheckType!
   pointsForSpeed: Boolean
   file: String
-  type: [QuestionType]!
+  questionType: [QuestionType]!
   numberOfOptions: Int
   quiz: Quiz! @connection(name: "QuizSlides")
   answers: [Answer]! @connection(name: "SlideAnswers")

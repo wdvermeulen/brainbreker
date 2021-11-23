@@ -6,7 +6,7 @@ const GameTypeSelection = () => (
   <>
     <Logo />
     <div className="row">
-      <Link to="./gamemaster/new-quiz">
+      <Link to="./gamemaster/newquiz">
         <button className="outline big">
           {I18n.get("Setup a standard quiz")}
         </button>
@@ -32,9 +32,9 @@ const GameTypeSelection = () => (
       {/*<Link to="#">*/}
       {/*  <button className="outline big">{I18n.get("Custom game")}</button>*/}
       {/*</Link>*/}
-      {/*<Link to="#">*/}
-      {/*  <button className="outline big">{I18n.get("Load stored games")}</button>*/}
-      {/*</Link>*/}
+      <Link to="./gamemaster/load">
+        <button className="outline big">{I18n.get("Load stored games")}</button>
+      </Link>
     </div>
   </>
 );

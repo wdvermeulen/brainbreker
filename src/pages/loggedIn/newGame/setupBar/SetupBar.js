@@ -128,7 +128,7 @@ const SetupBar = ({ collapse, collapsed }) => {
                   id="timeLimit"
                   name="timeLimit"
                   aria-label="tijdslimiet in seconden"
-                  text="number"
+                  type="number"
                   min="5"
                   max="1800"
                   {...timeLimit}
@@ -194,8 +194,10 @@ const SetupBar = ({ collapse, collapsed }) => {
             {predefinedAnswer && (
               <>
                 <label htmlFor="rewardValue">
-                  {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
-                  antwoord {parseInt(selectAnswer.value) + 1}:
+                  {hasTimeLimit.checked && pointsForSpeed.checked
+                    ? "Maximale b"
+                    : "B"}
+                  eloning voor antwoord {parseInt(selectAnswer.value) + 1}:
                 </label>
                 <AutosizeInput
                   id="rewardValue"
@@ -220,8 +222,10 @@ const SetupBar = ({ collapse, collapsed }) => {
                 return (
                   <div className="row" key={"answerValue-" + i}>
                     <label htmlFor={"answerValue-" + i}>
-                      {pointsForSpeed.checked ? "Maximale b" : "B"}eloning voor
-                      antwoord {i + 1}:
+                      {hasTimeLimit.checked && pointsForSpeed.checked
+                        ? "Maximale b"
+                        : "B"}
+                      eloning voor antwoord {i + 1}:
                     </label>
                     <AutosizeInput
                       id={"answerValue-" + i}

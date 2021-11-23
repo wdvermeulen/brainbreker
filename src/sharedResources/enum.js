@@ -12,10 +12,10 @@ const questionTypeEnum = {
 
 const checkTypeEnum = {
   PREDEFINED_ANSWER: "Predefined answer",
-  GAMEMASTERS_AFTERWARDS: "Check answers afterwards",
+  GAMEMASTERS_AFTERWARDS: "Check afterwards",
   //TODO
-  // USERS_VOTE: "Players vote for the correct answer",
-  // GAMEMASTERS_VOTE: "Game masters vote for the correct answer",
+  // USERS_VOTE: "Players vote",
+  // GAMEMASTERS_VOTE: "Game masters vote",
 };
 
 export { questionTypeEnum, checkTypeEnum };

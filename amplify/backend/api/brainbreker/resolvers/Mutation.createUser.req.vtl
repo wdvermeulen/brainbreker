@@ -7,7 +7,7 @@ $util.qr($context.args.input.put("createdAt", $util.defaultIfNull($ctx.args.inpu
 $util.qr($context.args.input.put("updatedAt", $util.defaultIfNull($ctx.args.input.updatedAt, $createdAt)))
 ## [End] Set default values. **
 ## [Start] Prepare DynamoDB PutItem Request. **
-$util.qr($context.args.input.put("__typename", "Team"))
+$util.qr($context.args.input.put("__typename", "User"))
 #if( $modelObjectKey )
   #set( $condition = {
   "expression": "",

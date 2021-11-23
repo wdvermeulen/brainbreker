@@ -8,7 +8,7 @@
   #set( $query = {
   "expression": "#connectionAttribute = :connectionAttribute",
   "expressionNames": {
-      "#connectionAttribute": "teamQuizId"
+      "#connectionAttribute": "userQuizId"
   },
   "expressionValues": {
       ":connectionAttribute": {
@@ -40,6 +40,6 @@ $util.toJson($context.args.nextToken)
     #else
 null
     #end,
-      "index": "gsi-QuizTeams"
+      "index": "gsi-QuizUsers"
   }
 #end
