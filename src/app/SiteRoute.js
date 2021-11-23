@@ -8,22 +8,22 @@ import Load from "../pages/loggedIn/load/Load";
 const SiteRoute = () => (
   <Router>
     <Switch>
-      <Route path="gamemaster/newquiz">
+      <Route path="/gamemaster/newquiz">
         <Authenticated>
           <NewGame />
         </Authenticated>
       </Route>
-      <Route path="gamemaster/load">
+      <Route path="/gamemaster/load">
         <Authenticated>
           <Load />
         </Authenticated>
       </Route>
-      <Route path="gamemaster/game/:gameId">
+      <Route path="/gamemaster/game/:gameId">
         <Authenticated>
           <Load />
         </Authenticated>
       </Route>
-      <Route path="gamemaster">
+      <Route path="/gamemaster">
         <Authenticated>
           <GameTypeSelection />
         </Authenticated>
