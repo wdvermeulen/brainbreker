@@ -1,5 +1,5 @@
 export default class Slide {
-  constructor(reduxSlide, quizId) {
+  constructor(reduxSlide, gameId) {
     this.title = reduxSlide.title;
     this.description = reduxSlide.description;
     this.hasTimeLimit = reduxSlide.hasTimeLimit;
@@ -9,6 +9,6 @@ export default class Slide {
     this.file = reduxSlide.file;
     this.questionType = reduxSlide.questionType;
     this.numberOfOptions = reduxSlide.numberOfOptions;
-    this.slideQuizId = quizId;
+    this.slideGameId = gameId;
   }
 }

@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Authenticated from "./authenticated/Authenticated";
-import GameTypeSelection from "../pages/loggedIn/GameTypeSelection";
+import GameTypeSelection from "../pages/private/GameTypeSelection";
 import Home from "../pages/Home";
-import NewGame from "../pages/loggedIn/newGame/NewGame";
-import Load from "../pages/loggedIn/load/Load";
+import NewGame from "../pages/private/newGame/NewGame";
+import Load from "../pages/private/load/Load";
 
 const SiteRoute = () => (
   <Router>
     <Switch>
-      <Route path="/gamemaster/newquiz">
+      <Route path="/gamemaster/newgame">
         <Authenticated>
           <NewGame />
         </Authenticated>

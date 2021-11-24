@@ -1,15 +1,15 @@
-type Quiz @model {
+type Game @model {
   id: ID!
   name: String!
   pin: ID
-  currentSlide: Int
-  slides: [Slide!]! @connection(name: "QuizSlides")
-  connectedUsers: [User]! @connection(name: "QuizUsers")
-  connectedGamemasters: [Gamemaster]! @connection(name: "QuizGamemasters")
-  connectedTeams: [Team]! @connection(name: "QuizTeams")
+  currentPage: Int
+  pages: [Page!]! @connection(name: "GamePages")
+  connectedUsers: [User]! @connection(name: "GameUsers")
+  connectedGamemasters: [Gamemaster]! @connection(name: "GameGamemasters")
+  connectedTeams: [Team]! @connection(name: "GameTeams")
 }
 
-type Slide @model {
+type Page @model {
   id: ID!
   title: String!
   description: String
@@ -20,13 +20,13 @@ type Slide @model {
   file: String
   questionType: [QuestionType]!
   numberOfOptions: Int
-  quiz: Quiz! @connection(name: "QuizSlides")
-  answers: [Answer]! @connection(name: "SlideAnswers")
+  game: Game! @connection(name: "GamePages")
+  answers: [Answer]! @connection(name: "PageAnswers")
 }
 
 type Answer @model {
   id: ID!
-  Slide: Slide! @connection(name: "SlideAnswers")
+  Page: Page! @connection(name: "PageAnswers")
   description: String!
   value: Int!
 }
@@ -35,8 +35,8 @@ type User @model {
   id: ID!
   name: String!
   points: Int
-  currentSlide: Int
-  quiz: Quiz! @connection(name: "QuizUsers")
+  currentPage: Int
+  game: Game! @connection(name: "GameUsers")
   team: Team @connection(name: "TeamUsers")
 }
 
@@ -45,12 +45,12 @@ type Team @model {
   name: String!
   points: Int
   users: [User]! @connection(name: "TeamUsers")
-  quiz: Quiz! @connection(name: "QuizTeams")
+  game: Game! @connection(name: "GameTeams")
 }
 
 type Gamemaster @model {
   id: ID!
-  quiz: Quiz! @connection(name: "QuizGamemasters")
+  game: Game! @connection(name: "GameGamemasters")
 }
 
 enum QuestionType {

@@ -1,14 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getQuiz = /* GraphQL */ `
-  query GetQuiz($id: ID!) {
-    getQuiz(id: $id) {
+export const getGame = /* GraphQL */ `
+  query GetGame($id: ID!) {
+    getGame(id: $id) {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -30,7 +30,7 @@ export const getQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -59,19 +59,19 @@ export const getQuiz = /* GraphQL */ `
     }
   }
 `;
-export const listQuizs = /* GraphQL */ `
-  query ListQuizs(
-    $filter: ModelQuizFilterInput
+export const listGames = /* GraphQL */ `
+  query ListGames(
+    $filter: ModelGameFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuizs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -90,9 +90,9 @@ export const listQuizs = /* GraphQL */ `
     }
   }
 `;
-export const getSlide = /* GraphQL */ `
-  query GetSlide($id: ID!) {
-    getSlide(id: $id) {
+export const getPage = /* GraphQL */ `
+  query GetPage($id: ID!) {
+    getPage(id: $id) {
       id
       title
       description
@@ -103,12 +103,12 @@ export const getSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -138,13 +138,13 @@ export const getSlide = /* GraphQL */ `
     }
   }
 `;
-export const listSlides = /* GraphQL */ `
-  query ListSlides(
-    $filter: ModelSlideFilterInput
+export const listPages = /* GraphQL */ `
+  query ListPages(
+    $filter: ModelPageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listSlides(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
@@ -156,11 +156,11 @@ export const listSlides = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -178,7 +178,7 @@ export const getAnswer = /* GraphQL */ `
   query GetAnswer($id: ID!) {
     getAnswer(id: $id) {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -189,11 +189,11 @@ export const getAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -219,7 +219,7 @@ export const listAnswers = /* GraphQL */ `
     listAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        Slide {
+        Page {
           id
           title
           description
@@ -248,13 +248,13 @@ export const getUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -276,11 +276,11 @@ export const getUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -303,12 +303,12 @@ export const listUsers = /* GraphQL */ `
         id
         name
         points
-        currentSlide
-        quiz {
+        currentPage
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -337,18 +337,18 @@ export const getTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -382,11 +382,11 @@ export const listTeams = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -401,12 +401,12 @@ export const getGamemaster = /* GraphQL */ `
   query GetGamemaster($id: ID!) {
     getGamemaster(id: $id) {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -435,11 +435,11 @@ export const listGamemasters = /* GraphQL */ `
     listGamemasters(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }

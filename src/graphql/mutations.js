@@ -1,17 +1,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createQuiz = /* GraphQL */ `
-  mutation CreateQuiz(
-    $input: CreateQuizInput!
-    $condition: ModelQuizConditionInput
+export const createGame = /* GraphQL */ `
+  mutation CreateGame(
+    $input: CreateGameInput!
+    $condition: ModelGameConditionInput
   ) {
-    createQuiz(input: $input, condition: $condition) {
+    createGame(input: $input, condition: $condition) {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -33,7 +33,7 @@ export const createQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -62,17 +62,17 @@ export const createQuiz = /* GraphQL */ `
     }
   }
 `;
-export const updateQuiz = /* GraphQL */ `
-  mutation UpdateQuiz(
-    $input: UpdateQuizInput!
-    $condition: ModelQuizConditionInput
+export const updateGame = /* GraphQL */ `
+  mutation UpdateGame(
+    $input: UpdateGameInput!
+    $condition: ModelGameConditionInput
   ) {
-    updateQuiz(input: $input, condition: $condition) {
+    updateGame(input: $input, condition: $condition) {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -94,7 +94,7 @@ export const updateQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -123,17 +123,17 @@ export const updateQuiz = /* GraphQL */ `
     }
   }
 `;
-export const deleteQuiz = /* GraphQL */ `
-  mutation DeleteQuiz(
-    $input: DeleteQuizInput!
-    $condition: ModelQuizConditionInput
+export const deleteGame = /* GraphQL */ `
+  mutation DeleteGame(
+    $input: DeleteGameInput!
+    $condition: ModelGameConditionInput
   ) {
-    deleteQuiz(input: $input, condition: $condition) {
+    deleteGame(input: $input, condition: $condition) {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -155,7 +155,7 @@ export const deleteQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -184,12 +184,12 @@ export const deleteQuiz = /* GraphQL */ `
     }
   }
 `;
-export const createSlide = /* GraphQL */ `
-  mutation CreateSlide(
-    $input: CreateSlideInput!
-    $condition: ModelSlideConditionInput
+export const createPage = /* GraphQL */ `
+  mutation CreatePage(
+    $input: CreatePageInput!
+    $condition: ModelPageConditionInput
   ) {
-    createSlide(input: $input, condition: $condition) {
+    createPage(input: $input, condition: $condition) {
       id
       title
       description
@@ -200,12 +200,12 @@ export const createSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -235,12 +235,12 @@ export const createSlide = /* GraphQL */ `
     }
   }
 `;
-export const updateSlide = /* GraphQL */ `
-  mutation UpdateSlide(
-    $input: UpdateSlideInput!
-    $condition: ModelSlideConditionInput
+export const updatePage = /* GraphQL */ `
+  mutation UpdatePage(
+    $input: UpdatePageInput!
+    $condition: ModelPageConditionInput
   ) {
-    updateSlide(input: $input, condition: $condition) {
+    updatePage(input: $input, condition: $condition) {
       id
       title
       description
@@ -251,12 +251,12 @@ export const updateSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -286,12 +286,12 @@ export const updateSlide = /* GraphQL */ `
     }
   }
 `;
-export const deleteSlide = /* GraphQL */ `
-  mutation DeleteSlide(
-    $input: DeleteSlideInput!
-    $condition: ModelSlideConditionInput
+export const deletePage = /* GraphQL */ `
+  mutation DeletePage(
+    $input: DeletePageInput!
+    $condition: ModelPageConditionInput
   ) {
-    deleteSlide(input: $input, condition: $condition) {
+    deletePage(input: $input, condition: $condition) {
       id
       title
       description
@@ -302,12 +302,12 @@ export const deleteSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -344,7 +344,7 @@ export const createAnswer = /* GraphQL */ `
   ) {
     createAnswer(input: $input, condition: $condition) {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -355,11 +355,11 @@ export const createAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -383,7 +383,7 @@ export const updateAnswer = /* GraphQL */ `
   ) {
     updateAnswer(input: $input, condition: $condition) {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -394,11 +394,11 @@ export const updateAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -422,7 +422,7 @@ export const deleteAnswer = /* GraphQL */ `
   ) {
     deleteAnswer(input: $input, condition: $condition) {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -433,11 +433,11 @@ export const deleteAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -463,13 +463,13 @@ export const createUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -491,11 +491,11 @@ export const createUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -516,13 +516,13 @@ export const updateUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -544,11 +544,11 @@ export const updateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -569,13 +569,13 @@ export const deleteUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -597,11 +597,11 @@ export const deleteUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -627,18 +627,18 @@ export const createTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -672,18 +672,18 @@ export const updateTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -717,18 +717,18 @@ export const deleteTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -755,12 +755,12 @@ export const createGamemaster = /* GraphQL */ `
   ) {
     createGamemaster(input: $input, condition: $condition) {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -787,12 +787,12 @@ export const updateGamemaster = /* GraphQL */ `
   ) {
     updateGamemaster(input: $input, condition: $condition) {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -819,12 +819,12 @@ export const deleteGamemaster = /* GraphQL */ `
   ) {
     deleteGamemaster(input: $input, condition: $condition) {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {

@@ -1,14 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateQuiz = /* GraphQL */ `
-  subscription OnCreateQuiz {
-    onCreateQuiz {
+export const onCreateGame = /* GraphQL */ `
+  subscription OnCreateGame {
+    onCreateGame {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -30,7 +30,7 @@ export const onCreateQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -59,14 +59,14 @@ export const onCreateQuiz = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateQuiz = /* GraphQL */ `
-  subscription OnUpdateQuiz {
-    onUpdateQuiz {
+export const onUpdateGame = /* GraphQL */ `
+  subscription OnUpdateGame {
+    onUpdateGame {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -88,7 +88,7 @@ export const onUpdateQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -117,14 +117,14 @@ export const onUpdateQuiz = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteQuiz = /* GraphQL */ `
-  subscription OnDeleteQuiz {
-    onDeleteQuiz {
+export const onDeleteGame = /* GraphQL */ `
+  subscription OnDeleteGame {
+    onDeleteGame {
       id
       name
       pin
-      currentSlide
-      slides {
+      currentPage
+      pages {
         items {
           id
           title
@@ -146,7 +146,7 @@ export const onDeleteQuiz = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -175,9 +175,9 @@ export const onDeleteQuiz = /* GraphQL */ `
     }
   }
 `;
-export const onCreateSlide = /* GraphQL */ `
-  subscription OnCreateSlide {
-    onCreateSlide {
+export const onCreatePage = /* GraphQL */ `
+  subscription OnCreatePage {
+    onCreatePage {
       id
       title
       description
@@ -188,12 +188,12 @@ export const onCreateSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -223,9 +223,9 @@ export const onCreateSlide = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateSlide = /* GraphQL */ `
-  subscription OnUpdateSlide {
-    onUpdateSlide {
+export const onUpdatePage = /* GraphQL */ `
+  subscription OnUpdatePage {
+    onUpdatePage {
       id
       title
       description
@@ -236,12 +236,12 @@ export const onUpdateSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -271,9 +271,9 @@ export const onUpdateSlide = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteSlide = /* GraphQL */ `
-  subscription OnDeleteSlide {
-    onDeleteSlide {
+export const onDeletePage = /* GraphQL */ `
+  subscription OnDeletePage {
+    onDeletePage {
       id
       title
       description
@@ -284,12 +284,12 @@ export const onDeleteSlide = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -323,7 +323,7 @@ export const onCreateAnswer = /* GraphQL */ `
   subscription OnCreateAnswer {
     onCreateAnswer {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -334,11 +334,11 @@ export const onCreateAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -359,7 +359,7 @@ export const onUpdateAnswer = /* GraphQL */ `
   subscription OnUpdateAnswer {
     onUpdateAnswer {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -370,11 +370,11 @@ export const onUpdateAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -395,7 +395,7 @@ export const onDeleteAnswer = /* GraphQL */ `
   subscription OnDeleteAnswer {
     onDeleteAnswer {
       id
-      Slide {
+      Page {
         id
         title
         description
@@ -406,11 +406,11 @@ export const onDeleteAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -433,13 +433,13 @@ export const onCreateUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -461,11 +461,11 @@ export const onCreateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -483,13 +483,13 @@ export const onUpdateUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -511,11 +511,11 @@ export const onUpdateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -533,13 +533,13 @@ export const onDeleteUser = /* GraphQL */ `
       id
       name
       points
-      currentSlide
-      quiz {
+      currentPage
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -561,11 +561,11 @@ export const onDeleteUser = /* GraphQL */ `
         users {
           nextToken
         }
-        quiz {
+        game {
           id
           name
           pin
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
@@ -588,18 +588,18 @@ export const onCreateTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -630,18 +630,18 @@ export const onUpdateTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -672,18 +672,18 @@ export const onDeleteTeam = /* GraphQL */ `
           id
           name
           points
-          currentSlide
+          currentPage
           createdAt
           updatedAt
         }
         nextToken
       }
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -707,12 +707,12 @@ export const onCreateGamemaster = /* GraphQL */ `
   subscription OnCreateGamemaster {
     onCreateGamemaster {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -736,12 +736,12 @@ export const onUpdateGamemaster = /* GraphQL */ `
   subscription OnUpdateGamemaster {
     onUpdateGamemaster {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {
@@ -765,12 +765,12 @@ export const onDeleteGamemaster = /* GraphQL */ `
   subscription OnDeleteGamemaster {
     onDeleteGamemaster {
       id
-      quiz {
+      game {
         id
         name
         pin
-        currentSlide
-        slides {
+        currentPage
+        pages {
           nextToken
         }
         connectedUsers {

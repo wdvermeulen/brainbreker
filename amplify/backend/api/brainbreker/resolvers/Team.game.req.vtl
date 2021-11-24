@@ -1,0 +1,11 @@
+#if( $util.isNull($ctx.source.teamGameId) )
+  #return
+#else
+{
+      "version": "2018-05-29",
+      "operation": "GetItem",
+      "key": {
+          "id": $util.dynamodb.toDynamoDBJson($util.defaultIfNullOrBlank($ctx.source.teamGameId, "___xamznone____"))
+    }
+  }
+#end
