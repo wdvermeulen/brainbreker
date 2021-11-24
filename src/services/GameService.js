@@ -1,34 +1,42 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { createAnswer, createGame, createSlide } from "../graphql/mutations";
+import {
+  createAnswer,
+  createGame,
+  createPage,
+  deleteGame,
+  updateAnswer,
+  updateGame,
+  updatePage,
+} from "../graphql/mutations";
 import Game from "../dataObjects/Game";
-import Slide from "../dataObjects/Slide";
+import Page from "../dataObjects/Page";
 import Answer from "../dataObjects/Answer";
-import { listGames } from "../graphql/queries";
+import { getGame, listGames } from "../graphql/queries";
 
 class GameService {
-  post = async (reduxGame) => {
+  #mutate = async (reduxGame, mutateGame, mutatePage, mutateAnswer) => {
     try {
       const {
         data: {
           createGame: { id: gameId },
         },
       } = await API.graphql(
-        graphqlOperation(createGame, { input: new Game(reduxGame) })
+        graphqlOperation(mutateGame, { input: new Game(reduxGame) })
       );
-      for (const reduxSlide of reduxGame.slides) {
+      for (const reduxPage of reduxGame.pages) {
         const {
           data: {
-            createSlide: { id: slideId },
+            createSlide: { id: pageId },
           },
         } = await API.graphql(
-          graphqlOperation(createSlide, {
-            input: new Slide(reduxSlide, gameId),
+          graphqlOperation(mutatePage, {
+            input: new Page(reduxPage, gameId),
           })
         );
-        for (const reduxAnswer of reduxSlide.answers) {
+        for (const reduxAnswer of reduxPage.answers) {
           await API.graphql(
-            graphqlOperation(createAnswer, {
-              input: new Answer(reduxAnswer, slideId),
+            graphqlOperation(mutateAnswer, {
+              input: new Answer(reduxAnswer, pageId),
             })
           );
         }
@@ -38,14 +46,38 @@ class GameService {
       console.error(e.errors[0].message, e);
     }
   };
-  get = async () => {
+
+  create = async (reduxGame) => {
+    return this.#mutate(reduxGame, createGame, createPage, createAnswer);
+  };
+
+  read = async (gameID) => {
     try {
-      const { data } = await API.graphql(graphqlOperation(listGames));
-      console.log(data);
+      const { data } = gameID
+        ? await API.graphql(
+            graphqlOperation(getGame, { input: { id: gameID } })
+          )
+        : await API.graphql(graphqlOperation(listGames));
       return data;
     } catch (e) {
       console.error(e.errors[0].message, e);
     }
   };
+
+  update = async (reduxGame) => {
+    return this.#mutate(reduxGame, updateGame, updatePage, updateAnswer);
+  };
+
+  delete = async (gameID) => {
+    try {
+      await API.graphql(
+        graphqlOperation(deleteGame, { input: { id: gameID } })
+      );
+      return gameID;
+    } catch (e) {
+      console.error(e.errors[0].message, e);
+    }
+  };
 }
+
 export default GameService;

@@ -243,7 +243,7 @@ function useSaveGame() {
   const gameService = new GameService();
 
   async function saveGame() {
-    await gameService.post(game);
+    await gameService.create(game);
   }
 
   return saveGame;

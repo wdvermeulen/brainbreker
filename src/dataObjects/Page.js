@@ -1,4 +1,4 @@
-export default class Slide {
+export default class Page {
   constructor(reduxSlide, gameId) {
     this.title = reduxSlide.title;
     this.description = reduxSlide.description;
