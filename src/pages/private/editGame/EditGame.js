@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import "./NewGame.scss";
+import "./EditGame.scss";
 import Answers from "./gamePage/Answers";
 import Questions from "./gamePage/Question";
 import SetupBar from "./setupBar/SetupBar";
+import { useParams, useRouteMatch } from "react-router-dom";
 
-const NewGame = () => {
+const EditGame = () => {
+  const myPath = useRouteMatch();
+  console.log(myPath);
   const [collapsed, setCollapsed] = useState(false);
+
+  const { gameId } = useParams();
+
+  console.log(gameId);
 
   function collapse() {
     return setCollapsed(!collapsed);
   }
 
   return (
-    <div id="NewGame" className="row">
+    <div id="EditGame" className="row">
       <div className="page column">
         <Questions />
         <Answers />
@@ -22,4 +29,4 @@ const NewGame = () => {
   );
 };
 
-export default NewGame;
+export default EditGame;

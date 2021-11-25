@@ -2,6 +2,7 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import Logo from "../components/logo/Logo";
+import { url } from "../app/SiteRoute";
 
 const Home = () => (
   <div id="home">
@@ -21,7 +22,7 @@ const Home = () => (
         <button type="submit">Meespelen</button>
       </form>
       <div className="or">of</div>
-      <Link to="/gamemaster">
+      <Link to={url.GAME_TYPE_SELECTION}>
         <button type="button">Nieuw spel beginnen</button>
       </Link>
     </div>

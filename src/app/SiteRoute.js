@@ -1,38 +1,52 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useRouteMatch } from "react-router-dom";
 import Authenticated from "./authenticated/Authenticated";
 import GameTypeSelection from "../pages/private/GameTypeSelection";
 import Home from "../pages/Home";
-import NewGame from "../pages/private/newGame/NewGame";
-import Load from "../pages/private/load/Load";
+import EditGame from "../pages/private/editGame/EditGame";
+import Games from "../pages/private/games/games";
+
+export const url = {
+  HOME: "/",
+  NEW_GAME: "/gamemaster/editgame",
+  EDIT_GAME: "/gamemaster/editgame/",
+  GAMES: "/gamemaster/games",
+  GAME: "/gamemaster/game/",
+  GAME_TYPE_SELECTION: "/gamemaster",
+};
 
 const SiteRoute = () => (
-  <Router>
+  <BrowserRouter>
     <Switch>
-      <Route path="/gamemaster/newgame">
+      <Route path={`${url.EDIT_GAME}:gameId`}>
         <Authenticated>
-          <NewGame />
+          <EditGame />
         </Authenticated>
       </Route>
-      <Route path="/gamemaster/load">
+      <Route path={url.NEW_GAME}>
         <Authenticated>
-          <Load />
+          <EditGame />
         </Authenticated>
       </Route>
-      <Route path="/gamemaster/game/:gameId">
+      <Route path={url.GAMES}>
         <Authenticated>
-          <Load />
+          <Games />
         </Authenticated>
       </Route>
-      <Route path="/gamemaster">
+      <Route path={`${url.GAME}:gameId`}>
+        <Authenticated>
+          <Games />
+        </Authenticated>
+      </Route>
+      <Route path={url.GAME_TYPE_SELECTION}>
         <Authenticated>
           <GameTypeSelection />
         </Authenticated>
       </Route>
-      <Route path="/">
+      <Route exact path={url.HOME}>
         <Home />
       </Route>
     </Switch>
-  </Router>
+  </BrowserRouter>
 );
 
 export default SiteRoute;

@@ -5,8 +5,9 @@ import { deleteGame as deleteGameMutation } from "../../../graphql/mutations";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { url } from "../../../app/SiteRoute";
 
-const Load = () => {
+const Games = () => {
   const [games, setGames] = useState([]);
 
   async function fetchGames() {
@@ -27,12 +28,11 @@ const Load = () => {
     fetchGames();
   }, []);
 
-  console.log(games);
   return (
     <div className="glass-tile">
       {games.map((game) => (
         <div className="row" key={game.id}>
-          <Link to={`./game/${game.id}`}>{game.name}</Link>{" "}
+          <Link to={`${url.EDIT_GAME}${game.id}`}>{game.name}</Link>{" "}
           <button className="outline" onClick={() => deleteGame(game.id)}>
             <FontAwesomeIcon icon={faTrash} /> Verwijderen
           </button>
@@ -42,4 +42,4 @@ const Load = () => {
   );
 };
 
-export default Load;
+export default Games;

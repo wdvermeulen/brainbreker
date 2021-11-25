@@ -22,7 +22,7 @@ import GameService from "../../../services/GameService";
 
 function useName() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.game.name);
+  const value = useSelector((state) => state.editGame.name);
 
   const handleChange = (e) => {
     dispatch(setName(e.target.value));
@@ -34,7 +34,7 @@ function useName() {
 function useEditing() {
   const dispatch = useDispatch();
   return [
-    useSelector((state) => state.game.editing),
+    useSelector((state) => state.editGame.editing),
     (s) => dispatch(setEditing(s)),
   ];
 }
@@ -42,7 +42,7 @@ function useEditing() {
 function useQuestionTitle() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.game.pages[state.game.currentPage].title
+    (state) => state.editGame.pages[state.editGame.currentPage].title
   );
 
   const handleChange = (e) => {
@@ -55,7 +55,7 @@ function useQuestionTitle() {
 function useQuestionDescription() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.game.pages[state.game.currentPage].description
+    (state) => state.editGame.pages[state.editGame.currentPage].description
   );
 
   const handleChange = (e) => {
@@ -67,7 +67,7 @@ function useQuestionDescription() {
 
 function useQuestionType() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.game.type);
+  const value = useSelector((state) => state.editGame.type);
 
   const handleChange = (e) => {
     dispatch(setQuestionType(e.target.value));
@@ -79,7 +79,7 @@ function useQuestionType() {
 function useHasTimeLimit() {
   const dispatch = useDispatch();
   const checked = useSelector(
-    (state) => state.game.pages[state.game.currentPage].hasTimeLimit
+    (state) => state.editGame.pages[state.editGame.currentPage].hasTimeLimit
   );
 
   const handleChange = () => {
@@ -91,7 +91,7 @@ function useHasTimeLimit() {
 function useTimeLimit() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.game.pages[state.game.currentPage].timeLimit
+    (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
   );
 
   const handleChange = (e) => {
@@ -104,7 +104,7 @@ function useTimeLimit() {
 function useCheckType() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.game.pages[state.game.currentPage].checkType
+    (state) => state.editGame.pages[state.editGame.currentPage].checkType
   );
 
   const handleChange = (e) => {
@@ -117,7 +117,7 @@ function useCheckType() {
 function usePointsForSpeed() {
   const dispatch = useDispatch();
   const checked = useSelector(
-    (state) => state.game.pages[state.game.currentPage].pointsForSpeed
+    (state) => state.editGame.pages[state.editGame.currentPage].pointsForSpeed
   );
 
   const handleChange = () => {
@@ -130,7 +130,7 @@ function usePointsForSpeed() {
 function useNumberOfOptions() {
   const dispatch = useDispatch();
   const value = useSelector(
-    (state) => state.game.pages[state.game.currentPage].numberOfOptions
+    (state) => state.editGame.pages[state.editGame.currentPage].numberOfOptions
   );
 
   const handleChange = (e) => {
@@ -143,8 +143,11 @@ function useNumberOfOptions() {
 function useAnswerValue() {
   const dispatch = useDispatch();
   const values = useSelector((state) =>
-    state.game.pages[state.game.currentPage].answers
-      .slice(0, state.game.pages[state.game.currentPage].numberOfOptions)
+    state.editGame.pages[state.editGame.currentPage].answers
+      .slice(
+        0,
+        state.editGame.pages[state.editGame.currentPage].numberOfOptions
+      )
       .map((answer) => answer.value)
   );
 
@@ -167,7 +170,8 @@ function useAnswerDescription(answerIndex) {
   const dispatch = useDispatch();
   const value = useSelector(
     (state) =>
-      state.game.pages[state.game.currentPage].answers[answerIndex].description
+      state.editGame.pages[state.editGame.currentPage].answers[answerIndex]
+        .description
   );
 
   const handleChange = (e) => {
@@ -187,9 +191,9 @@ function useAnswerDescription(answerIndex) {
 
 function usePageNavigation() {
   const dispatch = useDispatch();
-  const page = useSelector((state) => state.game.page);
-  const pages = useSelector((state) => state.game.pages);
-  const currentPage = useSelector((state) => state.game.currentPage);
+  const page = useSelector((state) => state.editGame.page);
+  const pages = useSelector((state) => state.editGame.pages);
+  const currentPage = useSelector((state) => state.editGame.currentPage);
 
   const gotoNextPage = () => {
     dispatch(nextPage(page));
@@ -205,7 +209,7 @@ function usePageNavigation() {
 }
 
 function useCurrentPage() {
-  return useSelector((state) => state.game.currentPage);
+  return useSelector((state) => state.editGame.currentPage);
 }
 
 function useResetPage() {

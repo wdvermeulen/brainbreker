@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import newGame from "../pages/private/newGame/slice";
+import editGame from "../pages/private/editGame/slice";
 
 export default configureStore({
   reducer: combineReducers({
-    newGame,
+    editGame,
   }),
 });
