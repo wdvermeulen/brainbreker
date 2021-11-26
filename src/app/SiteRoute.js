@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, useRouteMatch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Authenticated from "./authenticated/Authenticated";
 import GameTypeSelection from "../pages/private/GameTypeSelection";
 import Home from "../pages/Home";

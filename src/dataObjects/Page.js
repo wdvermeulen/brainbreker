@@ -1,14 +1,15 @@
 export default class Page {
-  constructor(reduxSlide, gameId) {
-    this.title = reduxSlide.title;
-    this.description = reduxSlide.description;
-    this.hasTimeLimit = reduxSlide.hasTimeLimit;
-    this.timeLimit = reduxSlide.timeLimit;
-    this.checkType = reduxSlide.checkType;
-    this.pointsForSpeed = reduxSlide.pointsForSpeed;
-    this.file = reduxSlide.file;
-    this.questionType = reduxSlide.questionType;
-    this.numberOfOptions = reduxSlide.numberOfOptions;
+  constructor(reduxPage, gameId) {
+    this.id = reduxPage.pageId;
+    this.title = reduxPage.title;
+    this.description = reduxPage.description;
+    this.hasTimeLimit = reduxPage.hasTimeLimit;
+    this.timeLimit = reduxPage.timeLimit;
+    this.checkType = reduxPage.checkType;
+    this.pointsForSpeed = reduxPage.pointsForSpeed;
+    this.file = reduxPage.file;
+    this.questionType = reduxPage.questionType;
+    this.numberOfOptions = reduxPage.numberOfOptions;
     this.slideGameId = gameId;
   }
 }
