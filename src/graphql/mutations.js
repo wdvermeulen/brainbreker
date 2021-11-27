@@ -21,6 +21,53 @@ export const createPrivateGame = /* GraphQL */ `
           file
           questionType
           numberOfOptions
+          privateGame {
+            id
+            name
+            pages {
+              items {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          privateAnswers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              description
+              value
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -51,6 +98,53 @@ export const updatePrivateGame = /* GraphQL */ `
           file
           questionType
           numberOfOptions
+          privateGame {
+            id
+            name
+            pages {
+              items {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          privateAnswers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              description
+              value
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -81,6 +175,53 @@ export const deletePrivateGame = /* GraphQL */ `
           file
           questionType
           numberOfOptions
+          privateGame {
+            id
+            name
+            pages {
+              items {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          privateAnswers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                hasTimeLimit
+                timeLimit
+                checkType
+                pointsForSpeed
+                file
+                questionType
+                numberOfOptions
+                createdAt
+                updatedAt
+              }
+              description
+              value
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -111,6 +252,39 @@ export const createPrivatePage = /* GraphQL */ `
         id
         name
         pages {
+          items {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -119,6 +293,39 @@ export const createPrivatePage = /* GraphQL */ `
       privateAnswers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           value
           createdAt
@@ -151,6 +358,39 @@ export const updatePrivatePage = /* GraphQL */ `
         id
         name
         pages {
+          items {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -159,6 +399,39 @@ export const updatePrivatePage = /* GraphQL */ `
       privateAnswers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           value
           createdAt
@@ -191,6 +464,39 @@ export const deletePrivatePage = /* GraphQL */ `
         id
         name
         pages {
+          items {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -199,6 +505,39 @@ export const deletePrivatePage = /* GraphQL */ `
       privateAnswers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            hasTimeLimit
+            timeLimit
+            checkType
+            pointsForSpeed
+            file
+            questionType
+            numberOfOptions
+            privateGame {
+              id
+              name
+              pages {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            privateAnswers {
+              items {
+                id
+                description
+                value
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           value
           createdAt
@@ -232,10 +571,66 @@ export const createPrivateAnswer = /* GraphQL */ `
         privateGame {
           id
           name
+          pages {
+            items {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         privateAnswers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            value
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -269,10 +664,66 @@ export const updatePrivateAnswer = /* GraphQL */ `
         privateGame {
           id
           name
+          pages {
+            items {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         privateAnswers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            value
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -306,10 +757,66 @@ export const deletePrivateAnswer = /* GraphQL */ `
         privateGame {
           id
           name
+          pages {
+            items {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         privateAnswers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              hasTimeLimit
+              timeLimit
+              checkType
+              pointsForSpeed
+              file
+              questionType
+              numberOfOptions
+              privateGame {
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              privateAnswers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            value
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -342,10 +849,142 @@ export const createPublicGame = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -358,6 +997,108 @@ export const createPublicGame = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -368,6 +1109,89 @@ export const createPublicGame = /* GraphQL */ `
           id
           name
           points
+          users {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -376,6 +1200,63 @@ export const createPublicGame = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -406,10 +1287,142 @@ export const updatePublicGame = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -422,6 +1435,108 @@ export const updatePublicGame = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -432,6 +1547,89 @@ export const updatePublicGame = /* GraphQL */ `
           id
           name
           points
+          users {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -440,6 +1638,63 @@ export const updatePublicGame = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -470,10 +1725,142 @@ export const deletePublicGame = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -486,6 +1873,108 @@ export const deletePublicGame = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -496,6 +1985,89 @@ export const deletePublicGame = /* GraphQL */ `
           id
           name
           points
+          users {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -504,6 +2076,63 @@ export const deletePublicGame = /* GraphQL */ `
       connectedGamemasters {
         items {
           id
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -537,16 +2166,220 @@ export const createPublicPage = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -555,6 +2388,51 @@ export const createPublicPage = /* GraphQL */ `
       answers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           createdAt
           updatedAt
@@ -589,16 +2467,220 @@ export const updatePublicPage = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -607,6 +2689,51 @@ export const updatePublicPage = /* GraphQL */ `
       answers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           createdAt
           updatedAt
@@ -641,16 +2768,220 @@ export const deletePublicPage = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -659,6 +2990,51 @@ export const deletePublicPage = /* GraphQL */ `
       answers {
         items {
           id
+          Page {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           description
           createdAt
           updatedAt
@@ -688,10 +3064,142 @@ export const createPublicAnswer = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -721,10 +3229,142 @@ export const updatePublicAnswer = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -754,10 +3394,142 @@ export const deletePublicAnswer = /* GraphQL */ `
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         answers {
+          items {
+            id
+            Page {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            description
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -791,16 +3563,220 @@ export const createPublicUser = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -811,12 +3787,170 @@ export const createPublicUser = /* GraphQL */ `
         name
         points
         users {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         publicGame {
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -850,16 +3984,220 @@ export const updatePublicUser = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -870,12 +4208,170 @@ export const updatePublicUser = /* GraphQL */ `
         name
         points
         users {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         publicGame {
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -909,16 +4405,220 @@ export const deletePublicUser = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -929,12 +4629,170 @@ export const deletePublicUser = /* GraphQL */ `
         name
         points
         users {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         publicGame {
           pin
           id
           name
+          currentPage {
+            id
+            title
+            description
+            timeLimit
+            file
+            questionType
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            answers {
+              items {
+                id
+                description
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          connectedUsers {
+            items {
+              id
+              name
+              points
+              currentPage
+              currentAnswer
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              team {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedTeams {
+            items {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          connectedGamemasters {
+            items {
+              id
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -962,6 +4820,108 @@ export const createPublicTeam = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -978,16 +4938,220 @@ export const createPublicTeam = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -1014,6 +5178,108 @@ export const updatePublicTeam = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1030,16 +5296,220 @@ export const updatePublicTeam = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -1066,6 +5536,108 @@ export const deletePublicTeam = /* GraphQL */ `
           points
           currentPage
           currentAnswer
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          team {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1082,16 +5654,220 @@ export const deletePublicTeam = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -1120,16 +5896,220 @@ export const createPublicGamemaster = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -1158,16 +6138,220 @@ export const updatePublicGamemaster = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt
@@ -1196,16 +6380,220 @@ export const deletePublicGamemaster = /* GraphQL */ `
           timeLimit
           file
           questionType
+          publicGame {
+            pin
+            id
+            name
+            currentPage {
+              id
+              title
+              description
+              timeLimit
+              file
+              questionType
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              answers {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            connectedUsers {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedTeams {
+              items {
+                id
+                name
+                points
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            connectedGamemasters {
+              items {
+                id
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          answers {
+            items {
+              id
+              Page {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              description
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         connectedUsers {
+          items {
+            id
+            name
+            points
+            currentPage
+            currentAnswer
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            team {
+              id
+              name
+              points
+              users {
+                nextToken
+              }
+              publicGame {
+                pin
+                id
+                name
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedTeams {
+          items {
+            id
+            name
+            points
+            users {
+              items {
+                id
+                name
+                points
+                currentPage
+                currentAnswer
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         connectedGamemasters {
+          items {
+            id
+            publicGame {
+              pin
+              id
+              name
+              currentPage {
+                id
+                title
+                description
+                timeLimit
+                file
+                questionType
+                createdAt
+                updatedAt
+              }
+              connectedUsers {
+                nextToken
+              }
+              connectedTeams {
+                nextToken
+              }
+              connectedGamemasters {
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
           nextToken
         }
         createdAt

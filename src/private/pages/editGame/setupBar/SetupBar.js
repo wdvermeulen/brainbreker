@@ -19,12 +19,14 @@ import {
   useResetPage,
   useSaveGame,
   useQuestionType,
+  usePlayGame,
 } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
+  faPlay,
   faSave,
   faTrash,
   faUndo,
@@ -45,6 +47,7 @@ const SetupBar = ({ collapse, collapsed }) => {
   const resetPage = useResetPage();
   const removePage = useRemovePage();
   const saveGame = useSaveGame();
+  const playGame = usePlayGame();
 
   const { setValue, ...selectAnswer } = useFormInputWithSet(0);
 
@@ -276,6 +279,9 @@ const SetupBar = ({ collapse, collapsed }) => {
           />
           <button onClick={saveGame}>
             <FontAwesomeIcon icon={faSave} /> Opslaan
+          </button>
+          <button onClick={playGame}>
+            <FontAwesomeIcon icon={faPlay} /> Spelen
           </button>
         </div>
       </div>

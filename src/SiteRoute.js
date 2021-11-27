@@ -3,12 +3,14 @@ import Authenticated from "./private/authenticated/Authenticated";
 import EditGame from "./private/pages/editGame/EditGame";
 import Games from "./private/pages/games/games";
 import GameTypeSelection from "./private/pages/GameTypeSelection";
+import HostGame from "./private/pages/hostGame/HostGame";
 import Home from "./public/pages/Home";
 
 export const url = {
   HOME: "/",
   NEW_GAME: "/gamemaster/editgame",
   EDIT_GAME: "/gamemaster/editgame/",
+  HOST_GAME: "/gamemaster/hostgame/",
   GAMES: "/gamemaster/games",
   GAME_TYPE_SELECTION: "/gamemaster",
 };
@@ -29,6 +31,11 @@ const SiteRoute = () => (
       <Route path={url.GAMES}>
         <Authenticated>
           <Games />
+        </Authenticated>
+      </Route>
+      <Route path={`${url.HOST_GAME}:gameID`}>
+        <Authenticated>
+          <HostGame />
         </Authenticated>
       </Route>
       <Route path={url.GAME_TYPE_SELECTION}>

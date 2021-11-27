@@ -10,7 +10,10 @@ import {
   updatePrivateGame,
   updatePrivatePage,
 } from "../../graphql/mutations";
-import { getPrivateGame, listPrivateGames } from "../../graphql/queries";
+import {
+  getPrivateGame as getPrivateGameQuery,
+  listPrivateGames,
+} from "../../graphql/queries";
 import GqlGame from "./dataObjects/gql/GqlGame";
 import GqlPage from "./dataObjects/gql/GqlPage";
 import GqlAnswer from "./dataObjects/gql/GqlAnswer";
@@ -63,12 +66,22 @@ class PrivateGameService {
 
   read = async (gameID) => {
     try {
-      const { data } = gameID
-        ? await API.graphql(graphqlOperation(getPrivateGame, { id: gameID }))
-        : await API.graphql(graphqlOperation(listPrivateGames));
-      // return new ReduxGame(data);
-      console.log(data);
-      return data;
+      if (gameID) {
+        const {
+          data: { getPrivateGame },
+        } = await API.graphql(
+          graphqlOperation(getPrivateGameQuery, { id: gameID })
+        );
+
+        return getPrivateGame;
+      } else {
+        const {
+          data: {
+            listPrivateGames: { list },
+          },
+        } = await API.graphql(graphqlOperation(listPrivateGames));
+        return list;
+      }
     } catch (e) {
       console.error(e.errors[0].message, e);
     }

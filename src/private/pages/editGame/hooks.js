@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { url } from "../../../SiteRoute";
 import {
   setName,
   nextPage,
@@ -241,10 +243,30 @@ function usePageInput() {
 
 function useSaveGame() {
   const game = useSelector((state) => state.editGame);
+  const history = useHistory();
+  const { gameID } = useParams();
   const gameService = new PrivateGameService();
 
-  return async function saveGame() {
-    await gameService.create(game);
+  return async function () {
+    if (gameID) {
+      await gameService.update(game);
+    } else {
+      const id = await gameService.create(game);
+      history.push(`${url.EDIT_GAME}${id}`);
+    }
+  };
+}
+
+function usePlayGame() {
+  const saveGame = useSaveGame();
+  const history = useHistory();
+  const { gameID } = useParams();
+
+  return async function () {
+    await saveGame();
+    if (gameID) {
+      history.push(`${url.HOST_GAME}${gameID}`);
+    }
   };
 }
 
@@ -267,4 +289,5 @@ export {
   useRemovePage,
   usePageInput,
   useSaveGame,
+  usePlayGame,
 };
