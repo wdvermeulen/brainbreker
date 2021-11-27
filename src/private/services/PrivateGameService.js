@@ -16,44 +16,49 @@ import GqlPage from "./dataObjects/gql/GqlPage";
 import GqlAnswer from "./dataObjects/gql/GqlAnswer";
 
 class PrivateGameService {
-  create = async (reduxGame) => {
-    console.log(reduxGame);
-    console.log(new GqlGame(reduxGame));
+  #getID = (data) => {
+    return data[Object.keys(data)[0]].id;
+  };
+
+  #mutate = async (mutateGame, mutatePage, mutateAnswer, reduxGame) => {
     try {
-      const {
-        data: {
-          createPrivateGame: { id: gameId },
-        },
-      } = await API.graphql(
-        graphqlOperation(createPrivateGame, {
+      const { data } = await API.graphql(
+        graphqlOperation(mutateGame, {
           input: new GqlGame(reduxGame),
         })
       );
+      const gameID = this.#getID(data);
       for (const reduxPage of reduxGame.pages) {
         console.log(reduxPage);
-        console.log(new GqlPage(reduxPage, gameId));
-        const {
-          data: {
-            createPrivatePage: { id: pageId },
-          },
-        } = await API.graphql(
-          graphqlOperation(createPrivatePage, {
-            input: new GqlPage(reduxPage, gameId),
+        console.log(new GqlPage(reduxPage, gameID));
+        const { data } = await API.graphql(
+          graphqlOperation(mutatePage, {
+            input: new GqlPage(reduxPage, gameID),
           })
         );
+        const pageID = this.#getID(data);
         for (const reduxAnswer of reduxPage.answers) {
           await API.graphql(
-            graphqlOperation(createPrivateAnswer, {
-              input: new GqlAnswer(reduxAnswer, pageId),
+            graphqlOperation(mutateAnswer, {
+              input: new GqlAnswer(reduxAnswer, pageID),
             })
           );
         }
       }
-      console.log(gameId);
-      return gameId;
+      console.log(gameID);
+      return gameID;
     } catch (e) {
       console.error(e.errors[0].message, e);
     }
+  };
+
+  create = async (reduxGame) => {
+    return this.#mutate(
+      createPrivateGame,
+      createPrivatePage,
+      createPrivateAnswer,
+      reduxGame
+    );
   };
 
   read = async (gameID) => {
@@ -70,38 +75,12 @@ class PrivateGameService {
   };
 
   update = async (reduxGame) => {
-    try {
-      const {
-        data: {
-          updatePrivateGame: { id: gameId },
-        },
-      } = await API.graphql(
-        graphqlOperation(updatePrivateGame, {
-          input: new GqlGame(reduxGame),
-        })
-      );
-      for (const reduxPage of reduxGame.pages) {
-        const {
-          data: {
-            updatePrivatePage: { id: pageId },
-          },
-        } = await API.graphql(
-          graphqlOperation(updatePrivatePage, {
-            input: new GqlPage(reduxPage, gameId),
-          })
-        );
-        for (const reduxAnswer of reduxPage.answers) {
-          await API.graphql(
-            graphqlOperation(updatePrivateAnswer, {
-              input: new GqlAnswer(reduxAnswer, pageId),
-            })
-          );
-        }
-      }
-      return gameId;
-    } catch (e) {
-      console.error(e.errors[0].message, e);
-    }
+    return this.#mutate(
+      updatePrivateGame,
+      updatePrivatePage,
+      updatePrivateAnswer,
+      reduxGame
+    );
   };
 
   delete = async (reduxGame) => {

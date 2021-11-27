@@ -22,13 +22,13 @@ import PrivateGameService from "../../services/PrivateGameService";
 
 function useName() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.editGame.name);
 
-  const handleChange = (e) => {
-    dispatch(setName(e.target.value));
+  return {
+    value: useSelector((state) => state.editGame.name),
+    onChange: (e) => {
+      dispatch(setName(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useEditing() {
@@ -41,39 +41,39 @@ function useEditing() {
 
 function useQuestionTitle() {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].title
-  );
 
-  const handleChange = (e) => {
-    dispatch(setQuestionTitle(e.target.value));
+  return {
+    value: useSelector(
+      (state) => state.editGame.pages[state.editGame.currentPage].title
+    ),
+    onChange: (e) => {
+      dispatch(setQuestionTitle(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useQuestionDescription() {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].description
-  );
 
-  const handleChange = (e) => {
-    dispatch(setQuestionDescription(e.target.value));
+  return {
+    value: useSelector(
+      (state) => state.editGame.pages[state.editGame.currentPage].description
+    ),
+    onChange: (e) => {
+      dispatch(setQuestionDescription(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useQuestionType() {
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.editGame.type);
 
-  const handleChange = (e) => {
-    dispatch(setQuestionType(e.target.value));
+  return {
+    value: useSelector((state) => state.editGame.type),
+    onChange: (e) => {
+      dispatch(setQuestionType(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useHasTimeLimit() {
@@ -82,36 +82,38 @@ function useHasTimeLimit() {
     (state) => state.editGame.pages[state.editGame.currentPage].hasTimeLimit
   );
 
-  const handleChange = () => {
-    dispatch(setHasTimeLimit(!checked));
+  return {
+    checked,
+    onChange: () => {
+      dispatch(setHasTimeLimit(!checked));
+    },
   };
-  return { checked, onChange: handleChange };
 }
 
 function useTimeLimit() {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
-  );
 
-  const handleChange = (e) => {
-    dispatch(setTimeLimit(e.target.value));
+  return {
+    value: useSelector(
+      (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
+    ),
+    onChange: (e) => {
+      dispatch(setTimeLimit(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useCheckType() {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].checkType
-  );
 
-  const handleChange = (e) => {
-    dispatch(setCheckType(e.target.value));
+  return {
+    value: useSelector(
+      (state) => state.editGame.pages[state.editGame.currentPage].checkType
+    ),
+    onChange: (e) => {
+      dispatch(setCheckType(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function usePointsForSpeed() {
@@ -120,92 +122,88 @@ function usePointsForSpeed() {
     (state) => state.editGame.pages[state.editGame.currentPage].pointsForSpeed
   );
 
-  const handleChange = () => {
-    dispatch(setPointsForSpeed(!checked));
+  return {
+    checked,
+    onChange: () => {
+      dispatch(setPointsForSpeed(!checked));
+    },
   };
-
-  return { checked, onChange: handleChange };
 }
 
 function useNumberOfOptions() {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].numberOfOptions
-  );
 
-  const handleChange = (e) => {
-    dispatch(setNumberOfOptions(e.target.value));
+  return {
+    value: useSelector(
+      (state) =>
+        state.editGame.pages[state.editGame.currentPage].numberOfOptions
+    ),
+    onChange: (e) => {
+      dispatch(setNumberOfOptions(e.target.value));
+    },
   };
-
-  return { value, onChange: handleChange };
 }
 
 function useAnswerValue() {
   const dispatch = useDispatch();
-  const values = useSelector((state) =>
-    state.editGame.pages[state.editGame.currentPage].answers
-      .slice(
-        0,
-        state.editGame.pages[state.editGame.currentPage].numberOfOptions
-      )
-      .map((answer) => answer.value)
-  );
-
-  const handleChange = (answerIndex, value) => {
-    dispatch(
-      setAnswerValue({
-        answerIndex,
-        value,
-      })
-    );
-  };
 
   return {
-    values,
-    onChange: handleChange,
+    values: useSelector((state) =>
+      state.editGame.pages[state.editGame.currentPage].answers
+        .slice(
+          0,
+          state.editGame.pages[state.editGame.currentPage].numberOfOptions
+        )
+        .map((answer) => answer.value)
+    ),
+    onChange: (answerIndex, value) => {
+      dispatch(
+        setAnswerValue({
+          answerIndex,
+          value,
+        })
+      );
+    },
   };
 }
 
 function useAnswerDescription(answerIndex) {
   const dispatch = useDispatch();
-  const value = useSelector(
-    (state) =>
-      state.editGame.pages[state.editGame.currentPage].answers[answerIndex]
-        .description
-  );
-
-  const handleChange = (e) => {
-    dispatch(
-      setAnswerDescription({
-        answerIndex,
-        description: e.target.value,
-      })
-    );
-  };
 
   return {
-    value,
-    onChange: handleChange,
+    value: useSelector(
+      (state) =>
+        state.editGame.pages[state.editGame.currentPage].answers[answerIndex]
+          .description
+    ),
+    onChange: (e) => {
+      dispatch(
+        setAnswerDescription({
+          answerIndex,
+          description: e.target.value,
+        })
+      );
+    },
   };
 }
 
 function usePageNavigation() {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.editGame.page);
-  const pages = useSelector((state) => state.editGame.pages);
-  const currentPage = useSelector((state) => state.editGame.currentPage);
 
-  const gotoNextPage = () => {
-    dispatch(nextPage(page));
+  return {
+    gotoNextPage: () => {
+      dispatch(nextPage(page));
+    },
+    gotoPreviousPage: () => {
+      dispatch(previousPage(page));
+    },
+    gotoPage: (pageNumber) => {
+      dispatch(setCurrentPage({ page, pageNumber }));
+    },
+    pages: useSelector((state) => state.editGame.pages),
+    currentPage: useSelector((state) => state.editGame.currentPage),
   };
-  const gotoPreviousPage = () => {
-    dispatch(previousPage(page));
-  };
-  const gotoPage = (pageNumber) => {
-    dispatch(setCurrentPage({ page, pageNumber }));
-  };
-
-  return { gotoNextPage, gotoPreviousPage, gotoPage, pages, currentPage };
 }
 
 function useCurrentPage() {
@@ -214,43 +212,40 @@ function useCurrentPage() {
 
 function useResetPage() {
   const dispatch = useDispatch();
-  const resetPage = () => {
+
+  return () => {
     dispatch(resetCurrentPage());
   };
-  return resetPage;
 }
 
 function useRemovePage() {
   const dispatch = useDispatch();
-  const removePage = () => {
+
+  return () => {
     dispatch(removeCurrentPage());
   };
-  return removePage;
 }
 
 function usePageInput() {
   const dispatch = useDispatch();
 
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") dispatch(setEditing(""));
+  return {
+    onBlur: () => {
+      dispatch(setEditing(""));
+    },
+    onKeyDown: (e) => {
+      if (e.key === "Enter") dispatch(setEditing(""));
+    },
   };
-
-  const onBlur = () => {
-    dispatch(setEditing(""));
-  };
-
-  return { onBlur, onKeyDown };
 }
 
 function useSaveGame() {
   const game = useSelector((state) => state.editGame);
   const gameService = new PrivateGameService();
 
-  async function saveGame() {
+  return async function saveGame() {
     await gameService.create(game);
-  }
-
-  return saveGame;
+  };
 }
 
 export {
