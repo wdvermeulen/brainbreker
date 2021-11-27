@@ -1,15 +1,10 @@
-type Game @model {
+type PrivateGame @model {
   id: ID!
   name: String!
-  pin: ID
-  currentPage: Int
-  pages: [Page!]! @connection(name: "GamePages")
-  connectedUsers: [User]! @connection(name: "GameUsers")
-  connectedGamemasters: [Gamemaster]! @connection(name: "GameGamemasters")
-  connectedTeams: [Team]! @connection(name: "GameTeams")
+  pages: [PrivatePage!]! @connection(name: "privateGamePages")
 }
 
-type Page @model {
+type PrivatePage @model {
   id: ID!
   title: String!
   description: String
@@ -20,37 +15,65 @@ type Page @model {
   file: String
   questionType: [QuestionType]!
   numberOfOptions: Int
-  game: Game! @connection(name: "GamePages")
-  answers: [Answer]! @connection(name: "PageAnswers")
+  privateGame: PrivateGame! @connection(name: "privateGamePages")
+  privateAnswers: [PrivateAnswer]! @connection(name: "privatePageAnswers")
 }
 
-type Answer @model {
+type PrivateAnswer @model {
   id: ID!
-  Page: Page! @connection(name: "PageAnswers")
+  Page: PrivatePage! @connection(name: "privatePageAnswers")
   description: String!
   value: Int!
 }
 
-type User @model {
+type PublicGame @model @key(fields: ["pin"]) {
+  pin: Int!
+  id: ID!
+  name: String!
+  currentPage: PublicPage @connection(name: "publicGamePage")
+  connectedUsers: [PublicUser]! @connection(name: "publicGameUsers")
+  connectedTeams: [PublicTeam]! @connection(name: "publicGameTeams")
+  connectedGamemasters: [PublicGamemaster]! @connection(name: "publicGameGamemasters")
+}
+
+type PublicPage @model {
+  id: ID!
+  title: String!
+  description: String
+  timeLimit: Int
+  file: String
+  questionType: [QuestionType]!
+  publicGame: PublicGame! @connection(name: "publicGamePage")
+  answers: [PublicAnswer]! @connection(name: "publicPageAnswers")
+}
+
+type PublicAnswer @model {
+  id: ID!
+  Page: PublicPage! @connection(name: "publicPageAnswers")
+  description: String!
+}
+
+type PublicUser @model {
   id: ID!
   name: String!
   points: Int
   currentPage: Int
-  game: Game! @connection(name: "GameUsers")
-  team: Team @connection(name: "TeamUsers")
+  currentAnswer: String
+  publicGame: PublicGame! @connection(name: "publicGameUsers")
+  team: PublicTeam @connection(name: "publicTeamUsers")
 }
 
-type Team @model {
+type PublicTeam @model {
   id: ID!
   name: String!
   points: Int
-  users: [User]! @connection(name: "TeamUsers")
-  game: Game! @connection(name: "GameTeams")
+  users: [PublicUser]! @connection(name: "publicTeamUsers")
+  publicGame: PublicGame! @connection(name: "publicGameTeams")
 }
 
-type Gamemaster @model {
+type PublicGamemaster @model {
   id: ID!
-  game: Game! @connection(name: "GameGamemasters")
+  publicGame: PublicGame! @connection(name: "publicGameGamemasters")
 }
 
 enum QuestionType {

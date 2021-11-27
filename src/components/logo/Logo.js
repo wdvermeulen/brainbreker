@@ -1,7 +1,7 @@
+import { url } from "../../SiteRoute";
 import logo from "./logo.svg";
 import "./Logo.scss";
 import { Link } from "react-router-dom";
-import { url } from "../../app/SiteRoute";
 
 const Logo = () => (
   <div id="Logo">

@@ -1,0 +1,49 @@
+@import 'src/sharedStyles/mixins';
+
+#SetupBar {
+  padding: 0;
+  overflow: visible;
+  display: flex;
+
+  .collapsible-container {
+    transition: max-width .3s, max-height .3s;
+  }
+
+  .glass-container {
+    @include glassTile;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  input {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .row {
+    justify-content: initial;
+    gap: 5px;
+    align-items: center;
+    margin: 5px 0;
+    min-height: 30px;
+  }
+
+  @media (max-width: 991px) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+button.menubutton {
+  margin: auto 0;
+  width: 45px;
+  padding-left: 0;
+  padding-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: solid thin $color-dark;
+  border-right: none;
+}

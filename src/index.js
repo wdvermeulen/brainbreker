@@ -4,7 +4,7 @@ import App from "./app/App";
 import reportWebVitals from "./reportWebVitals";
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
-import store from "./app/store";
+import store from "./store";
 import { Provider } from "react-redux";
 
 Amplify.configure(config);

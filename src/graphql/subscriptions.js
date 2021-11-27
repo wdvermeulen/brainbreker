@@ -1,13 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateGame = /* GraphQL */ `
-  subscription OnCreateGame {
-    onCreateGame {
+export const onCreatePrivateGame = /* GraphQL */ `
+  subscription OnCreatePrivateGame {
+    onCreatePrivateGame {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -25,47 +23,16 @@ export const onCreateGame = /* GraphQL */ `
         }
         nextToken
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateGame = /* GraphQL */ `
-  subscription OnUpdateGame {
-    onUpdateGame {
+export const onUpdatePrivateGame = /* GraphQL */ `
+  subscription OnUpdatePrivateGame {
+    onUpdatePrivateGame {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -83,47 +50,16 @@ export const onUpdateGame = /* GraphQL */ `
         }
         nextToken
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteGame = /* GraphQL */ `
-  subscription OnDeleteGame {
-    onDeleteGame {
+export const onDeletePrivateGame = /* GraphQL */ `
+  subscription OnDeletePrivateGame {
+    onDeletePrivateGame {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -141,20 +77,257 @@ export const onDeleteGame = /* GraphQL */ `
         }
         nextToken
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePrivatePage = /* GraphQL */ `
+  subscription OnCreatePrivatePage {
+    onCreatePrivatePage {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePrivatePage = /* GraphQL */ `
+  subscription OnUpdatePrivatePage {
+    onUpdatePrivatePage {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePrivatePage = /* GraphQL */ `
+  subscription OnDeletePrivatePage {
+    onDeletePrivatePage {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePrivateAnswer = /* GraphQL */ `
+  subscription OnCreatePrivateAnswer {
+    onCreatePrivateAnswer {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePrivateAnswer = /* GraphQL */ `
+  subscription OnUpdatePrivateAnswer {
+    onUpdatePrivateAnswer {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePrivateAnswer = /* GraphQL */ `
+  subscription OnDeletePrivateAnswer {
+    onDeletePrivateAnswer {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePublicGame = /* GraphQL */ `
+  subscription OnCreatePublicGame {
+    onCreatePublicGame {
+      pin
+      id
+      name
+      currentPage {
+        id
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        answers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       connectedUsers {
         items {
           id
           name
           points
           currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
+          currentAnswer
           createdAt
           updatedAt
         }
@@ -170,49 +343,9 @@ export const onDeleteGame = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePage = /* GraphQL */ `
-  subscription OnCreatePage {
-    onCreatePage {
-      id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
-        id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
-        }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      answers {
+      connectedGamemasters {
         items {
           id
-          description
-          value
           createdAt
           updatedAt
         }
@@ -223,44 +356,57 @@ export const onCreatePage = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePage = /* GraphQL */ `
-  subscription OnUpdatePage {
-    onUpdatePage {
+export const onUpdatePublicGame = /* GraphQL */ `
+  subscription OnUpdatePublicGame {
+    onUpdatePublicGame {
+      pin
       id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
+      name
+      currentPage {
         id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
         }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
+        answers {
           nextToken
         }
         createdAt
         updatedAt
       }
-      answers {
+      connectedUsers {
         items {
           id
-          description
-          value
+          name
+          points
+          currentPage
+          currentAnswer
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedTeams {
+        items {
+          id
+          name
+          points
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedGamemasters {
+        items {
+          id
           createdAt
           updatedAt
         }
@@ -271,44 +417,57 @@ export const onUpdatePage = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePage = /* GraphQL */ `
-  subscription OnDeletePage {
-    onDeletePage {
+export const onDeletePublicGame = /* GraphQL */ `
+  subscription OnDeletePublicGame {
+    onDeletePublicGame {
+      pin
       id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
+      name
+      currentPage {
         id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
         }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
+        answers {
           nextToken
         }
         createdAt
         updatedAt
       }
-      answers {
+      connectedUsers {
         items {
           id
-          description
-          value
+          name
+          points
+          currentPage
+          currentAnswer
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedTeams {
+        items {
+          id
+          name
+          points
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedGamemasters {
+        items {
+          id
           createdAt
           updatedAt
         }
@@ -319,26 +478,168 @@ export const onDeletePage = /* GraphQL */ `
     }
   }
 `;
-export const onCreateAnswer = /* GraphQL */ `
-  subscription OnCreateAnswer {
-    onCreateAnswer {
+export const onCreatePublicPage = /* GraphQL */ `
+  subscription OnCreatePublicPage {
+    onCreatePublicPage {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePublicPage = /* GraphQL */ `
+  subscription OnUpdatePublicPage {
+    onUpdatePublicPage {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePublicPage = /* GraphQL */ `
+  subscription OnDeletePublicPage {
+    onDeletePublicPage {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePublicAnswer = /* GraphQL */ `
+  subscription OnCreatePublicAnswer {
+    onCreatePublicAnswer {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -349,32 +650,26 @@ export const onCreateAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateAnswer = /* GraphQL */ `
-  subscription OnUpdateAnswer {
-    onUpdateAnswer {
+export const onUpdatePublicAnswer = /* GraphQL */ `
+  subscription OnUpdatePublicAnswer {
+    onUpdatePublicAnswer {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -385,32 +680,26 @@ export const onUpdateAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteAnswer = /* GraphQL */ `
-  subscription OnDeleteAnswer {
-    onDeleteAnswer {
+export const onDeletePublicAnswer = /* GraphQL */ `
+  subscription OnDeletePublicAnswer {
+    onDeletePublicAnswer {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -421,34 +710,40 @@ export const onDeleteAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+export const onCreatePublicUser = /* GraphQL */ `
+  subscription OnCreatePublicUser {
+    onCreatePublicUser {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -461,11 +756,10 @@ export const onCreateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -477,28 +771,35 @@ export const onCreateUser = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+export const onUpdatePublicUser = /* GraphQL */ `
+  subscription OnUpdatePublicUser {
+    onUpdatePublicUser {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -511,11 +812,10 @@ export const onUpdateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -527,28 +827,35 @@ export const onUpdateUser = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+export const onDeletePublicUser = /* GraphQL */ `
+  subscription OnDeletePublicUser {
+    onDeletePublicUser {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -561,11 +868,10 @@ export const onDeleteUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
-          id
-          name
+        publicGame {
           pin
-          currentPage
+          id
+          name
           createdAt
           updatedAt
         }
@@ -577,9 +883,9 @@ export const onDeleteUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam {
-    onCreateTeam {
+export const onCreatePublicTeam = /* GraphQL */ `
+  subscription OnCreatePublicTeam {
+    onCreatePublicTeam {
       id
       name
       points
@@ -589,26 +895,33 @@ export const onCreateTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -619,9 +932,9 @@ export const onCreateTeam = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam {
-    onUpdateTeam {
+export const onUpdatePublicTeam = /* GraphQL */ `
+  subscription OnUpdatePublicTeam {
+    onUpdatePublicTeam {
       id
       name
       points
@@ -631,26 +944,33 @@ export const onUpdateTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -661,9 +981,9 @@ export const onUpdateTeam = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam {
-    onDeleteTeam {
+export const onDeletePublicTeam = /* GraphQL */ `
+  subscription OnDeletePublicTeam {
+    onDeletePublicTeam {
       id
       name
       points
@@ -673,26 +993,33 @@ export const onDeleteTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -703,25 +1030,31 @@ export const onDeleteTeam = /* GraphQL */ `
     }
   }
 `;
-export const onCreateGamemaster = /* GraphQL */ `
-  subscription OnCreateGamemaster {
-    onCreateGamemaster {
+export const onCreatePublicGamemaster = /* GraphQL */ `
+  subscription OnCreatePublicGamemaster {
+    onCreatePublicGamemaster {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -732,25 +1065,31 @@ export const onCreateGamemaster = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateGamemaster = /* GraphQL */ `
-  subscription OnUpdateGamemaster {
-    onUpdateGamemaster {
+export const onUpdatePublicGamemaster = /* GraphQL */ `
+  subscription OnUpdatePublicGamemaster {
+    onUpdatePublicGamemaster {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -761,25 +1100,31 @@ export const onUpdateGamemaster = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteGamemaster = /* GraphQL */ `
-  subscription OnDeleteGamemaster {
-    onDeleteGamemaster {
+export const onDeletePublicGamemaster = /* GraphQL */ `
+  subscription OnDeletePublicGamemaster {
+    onDeletePublicGamemaster {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt

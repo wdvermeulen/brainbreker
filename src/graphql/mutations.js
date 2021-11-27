@@ -1,16 +1,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createGame = /* GraphQL */ `
-  mutation CreateGame(
-    $input: CreateGameInput!
-    $condition: ModelGameConditionInput
+export const createPrivateGame = /* GraphQL */ `
+  mutation CreatePrivateGame(
+    $input: CreatePrivateGameInput!
+    $condition: ModelPrivateGameConditionInput
   ) {
-    createGame(input: $input, condition: $condition) {
+    createPrivateGame(input: $input, condition: $condition) {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -28,50 +26,19 @@ export const createGame = /* GraphQL */ `
         }
         nextToken
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
   }
 `;
-export const updateGame = /* GraphQL */ `
-  mutation UpdateGame(
-    $input: UpdateGameInput!
-    $condition: ModelGameConditionInput
+export const updatePrivateGame = /* GraphQL */ `
+  mutation UpdatePrivateGame(
+    $input: UpdatePrivateGameInput!
+    $condition: ModelPrivateGameConditionInput
   ) {
-    updateGame(input: $input, condition: $condition) {
+    updatePrivateGame(input: $input, condition: $condition) {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -89,50 +56,19 @@ export const updateGame = /* GraphQL */ `
         }
         nextToken
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteGame = /* GraphQL */ `
-  mutation DeleteGame(
-    $input: DeleteGameInput!
-    $condition: ModelGameConditionInput
+export const deletePrivateGame = /* GraphQL */ `
+  mutation DeletePrivateGame(
+    $input: DeletePrivateGameInput!
+    $condition: ModelPrivateGameConditionInput
   ) {
-    deleteGame(input: $input, condition: $condition) {
+    deletePrivateGame(input: $input, condition: $condition) {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -150,20 +86,278 @@ export const deleteGame = /* GraphQL */ `
         }
         nextToken
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPrivatePage = /* GraphQL */ `
+  mutation CreatePrivatePage(
+    $input: CreatePrivatePageInput!
+    $condition: ModelPrivatePageConditionInput
+  ) {
+    createPrivatePage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePrivatePage = /* GraphQL */ `
+  mutation UpdatePrivatePage(
+    $input: UpdatePrivatePageInput!
+    $condition: ModelPrivatePageConditionInput
+  ) {
+    updatePrivatePage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePrivatePage = /* GraphQL */ `
+  mutation DeletePrivatePage(
+    $input: DeletePrivatePageInput!
+    $condition: ModelPrivatePageConditionInput
+  ) {
+    deletePrivatePage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      hasTimeLimit
+      timeLimit
+      checkType
+      pointsForSpeed
+      file
+      questionType
+      numberOfOptions
+      privateGame {
+        id
+        name
+        pages {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      privateAnswers {
+        items {
+          id
+          description
+          value
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPrivateAnswer = /* GraphQL */ `
+  mutation CreatePrivateAnswer(
+    $input: CreatePrivateAnswerInput!
+    $condition: ModelPrivateAnswerConditionInput
+  ) {
+    createPrivateAnswer(input: $input, condition: $condition) {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePrivateAnswer = /* GraphQL */ `
+  mutation UpdatePrivateAnswer(
+    $input: UpdatePrivateAnswerInput!
+    $condition: ModelPrivateAnswerConditionInput
+  ) {
+    updatePrivateAnswer(input: $input, condition: $condition) {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePrivateAnswer = /* GraphQL */ `
+  mutation DeletePrivateAnswer(
+    $input: DeletePrivateAnswerInput!
+    $condition: ModelPrivateAnswerConditionInput
+  ) {
+    deletePrivateAnswer(input: $input, condition: $condition) {
+      id
+      Page {
+        id
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        questionType
+        numberOfOptions
+        privateGame {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        privateAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      value
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPublicGame = /* GraphQL */ `
+  mutation CreatePublicGame(
+    $input: CreatePublicGameInput!
+    $condition: ModelPublicGameConditionInput
+  ) {
+    createPublicGame(input: $input, condition: $condition) {
+      pin
+      id
+      name
+      currentPage {
+        id
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        answers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       connectedUsers {
         items {
           id
           name
           points
           currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
+          currentAnswer
           createdAt
           updatedAt
         }
@@ -179,52 +373,9 @@ export const deleteGame = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createPage = /* GraphQL */ `
-  mutation CreatePage(
-    $input: CreatePageInput!
-    $condition: ModelPageConditionInput
-  ) {
-    createPage(input: $input, condition: $condition) {
-      id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
-        id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
-        }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      answers {
+      connectedGamemasters {
         items {
           id
-          description
-          value
           createdAt
           updatedAt
         }
@@ -235,47 +386,60 @@ export const createPage = /* GraphQL */ `
     }
   }
 `;
-export const updatePage = /* GraphQL */ `
-  mutation UpdatePage(
-    $input: UpdatePageInput!
-    $condition: ModelPageConditionInput
+export const updatePublicGame = /* GraphQL */ `
+  mutation UpdatePublicGame(
+    $input: UpdatePublicGameInput!
+    $condition: ModelPublicGameConditionInput
   ) {
-    updatePage(input: $input, condition: $condition) {
+    updatePublicGame(input: $input, condition: $condition) {
+      pin
       id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
+      name
+      currentPage {
         id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
         }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
+        answers {
           nextToken
         }
         createdAt
         updatedAt
       }
-      answers {
+      connectedUsers {
         items {
           id
-          description
-          value
+          name
+          points
+          currentPage
+          currentAnswer
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedTeams {
+        items {
+          id
+          name
+          points
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedGamemasters {
+        items {
+          id
           createdAt
           updatedAt
         }
@@ -286,47 +450,60 @@ export const updatePage = /* GraphQL */ `
     }
   }
 `;
-export const deletePage = /* GraphQL */ `
-  mutation DeletePage(
-    $input: DeletePageInput!
-    $condition: ModelPageConditionInput
+export const deletePublicGame = /* GraphQL */ `
+  mutation DeletePublicGame(
+    $input: DeletePublicGameInput!
+    $condition: ModelPublicGameConditionInput
   ) {
-    deletePage(input: $input, condition: $condition) {
+    deletePublicGame(input: $input, condition: $condition) {
+      pin
       id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      game {
+      name
+      currentPage {
         id
-        name
-        pin
-        currentPage
-        pages {
-          nextToken
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
         }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
+        answers {
           nextToken
         }
         createdAt
         updatedAt
       }
-      answers {
+      connectedUsers {
         items {
           id
-          description
-          value
+          name
+          points
+          currentPage
+          currentAnswer
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedTeams {
+        items {
+          id
+          name
+          points
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedGamemasters {
+        items {
+          id
           createdAt
           updatedAt
         }
@@ -337,29 +514,180 @@ export const deletePage = /* GraphQL */ `
     }
   }
 `;
-export const createAnswer = /* GraphQL */ `
-  mutation CreateAnswer(
-    $input: CreateAnswerInput!
-    $condition: ModelAnswerConditionInput
+export const createPublicPage = /* GraphQL */ `
+  mutation CreatePublicPage(
+    $input: CreatePublicPageInput!
+    $condition: ModelPublicPageConditionInput
   ) {
-    createAnswer(input: $input, condition: $condition) {
+    createPublicPage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePublicPage = /* GraphQL */ `
+  mutation UpdatePublicPage(
+    $input: UpdatePublicPageInput!
+    $condition: ModelPublicPageConditionInput
+  ) {
+    updatePublicPage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePublicPage = /* GraphQL */ `
+  mutation DeletePublicPage(
+    $input: DeletePublicPageInput!
+    $condition: ModelPublicPageConditionInput
+  ) {
+    deletePublicPage(input: $input, condition: $condition) {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPublicAnswer = /* GraphQL */ `
+  mutation CreatePublicAnswer(
+    $input: CreatePublicAnswerInput!
+    $condition: ModelPublicAnswerConditionInput
+  ) {
+    createPublicAnswer(input: $input, condition: $condition) {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -370,35 +698,29 @@ export const createAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const updateAnswer = /* GraphQL */ `
-  mutation UpdateAnswer(
-    $input: UpdateAnswerInput!
-    $condition: ModelAnswerConditionInput
+export const updatePublicAnswer = /* GraphQL */ `
+  mutation UpdatePublicAnswer(
+    $input: UpdatePublicAnswerInput!
+    $condition: ModelPublicAnswerConditionInput
   ) {
-    updateAnswer(input: $input, condition: $condition) {
+    updatePublicAnswer(input: $input, condition: $condition) {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -409,35 +731,29 @@ export const updateAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteAnswer = /* GraphQL */ `
-  mutation DeleteAnswer(
-    $input: DeleteAnswerInput!
-    $condition: ModelAnswerConditionInput
+export const deletePublicAnswer = /* GraphQL */ `
+  mutation DeletePublicAnswer(
+    $input: DeletePublicAnswerInput!
+    $condition: ModelPublicAnswerConditionInput
   ) {
-    deleteAnswer(input: $input, condition: $condition) {
+    deletePublicAnswer(input: $input, condition: $condition) {
       id
       Page {
         id
         title
         description
-        hasTimeLimit
         timeLimit
-        checkType
-        pointsForSpeed
         file
         questionType
-        numberOfOptions
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -448,37 +764,43 @@ export const deleteAnswer = /* GraphQL */ `
         updatedAt
       }
       description
-      value
       createdAt
       updatedAt
     }
   }
 `;
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
+export const createPublicUser = /* GraphQL */ `
+  mutation CreatePublicUser(
+    $input: CreatePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    createUser(input: $input, condition: $condition) {
+    createPublicUser(input: $input, condition: $condition) {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -491,11 +813,10 @@ export const createUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -507,31 +828,38 @@ export const createUser = /* GraphQL */ `
     }
   }
 `;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
+export const updatePublicUser = /* GraphQL */ `
+  mutation UpdatePublicUser(
+    $input: UpdatePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    updateUser(input: $input, condition: $condition) {
+    updatePublicUser(input: $input, condition: $condition) {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -544,11 +872,10 @@ export const updateUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -560,31 +887,38 @@ export const updateUser = /* GraphQL */ `
     }
   }
 `;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
+export const deletePublicUser = /* GraphQL */ `
+  mutation DeletePublicUser(
+    $input: DeletePublicUserInput!
+    $condition: ModelPublicUserConditionInput
   ) {
-    deleteUser(input: $input, condition: $condition) {
+    deletePublicUser(input: $input, condition: $condition) {
       id
       name
       points
       currentPage
-      game {
+      currentAnswer
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -597,11 +931,10 @@ export const deleteUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
-          id
-          name
+        publicGame {
           pin
-          currentPage
+          id
+          name
           createdAt
           updatedAt
         }
@@ -613,12 +946,12 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
-export const createTeam = /* GraphQL */ `
-  mutation CreateTeam(
-    $input: CreateTeamInput!
-    $condition: ModelTeamConditionInput
+export const createPublicTeam = /* GraphQL */ `
+  mutation CreatePublicTeam(
+    $input: CreatePublicTeamInput!
+    $condition: ModelPublicTeamConditionInput
   ) {
-    createTeam(input: $input, condition: $condition) {
+    createPublicTeam(input: $input, condition: $condition) {
       id
       name
       points
@@ -628,26 +961,33 @@ export const createTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -658,12 +998,12 @@ export const createTeam = /* GraphQL */ `
     }
   }
 `;
-export const updateTeam = /* GraphQL */ `
-  mutation UpdateTeam(
-    $input: UpdateTeamInput!
-    $condition: ModelTeamConditionInput
+export const updatePublicTeam = /* GraphQL */ `
+  mutation UpdatePublicTeam(
+    $input: UpdatePublicTeamInput!
+    $condition: ModelPublicTeamConditionInput
   ) {
-    updateTeam(input: $input, condition: $condition) {
+    updatePublicTeam(input: $input, condition: $condition) {
       id
       name
       points
@@ -673,26 +1013,33 @@ export const updateTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -703,12 +1050,12 @@ export const updateTeam = /* GraphQL */ `
     }
   }
 `;
-export const deleteTeam = /* GraphQL */ `
-  mutation DeleteTeam(
-    $input: DeleteTeamInput!
-    $condition: ModelTeamConditionInput
+export const deletePublicTeam = /* GraphQL */ `
+  mutation DeletePublicTeam(
+    $input: DeletePublicTeamInput!
+    $condition: ModelPublicTeamConditionInput
   ) {
-    deleteTeam(input: $input, condition: $condition) {
+    deletePublicTeam(input: $input, condition: $condition) {
       id
       name
       points
@@ -718,26 +1065,33 @@ export const deleteTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -748,28 +1102,34 @@ export const deleteTeam = /* GraphQL */ `
     }
   }
 `;
-export const createGamemaster = /* GraphQL */ `
-  mutation CreateGamemaster(
-    $input: CreateGamemasterInput!
-    $condition: ModelGamemasterConditionInput
+export const createPublicGamemaster = /* GraphQL */ `
+  mutation CreatePublicGamemaster(
+    $input: CreatePublicGamemasterInput!
+    $condition: ModelPublicGamemasterConditionInput
   ) {
-    createGamemaster(input: $input, condition: $condition) {
+    createPublicGamemaster(input: $input, condition: $condition) {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -780,28 +1140,34 @@ export const createGamemaster = /* GraphQL */ `
     }
   }
 `;
-export const updateGamemaster = /* GraphQL */ `
-  mutation UpdateGamemaster(
-    $input: UpdateGamemasterInput!
-    $condition: ModelGamemasterConditionInput
+export const updatePublicGamemaster = /* GraphQL */ `
+  mutation UpdatePublicGamemaster(
+    $input: UpdatePublicGamemasterInput!
+    $condition: ModelPublicGamemasterConditionInput
   ) {
-    updateGamemaster(input: $input, condition: $condition) {
+    updatePublicGamemaster(input: $input, condition: $condition) {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -812,28 +1178,34 @@ export const updateGamemaster = /* GraphQL */ `
     }
   }
 `;
-export const deleteGamemaster = /* GraphQL */ `
-  mutation DeleteGamemaster(
-    $input: DeleteGamemasterInput!
-    $condition: ModelGamemasterConditionInput
+export const deletePublicGamemaster = /* GraphQL */ `
+  mutation DeletePublicGamemaster(
+    $input: DeletePublicGamemasterInput!
+    $condition: ModelPublicGamemasterConditionInput
   ) {
-    deleteGamemaster(input: $input, condition: $condition) {
+    deletePublicGamemaster(input: $input, condition: $condition) {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt

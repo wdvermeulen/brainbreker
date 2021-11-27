@@ -1,13 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getGame = /* GraphQL */ `
-  query GetGame($id: ID!) {
-    getGame(id: $id) {
+export const getPrivateGame = /* GraphQL */ `
+  query GetPrivateGame($id: ID!) {
+    getPrivateGame(id: $id) {
       id
       name
-      pin
-      currentPage
       pages {
         items {
           id
@@ -25,62 +23,22 @@ export const getGame = /* GraphQL */ `
         }
         nextToken
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
   }
 `;
-export const listGames = /* GraphQL */ `
-  query ListGames(
-    $filter: ModelGameFilterInput
+export const listPrivateGames = /* GraphQL */ `
+  query ListPrivateGames(
+    $filter: ModelPrivateGameFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPrivateGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
-        pin
-        currentPage
         pages {
-          nextToken
-        }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
           nextToken
         }
         createdAt
@@ -90,9 +48,9 @@ export const listGames = /* GraphQL */ `
     }
   }
 `;
-export const getPage = /* GraphQL */ `
-  query GetPage($id: ID!) {
-    getPage(id: $id) {
+export const getPrivatePage = /* GraphQL */ `
+  query GetPrivatePage($id: ID!) {
+    getPrivatePage(id: $id) {
       id
       title
       description
@@ -103,27 +61,16 @@ export const getPage = /* GraphQL */ `
       file
       questionType
       numberOfOptions
-      game {
+      privateGame {
         id
         name
-        pin
-        currentPage
         pages {
-          nextToken
-        }
-        connectedUsers {
-          nextToken
-        }
-        connectedGamemasters {
-          nextToken
-        }
-        connectedTeams {
           nextToken
         }
         createdAt
         updatedAt
       }
-      answers {
+      privateAnswers {
         items {
           id
           description
@@ -138,13 +85,13 @@ export const getPage = /* GraphQL */ `
     }
   }
 `;
-export const listPages = /* GraphQL */ `
-  query ListPages(
-    $filter: ModelPageFilterInput
+export const listPrivatePages = /* GraphQL */ `
+  query ListPrivatePages(
+    $filter: ModelPrivatePageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPrivatePages(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
@@ -156,15 +103,13 @@ export const listPages = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        game {
+        privateGame {
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
-        answers {
+        privateAnswers {
           nextToken
         }
         createdAt
@@ -174,9 +119,9 @@ export const listPages = /* GraphQL */ `
     }
   }
 `;
-export const getAnswer = /* GraphQL */ `
-  query GetAnswer($id: ID!) {
-    getAnswer(id: $id) {
+export const getPrivateAnswer = /* GraphQL */ `
+  query GetPrivateAnswer($id: ID!) {
+    getPrivateAnswer(id: $id) {
       id
       Page {
         id
@@ -189,15 +134,13 @@ export const getAnswer = /* GraphQL */ `
         file
         questionType
         numberOfOptions
-        game {
+        privateGame {
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
-        answers {
+        privateAnswers {
           nextToken
         }
         createdAt
@@ -210,13 +153,13 @@ export const getAnswer = /* GraphQL */ `
     }
   }
 `;
-export const listAnswers = /* GraphQL */ `
-  query ListAnswers(
-    $filter: ModelAnswerFilterInput
+export const listPrivateAnswers = /* GraphQL */ `
+  query ListPrivateAnswers(
+    $filter: ModelPrivateAnswerFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPrivateAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         Page {
@@ -242,28 +185,278 @@ export const listAnswers = /* GraphQL */ `
     }
   }
 `;
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
+export const getPublicGame = /* GraphQL */ `
+  query GetPublicGame($pin: Int!) {
+    getPublicGame(pin: $pin) {
+      pin
       id
       name
-      points
-      currentPage
-      game {
+      currentPage {
         id
-        name
-        pin
-        currentPage
-        pages {
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        answers {
           nextToken
         }
+        createdAt
+        updatedAt
+      }
+      connectedUsers {
+        items {
+          id
+          name
+          points
+          currentPage
+          currentAnswer
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedTeams {
+        items {
+          id
+          name
+          points
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      connectedGamemasters {
+        items {
+          id
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPublicGames = /* GraphQL */ `
+  query ListPublicGames(
+    $pin: Int
+    $filter: ModelPublicGameFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listPublicGames(
+      pin: $pin
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
         connectedUsers {
+          nextToken
+        }
+        connectedTeams {
           nextToken
         }
         connectedGamemasters {
           nextToken
         }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPublicPage = /* GraphQL */ `
+  query GetPublicPage($id: ID!) {
+    getPublicPage(id: $id) {
+      id
+      title
+      description
+      timeLimit
+      file
+      questionType
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
         connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      answers {
+        items {
+          id
+          description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPublicPages = /* GraphQL */ `
+  query ListPublicPages(
+    $filter: ModelPublicPageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPublicPages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        answers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPublicAnswer = /* GraphQL */ `
+  query GetPublicAnswer($id: ID!) {
+    getPublicAnswer(id: $id) {
+      id
+      Page {
+        id
+        title
+        description
+        timeLimit
+        file
+        questionType
+        publicGame {
+          pin
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        answers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPublicAnswers = /* GraphQL */ `
+  query ListPublicAnswers(
+    $filter: ModelPublicAnswerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPublicAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Page {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        description
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPublicUser = /* GraphQL */ `
+  query GetPublicUser($id: ID!) {
+    getPublicUser(id: $id) {
+      id
+      name
+      points
+      currentPage
+      currentAnswer
+      publicGame {
+        pin
+        id
+        name
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
+        }
+        connectedUsers {
+          nextToken
+        }
+        connectedTeams {
+          nextToken
+        }
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -276,11 +469,10 @@ export const getUser = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -292,23 +484,23 @@ export const getUser = /* GraphQL */ `
     }
   }
 `;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
+export const listPublicUsers = /* GraphQL */ `
+  query ListPublicUsers(
+    $filter: ModelPublicUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublicUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         points
         currentPage
-        game {
+        currentAnswer
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -326,9 +518,9 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
+export const getPublicTeam = /* GraphQL */ `
+  query GetPublicTeam($id: ID!) {
+    getPublicTeam(id: $id) {
       id
       name
       points
@@ -338,26 +530,33 @@ export const getTeam = /* GraphQL */ `
           name
           points
           currentPage
+          currentAnswer
           createdAt
           updatedAt
         }
         nextToken
       }
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -368,13 +567,13 @@ export const getTeam = /* GraphQL */ `
     }
   }
 `;
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: ModelTeamFilterInput
+export const listPublicTeams = /* GraphQL */ `
+  query ListPublicTeams(
+    $filter: ModelPublicTeamFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublicTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -382,11 +581,10 @@ export const listTeams = /* GraphQL */ `
         users {
           nextToken
         }
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
@@ -397,25 +595,31 @@ export const listTeams = /* GraphQL */ `
     }
   }
 `;
-export const getGamemaster = /* GraphQL */ `
-  query GetGamemaster($id: ID!) {
-    getGamemaster(id: $id) {
+export const getPublicGamemaster = /* GraphQL */ `
+  query GetPublicGamemaster($id: ID!) {
+    getPublicGamemaster(id: $id) {
       id
-      game {
+      publicGame {
+        pin
         id
         name
-        pin
-        currentPage
-        pages {
-          nextToken
+        currentPage {
+          id
+          title
+          description
+          timeLimit
+          file
+          questionType
+          createdAt
+          updatedAt
         }
         connectedUsers {
           nextToken
         }
-        connectedGamemasters {
+        connectedTeams {
           nextToken
         }
-        connectedTeams {
+        connectedGamemasters {
           nextToken
         }
         createdAt
@@ -426,20 +630,23 @@ export const getGamemaster = /* GraphQL */ `
     }
   }
 `;
-export const listGamemasters = /* GraphQL */ `
-  query ListGamemasters(
-    $filter: ModelGamemasterFilterInput
+export const listPublicGamemasters = /* GraphQL */ `
+  query ListPublicGamemasters(
+    $filter: ModelPublicGamemasterFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listGamemasters(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublicGamemasters(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
-        game {
+        publicGame {
+          pin
           id
           name
-          pin
-          currentPage
           createdAt
           updatedAt
         }
