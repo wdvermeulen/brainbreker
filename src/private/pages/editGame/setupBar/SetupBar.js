@@ -5,22 +5,7 @@ import {
   checkTypeEnum,
   questionTypeEnum,
 } from "../../../../sharedResources/enum";
-import {
-  useName,
-  useHasTimeLimit,
-  useTimeLimit,
-  useCheckType,
-  usePointsForSpeed,
-  useNumberOfOptions,
-  useAnswerValue,
-  useQuestionTitle,
-  usePageNavigation,
-  useRemovePage,
-  useResetPage,
-  useSaveGame,
-  useQuestionType,
-  usePlayGame,
-} from "../hooks";
+import { useSetupBar } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,21 +18,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const SetupBar = ({ collapse, collapsed }) => {
-  const name = useName();
-  const questionTitle = useQuestionTitle().value;
-  const questionType = useQuestionType();
-  const hasTimeLimit = useHasTimeLimit();
-  const timeLimit = useTimeLimit();
-  const checkType = useCheckType();
-  const pointsForSpeed = usePointsForSpeed();
-  const numberOfOptions = useNumberOfOptions();
-  const answerValue = useAnswerValue();
-  const pageNavigation = usePageNavigation();
-
-  const resetPage = useResetPage();
-  const removePage = useRemovePage();
-  const saveGame = useSaveGame();
-  const playGame = usePlayGame();
+  const {
+    name,
+    questionTitle,
+    questionType,
+    hasTimeLimit,
+    timeLimit,
+    checkType,
+    pointsForSpeed,
+    numberOfOptions,
+    answerValue,
+    gotoNextPage,
+    gotoPreviousPage,
+    gotoPage,
+    resetPage,
+    removePage,
+    saveGame,
+    playGame,
+    pages,
+    currentPage,
+  } = useSetupBar();
 
   const { setValue, ...selectAnswer } = useFormInputWithSet(0);
 
@@ -69,7 +59,7 @@ const SetupBar = ({ collapse, collapsed }) => {
       >
         <div className="glass-container">
           <h3>
-            Instellingen voor {pageNavigation.currentPage + 1}. {questionTitle}
+            Instellingen voor {currentPage + 1}. {questionTitle}
           </h3>
           <button className="outline" onClick={resetPage}>
             <FontAwesomeIcon icon={faUndo} /> Reset
@@ -247,26 +237,23 @@ const SetupBar = ({ collapse, collapsed }) => {
           <hr />
 
           <h3>Overzicht</h3>
-          {pageNavigation.pages.map((page, i) => {
+          {pages.map((page, i) => {
             return (
               <div
                 className="row"
                 key={page.title + i}
                 onClick={() => {
-                  pageNavigation.gotoPage(i);
+                  gotoPage(i);
                 }}
               >
                 {i + 1}. {page.title}
               </div>
             );
           })}
-          <button
-            className="secondary"
-            onClick={pageNavigation.gotoPreviousPage}
-          >
+          <button className="secondary" onClick={gotoPreviousPage}>
             <FontAwesomeIcon icon={faChevronLeft} /> Vorige
           </button>
-          <button onClick={pageNavigation.gotoNextPage}>
+          <button onClick={gotoNextPage}>
             Volgende vraag <FontAwesomeIcon icon={faChevronRight} />
           </button>
           <label htmlFor="title">Naam van dit spel: </label>

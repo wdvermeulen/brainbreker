@@ -6,12 +6,12 @@ import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 
 const Question = ({
   questionTitle,
-  useEditing,
   questionDescription,
-  currentPageValue,
+  currentPage,
+  useEditing,
   pageInput,
 }) => {
-  const [editing, setEditing] = useEditing;
+  const [editing, setEditing] = useEditing();
 
   return (
     <div id="Question" className="section">
@@ -33,7 +33,7 @@ const Question = ({
               setEditing("title");
             }}
           >
-            {currentPageValue + 1 + ". " + (questionTitle.value || "Titel")}
+            {currentPage + 1 + ". " + (questionTitle.value || "Titel")}
           </h2>
         )}
         {editing === "question" ? (

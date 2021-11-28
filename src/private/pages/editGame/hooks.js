@@ -22,178 +22,155 @@ import {
 } from "./slice";
 import PrivateGameService from "../../services/PrivateGameService";
 
-function useName() {
+function usePage() {
   const dispatch = useDispatch();
 
   return {
-    value: useSelector((state) => state.editGame.name),
-    onChange: (e) => {
-      dispatch(setName(e.target.value));
+    questionTitle: {
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].title
+      ),
+      onChange: (e) => {
+        dispatch(setQuestionTitle(e.target.value));
+      },
     },
+    questionDescription: {
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].description
+      ),
+      onChange: (e) => {
+        dispatch(setQuestionDescription(e.target.value));
+      },
+    },
+    questionType: {
+      value: useSelector((state) => state.editGame.type),
+    },
+    timeLimit: {
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
+      ),
+    },
+    useAnswerDescription: function (answerIndex) {
+      return {
+        value: useSelector(
+          (state) =>
+            state.editGame.pages[state.editGame.currentPage].answers[
+              answerIndex
+            ].description
+        ),
+        onChange: (e) => {
+          dispatch(
+            setAnswerDescription({
+              answerIndex,
+              description: e.target.value,
+            })
+          );
+        },
+      };
+    },
+    pageInput: {
+      onBlur: () => {
+        dispatch(setEditing(""));
+      },
+      onKeyDown: (e) => {
+        if (e.key === "Enter") dispatch(setEditing(""));
+      },
+    },
+    numberOfOptions: {
+      value: useSelector(
+        (state) =>
+          state.editGame.pages[state.editGame.currentPage].numberOfOptions
+      ),
+    },
+    useEditing: () => [
+      useSelector((state) => state.editGame.editing),
+      (s) => dispatch(setEditing(s)),
+    ],
+    currentPage: useSelector((state) => state.editGame.currentPage),
   };
 }
 
-function useEditing() {
+function useSetupBar() {
   const dispatch = useDispatch();
-  return [
-    useSelector((state) => state.editGame.editing),
-    (s) => dispatch(setEditing(s)),
-  ];
-}
-
-function useQuestionTitle() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) => state.editGame.pages[state.editGame.currentPage].title
-    ),
-    onChange: (e) => {
-      dispatch(setQuestionTitle(e.target.value));
-    },
-  };
-}
-
-function useQuestionDescription() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) => state.editGame.pages[state.editGame.currentPage].description
-    ),
-    onChange: (e) => {
-      dispatch(setQuestionDescription(e.target.value));
-    },
-  };
-}
-
-function useQuestionType() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector((state) => state.editGame.type),
-    onChange: (e) => {
-      dispatch(setQuestionType(e.target.value));
-    },
-  };
-}
-
-function useHasTimeLimit() {
-  const dispatch = useDispatch();
-  const checked = useSelector(
+  const hasTimeLimitEnabled = useSelector(
     (state) => state.editGame.pages[state.editGame.currentPage].hasTimeLimit
   );
-
-  return {
-    checked,
-    onChange: () => {
-      dispatch(setHasTimeLimit(!checked));
-    },
-  };
-}
-
-function useTimeLimit() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
-    ),
-    onChange: (e) => {
-      dispatch(setTimeLimit(e.target.value));
-    },
-  };
-}
-
-function useCheckType() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) => state.editGame.pages[state.editGame.currentPage].checkType
-    ),
-    onChange: (e) => {
-      dispatch(setCheckType(e.target.value));
-    },
-  };
-}
-
-function usePointsForSpeed() {
-  const dispatch = useDispatch();
-  const checked = useSelector(
+  const pointsForSpeedEnabled = useSelector(
     (state) => state.editGame.pages[state.editGame.currentPage].pointsForSpeed
   );
-
-  return {
-    checked,
-    onChange: () => {
-      dispatch(setPointsForSpeed(!checked));
-    },
-  };
-}
-
-function useNumberOfOptions() {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) =>
-        state.editGame.pages[state.editGame.currentPage].numberOfOptions
-    ),
-    onChange: (e) => {
-      dispatch(setNumberOfOptions(e.target.value));
-    },
-  };
-}
-
-function useAnswerValue() {
-  const dispatch = useDispatch();
-
-  return {
-    values: useSelector((state) =>
-      state.editGame.pages[state.editGame.currentPage].answers
-        .slice(
-          0,
-          state.editGame.pages[state.editGame.currentPage].numberOfOptions
-        )
-        .map((answer) => answer.value)
-    ),
-    onChange: (answerIndex, value) => {
-      dispatch(
-        setAnswerValue({
-          answerIndex,
-          value,
-        })
-      );
-    },
-  };
-}
-
-function useAnswerDescription(answerIndex) {
-  const dispatch = useDispatch();
-
-  return {
-    value: useSelector(
-      (state) =>
-        state.editGame.pages[state.editGame.currentPage].answers[answerIndex]
-          .description
-    ),
-    onChange: (e) => {
-      dispatch(
-        setAnswerDescription({
-          answerIndex,
-          description: e.target.value,
-        })
-      );
-    },
-  };
-}
-
-function usePageNavigation() {
-  const dispatch = useDispatch();
   const page = useSelector((state) => state.editGame.page);
 
   return {
+    name: {
+      value: useSelector((state) => state.editGame.name),
+      onChange: (e) => {
+        dispatch(setName(e.target.value));
+      },
+    },
+    questionTitle: useSelector(
+      (state) => state.editGame.pages[state.editGame.currentPage].title
+    ),
+    questionType: {
+      value: useSelector((state) => state.editGame.type),
+      onChange: (e) => {
+        dispatch(setQuestionType(e.target.value));
+      },
+    },
+    hasTimeLimit: {
+      checked: hasTimeLimitEnabled,
+      onChange: () => {
+        dispatch(setHasTimeLimit(!hasTimeLimitEnabled));
+      },
+    },
+    timeLimit: {
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
+      ),
+      onChange: (e) => {
+        dispatch(setTimeLimit(e.target.value));
+      },
+    },
+    checkType: {
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].checkType
+      ),
+      onChange: (e) => {
+        dispatch(setCheckType(e.target.value));
+      },
+    },
+    pointsForSpeed: {
+      checked: pointsForSpeedEnabled,
+      onChange: () => {
+        dispatch(setPointsForSpeed(!pointsForSpeedEnabled));
+      },
+    },
+    numberOfOptions: {
+      value: useSelector(
+        (state) =>
+          state.editGame.pages[state.editGame.currentPage].numberOfOptions
+      ),
+      onChange: (e) => {
+        dispatch(setNumberOfOptions(e.target.value));
+      },
+    },
+    answerValue: {
+      values: useSelector((state) =>
+        state.editGame.pages[state.editGame.currentPage].answers
+          .slice(
+            0,
+            state.editGame.pages[state.editGame.currentPage].numberOfOptions
+          )
+          .map((answer) => answer.value)
+      ),
+      onChange: (answerIndex, value) => {
+        dispatch(
+          setAnswerValue({
+            answerIndex,
+            value,
+          })
+        );
+      },
+    },
     gotoNextPage: () => {
       dispatch(nextPage(page));
     },
@@ -203,41 +180,16 @@ function usePageNavigation() {
     gotoPage: (pageNumber) => {
       dispatch(setCurrentPage({ page, pageNumber }));
     },
+    resetPage: () => {
+      dispatch(resetCurrentPage());
+    },
+    removePage: () => {
+      dispatch(removeCurrentPage());
+    },
+    saveGame: useSaveGame(),
+    playGame: usePlayGame(),
     pages: useSelector((state) => state.editGame.pages),
     currentPage: useSelector((state) => state.editGame.currentPage),
-  };
-}
-
-function useCurrentPage() {
-  return useSelector((state) => state.editGame.currentPage);
-}
-
-function useResetPage() {
-  const dispatch = useDispatch();
-
-  return () => {
-    dispatch(resetCurrentPage());
-  };
-}
-
-function useRemovePage() {
-  const dispatch = useDispatch();
-
-  return () => {
-    dispatch(removeCurrentPage());
-  };
-}
-
-function usePageInput() {
-  const dispatch = useDispatch();
-
-  return {
-    onBlur: () => {
-      dispatch(setEditing(""));
-    },
-    onKeyDown: (e) => {
-      if (e.key === "Enter") dispatch(setEditing(""));
-    },
   };
 }
 
@@ -270,24 +222,4 @@ function usePlayGame() {
   };
 }
 
-export {
-  useName,
-  useEditing,
-  useQuestionTitle,
-  useQuestionDescription,
-  useQuestionType,
-  useHasTimeLimit,
-  useTimeLimit,
-  useCheckType,
-  usePointsForSpeed,
-  useNumberOfOptions,
-  useAnswerValue,
-  useAnswerDescription,
-  usePageNavigation,
-  useCurrentPage,
-  useResetPage,
-  useRemovePage,
-  usePageInput,
-  useSaveGame,
-  usePlayGame,
-};
+export { usePage, useSetupBar };

@@ -1,22 +1,34 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import GameLayout from "../../../components/gamePage/GameLayout";
 import PrivateGameService from "../../services/PrivateGameService";
+import { useGame } from "./hooks";
 
 const HostGame = () => {
   const { gameID } = useParams();
-  const [game, setGame] = useState();
+  const [game, setGame] = useGame();
+
   const privateGameService = new PrivateGameService();
 
-  async function fetchGame(gameID) {
-    const game = await privateGameService.read(gameID);
-    setGame(game);
+  async function fetchGame() {
+    setGame(await privateGameService.read(gameID));
   }
 
   useEffect(() => {
-    if (!game) fetchGame(gameID);
+    if (!game) fetchGame();
   });
 
   console.log(game);
-  return <>{game?.name}</>;
+  return (
+    <GameLayout
+      useEditing={[undefined, undefined]}
+      useAnswerDescription={["test", "test", "test", "test"]}
+      pageInput={undefined}
+      questionTitle={"Testi"}
+      questionDescription={"Test"}
+      numberOfOptionsValue={4}
+      currentPageValue={0}
+    />
+  );
 };
 export default HostGame;

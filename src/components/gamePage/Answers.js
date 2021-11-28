@@ -2,10 +2,10 @@ import React from "react";
 import "./Answers.scss";
 import AnswerButton from "./AnswerButton";
 
-const Answers = ({ numberOfOptionsValue, ...props }) => {
+const Answers = ({ numberOfOptions: { value }, ...props }) => {
   const rows = [];
 
-  for (let i = 0; i < numberOfOptionsValue; i++) {
+  for (let i = 0; i < value; i++) {
     if (i % 2 === 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
@@ -13,7 +13,7 @@ const Answers = ({ numberOfOptionsValue, ...props }) => {
           <AnswerButton i={i} {...props} />
         </div>
       );
-    } else if (i === numberOfOptionsValue - 1) {
+    } else if (i === value - 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
           <AnswerButton i={i} {...props} />

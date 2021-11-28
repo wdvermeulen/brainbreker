@@ -2,8 +2,8 @@ import colors from "../../sharedResources/colors.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-const AnswerButton = ({ i, useEditing, useAnswerDescription, pageInput }) => {
-  const [editing, setEditing] = useEditing;
+const AnswerButton = ({ useAnswerDescription, i, useEditing, pageInput }) => {
+  const [editing, setEditing] = useEditing();
   const answerDescription = useAnswerDescription(i);
 
   return (

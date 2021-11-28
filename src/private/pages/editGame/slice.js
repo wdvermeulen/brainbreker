@@ -20,7 +20,7 @@ const defaultPage = {
 };
 
 const slice = createSlice({
-  name: "game",
+  name: "editGame",
   initialState: {
     name: "Game 1",
     currentPage: 0,
