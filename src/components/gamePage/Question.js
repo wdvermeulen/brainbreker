@@ -3,20 +3,15 @@ import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import "./Question.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import {
-  useCurrentPage,
-  useEditing,
-  useQuestionDescription,
-  useQuestionTitle,
-  usePageInput,
-} from "../hooks";
 
-const Question = () => {
-  const title = useQuestionTitle();
-  const [editing, setEditing] = useEditing();
-  const question = useQuestionDescription();
-  const currentPage = useCurrentPage();
-  const pageInput = usePageInput();
+const Question = ({
+  questionTitle,
+  useEditing,
+  questionDescription,
+  currentPageValue,
+  pageInput,
+}) => {
+  const [editing, setEditing] = useEditing;
 
   return (
     <div id="Question" className="section">
@@ -29,7 +24,7 @@ const Question = () => {
               id="title"
               type="text"
               {...pageInput}
-              {...title}
+              {...questionTitle}
             />
           </>
         ) : (
@@ -38,7 +33,7 @@ const Question = () => {
               setEditing("title");
             }}
           >
-            {currentPage + 1 + ". " + (title.value || "Titel")}
+            {currentPageValue + 1 + ". " + (questionTitle.value || "Titel")}
           </h2>
         )}
         {editing === "question" ? (
@@ -49,7 +44,7 @@ const Question = () => {
               id="question"
               name="question"
               {...pageInput}
-              {...question}
+              {...questionDescription}
             />
           </>
         ) : (
@@ -58,7 +53,7 @@ const Question = () => {
               setEditing("question");
             }}
           >
-            {question.value ||
+            {questionDescription.value ||
               I18n.get(
                 "Tap on text to edit. Swipe to go to the next question."
               )}

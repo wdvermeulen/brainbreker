@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./EditGame.scss";
-import Answers from "./gamePage/Answers";
-import Questions from "./gamePage/Question";
+import GameLayout from "../../../components/gamePage/GameLayout";
+import {
+  useAnswerDescription,
+  useCurrentPage,
+  useEditing,
+  useNumberOfOptions,
+  usePageInput,
+  useQuestionDescription,
+  useQuestionTitle,
+} from "./hooks";
 import SetupBar from "./setupBar/SetupBar";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
@@ -24,10 +32,15 @@ const EditGame = () => {
 
   return (
     <div id="EditGame" className="row">
-      <div className="page column">
-        <Questions />
-        <Answers />
-      </div>
+      <GameLayout
+        useEditing={useEditing()}
+        useAnswerDescription={useAnswerDescription}
+        pageInput={usePageInput()}
+        questionTitle={useQuestionTitle()}
+        questionDescription={useQuestionDescription()}
+        numberOfOptionsValue={useNumberOfOptions().value}
+        currentPageValue={useCurrentPage().value}
+      />
       <SetupBar collapse={collapse} collapsed={collapsed} />
     </div>
   );

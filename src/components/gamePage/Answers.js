@@ -1,24 +1,22 @@
 import React from "react";
 import "./Answers.scss";
-import { useNumberOfOptions } from "../hooks";
 import AnswerButton from "./AnswerButton";
 
-const Answers = () => {
-  const { value } = useNumberOfOptions();
+const Answers = ({ numberOfOptionsValue, ...props }) => {
   const rows = [];
 
-  for (let i = 0; i < value; i++) {
+  for (let i = 0; i < numberOfOptionsValue; i++) {
     if (i % 2 === 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton i={i - 1} />
-          <AnswerButton i={i} />
+          <AnswerButton i={i - 1} {...props} />
+          <AnswerButton i={i} {...props} />
         </div>
       );
-    } else if (i === value - 1) {
+    } else if (i === numberOfOptionsValue - 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton i={i} />
+          <AnswerButton i={i} {...props} />
         </div>
       );
     }

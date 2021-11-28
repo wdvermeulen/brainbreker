@@ -1,13 +1,10 @@
-import colors from "../../../../sharedResources/colors.json";
+import colors from "../../sharedResources/colors.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import { useEditing, useAnswerDescription, usePageInput } from "../hooks";
 
-const AnswerButton = ({ i }) => {
-  const [editing, setEditing] = useEditing();
-
+const AnswerButton = ({ i, useEditing, useAnswerDescription, pageInput }) => {
+  const [editing, setEditing] = useEditing;
   const answerDescription = useAnswerDescription(i);
-  const pageInput = usePageInput();
 
   return (
     <button
