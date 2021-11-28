@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GameLayout from "../../../components/gamePage/GameLayout";
 import PrivateGameService from "../../services/PrivateGameService";
-import { useGame } from "./hooks";
+import { useGame, usePage } from "./hooks";
 
 const HostGame = () => {
   const { gameID } = useParams();
   const [game, setGame] = useGame();
+  const page = usePage();
 
   const privateGameService = new PrivateGameService();
 
@@ -19,16 +20,10 @@ const HostGame = () => {
   });
 
   console.log(game);
-  return (
-    <GameLayout
-      useEditing={[undefined, undefined]}
-      useAnswerDescription={["test", "test", "test", "test"]}
-      pageInput={undefined}
-      questionTitle={"Testi"}
-      questionDescription={"Test"}
-      numberOfOptionsValue={4}
-      currentPageValue={0}
-    />
-  );
+
+  if (game) {
+    return <GameLayout {...page} />;
+  }
+  return <div className="glass-tile" />;
 };
 export default HostGame;

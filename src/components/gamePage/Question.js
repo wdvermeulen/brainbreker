@@ -8,10 +8,18 @@ const Question = ({
   questionTitle,
   questionDescription,
   currentPage,
-  useEditing,
+  useEditing = () => [],
   pageInput,
 }) => {
   const [editing, setEditing] = useEditing();
+
+  const onClickTitle = () => {
+    if (setEditing) setEditing("title");
+  };
+
+  const onClickDescriptions = () => {
+    if (setEditing) setEditing("question");
+  };
 
   return (
     <div id="Question" className="section">
@@ -28,11 +36,7 @@ const Question = ({
             />
           </>
         ) : (
-          <h2
-            onClick={() => {
-              setEditing("title");
-            }}
-          >
+          <h2 onClick={onClickTitle}>
             {currentPage + 1 + ". " + (questionTitle.value || "Titel")}
           </h2>
         )}
@@ -48,11 +52,7 @@ const Question = ({
             />
           </>
         ) : (
-          <div
-            onClick={() => {
-              setEditing("question");
-            }}
-          >
+          <div onClick={onClickDescriptions}>
             {questionDescription.value ||
               I18n.get(
                 "Tap on text to edit. Swipe to go to the next question."

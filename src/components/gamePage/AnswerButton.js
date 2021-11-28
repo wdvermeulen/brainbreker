@@ -2,16 +2,23 @@ import colors from "../../sharedResources/colors.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-const AnswerButton = ({ useAnswerDescription, i, useEditing, pageInput }) => {
+const AnswerButton = ({
+  useAnswerDescription,
+  i,
+  useEditing = () => [],
+  pageInput,
+}) => {
   const [editing, setEditing] = useEditing();
   const answerDescription = useAnswerDescription(i);
+
+  const onClick = () => {
+    if (setEditing) setEditing("answer" + i);
+  };
 
   return (
     <button
       className="button big answer"
-      onClick={() => {
-        setEditing("answer" + i);
-      }}
+      onClick={onClick}
       style={{
         borderColor: colors[i % colors.length],
       }}

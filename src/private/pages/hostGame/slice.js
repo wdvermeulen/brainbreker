@@ -3,15 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const slice = createSlice({
   name: "hostGame",
   initialState: {
-    game: {
-      name: "",
-      currentPage: 0,
-      pages: [],
-    },
-    reducers: {
-      setGame: (state, { payload }) => {
-        state.game = payload;
-      },
+    game: undefined,
+    currentPage: 0,
+  },
+  reducers: {
+    setGame: (state, { payload }) => {
+      state.game = payload;
     },
   },
 });
