@@ -13,7 +13,11 @@ const HostGame = () => {
   if (game) {
     return (
       <>
-        <>{pin}</>
+        <div className="glass-tile">
+          <h2>{game.name}</h2>
+          Startcode: {pin}
+        </div>
+        <div className="glass-tile">Er zijn nog geen deelnemers.</div>
         <GameLayout {...page} />
       </>
     );
