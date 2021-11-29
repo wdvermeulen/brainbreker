@@ -1,14 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setGame } from "./slice";
+import { useParams } from "react-router-dom";
+import PrivateGameService from "../../services/PrivateGameService";
+import PublicGameService from "../../services/PublicGameService";
+import { setGame, setPin } from "./slice";
 
-function useGame() {
+function useHostGame() {
   const dispatch = useDispatch();
-  return [
-    useSelector((state) => state.hostGame.game),
-    (game) => {
-      dispatch(setGame(game));
+  const { gameID } = useParams();
+  console.log("now");
+  return {
+    initGame: async function () {
+      const newGame = await new PrivateGameService().read(gameID);
+      dispatch(setGame(newGame));
+      dispatch(setPin(await new PublicGameService().create(newGame)));
     },
-  ];
+    game: useSelector((state) => state.hostGame.game),
+    pin: useSelector((state) => state.hostGame.pin),
+  };
 }
 
 function usePage() {
@@ -54,4 +62,4 @@ function usePage() {
     currentPage: useSelector((state) => state.hostGame.currentPage),
   };
 }
-export { useGame, usePage };
+export { useHostGame, usePage };

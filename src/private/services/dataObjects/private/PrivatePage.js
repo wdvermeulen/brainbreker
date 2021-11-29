@@ -1,4 +1,4 @@
-export default class GqlPage {
+export default class PrivatePage {
   constructor(reduxPage, gameId) {
     this.id = reduxPage.pageId;
     this.title = reduxPage.title;

@@ -14,9 +14,9 @@ import {
   getPrivateGame as getPrivateGameQuery,
   listPrivateGames,
 } from "../../graphql/queries";
-import GqlGame from "./dataObjects/gql/GqlGame";
-import GqlPage from "./dataObjects/gql/GqlPage";
-import GqlAnswer from "./dataObjects/gql/GqlAnswer";
+import PrivateGame from "./dataObjects/private/PrivateGame";
+import PrivatePage from "./dataObjects/private/PrivatePage";
+import PrivateAnswer from "./dataObjects/private/PrivateAnswer";
 
 class PrivateGameService {
   #getID = (data) => {
@@ -27,23 +27,23 @@ class PrivateGameService {
     try {
       const { data } = await API.graphql(
         graphqlOperation(mutateGame, {
-          input: new GqlGame(reduxGame),
+          input: new PrivateGame(reduxGame),
         })
       );
       const gameID = this.#getID(data);
       for (const reduxPage of reduxGame.pages) {
         console.log(reduxPage);
-        console.log(new GqlPage(reduxPage, gameID));
+        console.log(new PrivatePage(reduxPage, gameID));
         const { data } = await API.graphql(
           graphqlOperation(mutatePage, {
-            input: new GqlPage(reduxPage, gameID),
+            input: new PrivatePage(reduxPage, gameID),
           })
         );
         const pageID = this.#getID(data);
         for (const reduxAnswer of reduxPage.answers) {
           await API.graphql(
             graphqlOperation(mutateAnswer, {
-              input: new GqlAnswer(reduxAnswer, pageID),
+              input: new PrivateAnswer(reduxAnswer, pageID),
             })
           );
         }

@@ -1,4 +1,4 @@
-export default class GqlAnswer {
+export default class PrivateAnswer {
   constructor(reduxAnswer, pageId) {
     this.id = reduxAnswer.id;
     this.description = reduxAnswer.description;

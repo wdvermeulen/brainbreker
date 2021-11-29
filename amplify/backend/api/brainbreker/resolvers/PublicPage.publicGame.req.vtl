@@ -1,0 +1,11 @@
+#if( $util.isNull($ctx.source.publicPagePublicGameId) )
+  #return
+#else
+{
+      "version": "2018-05-29",
+      "operation": "GetItem",
+      "key": {
+          "pin": $util.dynamodb.toDynamoDBJson($util.defaultIfNullOrBlank($ctx.source.publicPagePublicGameId, "___xamznone____"))
+    }
+  }
+#end

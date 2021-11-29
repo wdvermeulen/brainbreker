@@ -1,28 +1,22 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import PrivateGameService from "../../services/PrivateGameService";
-import { useGame, usePage } from "./hooks";
+import { useHostGame, usePage } from "./hooks";
 
 const HostGame = () => {
-  const { gameID } = useParams();
-  const [game, setGame] = useGame();
+  const { initGame, game, pin } = useHostGame();
   const page = usePage();
 
-  const privateGameService = new PrivateGameService();
-
-  async function fetchGame() {
-    setGame(await privateGameService.read(gameID));
-  }
-
   useEffect(() => {
-    if (!game) fetchGame();
-  });
-
-  console.log(game);
+    if (!game) initGame();
+  }, [game, initGame]);
 
   if (game) {
-    return <GameLayout {...page} />;
+    return (
+      <>
+        <>{pin}</>
+        <GameLayout {...page} />
+      </>
+    );
   }
   return <div className="glass-tile" />;
 };

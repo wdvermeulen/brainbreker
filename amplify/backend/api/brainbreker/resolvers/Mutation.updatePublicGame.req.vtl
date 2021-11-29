@@ -1,4 +1,10 @@
-#set( $optionalNonNullableFields = ["title", "hasTimeLimit", "checkType", "questionType"] )
+## [Start] Set the primary @key. **
+#set( $modelObjectKey = {
+  "pin": $util.dynamodb.toDynamoDB($ctx.args.input.pin)
+} )
+## [End] Set the primary @key. **
+
+#set( $optionalNonNullableFields = ["pin", "name"] )
 #foreach( $field in $optionalNonNullableFields )
   #if( $context.arguments.input.keySet().contains($field) && $util.isNull($context.args.input.get($field)) )
 $util.error("An argument you marked as Non-Null is set to Null in the query or the body of your request.")
@@ -42,7 +48,7 @@ $util.error("An argument you marked as Non-Null is set to Null in the query or t
 #end
 ## Automatically set the updatedAt timestamp. **
 $util.qr($context.args.input.put("updatedAt", $util.defaultIfNull($ctx.args.input.updatedAt, $util.time.nowISO8601())))
-$util.qr($context.args.input.put("__typename", "PrivatePage"))
+$util.qr($context.args.input.put("__typename", "PublicGame"))
 ## Update condition if type is @versioned **
 #if( $versionedCondition )
   $util.qr($condition.put("expression", "($condition.expression) AND $versionedCondition.expression"))

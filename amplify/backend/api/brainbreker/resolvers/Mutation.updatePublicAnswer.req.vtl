@@ -1,4 +1,4 @@
-#set( $optionalNonNullableFields = ["title", "hasTimeLimit", "checkType", "questionType"] )
+#set( $optionalNonNullableFields = ["description"] )
 #foreach( $field in $optionalNonNullableFields )
   #if( $context.arguments.input.keySet().contains($field) && $util.isNull($context.args.input.get($field)) )
 $util.error("An argument you marked as Non-Null is set to Null in the query or the body of your request.")
@@ -42,7 +42,7 @@ $util.error("An argument you marked as Non-Null is set to Null in the query or t
 #end
 ## Automatically set the updatedAt timestamp. **
 $util.qr($context.args.input.put("updatedAt", $util.defaultIfNull($ctx.args.input.updatedAt, $util.time.nowISO8601())))
-$util.qr($context.args.input.put("__typename", "PrivatePage"))
+$util.qr($context.args.input.put("__typename", "PublicAnswer"))
 ## Update condition if type is @versioned **
 #if( $versionedCondition )
   $util.qr($condition.put("expression", "($condition.expression) AND $versionedCondition.expression"))
