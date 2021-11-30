@@ -1,95 +1,74 @@
-type PrivateGame @model {
+type PrivateGame @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
-  pages: [PrivatePage!]! @connection(name: "privateGamePages")
+  pages: [PrivatePage!]!
 }
 
-type PrivatePage @model {
-  id: ID!
+type PrivatePage {
   title: String!
   description: String
   hasTimeLimit: Boolean!
   timeLimit: Int
-  checkType: CheckType!
+  checkType: CheckType
   pointsForSpeed: Boolean
   file: String
-  questionType: [QuestionType]!
+  pageType: PageType
   numberOfOptions: Int
-  privateGame: PrivateGame! @connection(name: "privateGamePages")
-  privateAnswers: [PrivateAnswer]! @connection(name: "privatePageAnswers")
+  privateAnswers: [PrivateAnswer]
 }
 
-type PrivateAnswer @model {
-  id: ID!
-  Page: PrivatePage! @connection(name: "privatePageAnswers")
-  description: String!
-  value: Int!
+type PrivateAnswer {
+  description: String
+  value: Int
 }
 
-type PublicGame @model @key(fields: ["pin"]) {
-  pin: Int!
+type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) @key(name: "byPin", fields: ["pin"]) {
   id: ID!
-  name: String!
-  currentPage: PublicPage @connection(name: "publicGamePage")
-  connectedUsers: [PublicUser]! @connection(name: "publicGameUsers")
-  connectedTeams: [PublicTeam]! @connection(name: "publicGameTeams")
-  connectedGamemasters: [PublicGamemaster]! @connection(name: "publicGameGamemasters")
+  pin: String!
+  currentPage: PublicPage
+  ConnectedUsers: [User] @connection(keyName: "byPublicGame", fields: ["id"])
+  Teams: [Team] @connection(keyName: "byPublicGame", fields: ["id"])
 }
 
-type PublicPage @model {
-  id: ID!
+type PublicPage {
   title: String!
   description: String
+  hasTimeLimit: Boolean!
   timeLimit: Int
   file: String
-  questionType: [QuestionType]!
-  publicGame: PublicGame! @connection(name: "publicGamePage")
-  answers: [PublicAnswer]! @connection(name: "publicPageAnswers")
+  pageType: PageType
+  privateOptions: [String]
 }
 
-type PublicAnswer @model {
+type Team @model @key(name: "byPublicGame", fields: ["publicgameID"]) @auth(rules: [{allow: public, operations: [create, read, update]}]) {
   id: ID!
-  Page: PublicPage! @connection(name: "publicPageAnswers")
-  description: String!
+  Users: [User] @connection(keyName: "byTeam", fields: ["id"])
+  publicgameID: ID
 }
 
-type PublicUser @model {
-  id: ID!
-  name: String!
-  points: Int
-  currentPage: Int
-  currentAnswer: String
-  publicGame: PublicGame! @connection(name: "publicGameUsers")
-  team: PublicTeam @connection(name: "publicTeamUsers")
-}
-
-type PublicTeam @model {
+type User @model @auth(rules: [{allow: public}]) @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) {
   id: ID!
   name: String!
   points: Int
-  users: [PublicUser]! @connection(name: "publicTeamUsers")
-  publicGame: PublicGame! @connection(name: "publicGameTeams")
+  publicgameID: ID
+  teamID: ID
 }
 
-type PublicGamemaster @model {
-  id: ID!
-  publicGame: PublicGame! @connection(name: "publicGameGamemasters")
-}
-
-enum QuestionType {
-  MULTIPLE_CHOICE,
-  OPEN,
-  OPEN_LIST,
-  APPROXIMATION,
-  ORDER,
-  TITLE_CARD,
-  PUZZLE,
-  VOTE,
+enum PageType {
+  MULTIPLE_CHOICE
+  OPEN
+  OPEN_LIST
+  APPROXIMATION
+  ORDER
+  TITLE_CARD
+  PUZZLE
+  VOTE
 }
 
 enum CheckType {
-  PREDEFINED_ANSWER,
-  GAMEMASTERS_AFTERWARDS,
-  USERS_VOTE,
+  PREDEFINED_ANSWER
+  GAMEMASTERS_AFTERWARDS
+  USERS_VOTE
   GAMEMASTERS_VOTE
 }
+ 

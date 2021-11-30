@@ -7,71 +7,26 @@ export const getPrivateGame = /* GraphQL */ `
       id
       name
       pages {
-        items {
-          id
-          title
+        title
+        description
+        hasTimeLimit
+        timeLimit
+        checkType
+        pointsForSpeed
+        file
+        pageType
+        numberOfOptions
+        privateAnswers {
           description
-          hasTimeLimit
-          timeLimit
-          checkType
-          pointsForSpeed
-          file
-          questionType
-          numberOfOptions
-          privateGame {
-            id
-            name
-            pages {
-              items {
-                id
-                title
-                description
-                hasTimeLimit
-                timeLimit
-                checkType
-                pointsForSpeed
-                file
-                questionType
-                numberOfOptions
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          privateAnswers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                hasTimeLimit
-                timeLimit
-                checkType
-                pointsForSpeed
-                file
-                questionType
-                numberOfOptions
-                createdAt
-                updatedAt
-              }
-              description
-              value
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
+          value
         }
-        nextToken
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -86,342 +41,6 @@ export const listPrivateGames = /* GraphQL */ `
         id
         name
         pages {
-          items {
-            id
-            title
-            description
-            hasTimeLimit
-            timeLimit
-            checkType
-            pointsForSpeed
-            file
-            questionType
-            numberOfOptions
-            privateGame {
-              id
-              name
-              pages {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            privateAnswers {
-              items {
-                id
-                description
-                value
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPrivatePage = /* GraphQL */ `
-  query GetPrivatePage($id: ID!) {
-    getPrivatePage(id: $id) {
-      id
-      title
-      description
-      hasTimeLimit
-      timeLimit
-      checkType
-      pointsForSpeed
-      file
-      questionType
-      numberOfOptions
-      privateGame {
-        id
-        name
-        pages {
-          items {
-            id
-            title
-            description
-            hasTimeLimit
-            timeLimit
-            checkType
-            pointsForSpeed
-            file
-            questionType
-            numberOfOptions
-            privateGame {
-              id
-              name
-              pages {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            privateAnswers {
-              items {
-                id
-                description
-                value
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      privateAnswers {
-        items {
-          id
-          Page {
-            id
-            title
-            description
-            hasTimeLimit
-            timeLimit
-            checkType
-            pointsForSpeed
-            file
-            questionType
-            numberOfOptions
-            privateGame {
-              id
-              name
-              pages {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            privateAnswers {
-              items {
-                id
-                description
-                value
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          description
-          value
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPrivatePages = /* GraphQL */ `
-  query ListPrivatePages(
-    $filter: ModelPrivatePageFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivatePages(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        description
-        hasTimeLimit
-        timeLimit
-        checkType
-        pointsForSpeed
-        file
-        questionType
-        numberOfOptions
-        privateGame {
-          id
-          name
-          pages {
-            items {
-              id
-              title
-              description
-              hasTimeLimit
-              timeLimit
-              checkType
-              pointsForSpeed
-              file
-              questionType
-              numberOfOptions
-              privateGame {
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              privateAnswers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        privateAnswers {
-          items {
-            id
-            Page {
-              id
-              title
-              description
-              hasTimeLimit
-              timeLimit
-              checkType
-              pointsForSpeed
-              file
-              questionType
-              numberOfOptions
-              privateGame {
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              privateAnswers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            description
-            value
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPrivateAnswer = /* GraphQL */ `
-  query GetPrivateAnswer($id: ID!) {
-    getPrivateAnswer(id: $id) {
-      id
-      Page {
-        id
-        title
-        description
-        hasTimeLimit
-        timeLimit
-        checkType
-        pointsForSpeed
-        file
-        questionType
-        numberOfOptions
-        privateGame {
-          id
-          name
-          pages {
-            items {
-              id
-              title
-              description
-              hasTimeLimit
-              timeLimit
-              checkType
-              pointsForSpeed
-              file
-              questionType
-              numberOfOptions
-              privateGame {
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              privateAnswers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        privateAnswers {
-          items {
-            id
-            Page {
-              id
-              title
-              description
-              hasTimeLimit
-              timeLimit
-              checkType
-              pointsForSpeed
-              file
-              questionType
-              numberOfOptions
-              privateGame {
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              privateAnswers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            description
-            value
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      description
-      value
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPrivateAnswers = /* GraphQL */ `
-  query ListPrivateAnswers(
-    $filter: ModelPrivateAnswerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivateAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Page {
-          id
           title
           description
           hasTimeLimit
@@ -429,3028 +48,470 @@ export const listPrivateAnswers = /* GraphQL */ `
           checkType
           pointsForSpeed
           file
-          questionType
+          pageType
           numberOfOptions
-          privateGame {
-            id
-            name
-            pages {
-              items {
-                id
-                title
-                description
-                hasTimeLimit
-                timeLimit
-                checkType
-                pointsForSpeed
-                file
-                questionType
-                numberOfOptions
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
           privateAnswers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                hasTimeLimit
-                timeLimit
-                checkType
-                pointsForSpeed
-                file
-                questionType
-                numberOfOptions
-                createdAt
-                updatedAt
-              }
-              description
-              value
-              createdAt
-              updatedAt
-            }
-            nextToken
+            description
+            value
           }
-          createdAt
-          updatedAt
         }
-        description
-        value
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPrivateGames = /* GraphQL */ `
+  query SyncPrivateGames(
+    $filter: ModelPrivateGameFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPrivateGames(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        pages {
+          title
+          description
+          hasTimeLimit
+          timeLimit
+          checkType
+          pointsForSpeed
+          file
+          pageType
+          numberOfOptions
+          privateAnswers {
+            description
+            value
+          }
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+      startedAt
     }
   }
 `;
 export const getPublicGame = /* GraphQL */ `
-  query GetPublicGame($pin: Int!) {
-    getPublicGame(pin: $pin) {
-      pin
+  query GetPublicGame($id: ID!) {
+    getPublicGame(id: $id) {
       id
-      name
+      pin
       currentPage {
-        id
         title
         description
+        hasTimeLimit
         timeLimit
         file
-        questionType
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        answers {
-          items {
-            id
-            Page {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            description
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
+        pageType
+        privateOptions
       }
-      connectedUsers {
-        items {
-          id
-          name
-          points
-          currentPage
-          currentAnswer
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          team {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedTeams {
-        items {
-          id
-          name
-          points
-          users {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      connectedGamemasters {
-        items {
-          id
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
+      owner
+      Teams {
+        items {
+          id
+          publicgameID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          Users {
+            items {
+              id
+              name
+              points
+              publicgameID
+              teamID
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        nextToken
+        startedAt
+      }
+      ConnectedUsers {
+        items {
+          id
+          name
+          points
+          publicgameID
+          teamID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
     }
   }
 `;
 export const listPublicGames = /* GraphQL */ `
   query ListPublicGames(
-    $pin: Int
     $filter: ModelPublicGameFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listPublicGames(
-      pin: $pin
+    listPublicGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pin
+        currentPage {
+          title
+          description
+          hasTimeLimit
+          timeLimit
+          file
+          pageType
+          privateOptions
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        owner
+        Teams {
+          items {
+            id
+            publicgameID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            Users {
+              items {
+                id
+                name
+                points
+                publicgameID
+                teamID
+                _version
+                _deleted
+                _lastChangedAt
+                createdAt
+                updatedAt
+              }
+              nextToken
+              startedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        ConnectedUsers {
+          items {
+            id
+            name
+            points
+            publicgameID
+            teamID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPublicGames = /* GraphQL */ `
+  query SyncPublicGames(
+    $filter: ModelPublicGameFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPublicGames(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
-      sortDirection: $sortDirection
+      lastSync: $lastSync
     ) {
       items {
-        pin
         id
-        name
+        pin
         currentPage {
-          id
           title
           description
+          hasTimeLimit
           timeLimit
           file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
+          pageType
+          privateOptions
         }
-        connectedUsers {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedTeams {
-          items {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedGamemasters {
-          items {
-            id
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
+        owner
+        Teams {
+          items {
+            id
+            publicgameID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            Users {
+              items {
+                id
+                name
+                points
+                publicgameID
+                teamID
+                _version
+                _deleted
+                _lastChangedAt
+                createdAt
+                updatedAt
+              }
+              nextToken
+              startedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        ConnectedUsers {
+          items {
+            id
+            name
+            points
+            publicgameID
+            teamID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
       }
       nextToken
+      startedAt
     }
   }
 `;
-export const getPublicPage = /* GraphQL */ `
-  query GetPublicPage($id: ID!) {
-    getPublicPage(id: $id) {
+export const getTeam = /* GraphQL */ `
+  query GetTeam($id: ID!) {
+    getTeam(id: $id) {
       id
-      title
-      description
-      timeLimit
-      file
-      questionType
-      publicGame {
-        pin
-        id
-        name
-        currentPage {
-          id
-          title
-          description
-          timeLimit
-          file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        connectedUsers {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedTeams {
-          items {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedGamemasters {
-          items {
-            id
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      answers {
-        items {
-          id
-          Page {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          description
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      publicgameID
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
-    }
-  }
-`;
-export const listPublicPages = /* GraphQL */ `
-  query ListPublicPages(
-    $filter: ModelPublicPageFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPublicPages(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        description
-        timeLimit
-        file
-        questionType
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        answers {
-          items {
-            id
-            Page {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            description
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPublicAnswer = /* GraphQL */ `
-  query GetPublicAnswer($id: ID!) {
-    getPublicAnswer(id: $id) {
-      id
-      Page {
-        id
-        title
-        description
-        timeLimit
-        file
-        questionType
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        answers {
-          items {
-            id
-            Page {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            description
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPublicAnswers = /* GraphQL */ `
-  query ListPublicAnswers(
-    $filter: ModelPublicAnswerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPublicAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Page {
-          id
-          title
-          description
-          timeLimit
-          file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        description
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPublicUser = /* GraphQL */ `
-  query GetPublicUser($id: ID!) {
-    getPublicUser(id: $id) {
-      id
-      name
-      points
-      currentPage
-      currentAnswer
-      publicGame {
-        pin
-        id
-        name
-        currentPage {
-          id
-          title
-          description
-          timeLimit
-          file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        connectedUsers {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedTeams {
-          items {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedGamemasters {
-          items {
-            id
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      team {
-        id
-        name
-        points
-        users {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPublicUsers = /* GraphQL */ `
-  query ListPublicUsers(
-    $filter: ModelPublicUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPublicUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        points
-        currentPage
-        currentAnswer
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        team {
-          id
-          name
-          points
-          users {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPublicTeam = /* GraphQL */ `
-  query GetPublicTeam($id: ID!) {
-    getPublicTeam(id: $id) {
-      id
-      name
-      points
-      users {
+      Users {
         items {
           id
           name
           points
-          currentPage
-          currentAnswer
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          team {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
+          publicgameID
+          teamID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
-      publicGame {
-        pin
+    }
+  }
+`;
+export const listTeams = /* GraphQL */ `
+  query ListTeams(
+    $filter: ModelTeamFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
         id
-        name
-        currentPage {
-          id
-          title
-          description
-          timeLimit
-          file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        connectedUsers {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedTeams {
-          items {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedGamemasters {
-          items {
-            id
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
+        publicgameID
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
+        Users {
+          items {
+            id
+            name
+            points
+            publicgameID
+            teamID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
       }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTeams = /* GraphQL */ `
+  query SyncTeams(
+    $filter: ModelTeamFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTeams(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        publicgameID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        Users {
+          items {
+            id
+            name
+            points
+            publicgameID
+            teamID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      name
+      points
+      publicgameID
+      teamID
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const listPublicTeams = /* GraphQL */ `
-  query ListPublicTeams(
-    $filter: ModelPublicTeamFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPublicTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         points
-        users {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
+        publicgameID
+        teamID
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
   }
 `;
-export const getPublicGamemaster = /* GraphQL */ `
-  query GetPublicGamemaster($id: ID!) {
-    getPublicGamemaster(id: $id) {
-      id
-      publicGame {
-        pin
-        id
-        name
-        currentPage {
-          id
-          title
-          description
-          timeLimit
-          file
-          questionType
-          publicGame {
-            pin
-            id
-            name
-            currentPage {
-              id
-              title
-              description
-              timeLimit
-              file
-              questionType
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              answers {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            connectedUsers {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedTeams {
-              items {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            connectedGamemasters {
-              items {
-                id
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          answers {
-            items {
-              id
-              Page {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              description
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-        connectedUsers {
-          items {
-            id
-            name
-            points
-            currentPage
-            currentAnswer
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            team {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedTeams {
-          items {
-            id
-            name
-            points
-            users {
-              items {
-                id
-                name
-                points
-                currentPage
-                currentAnswer
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        connectedGamemasters {
-          items {
-            id
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPublicGamemasters = /* GraphQL */ `
-  query ListPublicGamemasters(
-    $filter: ModelPublicGamemasterFilterInput
+export const syncUsers = /* GraphQL */ `
+  query SyncUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
+    $lastSync: AWSTimestamp
   ) {
-    listPublicGamemasters(
+    syncUsers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
+      lastSync: $lastSync
     ) {
       items {
         id
-        publicGame {
-          pin
-          id
-          name
-          currentPage {
-            id
-            title
-            description
-            timeLimit
-            file
-            questionType
-            publicGame {
-              pin
-              id
-              name
-              currentPage {
-                id
-                title
-                description
-                timeLimit
-                file
-                questionType
-                createdAt
-                updatedAt
-              }
-              connectedUsers {
-                nextToken
-              }
-              connectedTeams {
-                nextToken
-              }
-              connectedGamemasters {
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            answers {
-              items {
-                id
-                description
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          connectedUsers {
-            items {
-              id
-              name
-              points
-              currentPage
-              currentAnswer
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              team {
-                id
-                name
-                points
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedTeams {
-            items {
-              id
-              name
-              points
-              users {
-                nextToken
-              }
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          connectedGamemasters {
-            items {
-              id
-              publicGame {
-                pin
-                id
-                name
-                createdAt
-                updatedAt
-              }
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
+        name
+        points
+        publicgameID
+        teamID
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
   }
 `;

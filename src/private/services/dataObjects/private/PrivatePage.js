@@ -1,6 +1,5 @@
 export default class PrivatePage {
-  constructor(reduxPage, gameId) {
-    this.id = reduxPage.pageId;
+  constructor(reduxPage) {
     this.title = reduxPage.title;
     this.description = reduxPage.description;
     this.hasTimeLimit = reduxPage.hasTimeLimit;
@@ -10,6 +9,6 @@ export default class PrivatePage {
     this.file = reduxPage.file;
     this.questionType = reduxPage.questionType;
     this.numberOfOptions = reduxPage.numberOfOptions;
-    this.privatePagePrivateGameId = gameId;
+    this.answers = reduxPage.answers.map((page) => new PrivatePage(page));
   }
 }

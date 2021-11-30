@@ -14,8 +14,12 @@ const EditGame = () => {
 
   useEffect(() => {
     if (gameID) {
-      const game = gameService.read(gameID);
-      console.log(game);
+      const {
+        data: {
+          getPrivateGameQuery: { id },
+        },
+      } = gameService.read(gameID);
+      console.log(id);
     }
   });
 

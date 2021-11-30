@@ -203,8 +203,9 @@ function useSaveGame() {
     if (gameID) {
       await gameService.update(game);
     } else {
-      const id = await gameService.create(game);
-      history.push(`${url.EDIT_GAME}${id}`);
+      const test = await gameService.create(game);
+      console.log(test);
+      // history.push(`${url.EDIT_GAME}${id}`);
     }
   };
 }
