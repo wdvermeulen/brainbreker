@@ -16,7 +16,7 @@ export const onCreatePrivateGame = /* GraphQL */ `
         file
         pageType
         numberOfOptions
-        privateAnswers {
+        answers {
           description
           value
         }
@@ -45,7 +45,7 @@ export const onUpdatePrivateGame = /* GraphQL */ `
         file
         pageType
         numberOfOptions
-        privateAnswers {
+        answers {
           description
           value
         }
@@ -74,7 +74,7 @@ export const onDeletePrivateGame = /* GraphQL */ `
         file
         pageType
         numberOfOptions
-        privateAnswers {
+        answers {
           description
           value
         }
@@ -129,6 +129,7 @@ export const onCreatePublicGame = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -149,6 +150,7 @@ export const onCreatePublicGame = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -197,6 +199,7 @@ export const onUpdatePublicGame = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -217,6 +220,7 @@ export const onUpdatePublicGame = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -265,6 +269,7 @@ export const onDeletePublicGame = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -285,6 +290,7 @@ export const onDeletePublicGame = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -314,6 +320,7 @@ export const onCreateTeam = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -343,6 +350,7 @@ export const onUpdateTeam = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -372,6 +380,7 @@ export const onDeleteTeam = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -380,8 +389,8 @@ export const onDeleteTeam = /* GraphQL */ `
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
       id
       name
       points
@@ -392,12 +401,13 @@ export const onCreateUser = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
       id
       name
       points
@@ -408,12 +418,13 @@ export const onUpdateUser = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
       id
       name
       points
@@ -424,6 +435,7 @@ export const onDeleteUser = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

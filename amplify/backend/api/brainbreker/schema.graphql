@@ -9,12 +9,12 @@ type PrivatePage {
   description: String
   hasTimeLimit: Boolean!
   timeLimit: Int
-  checkType: CheckType
-  pointsForSpeed: Boolean
+  checkType: CheckType!
+  pointsForSpeed: Boolean!
   file: String
-  pageType: PageType
+  pageType: PageType!
   numberOfOptions: Int
-  privateAnswers: [PrivateAnswer]
+  answers: [PrivateAnswer]
 }
 
 type PrivateAnswer {
@@ -46,7 +46,7 @@ type Team @model @key(name: "byPublicGame", fields: ["publicgameID"]) @auth(rule
   publicgameID: ID
 }
 
-type User @model @auth(rules: [{allow: public}]) @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) {
+type User @model @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   name: String!
   points: Int

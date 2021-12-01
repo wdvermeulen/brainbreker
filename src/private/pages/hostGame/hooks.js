@@ -34,7 +34,7 @@ function usePage() {
             .description
       ),
     },
-    questionType: {
+    pageType: {
       value: useSelector((state) => state.hostGame.game?.type),
     },
     timeLimit: {

@@ -1,10 +1,7 @@
 import React from "react";
 import "./SetupBar.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import {
-  checkTypeEnum,
-  questionTypeEnum,
-} from "../../../../sharedResources/enum";
+import { checkTypeEnum, pageTypeEnum } from "../../../../sharedResources/enum";
 import { useSetupBar } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +18,7 @@ const SetupBar = ({ collapse, collapsed }) => {
   const {
     name,
     questionTitle,
-    questionType,
+    pageType,
     hasTimeLimit,
     timeLimit,
     checkType,
@@ -71,15 +68,15 @@ const SetupBar = ({ collapse, collapsed }) => {
           <hr />
 
           <div className="row">
-            <label htmlFor="questionType">Soort vraag: </label>
+            <label htmlFor="pageType">Soort vraag: </label>
             <select
-              id="questionType"
-              name="questionType"
+              id="pageType"
+              name="pageType"
               aria-label="soort vraag"
-              {...questionType}
+              {...pageType}
             >
-              {Object.entries(questionTypeEnum).map(([key, type]) => (
-                <option key={"questionType-" + key} value={key}>
+              {Object.entries(pageTypeEnum).map(([key, type]) => (
+                <option key={"pageType-" + key} value={key}>
                   {type}
                 </option>
               ))}

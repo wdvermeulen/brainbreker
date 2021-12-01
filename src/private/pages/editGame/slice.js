@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkTypeEnum, questionTypeEnum } from "../../../sharedResources/enum";
+import { checkTypeEnum, pageTypeEnum } from "../../../sharedResources/enum";
 
 const defaultPage = {
   title: "",
@@ -9,7 +9,7 @@ const defaultPage = {
   checkType: Object.keys(checkTypeEnum)[0],
   pointsForSpeed: true,
   file: "",
-  questionType: Object.keys(questionTypeEnum)[0],
+  pageType: Object.keys(pageTypeEnum)[0],
   numberOfOptions: 4,
   answers: [
     { description: "", value: 0 },
@@ -18,7 +18,7 @@ const defaultPage = {
     { description: "", value: 0 },
   ],
 };
-
+// /bf5a635e-07bc-477f-b5ed-03a0931d402a
 const slice = createSlice({
   name: "editGame",
   initialState: {
@@ -27,6 +27,10 @@ const slice = createSlice({
     pages: [defaultPage],
   },
   reducers: {
+    setGame: (state, action) => {
+      state.name = action.payload.name;
+      state.pages = action.payload.pages;
+    },
     setName: (state, action) => {
       state.name = action.payload;
     },
@@ -86,8 +90,8 @@ const slice = createSlice({
     setFile: (state, action) => {
       state.pages[state.currentPage].file = action.payload;
     },
-    setQuestionType: (state, action) => {
-      state.pages[state.currentPage].questionType = action.payload;
+    setPageType: (state, action) => {
+      state.pages[state.currentPage].pageType = action.payload;
     },
     setAnswerDescription: (state, action) => {
       state.pages[state.currentPage].answers[
@@ -126,6 +130,7 @@ const slice = createSlice({
 });
 
 export const {
+  setGame,
   setName,
   setEditing,
   setCurrentPage,
@@ -141,7 +146,7 @@ export const {
   setCheckType,
   //TODO
   // setFile,
-  setQuestionType,
+  setPageType,
   setAnswerDescription,
   setNumberOfOptions,
   setAnswerValue,
