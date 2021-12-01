@@ -7,7 +7,7 @@ the [AWS Amplify getting started guide](https://aws.amazon.com/getting-started/h
 ## Getting started
 
 Make sure you have node.js, npm and Aplify CLI installed globally. Recommended versions are `node@v14.16.1`
-, `npm@v6.14.12` and `@aws-amplify/cli@v6.3.1`. Run `npm ci` in the root directory of this project. Next,
+, `npm@v6.14.12` and `@aws-amplify/cli@v7.5.5`. Run `npm ci` in the root directory of this project. Next,
 run `amplify env pull` to generate the Amplify files.
 
 ## Available Scripts

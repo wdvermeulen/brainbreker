@@ -1,4 +1,4 @@
-const questionTypeEnum = {
+const pageTypeEnum = {
   MULTIPLE_CHOICE: "Multiple choice",
   //TODO
   // OPEN: "Open",
@@ -18,4 +18,4 @@ const checkTypeEnum = {
   // GAMEMASTERS_VOTE: "Game masters vote",
 };
 
-export { questionTypeEnum, checkTypeEnum };
+export { pageTypeEnum, checkTypeEnum };

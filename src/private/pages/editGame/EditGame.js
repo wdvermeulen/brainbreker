@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./EditGame.scss";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { usePage } from "./hooks";
+import { useLoadGame, usePage } from "./hooks";
 import SetupBar from "./setupBar/SetupBar";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
@@ -11,16 +11,19 @@ const EditGame = () => {
   const { gameID } = useParams();
   const gameService = new PrivateGameService();
   const page = usePage();
+  const loadGameToState = useLoadGame();
 
-  useEffect(() => {
+  const loadGame = async () => {
     if (gameID) {
       const {
-        data: {
-          getPrivateGameQuery: { id },
-        },
-      } = gameService.read(gameID);
-      console.log(id);
+        data: { getPrivateGame },
+      } = await gameService.read(gameID);
+      loadGameToState(getPrivateGame);
     }
+  };
+
+  useEffect(() => {
+    loadGame();
   });
 
   function collapse() {

@@ -16,7 +16,7 @@ export const getPrivateGame = /* GraphQL */ `
         file
         pageType
         numberOfOptions
-        privateAnswers {
+        answers {
           description
           value
         }
@@ -50,7 +50,7 @@ export const listPrivateGames = /* GraphQL */ `
           file
           pageType
           numberOfOptions
-          privateAnswers {
+          answers {
             description
             value
           }
@@ -93,7 +93,7 @@ export const syncPrivateGames = /* GraphQL */ `
           file
           pageType
           numberOfOptions
-          privateAnswers {
+          answers {
             description
             value
           }
@@ -151,6 +151,7 @@ export const getPublicGame = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -171,6 +172,7 @@ export const getPublicGame = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -224,6 +226,7 @@ export const listPublicGames = /* GraphQL */ `
                 _lastChangedAt
                 createdAt
                 updatedAt
+                owner
               }
               nextToken
               startedAt
@@ -244,6 +247,7 @@ export const listPublicGames = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -306,6 +310,7 @@ export const syncPublicGames = /* GraphQL */ `
                 _lastChangedAt
                 createdAt
                 updatedAt
+                owner
               }
               nextToken
               startedAt
@@ -326,6 +331,7 @@ export const syncPublicGames = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -358,6 +364,7 @@ export const getTeam = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -392,6 +399,7 @@ export const listTeams = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -435,6 +443,7 @@ export const syncTeams = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -458,6 +467,7 @@ export const getUser = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -479,6 +489,7 @@ export const listUsers = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -509,6 +520,7 @@ export const syncUsers = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt

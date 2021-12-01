@@ -18,7 +18,8 @@ import {
   setQuestionDescription,
   setQuestionTitle,
   setTimeLimit,
-  setQuestionType,
+  setPageType,
+  setGame,
 } from "./slice";
 import PrivateGameService from "../../services/PrivateGameService";
 
@@ -42,7 +43,7 @@ function usePage() {
         dispatch(setQuestionDescription(e.target.value));
       },
     },
-    questionType: {
+    pageType: {
       value: useSelector((state) => state.editGame.type),
     },
     timeLimit: {
@@ -110,10 +111,10 @@ function useSetupBar() {
     questionTitle: useSelector(
       (state) => state.editGame.pages[state.editGame.currentPage].title
     ),
-    questionType: {
+    pageType: {
       value: useSelector((state) => state.editGame.type),
       onChange: (e) => {
-        dispatch(setQuestionType(e.target.value));
+        dispatch(setPageType(e.target.value));
       },
     },
     hasTimeLimit: {
@@ -203,10 +204,25 @@ function useSaveGame() {
     if (gameID) {
       await gameService.update(game);
     } else {
-      const test = await gameService.create(game);
-      console.log(test);
-      // history.push(`${url.EDIT_GAME}${id}`);
+      try {
+        const {
+          data: {
+            createPrivateGame: { id },
+          },
+        } = await gameService.create(game);
+        history.push(`${url.EDIT_GAME}${id}`);
+      } catch (e) {
+        console.error(e.errors[0].message, e.data);
+      }
     }
+  };
+}
+
+function useLoadGame() {
+  const dispatch = useDispatch();
+
+  return function (game) {
+    dispatch(setGame(game));
   };
 }
 
@@ -223,4 +239,4 @@ function usePlayGame() {
   };
 }
 
-export { usePage, useSetupBar };
+export { usePage, useSetupBar, useLoadGame };
