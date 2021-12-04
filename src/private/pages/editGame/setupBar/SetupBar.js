@@ -1,18 +1,19 @@
 import React from "react";
 import "./SetupBar.scss";
-import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
-import { checkTypeEnum, pageTypeEnum } from "../../../../sharedResources/enum";
 import { useSetupBar } from "../hooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
-  faPlay,
-  faSave,
   faTrash,
   faUndo,
 } from "@fortawesome/free-solid-svg-icons";
+import GameSettings from "./setupBarComponents/GameSettings";
+import Overview from "./setupBarComponents/Overview";
+import ScoreSettings from "./setupBarComponents/ScoreSettings";
+import TimeLimit from "./setupBarComponents/TimeLimit";
+import PageSettings from "./setupBarComponents/PageSettings";
 
 const SetupBar = ({ collapse, collapsed }) => {
   const {
@@ -41,7 +42,7 @@ const SetupBar = ({ collapse, collapsed }) => {
   if (selectAnswer.value >= numberOfOptions.value)
     setValue(numberOfOptions.value - 1);
 
-  let predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
+  const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
 
   return (
     <div id="SetupBar">
@@ -67,206 +68,36 @@ const SetupBar = ({ collapse, collapsed }) => {
 
           <hr />
 
-          <div className="row">
-            <label htmlFor="pageType">Soort vraag: </label>
-            <select
-              id="pageType"
-              name="pageType"
-              aria-label="soort vraag"
-              {...pageType}
-            >
-              {Object.entries(pageTypeEnum).map(([key, type]) => (
-                <option key={"pageType-" + key} value={key}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="row">
-            <label htmlFor="numberOfOptions">Aantal opties: </label>
-            <AutosizeInput
-              id="numberOfOptions"
-              name="numberOfOptions"
-              aria-label="Aantal opties"
-              type="number"
-              min="1"
-              max="99"
-              {...numberOfOptions}
-            />
-          </div>
+          <PageSettings pageType={pageType} numberOfOptions={numberOfOptions} />
 
           <hr />
 
-          <div className="row">
-            <input
-              id="hasTimeLimit"
-              name="hasTimeLimit"
-              aria-label="heeft een tijdslimiet"
-              type="checkbox"
-              {...hasTimeLimit}
-            />
-            <label htmlFor="hasTimeLimit">Heeft een tijdslimiet</label>
-          </div>
-
-          <div className="row">
-            {hasTimeLimit.checked && (
-              <>
-                <label htmlFor="timeLimit">Tijdslimiet: </label>
-                <AutosizeInput
-                  id="timeLimit"
-                  name="timeLimit"
-                  aria-label="tijdslimiet in seconden"
-                  type="number"
-                  min="5"
-                  max="1800"
-                  {...timeLimit}
-                />{" "}
-                seconden
-              </>
-            )}
-          </div>
+          <TimeLimit hasTimeLimit={hasTimeLimit} timeLimit={timeLimit} />
 
           <hr />
 
-          <div className="row">
-            <label htmlFor="checkType">Controleren: </label>
-            <select
-              id="checkType"
-              name="checkType"
-              aria-label="Manier van controleren"
-              {...checkType}
-            >
-              {Object.entries(checkTypeEnum).map(([key, type]) => (
-                <option key={"checkType-" + key} value={key}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="row">
-            {hasTimeLimit.checked && predefinedAnswer && (
-              <>
-                <input
-                  id="pointsForSpeed"
-                  name="pointsForSpeed"
-                  aria-label="Punten voor snelheid"
-                  type="checkbox"
-                  {...pointsForSpeed}
-                />
-                <label htmlFor="pointsForSpeed">Punten voor snelheid</label>
-              </>
-            )}
-          </div>
-
-          <div className="row">
-            {predefinedAnswer && (
-              <>
-                <label htmlFor="correctAnswer">Punten voor: </label>
-                <select
-                  id="correctAnswer"
-                  aria-label="Juiste antwoord"
-                  {...selectAnswer}
-                >
-                  {answerValue.values.map((value, i) => (
-                    <option key={"answerValue-" + i} value={i}>
-                      {"antwoord " + (i + 1)}
-                    </option>
-                  ))}
-                </select>
-              </>
-            )}
-          </div>
-
-          <div className="row">
-            {predefinedAnswer && (
-              <>
-                <label htmlFor="rewardValue">
-                  {hasTimeLimit.checked && pointsForSpeed.checked
-                    ? "Maximale b"
-                    : "B"}
-                  eloning voor antwoord {parseInt(selectAnswer.value) + 1}:
-                </label>
-                <AutosizeInput
-                  id="rewardValue"
-                  type="number"
-                  value={answerValue.values[selectAnswer.value]}
-                  onChange={(e) => {
-                    answerValue.onChange(selectAnswer.value, e.target.value);
-                  }}
-                />
-                punt{answerValue.values[selectAnswer.value] !== "1" && "en"}
-              </>
-            )}
-          </div>
-
-          {predefinedAnswer &&
-            answerValue.values.map((value, i) => {
-              if (
-                parseInt(selectAnswer.value) !== i &&
-                value !== 0 &&
-                i < numberOfOptions.value
-              ) {
-                return (
-                  <div className="row" key={"answerValue-" + i}>
-                    <label htmlFor={"answerValue-" + i}>
-                      {hasTimeLimit.checked && pointsForSpeed.checked
-                        ? "Maximale b"
-                        : "B"}
-                      eloning voor antwoord {i + 1}:
-                    </label>
-                    <AutosizeInput
-                      id={"answerValue-" + i}
-                      type="number"
-                      value={answerValue.values[i]}
-                      onChange={(e) => {
-                        answerValue.onChange(i, e.target.value);
-                      }}
-                    />
-                    punt{answerValue.values[i] !== "1" && "en"}
-                  </div>
-                );
-              }
-              return null;
-            })}
-
-          <hr />
-
-          <h3>Overzicht</h3>
-          {pages.map((page, i) => {
-            return (
-              <div
-                className="row"
-                key={page.title + i}
-                onClick={() => {
-                  gotoPage(i);
-                }}
-              >
-                {i + 1}. {page.title}
-              </div>
-            );
-          })}
-          <button className="secondary" onClick={gotoPreviousPage}>
-            <FontAwesomeIcon icon={faChevronLeft} /> Vorige
-          </button>
-          <button onClick={gotoNextPage}>
-            Volgende vraag <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-          <label htmlFor="title">Naam van dit spel: </label>
-          <AutosizeInput
-            id="numberOfOptions"
-            name="numberOfOptions"
-            aria-label="Aantal opties"
-            type="text"
-            {...name}
+          <ScoreSettings
+            checkType={checkType}
+            hasTimeLimit={hasTimeLimit}
+            predefinedAnswer={predefinedAnswer}
+            pointsForSpeed={pointsForSpeed}
+            selectAnswer={selectAnswer}
+            answerValue={answerValue}
+            numberOfOptions={numberOfOptions}
           />
-          <button onClick={saveGame}>
-            <FontAwesomeIcon icon={faSave} /> Opslaan
-          </button>
-          <button onClick={playGame}>
-            <FontAwesomeIcon icon={faPlay} /> Spelen
-          </button>
+
+          <hr />
+
+          <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
+
+          <hr />
+
+          <Overview
+            pages={pages}
+            gotoPage={gotoPage}
+            gotoPreviousPage={gotoPreviousPage}
+            gotoNextPage={gotoNextPage}
+          />
         </div>
       </div>
     </div>

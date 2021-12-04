@@ -126,6 +126,15 @@ export const schema = {
                         "associatedWith": "publicgameID"
                     }
                 },
+                "score": {
+                    "name": "score",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "Scoreboard"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -203,13 +212,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "points": {
-                    "name": "points",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "publicgameID": {
                     "name": "publicgameID",
                     "isArray": false,
@@ -272,18 +274,6 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
@@ -371,6 +361,18 @@ export const schema = {
                                     "read",
                                     "update"
                                 ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -379,15 +381,6 @@ export const schema = {
         }
     },
     "enums": {
-        "CheckType": {
-            "name": "CheckType",
-            "values": [
-                "PREDEFINED_ANSWER",
-                "GAMEMASTERS_AFTERWARDS",
-                "USERS_VOTE",
-                "GAMEMASTERS_VOTE"
-            ]
-        },
         "PageType": {
             "name": "PageType",
             "values": [
@@ -400,9 +393,75 @@ export const schema = {
                 "PUZZLE",
                 "VOTE"
             ]
+        },
+        "CheckType": {
+            "name": "CheckType",
+            "values": [
+                "PREDEFINED_ANSWER",
+                "GAMEMASTERS_AFTERWARDS",
+                "USERS_VOTE",
+                "GAMEMASTERS_VOTE"
+            ]
         }
     },
     "nonModels": {
+        "PublicPage": {
+            "name": "PublicPage",
+            "fields": {
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "hasTimeLimit": {
+                    "name": "hasTimeLimit",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "timeLimit": {
+                    "name": "timeLimit",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "file": {
+                    "name": "file",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pageType": {
+                    "name": "pageType",
+                    "isArray": false,
+                    "type": {
+                        "enum": "PageType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "privateOptions": {
+                    "name": "privateOptions",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                }
+            }
+        },
         "PrivatePage": {
             "name": "PrivatePage",
             "fields": {
@@ -504,63 +563,25 @@ export const schema = {
                 }
             }
         },
-        "PublicPage": {
-            "name": "PublicPage",
+        "Scoreboard": {
+            "name": "Scoreboard",
             "fields": {
-                "title": {
-                    "name": "title",
+                "id": {
+                    "name": "id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "hasTimeLimit": {
-                    "name": "hasTimeLimit",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "timeLimit": {
-                    "name": "timeLimit",
+                "score": {
+                    "name": "score",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
-                },
-                "file": {
-                    "name": "file",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "pageType": {
-                    "name": "pageType",
-                    "isArray": false,
-                    "type": {
-                        "enum": "PageType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "privateOptions": {
-                    "name": "privateOptions",
-                    "isArray": true,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
                 }
             }
         }
     },
-    "version": "ab2db7fc9502890da00a913409be3a04"
+    "version": "5ed0703a431b6f879d3d41cffdbae0c0"
 };

@@ -18,7 +18,7 @@ const HostGame = () => {
           Startcode: {pin}
         </div>
         <div className="glass-tile">Er zijn nog geen deelnemers.</div>
-        <GameLayout {...page} />
+        {false && <GameLayout {...page} />}
       </>
     );
   }

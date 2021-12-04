@@ -111,8 +111,8 @@ export const syncPrivateGames = /* GraphQL */ `
   }
 `;
 export const getPublicGame = /* GraphQL */ `
-  query GetPublicGame($id: ID!) {
-    getPublicGame(id: $id) {
+  query GetPublicGame($pin: String!) {
+    getPublicGame(pin: $pin) {
       id
       pin
       currentPage {
@@ -182,11 +182,19 @@ export const getPublicGame = /* GraphQL */ `
 `;
 export const listPublicGames = /* GraphQL */ `
   query ListPublicGames(
+    $pin: String
     $filter: ModelPublicGameFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listPublicGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublicGames(
+      pin: $pin
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
         id
         pin

@@ -1,3 +1,13 @@
+type PublicPage {
+  title: String!
+  description: String
+  hasTimeLimit: Boolean!
+  timeLimit: Int
+  file: String
+  pageType: PageType
+  privateOptions: [String]
+}
+
 type PrivateGame @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
@@ -28,28 +38,23 @@ type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow
   currentPage: PublicPage
   ConnectedUsers: [User] @connection(keyName: "byPublicGame", fields: ["id"])
   Teams: [Team] @connection(keyName: "byPublicGame", fields: ["id"])
+  score: Scoreboard
 }
 
-type PublicPage {
-  title: String!
-  description: String
-  hasTimeLimit: Boolean!
-  timeLimit: Int
-  file: String
-  pageType: PageType
-  privateOptions: [String]
+type Scoreboard {
+  id: ID!
+  score: Int!
 }
 
-type Team @model @key(name: "byPublicGame", fields: ["publicgameID"]) @auth(rules: [{allow: public, operations: [create, read, update]}]) {
+type Team @model @key(name: "byPublicGame", fields: ["publicgameID"]) @auth(rules: [{allow: public, operations: [create, read, update]}, {allow: owner}]) {
   id: ID!
   Users: [User] @connection(keyName: "byTeam", fields: ["id"])
   publicgameID: ID
 }
 
-type User @model @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) @auth(rules: [{allow: public}, {allow: owner}]) {
+type User @model @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
-  points: Int
   publicgameID: ID
   teamID: ID
 }

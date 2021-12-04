@@ -1,12 +1,5 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
-export enum CheckType {
-  PREDEFINED_ANSWER = "PREDEFINED_ANSWER",
-  GAMEMASTERS_AFTERWARDS = "GAMEMASTERS_AFTERWARDS",
-  USERS_VOTE = "USERS_VOTE",
-  GAMEMASTERS_VOTE = "GAMEMASTERS_VOTE"
-}
-
 export enum PageType {
   MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
   OPEN = "OPEN",
@@ -16,6 +9,24 @@ export enum PageType {
   TITLE_CARD = "TITLE_CARD",
   PUZZLE = "PUZZLE",
   VOTE = "VOTE"
+}
+
+export enum CheckType {
+  PREDEFINED_ANSWER = "PREDEFINED_ANSWER",
+  GAMEMASTERS_AFTERWARDS = "GAMEMASTERS_AFTERWARDS",
+  USERS_VOTE = "USERS_VOTE",
+  GAMEMASTERS_VOTE = "GAMEMASTERS_VOTE"
+}
+
+export declare class PublicPage {
+  readonly title: string;
+  readonly description?: string;
+  readonly hasTimeLimit: boolean;
+  readonly timeLimit?: number;
+  readonly file?: string;
+  readonly pageType?: PageType | keyof typeof PageType;
+  readonly privateOptions?: (string | null)[];
+  constructor(init: ModelInit<PublicPage>);
 }
 
 export declare class PrivatePage {
@@ -38,15 +49,10 @@ export declare class PrivateAnswer {
   constructor(init: ModelInit<PrivateAnswer>);
 }
 
-export declare class PublicPage {
-  readonly title: string;
-  readonly description?: string;
-  readonly hasTimeLimit: boolean;
-  readonly timeLimit?: number;
-  readonly file?: string;
-  readonly pageType?: PageType | keyof typeof PageType;
-  readonly privateOptions?: (string | null)[];
-  constructor(init: ModelInit<PublicPage>);
+export declare class Scoreboard {
+  readonly id: string;
+  readonly score: number;
+  constructor(init: ModelInit<Scoreboard>);
 }
 
 type PrivateGameMetaData = {
@@ -81,6 +87,7 @@ export declare class PublicGame {
   readonly currentPage?: PublicPage;
   readonly ConnectedUsers?: (User | null)[];
   readonly Teams?: (Team | null)[];
+  readonly score?: Scoreboard;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<PublicGame, PublicGameMetaData>);
@@ -90,7 +97,6 @@ export declare class PublicGame {
 export declare class User {
   readonly id: string;
   readonly name: string;
-  readonly points?: number;
   readonly publicgameID?: string;
   readonly teamID?: string;
   readonly createdAt?: string;

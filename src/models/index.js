@@ -2,13 +2,6 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
-const CheckType = {
-  "PREDEFINED_ANSWER": "PREDEFINED_ANSWER",
-  "GAMEMASTERS_AFTERWARDS": "GAMEMASTERS_AFTERWARDS",
-  "USERS_VOTE": "USERS_VOTE",
-  "GAMEMASTERS_VOTE": "GAMEMASTERS_VOTE"
-};
-
 const PageType = {
   "MULTIPLE_CHOICE": "MULTIPLE_CHOICE",
   "OPEN": "OPEN",
@@ -20,16 +13,24 @@ const PageType = {
   "VOTE": "VOTE"
 };
 
-const { PrivateGame, PublicGame, User, Team, PrivatePage, PrivateAnswer, PublicPage } = initSchema(schema);
+const CheckType = {
+  "PREDEFINED_ANSWER": "PREDEFINED_ANSWER",
+  "GAMEMASTERS_AFTERWARDS": "GAMEMASTERS_AFTERWARDS",
+  "USERS_VOTE": "USERS_VOTE",
+  "GAMEMASTERS_VOTE": "GAMEMASTERS_VOTE"
+};
+
+const { PrivateGame, PublicGame, User, Team, PublicPage, PrivatePage, PrivateAnswer, Scoreboard } = initSchema(schema);
 
 export {
   PrivateGame,
   PublicGame,
   User,
   Team,
-  CheckType,
   PageType,
+  CheckType,
+  PublicPage,
   PrivatePage,
   PrivateAnswer,
-  PublicPage
+  Scoreboard
 };
