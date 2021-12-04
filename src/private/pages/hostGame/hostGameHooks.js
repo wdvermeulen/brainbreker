@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
 import PublicGameService from "../../services/PublicGameService";
-import { setGame, setPin } from "./slice";
+import { setGame, setPin } from "./hostGameSlice";
 
 function useHostGame() {
   const dispatch = useDispatch();

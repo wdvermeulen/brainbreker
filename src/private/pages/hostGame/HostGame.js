@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { useHostGame, usePage } from "./hooks";
+import { useHostGame, usePage } from "./hostGameHooks";
 
 const HostGame = () => {
   const { initGame, game, pin } = useHostGame();

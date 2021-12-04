@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import PublicGameService from "../services/PublicGameService";
-import { setGame as setGameToPlay } from "./playGame/slice";
+import { setGame as setGameToPlay } from "./playGame/playGameSlice";
 
 function useGame() {
   const dispatch = useDispatch();

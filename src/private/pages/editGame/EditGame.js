@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./EditGame.scss";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { useLoadGame, usePage } from "./hooks";
+import { useLoadGame, usePage } from "./editGameHooks";
 import SetupBar from "./setupBar/SetupBar";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";

@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const Overview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
+const PageOverview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
   <>
     <h3>Overzicht</h3>
     {pages.map((page, i) => {
@@ -30,4 +30,4 @@ const Overview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
   </>
 );
 
-export default Overview;
+export default PageOverview;

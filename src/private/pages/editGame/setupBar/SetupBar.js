@@ -1,6 +1,6 @@
 import React from "react";
 import "./SetupBar.scss";
-import { useSetupBar } from "../hooks";
+import { useSetupBar } from "../editGameHooks";
 import { useFormInputWithSet } from "../../../../Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,7 +10,7 @@ import {
   faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 import GameSettings from "./setupBarComponents/GameSettings";
-import Overview from "./setupBarComponents/Overview";
+import PageOverview from "./setupBarComponents/PageOverview";
 import ScoreSettings from "./setupBarComponents/ScoreSettings";
 import TimeLimit from "./setupBarComponents/TimeLimit";
 import PageSettings from "./setupBarComponents/PageSettings";
@@ -92,7 +92,7 @@ const SetupBar = ({ collapse, collapsed }) => {
 
           <hr />
 
-          <Overview
+          <PageOverview
             pages={pages}
             gotoPage={gotoPage}
             gotoPreviousPage={gotoPreviousPage}

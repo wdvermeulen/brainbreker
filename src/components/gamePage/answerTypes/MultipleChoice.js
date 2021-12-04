@@ -1,22 +1,22 @@
 import React from "react";
-import "./Answers.scss";
-import AnswerButton from "./AnswerButton";
+import "../Answers.scss";
+import MultipleChoiceButton from "./MultipleChoiceButton";
 
-const Answers = ({ numberOfOptions: { value }, ...props }) => {
+const MultipleChoice = ({ numberOfOptions: { value }, ...props }) => {
   const rows = [];
 
   for (let i = 0; i < value; i++) {
     if (i % 2 === 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton i={i - 1} {...props} />
-          <AnswerButton i={i} {...props} />
+          <MultipleChoiceButton i={i - 1} {...props} />
+          <MultipleChoiceButton i={i} {...props} />
         </div>
       );
     } else if (i === value - 1) {
       rows.push(
         <div className="row" key={"AnswersRow" + i}>
-          <AnswerButton i={i} {...props} />
+          <MultipleChoiceButton i={i} {...props} />
         </div>
       );
     }
@@ -29,4 +29,4 @@ const Answers = ({ numberOfOptions: { value }, ...props }) => {
   );
 };
 
-export default Answers;
+export default MultipleChoice;

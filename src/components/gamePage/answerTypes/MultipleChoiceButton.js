@@ -1,8 +1,8 @@
-import colors from "../../sharedResources/colors.json";
+import colors from "../../../sharedResources/colors.json";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-const AnswerButton = ({
+const MultipleChoiceButton = ({
   useAnswerDescription,
   i,
   useEditing = () => [],
@@ -43,4 +43,4 @@ const AnswerButton = ({
   );
 };
 
-export default AnswerButton;
+export default MultipleChoiceButton;

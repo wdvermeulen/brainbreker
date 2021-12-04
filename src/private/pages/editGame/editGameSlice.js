@@ -18,8 +18,8 @@ const defaultPage = {
     { description: "", value: 0 },
   ],
 };
-// /bf5a635e-07bc-477f-b5ed-03a0931d402a
-const slice = createSlice({
+
+const editGameSlice = createSlice({
   name: "editGame",
   initialState: {
     name: "Game 1",
@@ -150,6 +150,6 @@ export const {
   setAnswerDescription,
   setNumberOfOptions,
   setAnswerValue,
-} = slice.actions;
+} = editGameSlice.actions;
 
-export default slice.reducer;
+export default editGameSlice.reducer;

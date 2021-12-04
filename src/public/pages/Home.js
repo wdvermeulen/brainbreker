@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import Logo from "../../components/logo/Logo";
 import { url } from "../../SiteRoute";
-import { useGame } from "./hooks";
+import { useGame } from "./publicHomeHooks";
 
 const Home = () => {
   const [pin, setPin] = useState("");

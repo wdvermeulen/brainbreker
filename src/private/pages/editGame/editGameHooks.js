@@ -20,7 +20,7 @@ import {
   setTimeLimit,
   setPageType,
   setGame,
-} from "./slice";
+} from "./editGameSlice";
 import PrivateGameService from "../../services/PrivateGameService";
 
 function usePage() {
@@ -201,19 +201,19 @@ function useSaveGame() {
   const gameService = new PrivateGameService();
 
   return async function () {
-    if (gameID) {
-      await gameService.update(game);
-    } else {
-      try {
+    try {
+      if (gameID) {
+        await gameService.update({ ...game, gameID });
+      } else {
         const {
           data: {
             createPrivateGame: { id },
           },
         } = await gameService.create(game);
         history.push(`${url.EDIT_GAME}${id}`);
-      } catch (e) {
-        console.error(e.errors[0].message, e.data);
       }
+    } catch (e) {
+      console.error(e.errors[0].message, e.data);
     }
   };
 }

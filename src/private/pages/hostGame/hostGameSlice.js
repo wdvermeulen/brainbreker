@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const slice = createSlice({
+const hostGameSlice = createSlice({
   name: "hostGame",
   initialState: {
     game: undefined,
@@ -17,6 +17,6 @@ const slice = createSlice({
   },
 });
 
-export const { setGame, setPin } = slice.actions;
+export const { setGame, setPin } = hostGameSlice.actions;
 
-export default slice.reducer;
+export default hostGameSlice.reducer;
