@@ -1,0 +1,87 @@
+type PublicPage {
+  title: String!
+  description: String
+  hasTimeLimit: Boolean!
+  timeLimit: Int
+  file: String
+  pageType: PageType
+  privateOptions: [String]
+}
+
+type PrivateGame @model
+  @auth(rules: [{allow: owner}]) {
+  id: ID!
+  name: String!
+  pages: [PrivatePage!]!
+}
+
+type PrivatePage {
+  title: String!
+  description: String
+  hasTimeLimit: Boolean!
+  timeLimit: Int
+  checkType: CheckType!
+  pointsForSpeed: Boolean!
+  file: String
+  pageType: PageType!
+  numberOfOptions: Int
+  answers: [PrivateAnswer]
+}
+
+type PrivateAnswer {
+  description: String
+  value: Int
+}
+
+type PublicGame @model
+  @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
+  id: ID!
+  pin: Int!
+  name: String!
+  currentPage: PublicPage
+  ConnectedUsers: [User] @connection(keyName: "byPublicGame", fields: ["id"])
+  Teams: [Team] @connection(keyName: "byPublicGame", fields: ["id"])
+  score: [Scoreboard]
+}
+
+type Scoreboard {
+  id: ID!
+  score: Int!
+}
+
+type Team @model
+  @key(name: "byPublicGame", fields: ["publicgameID"])
+  @auth(rules: [{allow: public, operations: [create, read, update]}, {allow: owner}]) {
+  id: ID!
+  Users: [User] @connection(keyName: "byTeam", fields: ["id"])
+  publicgameID: ID
+}
+
+type User @model
+  @key(name: "byPublicGame", fields: ["publicgameID"])
+  @key(name: "byTeam", fields: ["teamID"])
+  @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  name: String!
+  publicgameID: ID
+  teamID: ID
+}
+
+enum PageType {
+  MULTIPLE_CHOICE
+  OPEN
+  OPEN_LIST
+  APPROXIMATION
+  ORDER
+  TITLE_CARD
+  PUZZLE
+  VOTE
+}
+
+enum CheckType {
+  PREDEFINED_ANSWER
+  GAMEMASTERS_AFTERWARDS
+  USERS_VOTE
+  GAMEMASTERS_VOTE
+}
+ 

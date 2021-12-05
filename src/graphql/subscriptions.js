@@ -21,11 +21,11 @@ export const onCreatePrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -50,11 +50,11 @@ export const onUpdatePrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -79,11 +79,11 @@ export const onDeletePrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -93,6 +93,7 @@ export const onCreatePublicGame = /* GraphQL */ `
     onCreatePublicGame(owner: $owner) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -102,59 +103,63 @@ export const onCreatePublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
-        items {
-          id
-          publicgameID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          Users {
-            items {
-              id
-              name
-              points
-              publicgameID
-              teamID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-            startedAt
-          }
-        }
-        nextToken
-        startedAt
-      }
+      privategameID
       ConnectedUsers {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      Teams {
+        items {
+          id
+          Users {
+            items {
+              id
+              name
+              publicgameID
+              teamID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -163,6 +168,7 @@ export const onUpdatePublicGame = /* GraphQL */ `
     onUpdatePublicGame(owner: $owner) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -172,59 +178,63 @@ export const onUpdatePublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
-        items {
-          id
-          publicgameID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          Users {
-            items {
-              id
-              name
-              points
-              publicgameID
-              teamID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-            startedAt
-          }
-        }
-        nextToken
-        startedAt
-      }
+      privategameID
       ConnectedUsers {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      Teams {
+        items {
+          id
+          Users {
+            items {
+              id
+              name
+              publicgameID
+              teamID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -233,6 +243,7 @@ export const onDeletePublicGame = /* GraphQL */ `
     onDeletePublicGame(owner: $owner) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -242,149 +253,153 @@ export const onDeletePublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
+      privategameID
+      ConnectedUsers {
         items {
           id
+          name
           publicgameID
+          teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      Teams {
+        items {
+          id
           Users {
             items {
               id
               name
-              points
               publicgameID
               teamID
+              createdAt
+              updatedAt
               _version
               _deleted
               _lastChangedAt
-              createdAt
-              updatedAt
               owner
             }
             nextToken
             startedAt
           }
-        }
-        nextToken
-        startedAt
-      }
-      ConnectedUsers {
-        items {
-          id
-          name
-          points
           publicgameID
-          teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam {
-    onCreateTeam {
+  subscription OnCreateTeam($owner: String) {
+    onCreateTeam(owner: $owner) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam {
-    onUpdateTeam {
+  subscription OnUpdateTeam($owner: String) {
+    onUpdateTeam(owner: $owner) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
 export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam {
-    onDeleteTeam {
+  subscription OnDeleteTeam($owner: String) {
+    onDeleteTeam(owner: $owner) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -393,14 +408,13 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(owner: $owner) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -410,14 +424,13 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(owner: $owner) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -427,14 +440,13 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(owner: $owner) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }

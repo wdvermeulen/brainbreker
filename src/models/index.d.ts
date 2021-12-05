@@ -83,11 +83,13 @@ export declare class PrivateGame {
 
 export declare class PublicGame {
   readonly id: string;
-  readonly pin: string;
+  readonly pin: number;
+  readonly name: string;
   readonly currentPage?: PublicPage;
+  readonly privategameID?: string;
   readonly ConnectedUsers?: (User | null)[];
   readonly Teams?: (Team | null)[];
-  readonly score?: Scoreboard;
+  readonly score?: (Scoreboard | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<PublicGame, PublicGameMetaData>);

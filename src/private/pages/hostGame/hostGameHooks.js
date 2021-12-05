@@ -7,12 +7,18 @@ import { setGame, setPin } from "./hostGameSlice";
 function useHostGame() {
   const dispatch = useDispatch();
   const { gameID } = useParams();
-  console.log("now");
   return {
     initGame: async function () {
-      const newGame = await new PrivateGameService().read(gameID);
-      dispatch(setGame(newGame));
-      dispatch(setPin(await new PublicGameService().create(newGame)));
+      try {
+        const {
+          data: { getPrivateGame },
+        } = await new PrivateGameService().read(gameID);
+        dispatch(setGame(getPrivateGame));
+        const pin = await new PublicGameService().create(getPrivateGame);
+        dispatch(setPin(pin));
+      } catch (e) {
+        console.error("useHostGame.initGame() error", e);
+      }
     },
     game: useSelector((state) => state.hostGame.game),
     pin: useSelector((state) => state.hostGame.pin),
@@ -23,15 +29,13 @@ function usePage() {
   return {
     questionTitle: {
       value: useSelector(
-        (state) =>
-          state.hostGame.game?.pages.items[state.hostGame.currentPage].title
+        (state) => state.hostGame.game?.pages[state.hostGame.currentPage].title
       ),
     },
     questionDescription: {
       value: useSelector(
         (state) =>
-          state.hostGame.game?.pages.items[state.hostGame.currentPage]
-            .description
+          state.hostGame.game?.pages[state.hostGame.currentPage].description
       ),
     },
     pageType: {
@@ -40,23 +44,22 @@ function usePage() {
     timeLimit: {
       value: useSelector(
         (state) =>
-          state.hostGame.game?.pages.items[state.hostGame.currentPage].timeLimit
+          state.hostGame.game?.pages[state.hostGame.currentPage].timeLimit
       ),
     },
     useAnswerDescription: function (answerIndex) {
       return {
         value: useSelector(
           (state) =>
-            state.hostGame.game?.pages.items[state.hostGame.currentPage]
-              .privateAnswers.items[answerIndex].description
+            state.hostGame.game?.pages[state.hostGame.currentPage]
+              .privateAnswers[answerIndex].description
         ),
       };
     },
     numberOfOptions: {
       value: useSelector(
         (state) =>
-          state.hostGame.game?.pages.items[state.hostGame.currentPage]
-            .numberOfOptions
+          state.hostGame.game?.pages[state.hostGame.currentPage].numberOfOptions
       ),
     },
     currentPage: useSelector((state) => state.hostGame.currentPage),

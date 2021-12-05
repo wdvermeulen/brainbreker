@@ -13,7 +13,7 @@ class PublicGameService {
       );
       return getPublicGame;
     } catch (e) {
-      console.error(e.errors[0].message, e);
+      console.error("PublicGameService.read error", e);
     }
   };
 }

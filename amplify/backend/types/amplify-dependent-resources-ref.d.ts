@@ -13,6 +13,7 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "api": {
         "brainbreker": {
+            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }

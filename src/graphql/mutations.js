@@ -24,11 +24,11 @@ export const createPrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -56,11 +56,11 @@ export const updatePrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -88,11 +88,11 @@ export const deletePrivateGame = /* GraphQL */ `
           value
         }
       }
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -105,6 +105,7 @@ export const createPublicGame = /* GraphQL */ `
     createPublicGame(input: $input, condition: $condition) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -114,59 +115,63 @@ export const createPublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
-        items {
-          id
-          publicgameID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          Users {
-            items {
-              id
-              name
-              points
-              publicgameID
-              teamID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-            startedAt
-          }
-        }
-        nextToken
-        startedAt
-      }
+      privategameID
       ConnectedUsers {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      Teams {
+        items {
+          id
+          Users {
+            items {
+              id
+              name
+              publicgameID
+              teamID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -178,6 +183,7 @@ export const updatePublicGame = /* GraphQL */ `
     updatePublicGame(input: $input, condition: $condition) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -187,59 +193,63 @@ export const updatePublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
-        items {
-          id
-          publicgameID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          Users {
-            items {
-              id
-              name
-              points
-              publicgameID
-              teamID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-            startedAt
-          }
-        }
-        nextToken
-        startedAt
-      }
+      privategameID
       ConnectedUsers {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      Teams {
+        items {
+          id
+          Users {
+            items {
+              id
+              name
+              publicgameID
+              teamID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -251,6 +261,7 @@ export const deletePublicGame = /* GraphQL */ `
     deletePublicGame(input: $input, condition: $condition) {
       id
       pin
+      name
       currentPage {
         title
         description
@@ -260,59 +271,63 @@ export const deletePublicGame = /* GraphQL */ `
         pageType
         privateOptions
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-      Teams {
-        items {
-          id
-          publicgameID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          Users {
-            items {
-              id
-              name
-              points
-              publicgameID
-              teamID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              owner
-            }
-            nextToken
-            startedAt
-          }
-        }
-        nextToken
-        startedAt
-      }
+      privategameID
       ConnectedUsers {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      Teams {
+        items {
+          id
+          Users {
+            items {
+              id
+              name
+              publicgameID
+              teamID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      score {
+        id
+        score
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -323,29 +338,29 @@ export const createTeam = /* GraphQL */ `
   ) {
     createTeam(input: $input, condition: $condition) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -356,29 +371,29 @@ export const updateTeam = /* GraphQL */ `
   ) {
     updateTeam(input: $input, condition: $condition) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -389,29 +404,29 @@ export const deleteTeam = /* GraphQL */ `
   ) {
     deleteTeam(input: $input, condition: $condition) {
       id
-      publicgameID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       Users {
         items {
           id
           name
-          points
           publicgameID
           teamID
+          createdAt
+          updatedAt
           _version
           _deleted
           _lastChangedAt
-          createdAt
-          updatedAt
           owner
         }
         nextToken
         startedAt
       }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
     }
   }
 `;
@@ -423,14 +438,13 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -443,14 +457,13 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }
@@ -463,14 +476,13 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
-      points
       publicgameID
       teamID
+      createdAt
+      updatedAt
       _version
       _deleted
       _lastChangedAt
-      createdAt
-      updatedAt
       owner
     }
   }

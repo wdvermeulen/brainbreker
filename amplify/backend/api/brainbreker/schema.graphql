@@ -32,13 +32,15 @@ type PrivateAnswer {
   value: Int
 }
 
-type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) @key(name: "byPin", fields: ["pin"]) {
+type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
-  pin: String!
+  pin: Int!
+  name: String!
   currentPage: PublicPage
-  ConnectedUsers: [User] @connection(keyName: "byPublicGame", fields: ["id"])
-  Teams: [Team] @connection(keyName: "byPublicGame", fields: ["id"])
-  score: Scoreboard
+  privategameID: ID @index(name: "byPublicGame")
+  ConnectedUsers: [User] @hasMany(indexName: "byPublicGame", fields: ["id"])
+  Teams: [Team] @hasMany(indexName: "byPublicGame", fields: ["id"])
+  score: [Scoreboard]
 }
 
 type Scoreboard {
@@ -46,17 +48,17 @@ type Scoreboard {
   score: Int!
 }
 
-type Team @model @key(name: "byPublicGame", fields: ["publicgameID"]) @auth(rules: [{allow: public, operations: [create, read, update]}, {allow: owner}]) {
+type Team @model @auth(rules: [{allow: public, operations: [create, read, update]}, {allow: owner}]) {
   id: ID!
-  Users: [User] @connection(keyName: "byTeam", fields: ["id"])
-  publicgameID: ID
+  Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
+  publicgameID: ID @index(name: "byPublicGame")
 }
 
-type User @model @key(name: "byPublicGame", fields: ["publicgameID"]) @key(name: "byTeam", fields: ["teamID"]) @auth(rules: [{allow: public}]) {
+type User @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   name: String!
-  publicgameID: ID
-  teamID: ID
+  publicgameID: ID @index(name: "byPublicGame")
+  teamID: ID @index(name: "byTeam")
 }
 
 enum PageType {
@@ -76,4 +78,3 @@ enum CheckType {
   USERS_VOTE
   GAMEMASTERS_VOTE
 }
- 

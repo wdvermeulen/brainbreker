@@ -15,10 +15,14 @@ const EditGame = () => {
 
   const loadGame = async () => {
     if (gameID) {
-      const {
-        data: { getPrivateGame },
-      } = await gameService.read(gameID);
-      loadGameToState(getPrivateGame);
+      try {
+        const {
+          data: { getPrivateGame },
+        } = await gameService.read(gameID);
+        loadGameToState(getPrivateGame);
+      } catch (e) {
+        console.error("EditGame.loadGame() error", e);
+      }
     }
   };
 

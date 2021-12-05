@@ -213,7 +213,7 @@ function useSaveGame() {
         history.push(`${url.EDIT_GAME}${id}`);
       }
     } catch (e) {
-      console.error(e.errors[0].message, e.data);
+      console.error("editGameHooks.useSaveGame() error", e);
     }
   };
 }
@@ -233,6 +233,7 @@ function usePlayGame() {
 
   return async function () {
     await saveGame();
+    console.log("Going to play: ", gameID);
     if (gameID) {
       history.push(`${url.HOST_GAME}${gameID}`);
     }

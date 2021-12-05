@@ -85,6 +85,13 @@ export const schema = {
                 "pin": {
                     "name": "pin",
                     "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
@@ -95,6 +102,13 @@ export const schema = {
                     "type": {
                         "nonModel": "PublicPage"
                     },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "privategameID": {
+                    "name": "privategameID",
+                    "isArray": false,
+                    "type": "ID",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -128,12 +142,13 @@ export const schema = {
                 },
                 "score": {
                     "name": "score",
-                    "isArray": false,
+                    "isArray": true,
                     "type": {
                         "nonModel": "Scoreboard"
                     },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -162,9 +177,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byPin",
+                        "name": "byPublicGame",
                         "fields": [
-                            "pin"
+                            "privategameID"
                         ]
                     }
                 },
@@ -274,6 +289,18 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
@@ -583,5 +610,5 @@ export const schema = {
             }
         }
     },
-    "version": "5ed0703a431b6f879d3d41cffdbae0c0"
+    "version": "0f1944b412b788adc4e138cd1787802b"
 };
