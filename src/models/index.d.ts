@@ -1,5 +1,12 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
+export enum CheckType {
+  PREDEFINED_ANSWER = "PREDEFINED_ANSWER",
+  GAMEMASTERS_AFTERWARDS = "GAMEMASTERS_AFTERWARDS",
+  USERS_VOTE = "USERS_VOTE",
+  GAMEMASTERS_VOTE = "GAMEMASTERS_VOTE"
+}
+
 export enum PageType {
   MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
   OPEN = "OPEN",
@@ -11,22 +18,10 @@ export enum PageType {
   VOTE = "VOTE"
 }
 
-export enum CheckType {
-  PREDEFINED_ANSWER = "PREDEFINED_ANSWER",
-  GAMEMASTERS_AFTERWARDS = "GAMEMASTERS_AFTERWARDS",
-  USERS_VOTE = "USERS_VOTE",
-  GAMEMASTERS_VOTE = "GAMEMASTERS_VOTE"
-}
-
-export declare class PublicPage {
-  readonly title: string;
-  readonly description?: string;
-  readonly hasTimeLimit: boolean;
-  readonly timeLimit?: number;
-  readonly file?: string;
-  readonly pageType?: PageType | keyof typeof PageType;
-  readonly privateOptions?: (string | null)[];
-  constructor(init: ModelInit<PublicPage>);
+export declare class GivenAnswer {
+  readonly PageID: string;
+  readonly Answer: string[];
+  constructor(init: ModelInit<GivenAnswer>);
 }
 
 export declare class PrivatePage {
@@ -39,7 +34,7 @@ export declare class PrivatePage {
   readonly file?: string;
   readonly pageType: PageType | keyof typeof PageType;
   readonly numberOfOptions?: number;
-  readonly answers?: (PrivateAnswer | null)[];
+  readonly answers: (PrivateAnswer | null)[];
   constructor(init: ModelInit<PrivatePage>);
 }
 
@@ -49,10 +44,29 @@ export declare class PrivateAnswer {
   constructor(init: ModelInit<PrivateAnswer>);
 }
 
-export declare class Scoreboard {
+export declare class PublicPage {
+  readonly title: string;
+  readonly description?: string;
+  readonly hasTimeLimit: boolean;
+  readonly timeLimit?: number;
+  readonly file?: string;
+  readonly pageType?: PageType | keyof typeof PageType;
+  readonly answers: (string | null)[];
+  constructor(init: ModelInit<PublicPage>);
+}
+
+export declare class UserScore {
   readonly id: string;
   readonly score: number;
-  constructor(init: ModelInit<Scoreboard>);
+  constructor(init: ModelInit<UserScore>);
+}
+
+type UserListMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type UserMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type PrivateGameMetaData = {
@@ -63,12 +77,29 @@ type PublicGameMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type UserMetaData = {
+type TeamMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TeamMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
+export declare class UserList {
+  readonly id: string;
+  readonly Users?: (User | null)[];
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<UserList, UserListMetaData>);
+  static copyOf(source: UserList, mutator: (draft: MutableModel<UserList, UserListMetaData>) => MutableModel<UserList, UserListMetaData> | void): UserList;
+}
+
+export declare class User {
+  readonly id: string;
+  readonly name: string;
+  readonly givenAnswers?: (GivenAnswer | null)[];
+  readonly teamID?: string;
+  readonly userlistID?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<User, UserMetaData>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }
 
 export declare class PrivateGame {
@@ -87,24 +118,14 @@ export declare class PublicGame {
   readonly name: string;
   readonly currentPage?: PublicPage;
   readonly privategameID?: string;
-  readonly ConnectedUsers?: (User | null)[];
-  readonly Teams?: (Team | null)[];
-  readonly score?: (Scoreboard | null)[];
+  readonly teams: (Team | null)[];
+  readonly score: (UserScore | null)[];
+  readonly userList: UserList;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly publicGameUserListId: string;
   constructor(init: ModelInit<PublicGame, PublicGameMetaData>);
   static copyOf(source: PublicGame, mutator: (draft: MutableModel<PublicGame, PublicGameMetaData>) => MutableModel<PublicGame, PublicGameMetaData> | void): PublicGame;
-}
-
-export declare class User {
-  readonly id: string;
-  readonly name: string;
-  readonly publicgameID?: string;
-  readonly teamID?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }
 
 export declare class Team {

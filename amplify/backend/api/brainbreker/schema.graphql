@@ -1,11 +1,11 @@
-type PublicPage {
-  title: String!
-  description: String
-  hasTimeLimit: Boolean!
-  timeLimit: Int
-  file: String
-  pageType: PageType
-  privateOptions: [String]
+type GivenAnswer {
+  PageID: ID!
+  Answer: [String!]!
+}
+
+type UserList @model @auth(rules: [{allow: public, operations: [read, update]}, {allow: owner}]) {
+  id: ID!
+  Users: [User] @hasMany(indexName: "byUserList", fields: ["id"])
 }
 
 type PrivateGame @model @auth(rules: [{allow: owner}]) {
@@ -24,7 +24,7 @@ type PrivatePage {
   file: String
   pageType: PageType!
   numberOfOptions: Int
-  answers: [PrivateAnswer]
+  answers: [PrivateAnswer]!
 }
 
 type PrivateAnswer {
@@ -38,27 +38,38 @@ type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow
   name: String!
   currentPage: PublicPage
   privategameID: ID @index(name: "byPublicGame")
-  ConnectedUsers: [User] @hasMany(indexName: "byPublicGame", fields: ["id"])
-  Teams: [Team] @hasMany(indexName: "byPublicGame", fields: ["id"])
-  score: [Scoreboard]
+  teams: [Team]! @hasMany(indexName: "byPublicGame", fields: ["id"])
+  score: [UserScore]!
+  userList: UserList! @hasOne
 }
 
-type Scoreboard {
+type PublicPage {
+  title: String!
+  description: String
+  hasTimeLimit: Boolean!
+  timeLimit: Int
+  file: String
+  pageType: PageType
+  answers: [String]!
+}
+
+type UserScore {
   id: ID!
   score: Int!
 }
 
-type Team @model @auth(rules: [{allow: public, operations: [create, read, update]}, {allow: owner}]) {
+type Team @model @auth(rules: [{allow: public}]) {
   id: ID!
   Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
   publicgameID: ID @index(name: "byPublicGame")
 }
 
-type User @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type User @model @auth(rules: [{allow: public, operations: [create, read]}, {allow: owner}]) {
   id: ID!
   name: String!
-  publicgameID: ID @index(name: "byPublicGame")
+  givenAnswers: [GivenAnswer]
   teamID: ID @index(name: "byTeam")
+  userlistID: ID @index(name: "byUserList")
 }
 
 enum PageType {
@@ -78,3 +89,4 @@ enum CheckType {
   USERS_VOTE
   GAMEMASTERS_VOTE
 }
+ 

@@ -1,6 +1,204 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTeam = /* GraphQL */ `
+  subscription OnCreateTeam {
+    onCreateTeam {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateTeam = /* GraphQL */ `
+  subscription OnUpdateTeam {
+    onUpdateTeam {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteTeam = /* GraphQL */ `
+  subscription OnDeleteTeam {
+    onDeleteTeam {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateUserList = /* GraphQL */ `
+  subscription OnCreateUserList($owner: String) {
+    onCreateUserList(owner: $owner) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUserList = /* GraphQL */ `
+  subscription OnUpdateUserList($owner: String) {
+    onUpdateUserList(owner: $owner) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUserList = /* GraphQL */ `
+  subscription OnDeleteUserList($owner: String) {
+    onDeleteUserList(owner: $owner) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
 export const onCreatePrivateGame = /* GraphQL */ `
   subscription OnCreatePrivateGame($owner: String) {
     onCreatePrivateGame(owner: $owner) {
@@ -101,34 +299,22 @@ export const onCreatePublicGame = /* GraphQL */ `
         timeLimit
         file
         pageType
-        privateOptions
+        answers
       }
       privategameID
-      ConnectedUsers {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Teams {
+      teams {
         items {
           id
           Users {
             items {
               id
               name
-              publicgameID
+              givenAnswers {
+                PageID
+                Answer
+              }
               teamID
+              userlistID
               createdAt
               updatedAt
               _version
@@ -145,7 +331,6 @@ export const onCreatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -154,11 +339,41 @@ export const onCreatePublicGame = /* GraphQL */ `
         id
         score
       }
+      userList {
+        id
+        Users {
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
+            }
+            teamID
+            userlistID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      publicGameUserListId
       owner
     }
   }
@@ -176,34 +391,22 @@ export const onUpdatePublicGame = /* GraphQL */ `
         timeLimit
         file
         pageType
-        privateOptions
+        answers
       }
       privategameID
-      ConnectedUsers {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Teams {
+      teams {
         items {
           id
           Users {
             items {
               id
               name
-              publicgameID
+              givenAnswers {
+                PageID
+                Answer
+              }
               teamID
+              userlistID
               createdAt
               updatedAt
               _version
@@ -220,7 +423,6 @@ export const onUpdatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -229,11 +431,41 @@ export const onUpdatePublicGame = /* GraphQL */ `
         id
         score
       }
+      userList {
+        id
+        Users {
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
+            }
+            teamID
+            userlistID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      publicGameUserListId
       owner
     }
   }
@@ -251,34 +483,22 @@ export const onDeletePublicGame = /* GraphQL */ `
         timeLimit
         file
         pageType
-        privateOptions
+        answers
       }
       privategameID
-      ConnectedUsers {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      Teams {
+      teams {
         items {
           id
           Users {
             items {
               id
               name
-              publicgameID
+              givenAnswers {
+                PageID
+                Answer
+              }
               teamID
+              userlistID
               createdAt
               updatedAt
               _version
@@ -295,7 +515,6 @@ export const onDeletePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -304,101 +523,41 @@ export const onDeletePublicGame = /* GraphQL */ `
         id
         score
       }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
-export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam($owner: String) {
-    onCreateTeam(owner: $owner) {
-      id
-      Users {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
+      userList {
+        id
+        Users {
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
+            }
+            teamID
+            userlistID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
         }
-        nextToken
-        startedAt
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
       }
-      publicgameID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      owner
-    }
-  }
-`;
-export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam($owner: String) {
-    onUpdateTeam(owner: $owner) {
-      id
-      Users {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
-export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam($owner: String) {
-    onDeleteTeam(owner: $owner) {
-      id
-      Users {
-        items {
-          id
-          name
-          publicgameID
-          teamID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      publicGameUserListId
       owner
     }
   }
@@ -408,8 +567,12 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(owner: $owner) {
       id
       name
-      publicgameID
+      givenAnswers {
+        PageID
+        Answer
+      }
       teamID
+      userlistID
       createdAt
       updatedAt
       _version
@@ -424,8 +587,12 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(owner: $owner) {
       id
       name
-      publicgameID
+      givenAnswers {
+        PageID
+        Answer
+      }
       teamID
+      userlistID
       createdAt
       updatedAt
       _version
@@ -440,8 +607,12 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(owner: $owner) {
       id
       name
-      publicgameID
+      givenAnswers {
+        PageID
+        Answer
+      }
       teamID
+      userlistID
       createdAt
       updatedAt
       _version

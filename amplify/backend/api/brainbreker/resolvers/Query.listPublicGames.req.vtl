@@ -1,20 +1,4 @@
-## [Start] Set query expression for @key **
-#if( !$util.isNull($ctx.args.sortDirection) )
-  $util.error("sortDirection is not supported for List operations without a Sort key defined.", "InvalidArgumentsError")
-#end
-#set( $modelQueryExpression = {} )
-#if( !$util.isNull($ctx.args.pin) )
-  #set( $modelQueryExpression.expression = "#pin = :pin" )
-  #set( $modelQueryExpression.expressionNames = {
-  "#pin": "pin"
-} )
-  #set( $modelQueryExpression.expressionValues = {
-  ":pin": {
-      "N": "$ctx.args.pin"
-  }
-} )
-#end
-## [End] Set query expression for @key **
+## [Start] List Request. **
 #set( $limit = $util.defaultIfNull($context.args.limit, 100) )
 #set( $ListRequest = {
   "version": "2018-05-29",
@@ -23,13 +7,30 @@
 #if( $context.args.nextToken )
   #set( $ListRequest.nextToken = $context.args.nextToken )
 #end
-#if( $context.args.filter )
-  #set( $ListRequest.filter = $util.parseJson("$util.transform.toDynamoDBFilterExpression($ctx.args.filter)") )
+#if( !$util.isNullOrEmpty($ctx.stash.authFilter) )
+  #set( $filter = $ctx.stash.authFilter )
+  #if( !$util.isNullOrEmpty($ctx.args.filter) )
+    #set( $filter = {
+  "and":   [$filter, $ctx.args.filter]
+} )
+  #end
+#else
+  #if( !$util.isNullOrEmpty($ctx.args.filter) )
+    #set( $filter = $ctx.args.filter )
+  #end
 #end
-#if( !$util.isNull($modelQueryExpression)
-                        && !$util.isNullOrEmpty($modelQueryExpression.expression) )
+#if( !$util.isNullOrEmpty($filter) )
+  #set( $filterExpression = $util.parseJson($util.transform.toDynamoDBFilterExpression($filter)) )
+  #if( !$util.isNullOrBlank($filterExpression.expression) )
+    #if( $filterEpression.expressionValues.size() == 0 )
+      $util.qr($filterEpression.remove("expressionValues"))
+    #end
+    #set( $ListRequest.filter = $filterExpression )
+  #end
+#end
+#if( !$util.isNull($ctx.stash.modelQueryExpression) && !$util.isNullOrEmpty($ctx.stash.modelQueryExpression.expression) )
   $util.qr($ListRequest.put("operation", "Query"))
-  $util.qr($ListRequest.put("query", $modelQueryExpression))
+  $util.qr($ListRequest.put("query", $ctx.stash.modelQueryExpression))
   #if( !$util.isNull($ctx.args.sortDirection) && $ctx.args.sortDirection == "DESC" )
     #set( $ListRequest.scanIndexForward = false )
   #else
@@ -38,4 +39,8 @@
 #else
   $util.qr($ListRequest.put("operation", "Scan"))
 #end
+#if( !$util.isNull($ctx.stash.metadata.index) )
+  #set( $ListRequest.IndexName = $ctx.stash.metadata.index )
+#end
 $util.toJson($ListRequest)
+## [End] List Request. **
