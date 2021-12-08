@@ -34,12 +34,12 @@ type PrivateAnswer {
 
 type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
-  pin: Int!
+  pin: Int! @primaryKey
   name: String!
   currentPage: PublicPage
-  privategameID: ID @index(name: "byPublicGame")
-  teams: [Team]! @hasMany(indexName: "byPublicGame", fields: ["id"])
-  score: [UserScore]!
+  privategameID: ID! @index(name: "byPublicGame")
+  teams: [Team!] @hasMany(indexName: "byPublicGame", fields: ["id"])
+  score: [UserScore!]
   userList: UserList! @hasOne
 }
 
@@ -58,7 +58,7 @@ type UserScore {
   score: Int!
 }
 
-type Team @model @auth(rules: [{allow: public}]) {
+type Team @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
   publicgameID: ID @index(name: "byPublicGame")

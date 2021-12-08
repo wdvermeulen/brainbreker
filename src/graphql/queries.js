@@ -1,127 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
-          }
-          nextToken
-          startedAt
-        }
-        publicgameID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncTeams = /* GraphQL */ `
-  query SyncTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncTeams(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
-          }
-          nextToken
-          startedAt
-        }
-        publicgameID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getUserList = /* GraphQL */ `
   query GetUserList($id: ID!) {
     getUserList(id: $id) {
@@ -397,6 +276,7 @@ export const getPublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -490,6 +370,7 @@ export const listPublicGames = /* GraphQL */ `
             _version
             _deleted
             _lastChangedAt
+            owner
           }
           nextToken
           startedAt
@@ -592,6 +473,7 @@ export const syncPublicGames = /* GraphQL */ `
             _version
             _deleted
             _lastChangedAt
+            owner
           }
           nextToken
           startedAt
@@ -635,6 +517,130 @@ export const syncPublicGames = /* GraphQL */ `
         _deleted
         _lastChangedAt
         publicGameUserListId
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getTeam = /* GraphQL */ `
+  query GetTeam($id: ID!) {
+    getTeam(id: $id) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const listTeams = /* GraphQL */ `
+  query ListTeams(
+    $filter: ModelTeamFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Users {
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
+            }
+            teamID
+            userlistID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
+        }
+        publicgameID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTeams = /* GraphQL */ `
+  query SyncTeams(
+    $filter: ModelTeamFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTeams(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        Users {
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
+            }
+            teamID
+            userlistID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
+        }
+        publicgameID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         owner
       }
       nextToken

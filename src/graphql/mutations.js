@@ -1,114 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTeam = /* GraphQL */ `
-  mutation CreateTeam(
-    $input: CreateTeamInput!
-    $condition: ModelTeamConditionInput
-  ) {
-    createTeam(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateTeam = /* GraphQL */ `
-  mutation UpdateTeam(
-    $input: UpdateTeamInput!
-    $condition: ModelTeamConditionInput
-  ) {
-    updateTeam(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteTeam = /* GraphQL */ `
-  mutation DeleteTeam(
-    $input: DeleteTeamInput!
-    $condition: ModelTeamConditionInput
-  ) {
-    deleteTeam(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      publicgameID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const createUserList = /* GraphQL */ `
   mutation CreateUserList(
     $input: CreateUserListInput!
@@ -361,6 +253,7 @@ export const createPublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -456,6 +349,7 @@ export const updatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -551,6 +445,7 @@ export const deletePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
+          owner
         }
         nextToken
         startedAt
@@ -594,6 +489,117 @@ export const deletePublicGame = /* GraphQL */ `
       _deleted
       _lastChangedAt
       publicGameUserListId
+      owner
+    }
+  }
+`;
+export const createTeam = /* GraphQL */ `
+  mutation CreateTeam(
+    $input: CreateTeamInput!
+    $condition: ModelTeamConditionInput
+  ) {
+    createTeam(input: $input, condition: $condition) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const updateTeam = /* GraphQL */ `
+  mutation UpdateTeam(
+    $input: UpdateTeamInput!
+    $condition: ModelTeamConditionInput
+  ) {
+    updateTeam(input: $input, condition: $condition) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const deleteTeam = /* GraphQL */ `
+  mutation DeleteTeam(
+    $input: DeleteTeamInput!
+    $condition: ModelTeamConditionInput
+  ) {
+    deleteTeam(input: $input, condition: $condition) {
+      id
+      Users {
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
+          }
+          teamID
+          userlistID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
+      publicgameID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }

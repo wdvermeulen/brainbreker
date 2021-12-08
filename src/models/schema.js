@@ -305,9 +305,9 @@ export const schema = {
                     "type": {
                         "model": "Team"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": false,
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "publicgameID"
@@ -319,9 +319,9 @@ export const schema = {
                     "type": {
                         "nonModel": "UserScore"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
-                    "isArrayNullable": false
+                    "isArrayNullable": true
                 },
                 "userList": {
                     "name": "userList",
@@ -474,6 +474,18 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
@@ -710,5 +722,5 @@ export const schema = {
             }
         }
     },
-    "version": "ae390b5cad432805ea0f52d39b96c4d3"
+    "version": "a185651e5626d10b5b5d0a73c7d0b6b1"
 };

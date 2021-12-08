@@ -1,5 +1,5 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { createPublicGame } from "../../graphql/mutations";
+import { createPublicGame, createUserList } from "../../graphql/mutations";
 import PublicGame from "./dataObjects/public/PublicGame";
 
 class PublicGameService {
@@ -8,15 +8,23 @@ class PublicGameService {
 
   create = async (reduxGame) => {
     for (let tries = 0; tries < 10; tries++) {
+      const {
+        data: {
+          createUserList: { id: publicGameUserListId },
+        },
+      } = await API.graphql({
+        ...graphqlOperation(createUserList, { input: {} }),
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
       try {
-        console.log("pin");
+        console.log("publicGameUserListId", publicGameUserListId);
         const {
           data: {
             createPublicGame: { pin },
           },
         } = await API.graphql({
           ...graphqlOperation(createPublicGame, {
-            input: new PublicGame(reduxGame),
+            input: new PublicGame(reduxGame, publicGameUserListId),
           }),
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });

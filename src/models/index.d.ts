@@ -118,8 +118,8 @@ export declare class PublicGame {
   readonly name: string;
   readonly currentPage?: PublicPage;
   readonly privategameID?: string;
-  readonly teams: (Team | null)[];
-  readonly score: (UserScore | null)[];
+  readonly teams?: Team[];
+  readonly score?: UserScore[];
   readonly userList: UserList;
   readonly createdAt?: string;
   readonly updatedAt?: string;
