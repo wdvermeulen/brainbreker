@@ -629,6 +629,111 @@ export const publicGameByPin = /* GraphQL */ `
     }
   }
 `;
+export const publicGameByPrivateGameID = /* GraphQL */ `
+  query PublicGameByPrivateGameID(
+    $privategameID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelPublicGameFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    publicGameByPrivateGameID(
+      privategameID: $privategameID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        pin
+        name
+        currentPage {
+          title
+          description
+          hasTimeLimit
+          timeLimit
+          file
+          pageType
+          answers
+        }
+        privategameID
+        teams {
+          items {
+            id
+            Users {
+              items {
+                id
+                name
+                teamID
+                userlistID
+                createdAt
+                updatedAt
+                _version
+                _deleted
+                _lastChangedAt
+                owner
+              }
+              nextToken
+              startedAt
+            }
+            publicgameID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          startedAt
+        }
+        score {
+          id
+          score
+        }
+        userList {
+          id
+          Users {
+            items {
+              id
+              name
+              givenAnswers {
+                PageID
+                Answer
+              }
+              teamID
+              userlistID
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              owner
+            }
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        publicGameUserListId
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getTeam = /* GraphQL */ `
   query GetTeam($id: ID!) {
     getTeam(id: $id) {

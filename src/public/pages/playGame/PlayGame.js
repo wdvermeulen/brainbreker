@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AutosizeInput from "react-input-autosize";
 import { useParams } from "react-router-dom";
 import Logo from "../../../components/logo/Logo";

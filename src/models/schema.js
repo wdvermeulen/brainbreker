@@ -382,6 +382,7 @@ export const schema = {
                     "type": "key",
                     "properties": {
                         "name": "byPublicGame",
+                        "queryField": "publicGameByPrivateGameID",
                         "fields": [
                             "privategameID"
                         ]

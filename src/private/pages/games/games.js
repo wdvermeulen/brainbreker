@@ -21,7 +21,7 @@ const Games = () => {
 
   useEffect(() => {
     fetchGames(setGames);
-  });
+  }, [setGames]);
 
   return (
     <div className="glass-tile">

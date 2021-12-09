@@ -1,5 +1,6 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { createPublicGame, createUserList } from "../../graphql/mutations";
+import { publicGameByPrivateGameID } from "../../graphql/queries";
 import PublicGame from "./dataObjects/public/PublicGame";
 
 class PublicGameService {
@@ -38,6 +39,19 @@ class PublicGameService {
       }
     }
     throw new Error("Unable to create a valid pin.");
+  };
+  readByPrivateGameID = async (gameID) => {
+    const {
+      data: {
+        publicGameByPrivateGameID: { items },
+      },
+    } = await API.graphql({
+      ...graphqlOperation(publicGameByPrivateGameID, {
+        privategameID: gameID,
+      }),
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    });
+    return items[0];
   };
 }
 

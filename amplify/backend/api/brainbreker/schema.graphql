@@ -37,7 +37,7 @@ type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow
   pin: Int! @index(name: "byPin", queryField: "publicGameByPin")
   name: String!
   currentPage: PublicPage
-  privategameID: ID! @index(name: "byPublicGame")
+  privategameID: ID! @index(name: "byPublicGame", queryField: "publicGameByPrivateGameID")
   teams: [Team!] @hasMany(indexName: "byPublicGame", fields: ["id"])
   score: [UserScore!]
   userList: UserList! @hasOne
@@ -89,4 +89,3 @@ enum CheckType {
   USERS_VOTE
   GAMEMASTERS_VOTE
 }
- 

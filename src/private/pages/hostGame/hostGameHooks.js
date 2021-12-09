@@ -9,15 +9,24 @@ function useHostGame() {
   const { gameID } = useParams();
   return {
     initGame: async function () {
+      const {
+        data: { getPrivateGame },
+      } = await new PrivateGameService().read(gameID);
+      dispatch(setGame(getPrivateGame));
       try {
-        const {
-          data: { getPrivateGame },
-        } = await new PrivateGameService().read(gameID);
-        dispatch(setGame(getPrivateGame));
-        const pin = await new PublicGameService().create(getPrivateGame);
+        const { pin } = await new PublicGameService().readByPrivateGameID(
+          gameID
+        );
         dispatch(setPin(pin));
-      } catch (e) {
-        console.error("useHostGame.initGame() error", e);
+      } catch (e1) {
+        // No existing game found
+        console.log(e1);
+        try {
+          const pin = await new PublicGameService().create(getPrivateGame);
+          dispatch(setPin(pin));
+        } catch (e2) {
+          console.error("useHostGame.initGame() error", e2, e1);
+        }
       }
     },
     game: useSelector((state) => state.hostGame.game),

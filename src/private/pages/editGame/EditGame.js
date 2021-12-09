@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./EditGame.scss";
 import GameLayout from "../../../components/gamePage/GameLayout";
 import { useLoadGame, usePage } from "./editGameHooks";
@@ -31,9 +31,9 @@ const EditGame = () => {
     loadGame(gameID, loadGameToState);
   }, [gameID, loadGameToState]);
 
-  function collapse() {
-    return setCollapsed(!collapsed);
-  }
+  const collapse = useCallback(() => {
+    setCollapsed(!collapsed);
+  }, [collapsed]);
 
   return (
     <div id="EditGame" className="row">
