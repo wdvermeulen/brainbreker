@@ -6,15 +6,15 @@ import Logo from "../../components/logo/Logo";
 import { url } from "../../SiteRoute";
 import { useGame } from "./publicHomeHooks";
 
+function onChangePin(setPin, setGame, event) {
+  const value = event.target.value;
+  setPin(value);
+  if (value.length > 3) setGame(value);
+}
+
 const Home = () => {
   const [pin, setPin] = useState("");
   const { game, setGame } = useGame();
-
-  function onChangePin(event) {
-    const value = event.target.value;
-    setPin(value);
-    if (value.length > 3) setGame(value);
-  }
 
   return (
     <div id="home">
@@ -28,7 +28,7 @@ const Home = () => {
           minLength={4}
           size={4}
           value={pin}
-          onChange={onChangePin}
+          onChange={onChangePin.bind(null, setPin, setGame)}
         />
         <br />
         <Link to={url.PLAY_GAME} disabled={!game}>
