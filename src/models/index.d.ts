@@ -117,7 +117,7 @@ export declare class PublicGame {
   readonly pin: number;
   readonly name: string;
   readonly currentPage?: PublicPage;
-  readonly privategameID?: string;
+  readonly privategameID: string;
   readonly teams?: Team[];
   readonly score?: UserScore[];
   readonly userList: UserList;

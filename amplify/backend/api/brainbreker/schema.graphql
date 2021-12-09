@@ -34,7 +34,7 @@ type PrivateAnswer {
 
 type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
-  pin: Int! @primaryKey
+  pin: Int! @index(name: "byPin", queryField: "publicGameByPin")
   name: String!
   currentPage: PublicPage
   privategameID: ID! @index(name: "byPublicGame")

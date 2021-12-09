@@ -1,17 +1,19 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { getPublicGame as getPublicGameQuery } from "../../graphql/queries";
+import { publicGameByPin } from "../../graphql/queries";
 
 class PublicGameService {
   read = async (pin) => {
     try {
       const {
-        data: { getPublicGame },
+        data: {
+          publicGameByPin: { items },
+        },
       } = await API.graphql(
-        graphqlOperation(getPublicGameQuery, {
+        graphqlOperation(publicGameByPin, {
           pin,
         })
       );
-      return getPublicGame;
+      return items[0];
     } catch (e) {
       console.error("PublicGameService.read error", e);
     }

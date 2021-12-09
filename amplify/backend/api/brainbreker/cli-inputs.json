@@ -13,7 +13,7 @@
       }
     },
     "apiName": "brainbreker",
-    "gqlSchemaPath": "/tmp/amplify-5a51f116-197c-4bdc-bbb7-ce2110a04fb4/amplify/backend/api/brainbreker/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-74b53646-92ed-4158-a3dc-cffd7be328e0/amplify/backend/api/brainbreker/schema.graphql",
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"

@@ -5,6 +5,7 @@ import Games from "./private/pages/games/games";
 import GameTypeSelection from "./private/pages/GameTypeSelection";
 import HostGame from "./private/pages/hostGame/HostGame";
 import Home from "./public/pages/Home";
+import PlayGame from "./public/pages/playGame/PlayGame";
 
 export const url = {
   HOME: "/",
@@ -13,6 +14,7 @@ export const url = {
   HOST_GAME: "/gamemaster/hostgame/",
   GAMES: "/gamemaster/games",
   GAME_TYPE_SELECTION: "/gamemaster",
+  PLAY_GAME: "/q/",
 };
 
 const SiteRoute = () => (
@@ -41,6 +43,11 @@ const SiteRoute = () => (
       <Route path={url.GAME_TYPE_SELECTION}>
         <Authenticated>
           <GameTypeSelection />
+        </Authenticated>
+      </Route>
+      <Route path={`${url.PLAY_GAME}:pin`}>
+        <Authenticated>
+          <PlayGame />
         </Authenticated>
       </Route>
       <Route exact path={url.HOME}>

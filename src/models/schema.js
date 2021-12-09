@@ -296,7 +296,7 @@ export const schema = {
                     "name": "privategameID",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "teams": {
@@ -367,6 +367,16 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPin",
+                        "queryField": "publicGameByPin",
+                        "fields": [
+                            "pin"
+                        ]
+                    }
                 },
                 {
                     "type": "key",
@@ -722,5 +732,5 @@ export const schema = {
             }
         }
     },
-    "version": "a185651e5626d10b5b5d0a73c7d0b6b1"
+    "version": "c63ec5a7c6be716e2a0eb65a534e0874"
 };
