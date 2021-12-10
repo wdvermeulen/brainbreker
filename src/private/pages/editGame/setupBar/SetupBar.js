@@ -1,7 +1,7 @@
 import React from "react";
 import "./SetupBar.scss";
 import { useSetupBar } from "../editGameHooks";
-import { useFormInputWithSet } from "../../../../Utils";
+import { useFormInput } from "../../../../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -37,7 +37,7 @@ const SetupBar = ({ collapse, collapsed }) => {
     currentPage,
   } = useSetupBar();
 
-  const { setValue, ...selectAnswer } = useFormInputWithSet(0);
+  const { setValue, ...selectAnswer } = useFormInput(0);
 
   if (selectAnswer.value >= numberOfOptions.value)
     setValue(numberOfOptions.value - 1);

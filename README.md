@@ -1,14 +1,14 @@
 # Getting Started with Quizzish
 
-This project was bootstrapped with [Create React NewGame](https://github.com/facebook/create-react-app) and based off of
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and based off of
 the [AWS Amplify getting started guide](https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/)
 .
 
 ## Getting started
 
-Make sure you have node.js, npm and Aplify CLI installed globally. Recommended versions are `node@v14.16.1`
-, `npm@v7+` and `@aws-amplify/cli@v7.6.2`. Run `npm ci` in the root directory of this project. Next,
-run `amplify env pull` to generate the Amplify files.
+Make sure you have node.js, npm and Aplify CLI installed globally. Recommended versions are `node@16.13.1`
+, `npm@6.14.12` and `@aws-amplify/cli@7.6.2`. Run `npm ci` in the root directory of this project. Next,
+run `amplify env pull` to generate the Amplify files. You need an AWS account and access to the AWS-resources. 
 
 ## Available Scripts
 
