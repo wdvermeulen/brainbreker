@@ -3,11 +3,6 @@ type GivenAnswer {
   Answer: [String!]!
 }
 
-type UserList @model @auth(rules: [{allow: public, operations: [read, update]}, {allow: owner}]) {
-  id: ID!
-  Users: [User] @hasMany(indexName: "byUserList", fields: ["id"])
-}
-
 type PrivateGame @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String!
@@ -40,7 +35,7 @@ type PublicGame @model @auth(rules: [{allow: public, operations: [read]}, {allow
   privategameID: ID! @index(name: "byPublicGame", queryField: "publicGameByPrivateGameID")
   teams: [Team!] @hasMany(indexName: "byPublicGame", fields: ["id"])
   score: [UserScore!]
-  userList: UserList! @hasOne
+  userList: [User!] @hasMany(indexName: "byPublicGame", fields: ["id"])
 }
 
 type PublicPage {
@@ -58,7 +53,7 @@ type UserScore {
   score: Int!
 }
 
-type Team @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Team @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
   Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
   publicgameID: ID @index(name: "byPublicGame")
@@ -69,7 +64,7 @@ type User @model @auth(rules: [{allow: public, operations: [create, read]}, {all
   name: String!
   givenAnswers: [GivenAnswer]
   teamID: ID @index(name: "byTeam")
-  userlistID: ID @index(name: "byUserList")
+  publicgameID: ID! @index(name: "byPublicGame")
 }
 
 enum PageType {

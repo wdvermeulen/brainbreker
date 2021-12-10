@@ -1,127 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUserList = /* GraphQL */ `
-  query GetUserList($id: ID!) {
-    getUserList(id: $id) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
-export const listUserLists = /* GraphQL */ `
-  query ListUserLists(
-    $filter: ModelUserListFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUserLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
-          }
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserLists = /* GraphQL */ `
-  query SyncUserLists(
-    $filter: ModelUserListFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserLists(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
-          }
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getPrivateGame = /* GraphQL */ `
   query GetPrivateGame($id: ID!) {
     getPrivateGame(id: $id) {
@@ -259,7 +138,7 @@ export const getPublicGame = /* GraphQL */ `
                 Answer
               }
               teamID
-              userlistID
+              publicgameID
               createdAt
               updatedAt
               _version
@@ -286,40 +165,30 @@ export const getPublicGame = /* GraphQL */ `
         score
       }
       userList {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
           }
-          nextToken
-          startedAt
+          teamID
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      publicGameUserListId
       owner
     }
   }
@@ -353,7 +222,7 @@ export const listPublicGames = /* GraphQL */ `
                 id
                 name
                 teamID
-                userlistID
+                publicgameID
                 createdAt
                 updatedAt
                 _version
@@ -380,40 +249,30 @@ export const listPublicGames = /* GraphQL */ `
           score
         }
         userList {
-          id
-          Users {
-            items {
-              id
-              name
-              givenAnswers {
-                PageID
-                Answer
-              }
-              teamID
-              userlistID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-              owner
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
             }
-            nextToken
-            startedAt
+            teamID
+            publicgameID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
           }
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        publicGameUserListId
         owner
       }
       nextToken
@@ -456,7 +315,7 @@ export const syncPublicGames = /* GraphQL */ `
                 id
                 name
                 teamID
-                userlistID
+                publicgameID
                 createdAt
                 updatedAt
                 _version
@@ -483,40 +342,30 @@ export const syncPublicGames = /* GraphQL */ `
           score
         }
         userList {
-          id
-          Users {
-            items {
-              id
-              name
-              givenAnswers {
-                PageID
-                Answer
-              }
-              teamID
-              userlistID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-              owner
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
             }
-            nextToken
-            startedAt
+            teamID
+            publicgameID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
           }
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        publicGameUserListId
         owner
       }
       nextToken
@@ -561,7 +410,7 @@ export const publicGameByPin = /* GraphQL */ `
                 id
                 name
                 teamID
-                userlistID
+                publicgameID
                 createdAt
                 updatedAt
                 _version
@@ -588,40 +437,30 @@ export const publicGameByPin = /* GraphQL */ `
           score
         }
         userList {
-          id
-          Users {
-            items {
-              id
-              name
-              givenAnswers {
-                PageID
-                Answer
-              }
-              teamID
-              userlistID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-              owner
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
             }
-            nextToken
-            startedAt
+            teamID
+            publicgameID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
           }
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        publicGameUserListId
         owner
       }
       nextToken
@@ -666,7 +505,7 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
                 id
                 name
                 teamID
-                userlistID
+                publicgameID
                 createdAt
                 updatedAt
                 _version
@@ -693,40 +532,30 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
           score
         }
         userList {
-          id
-          Users {
-            items {
-              id
-              name
-              givenAnswers {
-                PageID
-                Answer
-              }
-              teamID
-              userlistID
-              createdAt
-              updatedAt
-              _version
-              _deleted
-              _lastChangedAt
-              owner
+          items {
+            id
+            name
+            givenAnswers {
+              PageID
+              Answer
             }
-            nextToken
-            startedAt
+            teamID
+            publicgameID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
           }
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
+          nextToken
+          startedAt
         }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        publicGameUserListId
         owner
       }
       nextToken
@@ -747,7 +576,7 @@ export const getTeam = /* GraphQL */ `
             Answer
           }
           teamID
-          userlistID
+          publicgameID
           createdAt
           updatedAt
           _version
@@ -786,7 +615,7 @@ export const listTeams = /* GraphQL */ `
               Answer
             }
             teamID
-            userlistID
+            publicgameID
             createdAt
             updatedAt
             _version
@@ -834,7 +663,7 @@ export const syncTeams = /* GraphQL */ `
               Answer
             }
             teamID
-            userlistID
+            publicgameID
             createdAt
             updatedAt
             _version
@@ -868,7 +697,7 @@ export const getUser = /* GraphQL */ `
         Answer
       }
       teamID
-      userlistID
+      publicgameID
       createdAt
       updatedAt
       _version
@@ -893,7 +722,7 @@ export const listUsers = /* GraphQL */ `
           Answer
         }
         teamID
-        userlistID
+        publicgameID
         createdAt
         updatedAt
         _version
@@ -927,7 +756,7 @@ export const syncUsers = /* GraphQL */ `
           Answer
         }
         teamID
-        userlistID
+        publicgameID
         createdAt
         updatedAt
         _version

@@ -2,17 +2,22 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Logo from "../../../components/logo/Logo";
 import { useGame } from "../publicHomeHooks";
-import { usePlayGame } from "./playGameHooks";
+import { usePlayGame, useUserList } from "./playGameHooks";
 
 const PlayGame = () => {
   const { game, setGame } = useGame();
   const { pin } = useParams();
   const playGame = usePlayGame();
-  const userName = playGame.userName;
+  const { userName, userList } = playGame;
+  const getUserList = useUserList();
 
   useEffect(() => {
     if (!game && pin.length > 3) setGame(pin);
   }, [game, pin, setGame]);
+
+  useEffect(() => {
+    getUserList();
+  }, []);
 
   return (
     <div id="home">
@@ -29,7 +34,16 @@ const PlayGame = () => {
           {...userName}
         />
       </div>
-      <div className="glass-tile center">Verbonden met: {game?.name}</div>
+      <div className="glass-tile center">
+        <div>Verbonden met: {game?.name}</div>
+        {userList && (
+          <ol>
+            {userList.map((user) => (
+              <li key={user.id}>{user.name}</li>
+            ))}
+          </ol>
+        )}
+      </div>
     </div>
   );
 };

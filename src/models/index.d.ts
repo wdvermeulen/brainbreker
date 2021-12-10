@@ -61,14 +61,6 @@ export declare class UserScore {
   constructor(init: ModelInit<UserScore>);
 }
 
-type UserListMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type UserMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
 type PrivateGameMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -81,25 +73,8 @@ type TeamMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-export declare class UserList {
-  readonly id: string;
-  readonly Users?: (User | null)[];
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<UserList, UserListMetaData>);
-  static copyOf(source: UserList, mutator: (draft: MutableModel<UserList, UserListMetaData>) => MutableModel<UserList, UserListMetaData> | void): UserList;
-}
-
-export declare class User {
-  readonly id: string;
-  readonly name: string;
-  readonly givenAnswers?: (GivenAnswer | null)[];
-  readonly teamID?: string;
-  readonly userlistID?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+type UserMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 export declare class PrivateGame {
@@ -120,10 +95,9 @@ export declare class PublicGame {
   readonly privategameID: string;
   readonly teams?: Team[];
   readonly score?: UserScore[];
-  readonly userList: UserList;
+  readonly userList?: User[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  readonly publicGameUserListId: string;
   constructor(init: ModelInit<PublicGame, PublicGameMetaData>);
   static copyOf(source: PublicGame, mutator: (draft: MutableModel<PublicGame, PublicGameMetaData>) => MutableModel<PublicGame, PublicGameMetaData> | void): PublicGame;
 }
@@ -136,4 +110,16 @@ export declare class Team {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Team, TeamMetaData>);
   static copyOf(source: Team, mutator: (draft: MutableModel<Team, TeamMetaData>) => MutableModel<Team, TeamMetaData> | void): Team;
+}
+
+export declare class User {
+  readonly id: string;
+  readonly name: string;
+  readonly givenAnswers?: (GivenAnswer | null)[];
+  readonly teamID?: string;
+  readonly publicgameID?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<User, UserMetaData>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
 }

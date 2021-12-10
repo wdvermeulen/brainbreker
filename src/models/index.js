@@ -20,14 +20,13 @@ const PageType = {
   "VOTE": "VOTE"
 };
 
-const { UserList, User, PrivateGame, PublicGame, Team, GivenAnswer, PrivatePage, PrivateAnswer, PublicPage, UserScore } = initSchema(schema);
+const { PrivateGame, PublicGame, Team, User, GivenAnswer, PrivatePage, PrivateAnswer, PublicPage, UserScore } = initSchema(schema);
 
 export {
-  UserList,
-  User,
   PrivateGame,
   PublicGame,
   Team,
+  User,
   CheckType,
   PageType,
   GivenAnswer,

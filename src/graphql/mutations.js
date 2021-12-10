@@ -1,114 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUserList = /* GraphQL */ `
-  mutation CreateUserList(
-    $input: CreateUserListInput!
-    $condition: ModelUserListConditionInput
-  ) {
-    createUserList(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
-export const updateUserList = /* GraphQL */ `
-  mutation UpdateUserList(
-    $input: UpdateUserListInput!
-    $condition: ModelUserListConditionInput
-  ) {
-    updateUserList(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
-export const deleteUserList = /* GraphQL */ `
-  mutation DeleteUserList(
-    $input: DeleteUserListInput!
-    $condition: ModelUserListConditionInput
-  ) {
-    deleteUserList(input: $input, condition: $condition) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          userlistID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
-        }
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
-    }
-  }
-`;
 export const createPrivateGame = /* GraphQL */ `
   mutation CreatePrivateGame(
     $input: CreatePrivateGameInput!
@@ -236,7 +128,7 @@ export const createPublicGame = /* GraphQL */ `
                 Answer
               }
               teamID
-              userlistID
+              publicgameID
               createdAt
               updatedAt
               _version
@@ -263,40 +155,30 @@ export const createPublicGame = /* GraphQL */ `
         score
       }
       userList {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
           }
-          nextToken
-          startedAt
+          teamID
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      publicGameUserListId
       owner
     }
   }
@@ -332,7 +214,7 @@ export const updatePublicGame = /* GraphQL */ `
                 Answer
               }
               teamID
-              userlistID
+              publicgameID
               createdAt
               updatedAt
               _version
@@ -359,40 +241,30 @@ export const updatePublicGame = /* GraphQL */ `
         score
       }
       userList {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
           }
-          nextToken
-          startedAt
+          teamID
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      publicGameUserListId
       owner
     }
   }
@@ -428,7 +300,7 @@ export const deletePublicGame = /* GraphQL */ `
                 Answer
               }
               teamID
-              userlistID
+              publicgameID
               createdAt
               updatedAt
               _version
@@ -455,40 +327,30 @@ export const deletePublicGame = /* GraphQL */ `
         score
       }
       userList {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            userlistID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
+        items {
+          id
+          name
+          givenAnswers {
+            PageID
+            Answer
           }
-          nextToken
-          startedAt
+          teamID
+          publicgameID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
         }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      publicGameUserListId
       owner
     }
   }
@@ -509,7 +371,7 @@ export const createTeam = /* GraphQL */ `
             Answer
           }
           teamID
-          userlistID
+          publicgameID
           createdAt
           updatedAt
           _version
@@ -546,7 +408,7 @@ export const updateTeam = /* GraphQL */ `
             Answer
           }
           teamID
-          userlistID
+          publicgameID
           createdAt
           updatedAt
           _version
@@ -583,7 +445,7 @@ export const deleteTeam = /* GraphQL */ `
             Answer
           }
           teamID
-          userlistID
+          publicgameID
           createdAt
           updatedAt
           _version
@@ -617,7 +479,7 @@ export const createUser = /* GraphQL */ `
         Answer
       }
       teamID
-      userlistID
+      publicgameID
       createdAt
       updatedAt
       _version
@@ -640,7 +502,7 @@ export const updateUser = /* GraphQL */ `
         Answer
       }
       teamID
-      userlistID
+      publicgameID
       createdAt
       updatedAt
       _version
@@ -663,7 +525,7 @@ export const deleteUser = /* GraphQL */ `
         Answer
       }
       teamID
-      userlistID
+      publicgameID
       createdAt
       updatedAt
       _version
