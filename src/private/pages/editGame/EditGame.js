@@ -1,10 +1,17 @@
+import { styled } from "@stitches/react";
 import React, { useCallback, useEffect, useState } from "react";
-import "./EditGame.scss";
 import GameLayout from "../../../components/gamePage/GameLayout";
+import Row from "../../../components/Row";
 import { useLoadGame, usePage } from "./editGameHooks";
 import SetupBar from "./setupBar/SetupBar";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
+
+const StyledEditGame = styled(Row, {
+  overflowX: "hidden",
+  overflowY: "auto",
+  height: "100%",
+});
 
 const loadGame = async (gameID, loadGameToState) => {
   const gameService = new PrivateGameService();
@@ -36,10 +43,10 @@ const EditGame = () => {
   }, [collapsed]);
 
   return (
-    <div id="EditGame" className="row">
+    <StyledEditGame>
       <GameLayout {...page} />
       <SetupBar collapse={collapse} collapsed={collapsed} />
-    </div>
+    </StyledEditGame>
   );
 };
 

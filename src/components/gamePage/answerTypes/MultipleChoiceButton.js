@@ -24,7 +24,7 @@ const MultipleChoiceButton = ({
       }}
       key={i}
     >
-      <h3>{i + 1}</h3>
+      <div>{i + 1}</div>
       {editing === "answer" + i ? (
         <>
           <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>

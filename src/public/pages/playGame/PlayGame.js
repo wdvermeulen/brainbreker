@@ -1,8 +1,15 @@
+import { styled } from "@stitches/react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Col from "../../../components/Col";
 import Logo from "../../../components/logo/Logo";
 import { useGame } from "../publicHomeHooks";
 import { usePlayGame, useSubscribeToUser, useUserList } from "./playGameHooks";
+
+const StyledPlayGame = styled(Col, {
+  maxWidth: "30rem",
+  margin: "0 auto",
+});
 
 const getData = async (game, pin, setGame, userList, getUserList) => {
   console.log((!game || game.pin !== pin) && pin.length > 3, game?.pin, pin);
@@ -28,7 +35,7 @@ const PlayGame = () => {
   }, []);
 
   return (
-    <div id="home">
+    <StyledPlayGame>
       <Logo />
       <div className="glass-tile center">
         <div>
@@ -52,7 +59,7 @@ const PlayGame = () => {
           </ol>
         )}
       </div>
-    </div>
+    </StyledPlayGame>
   );
 };
 

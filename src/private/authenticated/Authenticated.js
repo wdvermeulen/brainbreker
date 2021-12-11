@@ -1,3 +1,4 @@
+import { styled } from "@stitches/react";
 import React, { useEffect, useState } from "react";
 import { Auth, I18n } from "aws-amplify";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
@@ -11,6 +12,37 @@ import "./Authenticated.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../components/logo/Logo";
+
+const StyledLogoutBar = styled("div", {
+  borderBottom: "solid white thin",
+  borderRight: "solid white thin",
+  backgroundColor: "rgba(0,0,0,.5)",
+  display: "flex",
+  alignItems: "center",
+  margin: "0 auto 5px 0",
+  borderBottomRightRadius: "10px",
+
+  div: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+
+  button: {
+    margin: "0",
+    borderWidth: "0 1px 0 0",
+    borderRadius: "0",
+  },
+
+  "#Logo": {
+    fontSize: "12px",
+    marginLeft: "10px",
+    marginRight: "10px",
+    h1: {
+      margin: "0",
+    },
+  },
+});
 
 const Authenticated = ({ children }) => {
   const [authState, setAuthState] = useState();
@@ -41,14 +73,14 @@ const Authenticated = ({ children }) => {
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      <div className="logout-bar">
+      <StyledLogoutBar>
         {/*<div>{user?.attributes.email}</div>*/}
         {/*TODO build a user menu*/}
         <button onClick={signOut} className="outline">
           <FontAwesomeIcon icon={faUser} />
         </button>
         <Logo />
-      </div>
+      </StyledLogoutBar>
       {children}
     </>
   ) : (

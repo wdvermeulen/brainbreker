@@ -1,8 +1,23 @@
+import { styled } from "@stitches/react";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
-import "./Question.scss";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
+
+const StyledQuestion = styled("div", {
+  flex: "1 1 auto",
+
+  "input, textarea": {
+    color: "#FFF",
+    background: "none",
+    width: "100%",
+    borderColor: "#FFF",
+  },
+
+  // input: {
+  //   "@include serif-header";
+  // }
+});
 
 const Question = ({
   questionTitle,
@@ -22,7 +37,7 @@ const Question = ({
   };
 
   return (
-    <div id="Question" className="section">
+    <StyledQuestion className="section">
       <div className="glass-tile">
         {editing === "title" ? (
           <>
@@ -60,7 +75,7 @@ const Question = ({
           </div>
         )}
       </div>
-    </div>
+    </StyledQuestion>
   );
 };
 
