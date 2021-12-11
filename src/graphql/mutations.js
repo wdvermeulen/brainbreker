@@ -134,7 +134,6 @@ export const createPublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -169,7 +168,6 @@ export const createPublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -220,7 +218,6 @@ export const updatePublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -255,7 +252,6 @@ export const updatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -306,7 +302,6 @@ export const deletePublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -341,7 +336,6 @@ export const deletePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -377,7 +371,6 @@ export const createTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -414,7 +407,6 @@ export const updateTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -451,7 +443,6 @@ export const deleteTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -485,7 +476,6 @@ export const createUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -508,7 +498,6 @@ export const updateUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
@@ -531,7 +520,6 @@ export const deleteUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

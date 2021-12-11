@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { createUser } from "../../graphql/mutations";
 import { listUsers } from "../../graphql/queries";
+import { onCreateUser as subOnCreateUser } from "../../graphql/subscriptions";
 
 class PublicUserService {
   create = async (name, gameID) => {
@@ -28,6 +29,10 @@ class PublicUserService {
     });
     return items;
   };
+  onCreateUser = API.graphql({
+    ...graphqlOperation(subOnCreateUser),
+    authMode: "API_KEY",
+  });
 }
 
 export default PublicUserService;

@@ -117,7 +117,7 @@ export declare class User {
   readonly name: string;
   readonly givenAnswers?: (GivenAnswer | null)[];
   readonly teamID?: string;
-  readonly publicgameID?: string;
+  readonly publicgameID: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<User, UserMetaData>);

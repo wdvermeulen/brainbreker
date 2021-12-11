@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import PublicUserService from "../../services/PublicUserService";
-import { setUserList, setUserName } from "./playGameSlice";
+import { addUserToList, setUserList, setUserName } from "./playGameSlice";
 
 function usePlayGame() {
   const dispatch = useDispatch();
@@ -20,9 +20,32 @@ function usePlayGame() {
 function useUserList() {
   const dispatch = useDispatch();
   const gameID = useSelector((state) => state.playGame.game?.id);
+  const publicUserService = new PublicUserService();
 
-  const publicUserService2 = new PublicUserService();
   return async () =>
-    dispatch(setUserList(await publicUserService2.readList(gameID)));
+    dispatch(setUserList(await publicUserService.readList(gameID)));
 }
-export { usePlayGame, useUserList };
+
+function useSubscribeToUser() {
+  const dispatch = useDispatch();
+  // const gameID = useSelector((state) => state.playGame.game?.id);
+  const publicUserService = new PublicUserService();
+
+  return async () => {
+    console.log("subscribing");
+    const subscribe = publicUserService.onCreateUser.subscribe({
+      next: async ({
+        value: {
+          data: { onCreateUser },
+        },
+      }) => {
+        dispatch(addUserToList(onCreateUser));
+        console.log(onCreateUser);
+      },
+      error: (error) => console.warn(error),
+    });
+    console.log(subscribe);
+    return subscribe.unsubscribe;
+  };
+}
+export { usePlayGame, useUserList, useSubscribeToUser };

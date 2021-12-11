@@ -122,7 +122,6 @@ export const onCreatePublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -157,7 +156,6 @@ export const onCreatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -205,7 +203,6 @@ export const onUpdatePublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -240,7 +237,6 @@ export const onUpdatePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -288,7 +284,6 @@ export const onDeletePublicGame = /* GraphQL */ `
               _version
               _deleted
               _lastChangedAt
-              owner
             }
             nextToken
             startedAt
@@ -323,7 +318,6 @@ export const onDeletePublicGame = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -356,7 +350,6 @@ export const onCreateTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -390,7 +383,6 @@ export const onUpdateTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -424,7 +416,6 @@ export const onDeleteTeam = /* GraphQL */ `
           _version
           _deleted
           _lastChangedAt
-          owner
         }
         nextToken
         startedAt
@@ -440,8 +431,8 @@ export const onDeleteTeam = /* GraphQL */ `
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($owner: String) {
-    onCreateUser(owner: $owner) {
+  subscription OnCreateUser {
+    onCreateUser {
       id
       name
       givenAnswers {
@@ -455,13 +446,12 @@ export const onCreateUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($owner: String) {
-    onUpdateUser(owner: $owner) {
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       name
       givenAnswers {
@@ -475,13 +465,12 @@ export const onUpdateUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($owner: String) {
-    onDeleteUser(owner: $owner) {
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       name
       givenAnswers {
@@ -495,7 +484,6 @@ export const onDeleteUser = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      owner
     }
   }
 `;

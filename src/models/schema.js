@@ -350,7 +350,7 @@ export const schema = {
                     "name": "publicgameID",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "createdAt": {
@@ -401,16 +401,6 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
@@ -647,5 +637,5 @@ export const schema = {
             }
         }
     },
-    "version": "fd41497016837f452d707493182590fe"
+    "version": "64b3a864360d02ac87d7c3065c67b9a6"
 };
