@@ -16,6 +16,9 @@ const StyledAnswers = styled(Col, {
   },
 
   ".row": {
+    // disabled because this order is the
+    // only way to get the desired effect
+    // eslint-disable-next-line
     "&:first-of-type": {
       "button.answer": {
         borderTopRightRadius: "0",
@@ -29,6 +32,7 @@ const StyledAnswers = styled(Col, {
       marginLeft: "0",
     },
 
+    // eslint-disable-next-line
     "&:last-of-type": {
       "button.answer": {
         borderBottomRightRadius: "0",
@@ -42,6 +46,7 @@ const StyledAnswers = styled(Col, {
       marginRight: "0",
     },
 
+    // eslint-disable-next-line
     "&:first-of-type": {
       "button.answer:first-of-type": {
         borderTopLeftRadius: "20px",
@@ -52,6 +57,7 @@ const StyledAnswers = styled(Col, {
       },
     },
 
+    // eslint-disable-next-line
     "&:last-of-type": {
       "button.answer:first-of-type": {
         borderBottomLeftRadius: "20px",

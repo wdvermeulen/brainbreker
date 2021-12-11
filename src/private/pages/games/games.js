@@ -1,19 +1,32 @@
+import { styled } from "@stitches/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Col from "../../../components/Col";
 import { url } from "../../../SiteRoute";
 import PrivateGameService from "../../services/PrivateGameService";
 
+const StyledGames = styled(Col, {
+  overflowY: "auto",
+  maxWidth: "30rem",
+  margin: "0 auto",
+});
+
 async function fetchGames(setGames) {
   const privateGameService = new PrivateGameService();
-  const readGames = await privateGameService.read();
-  setGames(readGames);
+  const {
+    data: {
+      listPrivateGames: { items },
+    },
+  } = await privateGameService.read();
+  setGames(items);
 }
 
-async function onClickDeleteGame(id) {
+async function onClickDeleteGame({ id, _version }, setGames) {
   const privateGameService = new PrivateGameService();
-  await privateGameService.delete(id);
+  await privateGameService.delete(id, _version);
+  await fetchGames(setGames);
 }
 
 const Games = () => {
@@ -24,16 +37,19 @@ const Games = () => {
   }, [setGames]);
 
   return (
-    <div className="glass-tile">
-      {games.map((game) => (
-        <div className="row" key={game.id}>
+    <StyledGames>
+      {games?.map((game) => (
+        <Col className="glass-tile" key={game.id}>
           <Link to={`${url.EDIT_GAME}${game.id}`}>{game.name}</Link>{" "}
-          <button className="outline" onClick={onClickDeleteGame.bind(game.id)}>
+          <button
+            className="outline"
+            onClick={onClickDeleteGame.bind(null, game, setGames)}
+          >
             <FontAwesomeIcon icon={faTrash} /> Verwijderen
           </button>
-        </div>
+        </Col>
       ))}
-    </div>
+    </StyledGames>
   );
 };
 
