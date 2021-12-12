@@ -23,9 +23,9 @@ async function fetchGames(setGames) {
   setGames(items);
 }
 
-async function onClickDeleteGame({ id, _version }, setGames) {
+async function onClickDeleteGame({ id }, setGames) {
   const privateGameService = new PrivateGameService();
-  await privateGameService.delete(id, _version);
+  await privateGameService.delete(id);
   await fetchGames(setGames);
 }
 

@@ -23,9 +23,6 @@ export const onCreatePrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -52,9 +49,6 @@ export const onUpdatePrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -81,16 +75,13 @@ export const onDeletePrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
 `;
 export const onCreatePublicGame = /* GraphQL */ `
-  subscription OnCreatePublicGame($owner: String) {
-    onCreatePublicGame(owner: $owner) {
+  subscription OnCreatePublicGame {
+    onCreatePublicGame {
       id
       pin
       name
@@ -119,23 +110,14 @@ export const onCreatePublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -153,25 +135,17 @@ export const onCreatePublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdatePublicGame = /* GraphQL */ `
-  subscription OnUpdatePublicGame($owner: String) {
-    onUpdatePublicGame(owner: $owner) {
+  subscription OnUpdatePublicGame {
+    onUpdatePublicGame {
       id
       pin
       name
@@ -200,23 +174,14 @@ export const onUpdatePublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -234,25 +199,17 @@ export const onUpdatePublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeletePublicGame = /* GraphQL */ `
-  subscription OnDeletePublicGame($owner: String) {
-    onDeletePublicGame(owner: $owner) {
+  subscription OnDeletePublicGame {
+    onDeletePublicGame {
       id
       pin
       name
@@ -281,23 +238,14 @@ export const onDeletePublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -315,25 +263,17 @@ export const onDeletePublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
 export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam($owner: String) {
-    onCreateTeam(owner: $owner) {
+  subscription OnCreateTeam {
+    onCreateTeam {
       id
       Users {
         items {
@@ -347,26 +287,18 @@ export const onCreateTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
 export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam($owner: String) {
-    onUpdateTeam(owner: $owner) {
+  subscription OnUpdateTeam {
+    onUpdateTeam {
       id
       Users {
         items {
@@ -380,26 +312,18 @@ export const onUpdateTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
 export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam($owner: String) {
-    onDeleteTeam(owner: $owner) {
+  subscription OnDeleteTeam {
+    onDeleteTeam {
       id
       Users {
         items {
@@ -413,20 +337,12 @@ export const onDeleteTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -443,9 +359,6 @@ export const onCreateUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -462,9 +375,6 @@ export const onUpdateUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -481,9 +391,6 @@ export const onDeleteUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

@@ -23,9 +23,6 @@ export const getPrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -57,56 +54,9 @@ export const listPrivateGames = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
         owner
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPrivateGames = /* GraphQL */ `
-  query SyncPrivateGames(
-    $filter: ModelPrivateGameFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPrivateGames(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        pages {
-          title
-          description
-          hasTimeLimit
-          timeLimit
-          checkType
-          pointsForSpeed
-          file
-          pageType
-          numberOfOptions
-          answers {
-            description
-            value
-          }
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -141,23 +91,14 @@ export const getPublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -175,19 +116,11 @@ export const getPublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -223,23 +156,14 @@ export const listPublicGames = /* GraphQL */ `
                 publicgameID
                 createdAt
                 updatedAt
-                _version
-                _deleted
-                _lastChangedAt
               }
               nextToken
-              startedAt
             }
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
           }
           nextToken
-          startedAt
         }
         score {
           id
@@ -257,113 +181,13 @@ export const listPublicGames = /* GraphQL */ `
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
           }
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPublicGames = /* GraphQL */ `
-  query SyncPublicGames(
-    $filter: ModelPublicGameFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPublicGames(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        pin
-        name
-        currentPage {
-          title
-          description
-          hasTimeLimit
-          timeLimit
-          file
-          pageType
-          answers
-        }
-        privategameID
-        teams {
-          items {
-            id
-            Users {
-              items {
-                id
-                name
-                teamID
-                publicgameID
-                createdAt
-                updatedAt
-                _version
-                _deleted
-                _lastChangedAt
-              }
-              nextToken
-              startedAt
-            }
-            publicgameID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
-          }
-          nextToken
-          startedAt
-        }
-        score {
-          id
-          score
-        }
-        userList {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -407,23 +231,14 @@ export const publicGameByPin = /* GraphQL */ `
                 publicgameID
                 createdAt
                 updatedAt
-                _version
-                _deleted
-                _lastChangedAt
               }
               nextToken
-              startedAt
             }
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
           }
           nextToken
-          startedAt
         }
         score {
           id
@@ -441,22 +256,13 @@ export const publicGameByPin = /* GraphQL */ `
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
           }
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -500,23 +306,14 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
                 publicgameID
                 createdAt
                 updatedAt
-                _version
-                _deleted
-                _lastChangedAt
               }
               nextToken
-              startedAt
             }
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            owner
           }
           nextToken
-          startedAt
         }
         score {
           id
@@ -534,22 +331,13 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
           }
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -569,20 +357,12 @@ export const getTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -607,70 +387,14 @@ export const listTeams = /* GraphQL */ `
             publicgameID
             createdAt
             updatedAt
-            _version
-            _deleted
-            _lastChangedAt
           }
           nextToken
-          startedAt
         }
         publicgameID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncTeams = /* GraphQL */ `
-  query SyncTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncTeams(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
-          nextToken
-          startedAt
-        }
-        publicgameID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -687,9 +411,6 @@ export const getUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -711,45 +432,8 @@ export const listUsers = /* GraphQL */ `
         publicgameID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUsers = /* GraphQL */ `
-  query SyncUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUsers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        givenAnswers {
-          PageID
-          Answer
-        }
-        teamID
-        publicgameID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;

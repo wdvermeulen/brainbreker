@@ -25,13 +25,11 @@ const editGameSlice = createSlice({
     name: "Game 1",
     currentPage: 0,
     pages: [defaultPage],
-    _version: 0,
   },
   reducers: {
     setGame: (state, action) => {
       state.name = action.payload.name;
       state.pages = action.payload.pages;
-      state._version = action.payload._version;
     },
     setName: (state, action) => {
       state.name = action.payload;

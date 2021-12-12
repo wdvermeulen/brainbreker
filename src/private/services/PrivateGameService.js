@@ -42,9 +42,9 @@ class PrivateGameService {
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
 
-  delete = async (id, _version) =>
+  delete = async (id) =>
     API.graphql({
-      ...graphqlOperation(deletePrivateGame, { input: { id, _version } }),
+      ...graphqlOperation(deletePrivateGame, { input: { id } }),
       authMode: "AMAZON_COGNITO_USER_POOLS",
     });
 }

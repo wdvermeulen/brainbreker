@@ -26,9 +26,6 @@ export const createPrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -58,9 +55,6 @@ export const updatePrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -90,9 +84,6 @@ export const deletePrivateGame = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       owner
     }
   }
@@ -131,23 +122,14 @@ export const createPublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -165,19 +147,11 @@ export const createPublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -215,23 +189,14 @@ export const updatePublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -249,19 +214,11 @@ export const updatePublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -299,23 +256,14 @@ export const deletePublicGame = /* GraphQL */ `
               publicgameID
               createdAt
               updatedAt
-              _version
-              _deleted
-              _lastChangedAt
             }
             nextToken
-            startedAt
           }
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          owner
         }
         nextToken
-        startedAt
       }
       score {
         id
@@ -333,19 +281,11 @@ export const deletePublicGame = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -368,20 +308,12 @@ export const createTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -404,20 +336,12 @@ export const updateTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -440,20 +364,12 @@ export const deleteTeam = /* GraphQL */ `
           publicgameID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      owner
     }
   }
 `;
@@ -473,9 +389,6 @@ export const createUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -495,9 +408,6 @@ export const updateUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -517,9 +427,6 @@ export const deleteUser = /* GraphQL */ `
       publicgameID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

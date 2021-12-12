@@ -7,11 +7,7 @@
       "keyDescription": "api key description",
       "expirationTime": 30
     },
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      }
-    },
+    "conflictResolution": {},
     "apiName": "brainbreker",
     "gqlSchemaPath": "/tmp/amplify-74b53646-92ed-4158-a3dc-cffd7be328e0/amplify/backend/api/brainbreker/schema.graphql",
     "additionalAuthTypes": [
