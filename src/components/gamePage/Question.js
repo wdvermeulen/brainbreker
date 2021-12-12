@@ -1,17 +1,17 @@
-import { styled } from "@stitches/react";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { I18n } from "aws-amplify";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
+import { styled } from "../../sharedStyles/theme";
 
 const StyledQuestion = styled("div", {
   flex: "1 1 auto",
 
   "input, textarea": {
-    color: "#FFF",
+    color: "$textLightest",
     background: "none",
     width: "100%",
-    borderColor: "#FFF",
+    borderColor: "$lightest",
   },
 
   // input: {

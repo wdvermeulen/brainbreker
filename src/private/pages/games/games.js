@@ -1,15 +1,15 @@
-import { styled } from "@stitches/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Col from "../../../components/Col";
+import { styled } from "../../../sharedStyles/theme";
 import { url } from "../../../SiteRoute";
 import PrivateGameService from "../../services/PrivateGameService";
 
 const StyledGames = styled(Col, {
   overflowY: "auto",
-  maxWidth: "30rem",
+  maxWidth: "$columnMaxWidth",
   margin: "0 auto",
 });
 

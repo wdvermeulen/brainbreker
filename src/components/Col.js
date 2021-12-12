@@ -1,28 +1,36 @@
-import { styled } from "@stitches/react";
+import { styled } from "../sharedStyles/theme";
 
 const Col = styled("div", {
   display: "flex",
   flexDirection: "column",
   maxWidth: "100%",
-  flex: "1 0 100%",
-  flexBasis: "0",
-  width: "100%",
   variants: {
     gap: {
-      large: {
-        gap: "20px",
+      none: {},
+      small: {
+        gap: "$1",
       },
       medium: {
-        gap: "10px",
+        gap: "$2",
       },
-      small: {
-        gap: "5px",
+      large: {
+        gap: "$3",
       },
-      none: {},
+    },
+    sizing: {
+      auto: {
+        flex: "0 0 auto",
+        width: "auto",
+      },
+      fullWidth: {
+        flex: "1 0",
+        width: "100%",
+      },
     },
   },
   defaultVariants: {
     gap: "large",
+    sizing: "fullWidth",
   },
 });
 

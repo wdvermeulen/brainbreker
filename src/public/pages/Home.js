@@ -1,8 +1,8 @@
-import { styled } from "@stitches/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import Logo from "../../components/logo/Logo";
+import { styled } from "../../sharedStyles/theme";
 import { url } from "../../SiteRoute";
 import { useGame } from "./publicHomeHooks";
 
@@ -13,6 +13,7 @@ const StyledHome = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   margin: "0 auto",
+  maxWidth: "$columnMaxWidth",
 
   button: {
     width: "100%",
@@ -24,7 +25,7 @@ const StyledHome = styled("div", {
     margin: "10px 0",
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    gap: "$2",
 
     "&::before": {
       height: "1px",

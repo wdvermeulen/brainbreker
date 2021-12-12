@@ -1,4 +1,3 @@
-import { styled } from "@stitches/react";
 import React, { useEffect, useState } from "react";
 import { Auth, I18n } from "aws-amplify";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
@@ -12,15 +11,16 @@ import "./Authenticated.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../components/logo/Logo";
+import { styled } from "../../sharedStyles/theme";
 
 const StyledLogoutBar = styled("div", {
-  borderBottom: "solid white thin",
-  borderRight: "solid white thin",
-  backgroundColor: "rgba(0,0,0,.5)",
+  borderBottom: "solid $glassTileBorder thin",
+  borderRight: "solid $glassTileBorder thin",
+  backgroundColor: "$glassTileBackground",
   display: "flex",
   alignItems: "center",
-  margin: "0 auto 5px 0",
-  borderBottomRightRadius: "10px",
+  margin: "0 auto $1 0",
+  borderBottomRightRadius: "$2",
 
   div: {
     whiteSpace: "nowrap",
@@ -30,14 +30,14 @@ const StyledLogoutBar = styled("div", {
 
   button: {
     margin: "0",
-    borderWidth: "0 1px 0 0",
+    borderWidth: "0 $1 0 0",
     borderRadius: "0",
   },
 
   "#Logo": {
-    fontSize: "12px",
-    marginLeft: "10px",
-    marginRight: "10px",
+    fontSize: "$1",
+    marginLeft: "$2",
+    marginRight: "$2",
     h1: {
       margin: "0",
     },

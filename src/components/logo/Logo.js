@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../sharedStyles/theme";
 import { url } from "../../SiteRoute";
 import logo from "./logo.svg";
 import { Link } from "react-router-dom";

@@ -35,41 +35,4 @@ button {
       box-shadow: inset $box-shadow;
     }
   }
-
-  &.big {
-    border-radius: 10px;
-    border: solid 2px;
-    border-bottom-width: 5px;
-    word-wrap: break-word;
-    padding: 5px 10px 10px 10px;
-    flex: 1 1 100%;
-
-    h3 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      float: left;
-      margin-right: 5px;
-    }
-
-    &.answer {
-      background: $color-answer-button-background;
-      color: $color-text-dark;
-    }
-
-    textarea {
-      text-align: center
-    }
-
-    :active {
-      box-shadow: none;
-    }
-
-    > :first-child {
-      margin-top: 0;
-    }
-
-    > :last-child {
-      margin-bottom: 0;
-    }
-  }
 }

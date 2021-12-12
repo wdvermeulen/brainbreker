@@ -1,7 +1,7 @@
-import { styled } from "@stitches/react";
 import React, { useCallback, useEffect, useState } from "react";
 import GameLayout from "../../../components/gamePage/GameLayout";
 import Row from "../../../components/Row";
+import { styled } from "../../../sharedStyles/theme";
 import { useLoadGame, usePage } from "./editGameHooks";
 import SetupBar from "./setupBar/SetupBar";
 import { useParams } from "react-router-dom";

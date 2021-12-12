@@ -1,13 +1,13 @@
-import { styled } from "@stitches/react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
 import Logo from "../../../components/logo/Logo";
+import { styled } from "../../../sharedStyles/theme";
 import { useGame } from "../publicHomeHooks";
 import { usePlayGame, useSubscribeToUser, useUserList } from "./playGameHooks";
 
 const StyledPlayGame = styled(Col, {
-  maxWidth: "30rem",
+  maxWidth: "$columnMaxWidth",
   margin: "0 auto",
 });
 

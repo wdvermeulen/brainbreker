@@ -1,14 +1,14 @@
 import React from "react";
-import { styled } from "@stitches/react";
+import { styled } from "../../sharedStyles/theme";
 import MultipleChoice from "./answerTypes/MultipleChoice";
 import Questions from "./Question";
 import Col from "../Col";
 
 const StyledGameLayout = styled(Col, {
   maxHeight: "100%",
-  maxWidth: "1000px",
+  maxWidth: "$columnMaxWidth",
   margin: "0 auto",
-  padding: "20px",
+  padding: "$3",
   overflow: "auto",
 
   "@keyframes fade-in": {
@@ -27,13 +27,6 @@ const StyledGameLayout = styled(Col, {
     animationName: "fade-in",
     animationDuration: ".3s",
   },
-
-  // ".section": {
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   overflowX: "hidden",
-  //   overflowY: "auto",
-  // },
 });
 
 const GameLayout = (props) => (

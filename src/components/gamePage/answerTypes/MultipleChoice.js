@@ -9,10 +9,43 @@ const StyledAnswers = styled(Col, {
   "&::before": {
     content: "",
     width: "100%",
-    height: "5px",
-    backgroundColor: "#B5179E", // TODO define this
-    borderRadius: "3px",
-    transition: "width .3s linear",
+    height: "$1",
+    backgroundColor: "$light",
+    borderRadius: "$1",
+  },
+
+  button: {
+    borderRadius: "$3",
+    border: "solid $2",
+    borderBottomWidth: "$3",
+    wordWrap: "break-word",
+    padding: "$1 $2 $2 $2",
+    flex: "1 1 100%",
+    background: "$answerButtonBackground",
+    color: "$textDark",
+
+    ".header": {
+      fontSize: "$3",
+      marginBottom: "$2",
+      float: "left",
+      marginRight: "$1",
+    },
+
+    textarea: {
+      textAlign: "center",
+    },
+
+    ":active": {
+      boxShadow: "none",
+    },
+
+    "> :first-child": {
+      marginTop: "$0",
+    },
+
+    "> :last-child": {
+      marginBottom: "$0",
+    },
   },
 
   ".row": {
@@ -21,50 +54,50 @@ const StyledAnswers = styled(Col, {
     // eslint-disable-next-line
     "&:first-of-type": {
       "button.answer": {
-        borderTopRightRadius: "0",
-        borderTopLeftRadius: "0",
+        borderTopRightRadius: "$0",
+        borderTopLeftRadius: "$0",
       },
     },
 
     "button.answer:first-of-type": {
-      borderTopLeftRadius: "0",
-      borderBottomLeftRadius: "0",
-      marginLeft: "0",
+      borderTopLeftRadius: "$0",
+      borderBottomLeftRadius: "$0",
+      marginLeft: "$0",
     },
 
     // eslint-disable-next-line
     "&:last-of-type": {
       "button.answer": {
-        borderBottomRightRadius: "0",
-        borderBottomLeftRadius: "0",
+        borderBottomRightRadius: "$0",
+        borderBottomLeftRadius: "$0",
       },
     },
 
     "button.answer:last-of-type": {
-      borderTopRightRadius: "0",
-      borderBottomRightRadius: "0",
-      marginRight: "0",
+      borderTopRightRadius: "$0",
+      borderBottomRightRadius: "$0",
+      marginRight: "$0",
     },
 
     // eslint-disable-next-line
     "&:first-of-type": {
       "button.answer:first-of-type": {
-        borderTopLeftRadius: "20px",
+        borderTopLeftRadius: "$3",
       },
 
       "button.answer:last-of-type": {
-        borderTopRightRadius: "20px",
+        borderTopRightRadius: "$3",
       },
     },
 
     // eslint-disable-next-line
     "&:last-of-type": {
       "button.answer:first-of-type": {
-        borderBottomLeftRadius: "20px",
+        borderBottomLeftRadius: "$3",
       },
 
       "button.answer:last-of-type": {
-        borderBottomRightRadius: "20px",
+        borderBottomRightRadius: "$3",
       },
     },
   },
