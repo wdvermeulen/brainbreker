@@ -17,6 +17,12 @@
         "brainbreker57346d7a": {},
         "brainbrekerbd2e9a2e": {},
         "brainbreker": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizer4be7a1a0": {
+          "deploymentBucketName": "amplify-amplifye0d52694b4784-staging-105156-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizer4be7a1a0-666661466a59554d2b51-build.zip"
+        }
       }
     }
   }

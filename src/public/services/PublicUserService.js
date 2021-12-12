@@ -9,12 +9,11 @@ class PublicUserService {
       data: {
         createUser: { id },
       },
-    } = await API.graphql({
-      ...graphqlOperation(createUser, {
+    } = await API.graphql(
+      graphqlOperation(createUser, {
         input: { name, publicgameID: gameID },
-      }),
-      authMode: "API_KEY",
-    });
+      })
+    );
     return id;
   };
   readList = async (gameID) => {
@@ -22,17 +21,14 @@ class PublicUserService {
       data: {
         listUsers: { items },
       },
-    } = await API.graphql({
-      ...graphqlOperation(listUsers, {
+    } = await API.graphql(
+      graphqlOperation(listUsers, {
         filter: { publicgameID: { eq: gameID } },
-      }),
-    });
+      })
+    );
     return items;
   };
-  onCreateUser = API.graphql({
-    ...graphqlOperation(subOnCreateUser),
-    authMode: "API_KEY",
-  });
+  onCreateUser = API.graphql(graphqlOperation(subOnCreateUser));
 }
 
 export default PublicUserService;

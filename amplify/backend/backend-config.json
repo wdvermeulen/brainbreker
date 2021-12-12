@@ -28,7 +28,7 @@
     }
   },
   "api": {
-    "brainbreker": {
+    "quizzish": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -36,23 +36,38 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDays": 365,
+              "apiKeyExpirationDate": "2022-12-12T11:20:32.045Z",
+              "description": "quizzish-api-key"
             }
           },
           "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            },
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
                 "userPoolId": "authbrainbreker"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AWS_LAMBDA",
+              "lambdaAuthorizerConfig": {
+                "lambdaFunction": "graphQlLambdaAuthorizer4be7a1a0",
+                "ttlSeconds": "300"
+              }
             }
           ]
         }
       }
+    }
+  },
+  "function": {
+    "graphQlLambdaAuthorizer4be7a1a0": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   }
 }

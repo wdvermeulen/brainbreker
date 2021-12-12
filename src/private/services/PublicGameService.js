@@ -14,12 +14,11 @@ class PublicGameService {
           data: {
             createPublicGame: { pin },
           },
-        } = await API.graphql({
-          ...graphqlOperation(createPublicGame, {
+        } = await API.graphql(
+          graphqlOperation(createPublicGame, {
             input: new PublicGame(reduxGame),
-          }),
-          authMode: "AMAZON_COGNITO_USER_POOLS",
-        });
+          })
+        );
         return pin;
       } catch (e) {
         if (!this.#hasPinBeenRejected(e)) {
@@ -35,12 +34,11 @@ class PublicGameService {
       data: {
         publicGameByPrivateGameID: { items },
       },
-    } = await API.graphql({
-      ...graphqlOperation(publicGameByPrivateGameID, {
+    } = await API.graphql(
+      graphqlOperation(publicGameByPrivateGameID, {
         privategameID: gameID,
-      }),
-      authMode: "AMAZON_COGNITO_USER_POOLS",
-    });
+      })
+    );
     return items[0];
   };
 }

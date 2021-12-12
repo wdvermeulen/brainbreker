@@ -1,6 +1,6 @@
 projects:
-  brainbreker:
-    schemaPath: amplify/backend/api/brainbreker/build/schema.graphql
+  quizzish:
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
     excludes:

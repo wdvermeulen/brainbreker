@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "quizzish",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": ".\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2022-12-12T11:20:32.045Z",
+      "keyDescription": "quizzish-api-key"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authbrainbreker"
+      },
+      {
+        "mode": "AWS_IAM"
+      },
+      {
+        "mode": "AWS_LAMBDA",
+        "lambdaFunction": "graphQlLambdaAuthorizer4be7a1a0",
+        "ttlSeconds": "300"
+      }
+    ]
+  }
+}

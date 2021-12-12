@@ -12,10 +12,18 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "brainbreker": {
+        "quizzish": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
+        }
+    },
+    "function": {
+        "graphQlLambdaAuthorizer4be7a1a0": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     }
 }
