@@ -14,40 +14,6 @@ const StyledAnswers = styled(Col, {
     borderRadius: "$1",
   },
 
-  button: {
-    borderRadius: "$3",
-    border: "solid $2",
-    borderBottomWidth: "$3",
-    wordWrap: "break-word",
-    padding: "$1 $2 $2 $2",
-    flex: "1 1 100%",
-    background: "$answerButtonBackground",
-    color: "$textDark",
-
-    ".header": {
-      fontSize: "$3",
-      marginBottom: "$2",
-      float: "left",
-      marginRight: "$1",
-    },
-
-    textarea: {
-      textAlign: "center",
-    },
-
-    ":active": {
-      boxShadow: "none",
-    },
-
-    "> :first-child": {
-      marginTop: "$0",
-    },
-
-    "> :last-child": {
-      marginBottom: "$0",
-    },
-  },
-
   ".row": {
     // disabled because this order is the
     // only way to get the desired effect
