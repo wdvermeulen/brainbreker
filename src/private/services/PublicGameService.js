@@ -7,7 +7,7 @@ class PublicGameService {
   #hasPinBeenRejected = (e) =>
     e.errors[0].errorType === "DynamoDB:ConditionalCheckFailedException";
 
-  create = async (reduxGame) => {
+  create = async (reduxGame, hostID) => {
     for (let tries = 0; tries < 10; tries++) {
       try {
         const {
@@ -16,7 +16,7 @@ class PublicGameService {
           },
         } = await API.graphql(
           graphqlOperation(createPublicGame, {
-            input: new PublicGame(reduxGame),
+            input: new PublicGame(reduxGame, hostID),
           })
         );
         return pin;

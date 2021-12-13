@@ -37,6 +37,7 @@ type PublicGame @model {
   name: String!
   currentPage: PublicPage
   privategameID: ID! @index(name: "byPublicGame", queryField: "publicGameByPrivateGameID")
+  hostPeerID: ID!
   teams: [Team!] @hasMany(indexName: "byPublicGame", fields: ["id"])
   score: [UserScore!]
   userList: [User!] @hasMany(indexName: "byPublicGame", fields: ["id"])

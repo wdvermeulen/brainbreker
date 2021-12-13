@@ -1,33 +1,42 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import PeerConnection from "../../../PeerConnection";
 import PrivateGameService from "../../services/PrivateGameService";
 import PublicGameService from "../../services/PublicGameService";
-import { setGame, setPin } from "./hostGameSlice";
+import { setGame, setPin, setUserID } from "./hostGameSlice";
 
 function useHostGame() {
   const dispatch = useDispatch();
   const { gameID } = useParams();
+  const peerConnection = new PeerConnection();
+
   return {
     initGame: async function () {
       const {
         data: { getPrivateGame },
       } = await new PrivateGameService().read(gameID);
       dispatch(setGame(getPrivateGame));
-      try {
-        const { pin } = await new PublicGameService().readByPrivateGameID(
-          gameID
-        );
-        dispatch(setPin(pin));
-      } catch (e1) {
-        // No existing game found
-        console.log(e1);
+      peerConnection.connect(async (userID) => {
+        dispatch(setUserID(userID));
         try {
-          const pin = await new PublicGameService().create(getPrivateGame);
+          const { pin } = await new PublicGameService().readByPrivateGameID(
+            gameID
+          );
           dispatch(setPin(pin));
-        } catch (e2) {
-          console.error("useHostGame.initGame() error", e2, e1);
+        } catch (e1) {
+          // No existing game found
+          console.log(e1);
+          try {
+            const pin = await new PublicGameService().create(
+              getPrivateGame,
+              userID
+            );
+            dispatch(setPin(pin));
+          } catch (e2) {
+            console.error("useHostGame.initGame() error", e2, e1);
+          }
         }
-      }
+      });
     },
     game: useSelector((state) => state.hostGame.game),
     pin: useSelector((state) => state.hostGame.pin),

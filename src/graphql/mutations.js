@@ -20,6 +20,7 @@ export const createPublicGame = /* GraphQL */ `
         answers
       }
       privategameID
+      hostPeerID
       teams {
         items {
           id
@@ -87,6 +88,7 @@ export const updatePublicGame = /* GraphQL */ `
         answers
       }
       privategameID
+      hostPeerID
       teams {
         items {
           id
@@ -154,6 +156,7 @@ export const deletePublicGame = /* GraphQL */ `
         answers
       }
       privategameID
+      hostPeerID
       teams {
         items {
           id

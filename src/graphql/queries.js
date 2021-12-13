@@ -17,6 +17,7 @@ export const getPublicGame = /* GraphQL */ `
         answers
       }
       privategameID
+      hostPeerID
       teams {
         items {
           id
@@ -86,6 +87,7 @@ export const listPublicGames = /* GraphQL */ `
           answers
         }
         privategameID
+        hostPeerID
         teams {
           items {
             id
@@ -257,6 +259,7 @@ export const publicGameByPin = /* GraphQL */ `
           answers
         }
         privategameID
+        hostPeerID
         teams {
           items {
             id
@@ -332,6 +335,7 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
           answers
         }
         privategameID
+        hostPeerID
         teams {
           items {
             id

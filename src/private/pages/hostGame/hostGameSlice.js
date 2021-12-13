@@ -6,6 +6,7 @@ const hostGameSlice = createSlice({
     game: undefined,
     currentPage: 0,
     pin: 0,
+    userID: null,
   },
   reducers: {
     setGame: (state, { payload }) => {
@@ -14,9 +15,12 @@ const hostGameSlice = createSlice({
     setPin: (state, { payload }) => {
       state.pin = payload;
     },
+    setUserID: (state, { payload }) => {
+      state.userID = payload;
+    },
   },
 });
 
-export const { setGame, setPin } = hostGameSlice.actions;
+export const { setGame, setPin, setUserID } = hostGameSlice.actions;
 
 export default hostGameSlice.reducer;
