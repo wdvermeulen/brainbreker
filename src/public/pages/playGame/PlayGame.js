@@ -4,7 +4,12 @@ import Col from "../../../components/Col";
 import Logo from "../../../components/logo/Logo";
 import { styled } from "../../../sharedStyles/theme";
 import { useGame } from "../publicHomeHooks";
-import { usePlayGame, useSubscribeToUser, useUserList } from "./playGameHooks";
+import {
+  useOnClickJoin,
+  usePlayGame,
+  useSubscribeToUser,
+  useUserList,
+} from "./playGameHooks";
 
 const StyledPlayGame = styled(Col, {
   maxWidth: "$columnMaxWidth",
@@ -15,7 +20,7 @@ const getData = async (game, pin, setGame, userList, getUserList) => {
   console.log((!game || game.pin !== pin) && pin.length > 3, game?.pin, pin);
   if ((!game || game.pin.toString() !== pin) && pin.length > 3)
     await setGame(pin);
-  if (userList.length === 0) await getUserList();
+  if (userList === null) await getUserList();
 };
 
 const PlayGame = () => {
@@ -25,6 +30,7 @@ const PlayGame = () => {
   const { userName, userList } = playGame;
   const getUserList = useUserList();
   const subscribeToUser = useSubscribeToUser();
+  const onClickJoin = useOnClickJoin();
 
   useEffect(() => {
     getData(game, pin, setGame, userList, getUserList);
@@ -48,6 +54,7 @@ const PlayGame = () => {
           minLength={1}
           {...userName}
         />
+        <button onClick={onClickJoin}>Verbind</button>
       </div>
       <div className="glass-tile center">
         <div>Verbonden met: {game?.name}</div>

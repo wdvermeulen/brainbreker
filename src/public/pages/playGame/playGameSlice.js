@@ -6,7 +6,7 @@ const playGameSlice = createSlice({
   initialState: {
     userName: getRandomName(),
     currentPage: 0,
-    userList: [],
+    userList: null,
   },
   reducers: {
     setGame: (state, { payload }) => {

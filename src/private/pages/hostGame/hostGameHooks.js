@@ -8,7 +8,7 @@ import { setGame, setPin, setUserID } from "./hostGameSlice";
 function useHostGame() {
   const dispatch = useDispatch();
   const { gameID } = useParams();
-  const peerConnection = new PeerConnection();
+  const peerConnection = new PeerConnection(console.log);
 
   return {
     initGame: async function () {
