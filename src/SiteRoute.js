@@ -6,6 +6,7 @@ import GameTypeSelection from "./private/pages/GameTypeSelection";
 import HostGame from "./private/pages/hostGame/HostGame";
 import Home from "./public/pages/Home";
 import PlayGame from "./public/pages/playGame/PlayGame";
+import PeerConnection from "./peer/PeerConnection";
 
 export const url = {
   HOME: "/",

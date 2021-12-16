@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PeerConnection from "../../../PeerConnection";
+import { PeerContext } from "../../../peer/PeerConnection";
 import PublicUserService from "../../services/PublicUserService";
 import { addUserToList, setUserList, setUserName } from "./playGameSlice";
 
@@ -17,13 +18,14 @@ function usePlayGame() {
 
 function useOnClickJoin() {
   const publicUserService = new PublicUserService();
+  const peerContext = useContext(PeerContext);
   const gameID = useSelector((state) => state.playGame.game?.id);
   const userName = useSelector((state) => state.playGame.userName);
   const hostPeerID = useSelector((state) => state.playGame.game?.hostPeerID);
-  const peerConnection = new PeerConnection(console.log);
   return () => {
     publicUserService.create(userName, gameID);
-    if (hostPeerID) peerConnection.connectTo(hostPeerID);
+    debugger;
+    peerContext.connectTo(hostPeerID, userName);
   };
 }
 
@@ -42,7 +44,6 @@ function useSubscribeToUser() {
   const publicUserService = new PublicUserService();
 
   return async () => {
-    console.log("subscribing");
     const subscribe = publicUserService.onCreateUser.subscribe({
       next: async ({
         value: {
@@ -50,11 +51,9 @@ function useSubscribeToUser() {
         },
       }) => {
         dispatch(addUserToList(onCreateUser));
-        console.log(onCreateUser);
       },
       error: (error) => console.warn(error),
     });
-    console.log(subscribe);
     return subscribe.unsubscribe;
   };
 }

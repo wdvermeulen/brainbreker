@@ -17,7 +17,6 @@ const StyledPlayGame = styled(Col, {
 });
 
 const getData = async (game, pin, setGame, userList, getUserList) => {
-  console.log((!game || game.pin !== pin) && pin.length > 3, game?.pin, pin);
   if ((!game || game.pin.toString() !== pin) && pin.length > 3)
     await setGame(pin);
   if (userList === null) await getUserList();

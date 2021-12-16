@@ -5,7 +5,6 @@ import GameLayout from "../../../components/gamePage/GameLayout";
 import { styled } from "../../../sharedStyles/theme";
 import { url } from "../../../SiteRoute";
 import { useHostGame, usePage } from "./hostGameHooks";
-import PeerConnection from "../../../PeerConnection";
 
 const StyledHostGame = styled(Col, {
   maxWidth: "30rem",
@@ -13,9 +12,11 @@ const StyledHostGame = styled(Col, {
 });
 
 const HostGame = () => {
-  const { initGame, game, pin } = useHostGame();
+  const { initGame, game, pin, players } = useHostGame();
   const page = usePage();
   const gameUrl = window.location.origin + url.PLAY_GAME + pin;
+
+  console.log("players", players);
 
   useEffect(() => {
     if (!game) {

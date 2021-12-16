@@ -18,9 +18,9 @@ const getRandomInt = (min, max) =>
   Math.floor(Math.random() * (max - min)) + min;
 
 const getRandomName = () =>
-  adjectives.default[getRandomInt(0, adjectives.default.length + 1)] +
+  adjectives.default[getRandomInt(0, adjectives.default.length)] +
   " " +
-  animals.default[getRandomInt(0, animals.default.length + 1)];
+  animals.default[getRandomInt(0, animals.default.length)];
 
 const getRandomPassword = () => {
   const charset = "abcdefghjklmnpqrstwxyz23456789"; // Only non-confusing characters
