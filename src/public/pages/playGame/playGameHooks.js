@@ -24,7 +24,6 @@ function useOnClickJoin() {
   const hostPeerID = useSelector((state) => state.playGame.game?.hostPeerID);
   return () => {
     publicUserService.create(userName, gameID);
-    debugger;
     peerContext.connectTo(hostPeerID, userName);
   };
 }
@@ -44,6 +43,7 @@ function useSubscribeToUser() {
   const publicUserService = new PublicUserService();
 
   return async () => {
+    console.log("new subscription");
     const subscribe = publicUserService.onCreateUser.subscribe({
       next: async ({
         value: {
@@ -54,7 +54,7 @@ function useSubscribeToUser() {
       },
       error: (error) => console.warn(error),
     });
-    return subscribe.unsubscribe;
+    return () => console.log("unsubscribe subscription");
   };
 }
 export { usePlayGame, useOnClickJoin, useUserList, useSubscribeToUser };

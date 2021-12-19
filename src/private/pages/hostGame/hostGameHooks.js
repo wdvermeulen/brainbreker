@@ -7,31 +7,30 @@ import { setGame, setPin } from "./hostGameSlice";
 function useHostGame() {
   const dispatch = useDispatch();
   const { gameID } = useParams();
-  const myID = useSelector((state) => state.peer.myID);
+
+  const initGame = async (myID) => {
+    const {
+      data: { getPrivateGame },
+    } = await new PrivateGameService().read(gameID);
+    dispatch(setGame(getPrivateGame));
+    try {
+      const game = await new PublicGameService().readByPrivateGameID(gameID);
+      dispatch(setPin(game.pin));
+      game.hostID = myID;
+      await new PublicGameService().update(game);
+    } catch (e1) {
+      try {
+        const pin = await new PublicGameService().create(getPrivateGame, myID);
+        dispatch(setPin(pin));
+      } catch (e2) {
+        console.error("useHostGame.initGame() error", e2, e1);
+      }
+    }
+  };
 
   return {
-    initGame: async function () {
-      const {
-        data: { getPrivateGame },
-      } = await new PrivateGameService().read(gameID);
-      dispatch(setGame(getPrivateGame));
-      try {
-        const { pin } = await new PublicGameService().readByPrivateGameID(
-          gameID
-        );
-        dispatch(setPin(pin));
-      } catch (e1) {
-        try {
-          const pin = await new PublicGameService().create(
-            getPrivateGame,
-            myID
-          );
-          dispatch(setPin(pin));
-        } catch (e2) {
-          console.error("useHostGame.initGame() error", e2, e1);
-        }
-      }
-    },
+    initGame,
+    myID: useSelector((state) => state.peer.myID),
     game: useSelector((state) => state.hostGame.game),
     pin: useSelector((state) => state.hostGame.pin),
     players: useSelector((state) => state.peer.peers),

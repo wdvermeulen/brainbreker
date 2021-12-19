@@ -13,6 +13,7 @@ const PeerConnection = ({ children }) => {
 
   const connectTo = (hostID, myUsername) => {
     const conn = peerConnect.connect(hostID, {
+      label: myUsername,
       reliable: true,
     });
     conn.on("open", function () {

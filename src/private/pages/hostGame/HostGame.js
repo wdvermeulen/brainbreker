@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import QRCode from "qrcode.react";
+import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
 import GameLayout from "../../../components/gamePage/GameLayout";
 import { styled } from "../../../sharedStyles/theme";
@@ -12,17 +13,18 @@ const StyledHostGame = styled(Col, {
 });
 
 const HostGame = () => {
-  const { initGame, game, pin, players } = useHostGame();
+  const { initGame, myID, game, pin, players } = useHostGame();
   const page = usePage();
   const gameUrl = window.location.origin + url.PLAY_GAME + pin;
+  const { gameID } = useParams();
 
   console.log("players", players);
 
   useEffect(() => {
-    if (!game) {
-      initGame();
+    if ((!game || game?.id !== gameID) && myID.length > 0) {
+      initGame(myID);
     }
-  }, [game, initGame]);
+  }, [myID, game]);
 
   if (game) {
     return (
@@ -37,7 +39,17 @@ const HostGame = () => {
             value={gameUrl}
           />
         </div>
-        <div className="glass-tile">Er zijn nog geen deelnemers.</div>
+        <div className="glass-tile">
+          {players ? (
+            <ol>
+              {Object.entries(players).map(([id, player]) => (
+                <li key={id}>{player.label}</li>
+              ))}
+            </ol>
+          ) : (
+            "Er zijn nog geen deelnemers."
+          )}
+        </div>
         {false && <GameLayout {...page} />}
       </StyledHostGame>
     );
