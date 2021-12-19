@@ -4,12 +4,7 @@ import Col from "../../../components/Col";
 import Logo from "../../../components/logo/Logo";
 import { styled } from "../../../sharedStyles/theme";
 import { useGame } from "../publicHomeHooks";
-import {
-  useOnClickJoin,
-  usePlayGame,
-  useSubscribeToUser,
-  useUserList,
-} from "./playGameHooks";
+import { useOnClickJoin, usePlayGame, useUserList } from "./playGameHooks";
 
 const StyledPlayGame = styled(Col, {
   maxWidth: "$columnMaxWidth",
@@ -17,7 +12,6 @@ const StyledPlayGame = styled(Col, {
 });
 
 const getData = async (game, pin, setGame, userList, getUserList) => {
-  console.log(!game, game?.pin.toString() !== pin, pin.length > 3);
   if ((!game || game.pin.toString() !== pin) && pin.length > 3)
     await setGame(pin);
   if (userList === null) await getUserList();

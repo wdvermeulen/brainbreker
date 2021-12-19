@@ -11,8 +11,8 @@ const PeerConnection = ({ children }) => {
   const dispatch = useDispatch();
   const { peers } = useSelector((state) => state.peer);
 
-  const connectTo = (hostID, myUsername) => {
-    const conn = peerConnect.connect(hostID, {
+  const connectTo = async (hostID, myUsername) => {
+    const conn = await peerConnect.connect(hostID, {
       label: myUsername,
       reliable: true,
     });
@@ -23,7 +23,7 @@ const PeerConnection = ({ children }) => {
       conn.on("data", (data) => {
         console.log("data received", data);
       });
-      conn.on("error", (e) => console.error(e));
+      conn.on("error", console.error);
     });
   };
 

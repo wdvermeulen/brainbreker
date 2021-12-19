@@ -45,7 +45,7 @@ class PublicGameService {
   update = async (publicGame) =>
     API.graphql(
       graphqlOperation(updatePublicGame, {
-        input: publicGame,
+        input: { ...publicGame },
       })
     );
 }

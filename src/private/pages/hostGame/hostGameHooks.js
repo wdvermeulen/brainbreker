@@ -16,9 +16,9 @@ function useHostGame() {
     try {
       const game = await new PublicGameService().readByPrivateGameID(gameID);
       dispatch(setPin(game.pin));
-      game.hostID = myID;
-      await new PublicGameService().update(game);
+      await new PublicGameService().update({ id: game.id, hostPeerID: myID });
     } catch (e1) {
+      console.log("Creating a new game. Haven't found an existing game: ", e1);
       try {
         const pin = await new PublicGameService().create(getPrivateGame, myID);
         dispatch(setPin(pin));
