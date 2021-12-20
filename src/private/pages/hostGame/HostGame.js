@@ -42,8 +42,8 @@ const HostGame = () => {
         <div className="glass-tile">
           {players ? (
             <ol>
-              {Object.entries(players).map(([id, player]) => (
-                <li key={id}>{player.label}</li>
+              {Object.entries(players).map(([name, id]) => (
+                <li key={id}>{name}</li>
               ))}
             </ol>
           ) : (
