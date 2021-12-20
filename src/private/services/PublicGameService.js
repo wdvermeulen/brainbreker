@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { createPublicGame, updatePublicGame } from "../../graphql/mutations";
 import { publicGameByPrivateGameID } from "../../graphql/queries";
+import { getTimeToLive } from "../../utils";
 import PublicGame from "./dataObjects/public/PublicGame";
 
 class PublicGameService {
@@ -45,7 +46,7 @@ class PublicGameService {
   update = async (publicGame) =>
     API.graphql(
       graphqlOperation(updatePublicGame, {
-        input: { ...publicGame },
+        input: { ...publicGame, ttl: getTimeToLive },
       })
     );
 }

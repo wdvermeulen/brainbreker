@@ -31,12 +31,14 @@ export const getPublicGame = /* GraphQL */ `
               }
               teamID
               publicgameID
+              ttl
               createdAt
               updatedAt
             }
             nextToken
           }
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
@@ -56,11 +58,13 @@ export const getPublicGame = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
+      ttl
       createdAt
       updatedAt
     }
@@ -97,12 +101,14 @@ export const listPublicGames = /* GraphQL */ `
                 name
                 teamID
                 publicgameID
+                ttl
                 createdAt
                 updatedAt
               }
               nextToken
             }
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
@@ -122,11 +128,13 @@ export const listPublicGames = /* GraphQL */ `
             }
             teamID
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
           nextToken
         }
+        ttl
         createdAt
         updatedAt
       }
@@ -148,12 +156,14 @@ export const getTeam = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -178,12 +188,14 @@ export const listTeams = /* GraphQL */ `
             }
             teamID
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
           nextToken
         }
         publicgameID
+        ttl
         createdAt
         updatedAt
       }
@@ -202,6 +214,7 @@ export const getUser = /* GraphQL */ `
       }
       teamID
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -223,6 +236,7 @@ export const listUsers = /* GraphQL */ `
         }
         teamID
         publicgameID
+        ttl
         createdAt
         updatedAt
       }
@@ -269,12 +283,14 @@ export const publicGameByPin = /* GraphQL */ `
                 name
                 teamID
                 publicgameID
+                ttl
                 createdAt
                 updatedAt
               }
               nextToken
             }
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
@@ -294,11 +310,13 @@ export const publicGameByPin = /* GraphQL */ `
             }
             teamID
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
           nextToken
         }
+        ttl
         createdAt
         updatedAt
       }
@@ -345,12 +363,14 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
                 name
                 teamID
                 publicgameID
+                ttl
                 createdAt
                 updatedAt
               }
               nextToken
             }
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
@@ -370,11 +390,13 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
             }
             teamID
             publicgameID
+            ttl
             createdAt
             updatedAt
           }
           nextToken
         }
+        ttl
         createdAt
         updatedAt
       }

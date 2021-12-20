@@ -1,4 +1,7 @@
 {
+    "transformers": [
+        "graphql-ttl-transformer"
+    ],
     "Version": 5,
     "ElasticsearchWarning": true
 }

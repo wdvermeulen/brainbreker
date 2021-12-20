@@ -41,6 +41,7 @@ type PublicGame @model {
   teams: [Team!] @hasMany(indexName: "byPublicGame", fields: ["id"])
   score: [UserScore!]
   userList: [User!] @hasMany(indexName: "byPublicGame", fields: ["id"])
+  ttl: AWSTimestamp!
 }
 
 type PublicPage {
@@ -62,6 +63,7 @@ type Team @model {
   id: ID!
   Users: [User] @hasMany(indexName: "byTeam", fields: ["id"])
   publicgameID: ID @index(name: "byPublicGame")
+  ttl: AWSTimestamp!
 }
 
 type User @model {
@@ -70,6 +72,7 @@ type User @model {
   givenAnswers: [GivenAnswer]
   teamID: ID @index(name: "byTeam")
   publicgameID: ID! @index(name: "byPublicGame")
+  ttl: AWSTimestamp!
 }
 
 enum PageType {

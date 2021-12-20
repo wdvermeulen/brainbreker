@@ -34,12 +34,14 @@ export const createPublicGame = /* GraphQL */ `
               }
               teamID
               publicgameID
+              ttl
               createdAt
               updatedAt
             }
             nextToken
           }
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
@@ -59,11 +61,13 @@ export const createPublicGame = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
+      ttl
       createdAt
       updatedAt
     }
@@ -102,12 +106,14 @@ export const updatePublicGame = /* GraphQL */ `
               }
               teamID
               publicgameID
+              ttl
               createdAt
               updatedAt
             }
             nextToken
           }
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
@@ -127,11 +133,13 @@ export const updatePublicGame = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
+      ttl
       createdAt
       updatedAt
     }
@@ -170,12 +178,14 @@ export const deletePublicGame = /* GraphQL */ `
               }
               teamID
               publicgameID
+              ttl
               createdAt
               updatedAt
             }
             nextToken
           }
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
@@ -195,11 +205,13 @@ export const deletePublicGame = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
+      ttl
       createdAt
       updatedAt
     }
@@ -222,12 +234,14 @@ export const createTeam = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -250,12 +264,14 @@ export const updateTeam = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -278,12 +294,14 @@ export const deleteTeam = /* GraphQL */ `
           }
           teamID
           publicgameID
+          ttl
           createdAt
           updatedAt
         }
         nextToken
       }
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -303,6 +321,7 @@ export const createUser = /* GraphQL */ `
       }
       teamID
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -322,6 +341,7 @@ export const updateUser = /* GraphQL */ `
       }
       teamID
       publicgameID
+      ttl
       createdAt
       updatedAt
     }
@@ -341,6 +361,7 @@ export const deleteUser = /* GraphQL */ `
       }
       teamID
       publicgameID
+      ttl
       createdAt
       updatedAt
     }

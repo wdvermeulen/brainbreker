@@ -22,14 +22,6 @@ const getRandomName = () =>
   " " +
   animals.default[getRandomInt(0, animals.default.length)];
 
-const getRandomPassword = () => {
-  const charset = "abcdefghjklmnpqrstwxyz23456789"; // Only non-confusing characters
-  const maxLength = charset.length;
-  let returnValue = "";
-  for (let i = 0; i < 4; i++) {
-    returnValue += charset.charAt(Math.random() * maxLength);
-  }
-  return returnValue;
-};
+const getTimeToLive = Math.floor(new Date() / 1000) + 24 * 60 * 60 * 7;
 
-export { useFormInput, getRandomName, getRandomPassword };
+export { useFormInput, getRandomName, getTimeToLive };

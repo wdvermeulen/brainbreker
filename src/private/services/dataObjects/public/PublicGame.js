@@ -1,3 +1,5 @@
+import { getTimeToLive } from "../../../../utils";
+
 export default class PublicGame {
   constructor(game, hostID) {
     // TODO: Force this value to be unique in API
@@ -6,5 +8,6 @@ export default class PublicGame {
     this.privategameID = game.id;
     this.score = [];
     this.hostPeerID = hostID;
+    this.ttl = getTimeToLive;
   }
 }

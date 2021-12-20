@@ -2,6 +2,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { createUser } from "../../graphql/mutations";
 import { listUsers } from "../../graphql/queries";
 import { onCreateUser as subOnCreateUser } from "../../graphql/subscriptions";
+import { getTimeToLive } from "../../utils";
 
 class PublicUserService {
   create = async (name, gameID) => {
@@ -11,7 +12,11 @@ class PublicUserService {
       },
     } = await API.graphql(
       graphqlOperation(createUser, {
-        input: { name, publicgameID: gameID },
+        input: {
+          name,
+          publicgameID: gameID,
+          ttl: getTimeToLive,
+        },
       })
     );
     return id;
