@@ -1,31 +1,38 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
 import Logo from "../../../components/logo/Logo";
+import { PeerContext } from "../../../peer/PeerConnection";
 import { styled } from "../../../sharedStyles/theme";
 import { useGame } from "../publicHomeHooks";
-import { useOnClickJoin, usePlayGame } from "./playGameHooks";
+import { usePlayGame } from "./playGameHooks";
 
 const StyledPlayGame = styled(Col, {
   maxWidth: "$columnMaxWidth",
   margin: "0 auto",
 });
 
-const getData = async (game, pin, setGame) => {
-  if ((!game || game.pin.toString() !== pin) && pin.length > 3)
-    await setGame(pin);
-};
+let isConnected = false;
 
 const PlayGame = () => {
   const { game, setGame } = useGame();
   const { pin } = useParams();
   const playGame = usePlayGame();
   const { userName, userList } = playGame;
-  const onClickJoin = useOnClickJoin();
+  const peerContext = useContext(PeerContext);
+  const myID = useSelector((state) => state.peer.myID);
 
   useEffect(() => {
-    getData(game, pin, setGame);
-  }, [game, pin, setGame]);
+    if ((!game || game.pin.toString() !== pin) && pin.length > 3) setGame(pin);
+  });
+
+  useEffect(() => {
+    if (game && !isConnected && myID) {
+      peerContext.connectTo(game.hostPeerID, userName);
+      isConnected = true;
+    }
+  });
 
   return (
     <StyledPlayGame>
@@ -43,14 +50,14 @@ const PlayGame = () => {
               minLength={1}
               {...userName}
             />
-            <button onClick={onClickJoin}>Verbind</button>
           </div>
           <div className="glass-tile center">
             <div>Verbonden met: {game?.name}</div>
             <ol>
-              {Object.entries(userList).map(([, user]) => (
-                <li key={user}>{user}</li>
-              ))}
+              {Object.entries(userList).map(([id, user]) => {
+                console.log("id, user", id, user);
+                return <li key={id}>{user}</li>;
+              })}
             </ol>
           </div>
         </>

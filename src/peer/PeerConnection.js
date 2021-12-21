@@ -1,7 +1,12 @@
 import Peer from "peerjs";
 import { createContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setConnectedUsers, setMyID, userConnected } from "./peerSlice";
+import { useDispatch } from "react-redux";
+import {
+  connectUser,
+  disconnectUser,
+  setConnectedUsers,
+  setMyID,
+} from "./peerSlice";
 
 export const PeerContext = createContext(null);
 
@@ -12,13 +17,14 @@ const PeerConnection = ({ children }) => {
   const peers = {};
 
   const connectTo = async (hostID, myUsername) => {
+    console.log("connecting");
+
     const conn = await peerConnect.connect(hostID, {
       label: myUsername,
       reliable: true,
     });
     conn.on("open", function () {
       console.log("Registering", hostID);
-      dispatch(setMyID(hostID));
       conn.send("requestPeerList");
       conn.on("data", (data) => {
         console.log("data received", data);
@@ -29,7 +35,7 @@ const PeerConnection = ({ children }) => {
   };
 
   const broadcast = (data) => {
-    console.log("broadcast to:", peers);
+    console.log("Broadcast to:", peers, data);
     Object.entries(peers).forEach(([, conn]) => {
       conn.send(data);
     });
@@ -38,20 +44,30 @@ const PeerConnection = ({ children }) => {
   const send = (id, data) => peers[id].send(data);
 
   if (!peerConnect) {
-    peerConnect = new Peer();
+    peerConnect = new Peer({ debug: 2 });
     peerConnect.on("open", (userID) => {
       dispatch(setMyID(userID));
     });
     peerConnect.on("connection", (conn) => {
-      console.log("Registering", conn.peer, conn, peers);
-      peers[conn.label] = conn;
-      dispatch(userConnected({ username: conn.label, connection: conn.peer }));
+      console.log("Connection received", conn.label, conn, peers);
+      peers[conn.peer] = conn;
+      dispatch(connectUser({ peerID: conn.peer, username: conn.label.value }));
 
       conn.on("data", (data) => {
-        console.log("data received", data);
-        console.log("sending setPeerList", Object.keys(peers));
-        if (data === "requestPeerList")
-          broadcast(setConnectedUsers(Object.keys(peers)));
+        console.log("Data received", data);
+        if (data === "requestPeerList") {
+          const dtoPeers = {};
+          for (const key in peers) {
+            dtoPeers[key] = peers[key].label.value;
+          }
+          broadcast(setConnectedUsers(dtoPeers));
+        }
+      });
+      conn.on("close", () => {
+        console.log("Disconnected", conn.label.value);
+        delete peers[conn.peer];
+        dispatch(disconnectUser(conn.peer));
+        broadcast(disconnectUser(conn.peer));
       });
       conn.on("error", console.error);
     });

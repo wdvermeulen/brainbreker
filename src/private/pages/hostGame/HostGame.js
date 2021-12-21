@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import QRCode from "qrcode.react";
+// import QRCode from "qrcode.react";
 import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
 import GameLayout from "../../../components/gamePage/GameLayout";
@@ -24,7 +24,7 @@ const HostGame = () => {
     if ((!game || game?.id !== gameID) && myID.length > 0) {
       initGame(myID);
     }
-  }, [myID, game]);
+  }, [myID, game, gameID, initGame]);
 
   if (game) {
     return (
@@ -34,15 +34,15 @@ const HostGame = () => {
           Startcode: {pin}
           <br />
           {gameUrl} <br />
-          <QRCode
-            style={{ border: "10px solid white", borderRadius: "5px" }}
-            value={gameUrl}
-          />
+          {/*<QRCode*/}
+          {/*  style={{ border: "10px solid white", borderRadius: "5px" }}*/}
+          {/*  value={gameUrl}*/}
+          {/*/>*/}
         </div>
         <div className="glass-tile">
           {players ? (
             <ol>
-              {Object.entries(players).map(([name, id]) => (
+              {Object.entries(players).map(([id, name]) => (
                 <li key={id}>{name}</li>
               ))}
             </ol>

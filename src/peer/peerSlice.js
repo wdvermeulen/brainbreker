@@ -10,10 +10,10 @@ const peerSlice = createSlice({
     setMyID: (state, { payload }) => {
       state.myID = payload;
     },
-    userConnected: (state, { payload: { username, connection } }) => {
-      state.peers[username] = connection;
+    connectUser: (state, { payload: { peerID, username } }) => {
+      state.peers[peerID] = username;
     },
-    userDisconnected: (state, { payload }) => {
+    disconnectUser: (state, { payload }) => {
       delete state.peers[payload];
     },
     setConnectedUsers: (state, { payload }) => {
@@ -22,7 +22,7 @@ const peerSlice = createSlice({
   },
 });
 
-export const { setMyID, userConnected, userDisconnected, setConnectedUsers } =
+export const { setMyID, connectUser, disconnectUser, setConnectedUsers } =
   peerSlice.actions;
 
 export default peerSlice.reducer;

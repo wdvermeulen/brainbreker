@@ -7,8 +7,11 @@ function useGame() {
   const publicGameService = new PublicGameService();
   return {
     game: useSelector((state) => state.playGame.game),
-    setGame: async (pin) =>
-      dispatch(setGameToPlay(await publicGameService.read(pin))),
+    setGame: async (pin) => {
+      const game = await publicGameService.read(pin);
+      dispatch(setGameToPlay(game));
+      return game;
+    },
   };
 }
 

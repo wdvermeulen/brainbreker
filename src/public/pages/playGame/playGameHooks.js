@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PeerContext } from "../../../peer/PeerConnection";
 import { setUserName } from "./playGameSlice";
 
 function usePlayGame() {
@@ -15,13 +13,4 @@ function usePlayGame() {
   };
 }
 
-function useOnClickJoin() {
-  const peerContext = useContext(PeerContext);
-  const userName = useSelector((state) => state.playGame.userName);
-  const hostPeerID = useSelector((state) => state.playGame.game?.hostPeerID);
-  return () => {
-    peerContext.connectTo(hostPeerID, userName);
-  };
-}
-
-export { usePlayGame, useOnClickJoin };
+export { usePlayGame };

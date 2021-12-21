@@ -7,63 +7,8 @@ export const getPublicGame = /* GraphQL */ `
       id
       pin
       name
-      currentPage {
-        title
-        description
-        hasTimeLimit
-        timeLimit
-        file
-        pageType
-        answers
-      }
       privategameID
       hostPeerID
-      teams {
-        items {
-          id
-          Users {
-            items {
-              id
-              name
-              givenAnswers {
-                PageID
-                Answer
-              }
-              teamID
-              publicgameID
-              ttl
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          publicgameID
-          ttl
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      score {
-        id
-        score
-      }
-      userList {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          publicgameID
-          ttl
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       ttl
       createdAt
       updatedAt
@@ -81,161 +26,8 @@ export const listPublicGames = /* GraphQL */ `
         id
         pin
         name
-        currentPage {
-          title
-          description
-          hasTimeLimit
-          timeLimit
-          file
-          pageType
-          answers
-        }
         privategameID
         hostPeerID
-        teams {
-          items {
-            id
-            Users {
-              items {
-                id
-                name
-                teamID
-                publicgameID
-                ttl
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        score {
-          id
-          score
-        }
-        userList {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        ttl
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
-      id
-      Users {
-        items {
-          id
-          name
-          givenAnswers {
-            PageID
-            Answer
-          }
-          teamID
-          publicgameID
-          ttl
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      publicgameID
-      ttl
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Users {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        publicgameID
-        ttl
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
-      id
-      name
-      givenAnswers {
-        PageID
-        Answer
-      }
-      teamID
-      publicgameID
-      ttl
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUsers = /* GraphQL */ `
-  query ListUsers(
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        givenAnswers {
-          PageID
-          Answer
-        }
-        teamID
-        publicgameID
         ttl
         createdAt
         updatedAt
@@ -263,59 +55,8 @@ export const publicGameByPin = /* GraphQL */ `
         id
         pin
         name
-        currentPage {
-          title
-          description
-          hasTimeLimit
-          timeLimit
-          file
-          pageType
-          answers
-        }
         privategameID
         hostPeerID
-        teams {
-          items {
-            id
-            Users {
-              items {
-                id
-                name
-                teamID
-                publicgameID
-                ttl
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        score {
-          id
-          score
-        }
-        userList {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
         ttl
         createdAt
         updatedAt
@@ -343,59 +84,8 @@ export const publicGameByPrivateGameID = /* GraphQL */ `
         id
         pin
         name
-        currentPage {
-          title
-          description
-          hasTimeLimit
-          timeLimit
-          file
-          pageType
-          answers
-        }
         privategameID
         hostPeerID
-        teams {
-          items {
-            id
-            Users {
-              items {
-                id
-                name
-                teamID
-                publicgameID
-                ttl
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        score {
-          id
-          score
-        }
-        userList {
-          items {
-            id
-            name
-            givenAnswers {
-              PageID
-              Answer
-            }
-            teamID
-            publicgameID
-            ttl
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
         ttl
         createdAt
         updatedAt
