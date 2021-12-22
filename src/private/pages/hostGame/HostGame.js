@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import QRCode from "qrcode.react";
+import QRCode from "react-qr-code";
 import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
 import GameLayout from "../../../components/gamePage/GameLayout";
@@ -34,10 +34,16 @@ const HostGame = () => {
           Startcode: {pin}
           <br />
           {gameUrl} <br />
-          {/*<QRCode*/}
-          {/*  style={{ border: "10px solid white", borderRadius: "5px" }}*/}
-          {/*  value={gameUrl}*/}
-          {/*/>*/}
+          <QRCode
+            style={{
+              marginTop: "20px",
+              border: "10px solid white",
+              borderRadius: "5px",
+              boxSizing: "content-box",
+            }}
+            value={gameUrl}
+            size={128}
+          />
         </div>
         <div className="glass-tile">
           {players ? (
