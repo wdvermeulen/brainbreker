@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
 import PublicGameService from "../../services/PublicGameService";
-import { setGame, setPin } from "./hostGameSlice";
+import { gotoRoom, setGame, setPin } from "./hostGameSlice";
 
 function useHostGame() {
   const dispatch = useDispatch();
@@ -30,6 +30,8 @@ function useHostGame() {
 
   return {
     initGame,
+    gotoRoom: async (room) => dispatch(gotoRoom(room)),
+    currentRoom: useSelector((state) => state.hostGame.currentRoom),
     myID: useSelector((state) => state.peer.myID),
     game: useSelector((state) => state.hostGame.game),
     pin: useSelector((state) => state.hostGame.pin),

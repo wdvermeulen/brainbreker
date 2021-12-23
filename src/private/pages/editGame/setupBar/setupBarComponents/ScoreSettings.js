@@ -1,6 +1,6 @@
 import React from "react";
 import AutosizeInput from "react-input-autosize";
-import { checkTypeEnum } from "../../../../../sharedResources/enum";
+import { checkTypeEnum } from "../../../../../sharedResources/constants";
 
 const ScoreSettings = ({
   checkType,

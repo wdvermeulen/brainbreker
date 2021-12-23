@@ -1,5 +1,5 @@
 import React from "react";
-import { pageTypeEnum } from "../../../../../sharedResources/enum";
+import { pageTypeEnum } from "../../../../../sharedResources/constants";
 
 const PageSettings = ({ pageType }) => (
   <div className="row">

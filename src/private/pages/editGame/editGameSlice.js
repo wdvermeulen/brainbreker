@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkTypeEnum, pageTypeEnum } from "../../../sharedResources/enum";
+import {
+  checkTypeEnum,
+  pageTypeEnum,
+} from "../../../sharedResources/constants";
 
 const defaultPage = {
   title: "",

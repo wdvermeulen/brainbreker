@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { rooms } from "./constants";
 
 const hostGameSlice = createSlice({
   name: "hostGame",
   initialState: {
     game: undefined,
+    currentRoom: rooms.LOBBY,
     currentPage: 0,
     pin: 0,
     userList: [],
@@ -18,9 +20,13 @@ const hostGameSlice = createSlice({
     addUserToList: (state, { payload }) => {
       state.userList.push(payload);
     },
+    gotoRoom: (state, { payload }) => {
+      state.currentRoom = payload;
+    },
   },
 });
 
-export const { setGame, setPin, addUserToList } = hostGameSlice.actions;
+export const { setGame, setPin, addUserToList, gotoRoom } =
+  hostGameSlice.actions;
 
 export default hostGameSlice.reducer;

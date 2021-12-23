@@ -48,6 +48,7 @@ const PlayGame = () => {
               type="text"
               maxLength={64}
               minLength={1}
+              disabled
               {...userName}
             />
           </div>
