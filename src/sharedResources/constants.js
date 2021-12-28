@@ -1,4 +1,4 @@
-const pageTypeEnum = {
+const pageTypeDefinition = {
   MULTIPLE_CHOICE: "Multiple choice",
   //TODO
   // OPEN: "Open",
@@ -10,7 +10,7 @@ const pageTypeEnum = {
   // VOTE: "Voting"
 };
 
-const checkTypeEnum = {
+const checkTypeDefinition = {
   PREDEFINED_ANSWER: "Predefined answer",
   GAMEMASTERS_AFTERWARDS: "Check afterwards",
   //TODO
@@ -18,4 +18,10 @@ const checkTypeEnum = {
   // GAMEMASTERS_VOTE: "Game masters vote",
 };
 
-export { pageTypeEnum, checkTypeEnum };
+const roomDefinition = {
+  LOBBY: "lobby",
+  GAME: "game",
+  VICTORY: "victory",
+};
+
+export { pageTypeDefinition, checkTypeDefinition, roomDefinition };

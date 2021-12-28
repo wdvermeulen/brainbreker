@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  checkTypeEnum,
-  pageTypeEnum,
+  checkTypeDefinition,
+  pageTypeDefinition,
 } from "../../../sharedResources/constants";
 
 const defaultPage = {
@@ -9,10 +9,10 @@ const defaultPage = {
   description: "",
   hasTimeLimit: true,
   timeLimit: 10,
-  checkType: Object.keys(checkTypeEnum)[0],
+  checkType: Object.keys(checkTypeDefinition)[0],
   pointsForSpeed: true,
   file: "",
-  pageType: Object.keys(pageTypeEnum)[0],
+  pageType: Object.keys(pageTypeDefinition)[0],
   numberOfOptions: 4,
   answers: [
     { description: "", value: 0 },

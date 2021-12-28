@@ -1,11 +1,10 @@
 import React from "react";
 import QRCode from "react-qr-code";
-import { useParams } from "react-router-dom";
 import Col from "../../../components/Col";
+import { roomDefinition } from "../../../sharedResources/constants";
 import { styled } from "../../../sharedStyles/theme";
 import { url } from "../../../SiteRoute";
-import { rooms } from "./constants";
-import { useHostGame, usePage } from "./hostGameHooks";
+import { useGotoPage, useHostGame } from "./hostGameHooks";
 
 const StyledLobby = styled(Col, {
   maxWidth: "30rem",
@@ -14,6 +13,7 @@ const StyledLobby = styled(Col, {
 
 const Lobby = () => {
   const { gotoRoom, game, pin, players } = useHostGame();
+  const gotoPage = useGotoPage();
   const gameUrl = window.location.origin + url.PLAY_GAME + pin;
 
   return (
@@ -34,7 +34,14 @@ const Lobby = () => {
           size={128}
         />
         <br />
-        <button onClick={() => gotoRoom(rooms.GAME)}>Spel starten</button>
+        <button
+          onClick={() => {
+            gotoRoom(roomDefinition.GAME);
+            gotoPage(0);
+          }}
+        >
+          Spel starten
+        </button>
       </div>
       <div className="glass-tile">
         {players ? (

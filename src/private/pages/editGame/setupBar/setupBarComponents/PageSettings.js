@@ -1,5 +1,5 @@
 import React from "react";
-import { pageTypeEnum } from "../../../../../sharedResources/constants";
+import { pageTypeDefinition } from "../../../../../sharedResources/constants";
 
 const PageSettings = ({ pageType }) => (
   <div className="row">
@@ -10,7 +10,7 @@ const PageSettings = ({ pageType }) => (
       aria-label="soort vraag"
       {...pageType}
     >
-      {Object.entries(pageTypeEnum).map(([key, type]) => (
+      {Object.entries(pageTypeDefinition).map(([key, type]) => (
         <option key={"pageType-" + key} value={key}>
           {type}
         </option>

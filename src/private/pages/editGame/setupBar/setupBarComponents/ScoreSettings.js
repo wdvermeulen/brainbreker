@@ -1,6 +1,6 @@
 import React from "react";
 import AutosizeInput from "react-input-autosize";
-import { checkTypeEnum } from "../../../../../sharedResources/constants";
+import { checkTypeDefinition } from "../../../../../sharedResources/constants";
 
 const ScoreSettings = ({
   checkType,
@@ -20,7 +20,7 @@ const ScoreSettings = ({
         aria-label="Manier van controleren"
         {...checkType}
       >
-        {Object.entries(checkTypeEnum).map(([key, type]) => (
+        {Object.entries(checkTypeDefinition).map(([key, type]) => (
           <option key={"checkType-" + key} value={key}>
             {type}
           </option>

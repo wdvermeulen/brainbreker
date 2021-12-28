@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { rooms } from "./constants";
+import { roomDefinition } from "../../../sharedResources/constants";
 import { useHostGame, usePage } from "./hostGameHooks";
 import Lobby from "./Lobby";
 
@@ -15,10 +15,10 @@ const HostGame = () => {
       initGame(myID);
     }
   }, [myID, game, gameID, initGame]);
-  console.log(currentRoom);
+
   if (game) {
-    if (currentRoom === rooms.LOBBY) return <Lobby />;
-    if (currentRoom === rooms.GAME) return <GameLayout {...page} />;
+    if (currentRoom === roomDefinition.LOBBY) return <Lobby />;
+    if (currentRoom === roomDefinition.GAME) return <GameLayout {...page} />;
   }
   return <div className="glass-tile" />;
 };
