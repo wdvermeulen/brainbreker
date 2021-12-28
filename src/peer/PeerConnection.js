@@ -1,6 +1,8 @@
 import Peer from "peerjs";
 import { createContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { addAnswer } from "../private/pages/hostGame/hostGameSlice";
+import { commandDefinition } from "./peerConstants";
 import {
   connectUser,
   disconnectUser,
@@ -12,15 +14,12 @@ export const PeerContext = createContext({ peers: {}, count: -1 });
 
 let peerConnect;
 let peers = {};
+let serverConnection;
 
 function usePeers() {
-  function addPeer(conn) {
-    peers[conn.peer] = conn;
-  }
-
   return {
     peers,
-    addPeer,
+    addPeer: (conn) => (peers[conn.peer] = conn),
     removePeer: (id) => delete peers[id],
   };
 }
@@ -32,18 +31,20 @@ const PeerConnection = ({ children }) => {
   const connectTo = async (hostID, myUsername) => {
     console.log("connecting");
 
-    const conn = await peerConnect.connect(hostID, {
+    serverConnection = await peerConnect.connect(hostID, {
       label: myUsername,
       reliable: true,
     });
-    conn.on("open", function () {
+    serverConnection.on("open", function () {
       console.log("Registering", hostID);
-      conn.send("requestPeerList");
-      conn.on("data", (data) => {
+      serverConnection.send({ command: commandDefinition.REQUEST_PEER_LIST });
+      serverConnection.on("data", (data) => {
         console.log("data received", data);
         dispatch(data);
       });
-      conn.on("error", console.error);
+      serverConnection.on("error", (e) =>
+        console.error("peerError encountered", e)
+      );
     });
   };
 
@@ -54,8 +55,10 @@ const PeerConnection = ({ children }) => {
     });
   };
 
-  const send = (id, data) => {
-    peers[id]?.send(data);
+  const send = (data, id) => {
+    console.log("Send to:", id, data);
+    if (id && peers[id]) peers[id].send(data);
+    else if (serverConnection) serverConnection.send(data);
   };
 
   useEffect(() => {
@@ -71,21 +74,27 @@ const PeerConnection = ({ children }) => {
           connectUser({ peerID: conn.peer, username: conn.label.value })
         );
 
-        conn.on("data", (data) => {
-          console.log("Data received", data);
-          if (data === "requestPeerList") {
-            const dtoPeers = {};
-            for (const key in peers) dtoPeers[key] = peers[key].label.value;
-            broadcast(setConnectedUsers(dtoPeers));
+        conn.on("data", ({ command, value }) => {
+          console.log("Data received", command, value, conn);
+          switch (command) {
+            case commandDefinition.REQUEST_PEER_LIST:
+              const dtoPeers = {};
+              for (const key in peers) dtoPeers[key] = peers[key].label.value;
+              broadcast(setConnectedUsers(dtoPeers));
+              break;
+            case commandDefinition.ADD_ANSWER:
+              dispatch(addAnswer({ key: conn.peer, value }));
           }
         });
         conn.on("close", () => {
-          console.log("Disconnected", conn.label.value);
+          console.log("Disconnected", conn.label.value, conn);
           removePeer(conn.peer);
           dispatch(disconnectUser(conn.peer));
           broadcast(disconnectUser(conn.peer));
         });
-        conn.on("error", console.error);
+        conn.on("error", (e) =>
+          console.error("serverError encountered", e, conn)
+        );
       });
     }
   });

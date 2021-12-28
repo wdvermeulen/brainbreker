@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { PeerContext } from "../../../peer/PeerConnection";
+import { commandDefinition } from "../../../peer/peerConstants";
 import { setUserName } from "./playGameSlice";
 
 function usePlayGame() {
@@ -15,6 +18,7 @@ function usePlayGame() {
 }
 
 function usePage() {
+  const peerContext = useContext(PeerContext);
   return {
     questionTitle: {
       value: useSelector((state) => state.playGame.page?.title),
@@ -37,6 +41,13 @@ function usePage() {
     },
     numberOfOptions: {
       value: useSelector((state) => state.playGame.page?.numberOfOptions),
+    },
+    currentPage: useSelector((state) => state.playGame.page?.currentPage),
+    giveAnswer: (answer) => {
+      peerContext.send({
+        command: commandDefinition.ADD_ANSWER,
+        value: answer,
+      });
     },
   };
 }

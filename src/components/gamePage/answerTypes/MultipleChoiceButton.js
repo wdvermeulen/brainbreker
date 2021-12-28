@@ -43,6 +43,7 @@ const MultipleChoiceButton = ({
   useAnswerDescription,
   i,
   useEditing = () => [],
+  giveAnswer = () => {},
   pageInput,
 }) => {
   const [editing, setEditing] = useEditing();
@@ -50,6 +51,7 @@ const MultipleChoiceButton = ({
 
   const onClick = () => {
     if (setEditing) setEditing("answer" + i);
+    else giveAnswer(i);
   };
 
   return (

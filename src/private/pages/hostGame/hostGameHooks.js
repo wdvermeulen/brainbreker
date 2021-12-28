@@ -62,7 +62,9 @@ function useGotoPage() {
 
   return (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    peerContext.broadcast(setPage(pages[pageNumber]));
+    peerContext.broadcast(
+      setPage({ currentPage: pageNumber, ...pages[pageNumber] })
+    );
   };
 }
 

@@ -8,7 +8,7 @@ const hostGameSlice = createSlice({
     currentRoom: roomDefinition.LOBBY,
     currentPage: 0,
     pin: 0,
-    userList: [],
+    answers: {},
   },
   reducers: {
     setGame: (state, { payload }) => {
@@ -20,16 +20,16 @@ const hostGameSlice = createSlice({
     setPin: (state, { payload }) => {
       state.pin = payload;
     },
-    addUserToList: (state, { payload }) => {
-      state.userList.push(payload);
-    },
     gotoRoom: (state, { payload }) => {
       state.currentRoom = payload;
+    },
+    addAnswer: (state, { payload: { key, value } }) => {
+      state.answers[key] = value;
     },
   },
 });
 
-export const { setGame, setCurrentPage, setPin, addUserToList, gotoRoom } =
+export const { setGame, setCurrentPage, setPin, gotoRoom, addAnswer } =
   hostGameSlice.actions;
 
 export default hostGameSlice.reducer;
