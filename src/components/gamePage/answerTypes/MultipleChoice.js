@@ -15,55 +15,62 @@ const StyledAnswers = styled(Col, {
   },
 
   ".row": {
-    // disabled because this order is the
-    // only way to get the desired effect
-    // eslint-disable-next-line
+    gap: "$2",
+
     "&:first-of-type": {
-      "button.answer": {
+      ".answer:first-of-type": {
+        borderTopLeftRadius: "$3",
+      },
+      ".answer:last-of-type": {
+        borderTopRightRadius: "$3",
+      },
+      ".answer:not(:last-of-type)": {
         borderTopRightRadius: "$0",
+      },
+      ".answer:not(:first-of-type)": {
         borderTopLeftRadius: "$0",
       },
     },
-
-    "button.answer:first-of-type": {
-      borderTopLeftRadius: "$0",
-      borderBottomLeftRadius: "$0",
-      marginLeft: "$0",
-    },
-
-    // eslint-disable-next-line
     "&:last-of-type": {
-      "button.answer": {
+      ".answer:first-of-type": {
+        borderBottomLeftRadius: "$3",
+      },
+      ".answer:last-of-type": {
+        borderBottomRightRadius: "$3",
+      },
+      ".answer:not(:last-of-type)": {
         borderBottomRightRadius: "$0",
+      },
+      ".answer:not(:first-of-type)": {
         borderBottomLeftRadius: "$0",
       },
     },
-
-    "button.answer:last-of-type": {
-      borderTopRightRadius: "$0",
-      borderBottomRightRadius: "$0",
-      marginRight: "$0",
-    },
-
-    // eslint-disable-next-line
-    "&:first-of-type": {
-      "button.answer:first-of-type": {
-        borderTopLeftRadius: "$3",
+    "&:not(:last-of-type)": {
+      ".answer:first-of-type": {
+        borderBottomLeftRadius: "$0",
       },
-
-      "button.answer:last-of-type": {
-        borderTopRightRadius: "$3",
+      ".answer:last-of-type": {
+        borderBottomRightRadius: "$0",
+      },
+      ".answer:not(:last-of-type)": {
+        borderBottomRightRadius: "$2",
+      },
+      ".answer:not(:first-of-type)": {
+        borderBottomLeftRadius: "$2",
       },
     },
-
-    // eslint-disable-next-line
-    "&:last-of-type": {
-      "button.answer:first-of-type": {
-        borderBottomLeftRadius: "$3",
+    "&:not(:first-of-type)": {
+      ".answer:first-of-type": {
+        borderTopLeftRadius: "$0",
       },
-
-      "button.answer:last-of-type": {
-        borderBottomRightRadius: "$3",
+      ".answer:last-of-type": {
+        borderTopRightRadius: "$0",
+      },
+      ".answer:not(:last-of-type)": {
+        borderTopRightRadius: "$2",
+      },
+      ".answer:not(:first-of-type)": {
+        borderTopLeftRadius: "$2",
       },
     },
   },
@@ -90,7 +97,7 @@ const MultipleChoice = ({ numberOfOptions: { value }, ...props }) => {
   }
 
   return (
-    <StyledAnswers className="section" gap="small">
+    <StyledAnswers className="section" gap="medium">
       {rows}
     </StyledAnswers>
   );

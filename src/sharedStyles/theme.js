@@ -12,6 +12,7 @@ export const { styled, css } = createStitches({
       glassTileBorder: "#FFFFFF",
       glassTileBackground: "rgba(0,0,0,.3)",
       answerBackground: "#FFFFFF",
+      answerBackgroundDark: "#EEEEEE",
     },
     space: {
       0: "0",

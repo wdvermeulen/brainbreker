@@ -3,16 +3,22 @@ import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { styled } from "../../../sharedStyles/theme";
 
-const StyledMultipleChoiceButton = styled("button", {
-  borderRadius: "$3",
+const StyledMultipleChoiceButton = styled("div", {
   borderStyle: "solid",
   borderWidth: "$2",
   borderBottomWidth: "$3",
   wordWrap: "break-word",
   padding: "$1 $2 $2 $2",
   flex: "1 1 100%",
-  background: "$answerBackground",
+  backgroundColor: "$answerBackground",
   color: "$textDark",
+  margin: "$0",
+  transition: "background-color .3s",
+
+  "&:hover": {
+    backgroundColor: "$answerBackgroundDark",
+    cursor: "pointer",
+  },
 
   textarea: {
     textAlign: "center",
@@ -24,10 +30,6 @@ const StyledMultipleChoiceButton = styled("button", {
     float: "left",
     marginRight: "$1",
     fontFamily: "$header",
-  },
-
-  ":active": {
-    boxShadow: "none",
   },
 
   "> :first-child": {
@@ -63,7 +65,7 @@ const MultipleChoiceButton = ({
       }}
       key={i}
     >
-      <div className="header">{i + 1}</div>
+      <span className="header">{i + 1}</span>
       {editing === "answer" + i ? (
         <>
           <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>
