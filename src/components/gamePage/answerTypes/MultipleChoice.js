@@ -6,14 +6,6 @@ import MultipleChoiceButton from "./MultipleChoiceButton";
 const StyledAnswers = styled(Col, {
   flexGrow: "2",
 
-  "&::before": {
-    content: "",
-    width: "100%",
-    height: "$1",
-    backgroundColor: "$light",
-    borderRadius: "$1",
-  },
-
   ".row": {
     gap: "$2",
 

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "../../sharedStyles/theme";
 import MultipleChoice from "./answerTypes/MultipleChoice";
 import Questions from "./Question";
 import Col from "../Col";
+import Status from "./Status";
 
 const StyledGameLayout = styled(Col, {
   maxHeight: "100%",
@@ -29,11 +30,30 @@ const StyledGameLayout = styled(Col, {
   },
 });
 
-const GameLayout = (props) => (
-  <StyledGameLayout className="page column">
-    <Questions {...props} />
-    <MultipleChoice {...props} />
-  </StyledGameLayout>
-);
+const GameLayout = ({ timeLimit, ...props }) => {
+  const [secondsRemaining, setSecondsRemaining] = useState(timeLimit.value);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (secondsRemaining) setSecondsRemaining(secondsRemaining - 1);
+    }, 1000);
+
+    if (secondsRemaining <= 0) clearTimeout(timer);
+    return () => clearTimeout(timer);
+  });
+
+  return (
+    <StyledGameLayout className="column">
+      <Questions {...props} />
+      {timeLimit && (
+        <Status
+          timeLimit={timeLimit.value - 1}
+          secondsRemaining={secondsRemaining}
+        />
+      )}
+      <MultipleChoice {...props} />
+    </StyledGameLayout>
+  );
+};
 
 export default GameLayout;

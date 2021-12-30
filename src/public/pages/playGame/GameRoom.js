@@ -4,7 +4,8 @@ import { usePage } from "./playGameHooks";
 
 const GameRoom = () => {
   const page = usePage();
-  return <GameLayout {...page} />;
+  if (page.currentPage !== undefined) return <GameLayout {...page} />;
+  else return <></>;
 };
 
 export default GameRoom;

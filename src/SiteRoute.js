@@ -46,9 +46,7 @@ const SiteRoute = () => (
         </Authenticated>
       </Route>
       <Route path={`${url.PLAY_GAME}:pin`}>
-        <Authenticated>
-          <PlayGame />
-        </Authenticated>
+        <PlayGame />
       </Route>
       <Route exact path={url.HOME}>
         <Home />

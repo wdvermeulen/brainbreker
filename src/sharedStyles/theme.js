@@ -12,7 +12,7 @@ export const { styled, css } = createStitches({
       glassTileBorder: "#FFFFFF",
       glassTileBackground: "rgba(0,0,0,.3)",
       answerBackground: "#FFFFFF",
-      answerBackgroundDark: "#EEEEEE",
+      answerBackgroundDark: "#CCCCCC",
     },
     space: {
       0: "0",
@@ -36,12 +36,17 @@ export const { styled, css } = createStitches({
     lineHeights: {},
     letterSpacings: {},
     sizes: {
+      0: "0",
+      1: "5px",
+      2: "10px",
+      3: "20px",
       columnMaxWidth: "30rem",
     },
     borderWidths: {
       1: "1px",
       2: "3px",
       3: "5px",
+      4: "10px",
     },
     borderStyles: {},
     radii: {

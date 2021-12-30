@@ -1,12 +1,12 @@
-import colors from "../../../sharedResources/colors.json";
 import React from "react";
+import colors from "../../../sharedResources/colors.json";
 import TextareaAutosize from "react-textarea-autosize";
 import { styled } from "../../../sharedStyles/theme";
 
-const StyledMultipleChoiceButton = styled("div", {
+const style = {
   borderStyle: "solid",
   borderWidth: "$2",
-  borderBottomWidth: "$3",
+  borderBottomWidth: "$4",
   wordWrap: "break-word",
   padding: "$1 $2 $2 $2",
   flex: "1 1 100%",
@@ -14,6 +14,9 @@ const StyledMultipleChoiceButton = styled("div", {
   color: "$textDark",
   margin: "$0",
   transition: "background-color .3s",
+  display: "flex",
+  alignItems: "center",
+  boxShadow: "$default",
 
   "&:hover": {
     backgroundColor: "$answerBackgroundDark",
@@ -24,10 +27,9 @@ const StyledMultipleChoiceButton = styled("div", {
     textAlign: "center",
   },
 
-  ".header": {
+  ".label": {
     fontSize: "$3",
     marginBottom: "$2",
-    float: "left",
     marginRight: "$1",
     fontFamily: "$header",
   },
@@ -39,33 +41,37 @@ const StyledMultipleChoiceButton = styled("div", {
   "> :last-child": {
     marginBottom: "$0",
   },
-});
+
+  variants: {
+    number: { ...colors.map((a) => ({ borderColor: a })) },
+  },
+};
+
+const StyledMultipleChoiceDiv = styled("div", style);
 
 const MultipleChoiceButton = ({
   useAnswerDescription,
   i,
   useEditing = () => [],
-  giveAnswer = () => {},
+  giveAnswer,
   pageInput,
 }) => {
   const [editing, setEditing] = useEditing();
   const answerDescription = useAnswerDescription(i);
 
-  const onClick = () => {
+  const onClickEdit = () => {
     if (setEditing) setEditing("answer" + i);
-    else giveAnswer(i);
+    else if (giveAnswer) giveAnswer(i);
   };
 
   return (
-    <StyledMultipleChoiceButton
+    <StyledMultipleChoiceDiv
       className="answer"
-      onClick={onClick}
-      style={{
-        borderColor: colors[i % colors.length],
-      }}
+      onClick={onClickEdit}
+      number={i % colors.length}
       key={i}
     >
-      <span className="header">{i + 1}</span>
+      <span className="label">{i + 1}</span>
       {editing === "answer" + i ? (
         <>
           <label htmlFor={"answer" + i}>Antwoord {i + 1}: </label>
@@ -80,7 +86,7 @@ const MultipleChoiceButton = ({
       ) : (
         <span>{answerDescription.value}</span>
       )}
-    </StyledMultipleChoiceButton>
+    </StyledMultipleChoiceDiv>
   );
 };
 
