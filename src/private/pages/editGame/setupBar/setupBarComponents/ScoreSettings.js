@@ -1,6 +1,19 @@
+import {
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  ListItem,
+  MenuItem,
+  Select,
+  Switch,
+  TextField,
+} from "@mui/material";
 import React from "react";
 import AutosizeInput from "react-input-autosize";
-import { checkTypeDefinition } from "../../../../../sharedResources/constants";
+import {
+  checkTypeDefinition,
+  pageTypeDefinition,
+} from "../../../../../sharedResources/constants";
 
 const ScoreSettings = ({
   checkType,
@@ -12,77 +25,71 @@ const ScoreSettings = ({
   numberOfOptions,
 }) => (
   <>
-    <div className="row">
-      <label htmlFor="checkType">Controleren: </label>
-      <select
-        id="checkType"
-        name="checkType"
-        aria-label="Manier van controleren"
-        {...checkType}
-      >
-        {Object.entries(checkTypeDefinition).map(([key, type]) => (
-          <option key={"checkType-" + key} value={key}>
-            {type}
-          </option>
-        ))}
-      </select>
-    </div>
+    <ListItem>
+      <FormControl fullWidth>
+        <InputLabel id="checkType">Controleren: </InputLabel>
+        <Select
+          labelId="checkType"
+          name="checkType"
+          aria-label="Manier van controleren"
+          {...checkType}
+        >
+          {Object.entries(checkTypeDefinition).map(([key, type]) => (
+            <MenuItem key={"checkType-" + key} value={key}>
+              {type}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </ListItem>
 
-    <div className="row">
-      {hasTimeLimit.checked && predefinedAnswer && (
-        <>
-          <input
-            id="pointsForSpeed"
-            name="pointsForSpeed"
-            aria-label="Punten voor snelheid"
-            type="checkbox"
-            {...pointsForSpeed}
-          />
-          <label htmlFor="pointsForSpeed">Punten voor snelheid</label>
-        </>
-      )}
-    </div>
+    {hasTimeLimit.checked && predefinedAnswer && (
+      <ListItem>
+        <FormControlLabel
+          control={<Switch {...pointsForSpeed} />}
+          label="Punten voor snelheid"
+        />
+      </ListItem>
+    )}
 
-    <div className="row">
-      {predefinedAnswer && (
-        <>
-          <label htmlFor="correctAnswer">Punten voor: </label>
-          <select
-            id="correctAnswer"
+    {predefinedAnswer && (
+      <ListItem>
+        <FormControl fullWidth>
+          <InputLabel id="correctAnswer">Punten voor antwoord: </InputLabel>
+          <Select
+            labelId="correctAnswer"
+            name="correctAnswer"
             aria-label="Juiste antwoord"
             {...selectAnswer}
           >
             {answerValue.values.map((value, i) => (
-              <option key={"answerValue-" + i} value={i}>
+              <MenuItem key={"answerValue-" + i} value={i}>
                 {"antwoord " + (i + 1)}
-              </option>
+              </MenuItem>
             ))}
-          </select>
-        </>
-      )}
-    </div>
+          </Select>
+        </FormControl>
+      </ListItem>
+    )}
 
-    <div className="row">
-      {predefinedAnswer && (
-        <>
-          <label htmlFor="rewardValue">
-            {hasTimeLimit.checked && pointsForSpeed.checked
-              ? "Maximale b"
-              : "B"}
-            eloning voor antwoord {parseInt(selectAnswer.value) + 1}:
-          </label>
-          <AutosizeInput
-            id="rewardValue"
-            type="number"
-            value={answerValue.values[selectAnswer.value]}
-            onChange={(e) => {
-              answerValue.onChange(selectAnswer.value, e.target.value);
-            }}
-          />
-          punt{answerValue.values[selectAnswer.value] !== "1" && "en"}
-        </>
-      )}
-    </div>
+    {predefinedAnswer && (
+      <ListItem>
+        <TextField
+          type="number"
+          label={
+            hasTimeLimit.checked && pointsForSpeed.checked
+              ? "Maximale beloning voor antwoord " +
+                (parseInt(selectAnswer.value) + 1)
+              : "Beloning voor antwoord " + (parseInt(selectAnswer.value) + 1)
+          }
+          value={answerValue.values[selectAnswer.value]}
+          onChange={(e) => {
+            answerValue.onChange(selectAnswer.value, e.target.value);
+          }}
+          fullWidth
+        />
+      </ListItem>
+    )}
 
     {predefinedAnswer &&
       answerValue.values.map((value, i) => {
@@ -92,23 +99,21 @@ const ScoreSettings = ({
           i < numberOfOptions.value
         ) {
           return (
-            <div className="row" key={"answerValue-" + i}>
-              <label htmlFor={"answerValue-" + i}>
-                {hasTimeLimit.checked && pointsForSpeed.checked
-                  ? "Maximale b"
-                  : "B"}
-                eloning voor antwoord {i + 1}:
-              </label>
-              <AutosizeInput
-                id={"answerValue-" + i}
+            <ListItem key={"answerValue-" + i}>
+              <TextField
                 type="number"
+                label={
+                  hasTimeLimit.checked && pointsForSpeed.checked
+                    ? "Maximale beloning voor antwoord " + (i + 1)
+                    : "Beloning voor antwoord " + (i + 1)
+                }
                 value={answerValue.values[i]}
                 onChange={(e) => {
                   answerValue.onChange(i, e.target.value);
                 }}
+                fullWidth
               />
-              punt{answerValue.values[i] !== "1" && "en"}
-            </div>
+            </ListItem>
           );
         }
         return null;

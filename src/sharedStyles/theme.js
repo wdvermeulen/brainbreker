@@ -57,7 +57,7 @@ export const { styled, css } = createStitches({
     },
     shadows: {
       default: "0 4px 4px rgba(0, 0, 0, .25)",
-      glassTile: "inset 0 0 20px $colorLightest",
+      glassTile: "inset 0 0 20px #FFFFFF",
     },
     zIndices: {
       liquidShape: -2,

@@ -84,6 +84,9 @@ const PeerConnection = ({ children }) => {
               break;
             case commandDefinition.ADD_ANSWER:
               dispatch(addAnswer({ key: conn.peer, value }));
+              break;
+            default:
+              break;
           }
         });
         conn.on("close", () => {

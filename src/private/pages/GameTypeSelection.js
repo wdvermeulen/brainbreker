@@ -1,68 +1,119 @@
+import { Button, Card, CardActions, CardContent, Grid } from "@mui/material";
 import { I18n } from "aws-amplify";
 import { Link } from "react-router-dom";
-import Col from "../../components/Col";
-import Logo from "../../components/logo/Logo";
-import Row from "../../components/Row";
 import { url } from "../../SiteRoute";
 
 const GameTypeSelection = () => (
-  <Col>
-    <Logo />
-    <Row>
-      <Col className="glass-tile">
-        <p>Een snelle quiz met meerkeuzevragen.</p>
-        <Link to={url.NEW_GAME}>
-          <button className="outline">
+  <Grid container spacing={2}>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>Een makkelijk op te zetten quiz met meerkeuzevragen.</p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            to={url.NEW_GAME}
+            variant="outlined"
+            color="secondary"
+          >
             {I18n.get("Setup a standard game")}
-          </button>
-        </Link>
-      </Col>
-      <Col className="glass-tile">
-        <p>
-          Een pubquiz opgedeeld in gedeeltes met open vragen. Antwoorden worden
-          achteraf met de hand gecontroleerd.
-        </p>
-        {/*<Link to={url.NEW_GAME}>*/}
-        {/*  <button className="outline">{I18n.get("Setup a pub game")}</button>*/}
-        {/*</Link>*/}
-      </Col>
-    </Row>
-    <Row>
-      <Col className="glass-tile">
-        <p>
-          Spel waarin teams raadsels, puzzels en opdrachten moeten doen om tot
-          het einde te komen.
-        </p>
-        {/*<Link to="#">*/}
-        {/*  <button className="outline">*/}
-        {/*    {I18n.get("Setup an online escape room")}*/}
-        {/*  </button>*/}
-        {/*</Link>*/}
-      </Col>
-      <Col className="glass-tile">
-        <p>Speel solo en kies jouw puzzel uit de marktplaats.</p>
-        {/*<Link to="#">*/}
-        {/*  <button className="outline">*/}
-        {/*    {I18n.get("Play a solo puzzle")}*/}
-        {/*  </button>*/}
-        {/*</Link>*/}
-      </Col>
-    </Row>
-    <Row>
-      <Col className="glass-tile">
-        <p>Complete vrijheid om jouw spel te maken.</p>
-        {/*<Link to="#">*/}
-        {/*  <button className="outline">{I18n.get("Custom game")}</button>*/}
-        {/*</Link>*/}
-      </Col>
-      <Col className="glass-tile">
-        <p>Ga naar een overzicht van door jou opgeslagen spellen.</p>
-        <Link to={url.GAMES}>
-          <button className="outline">{I18n.get("Load stored games")}</button>
-        </Link>
-      </Col>
-    </Row>
-  </Col>
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>
+            Een pubquiz opgedeeld in gedeeltes met open vragen. Antwoorden
+            worden achteraf met de hand gecontroleerd.
+          </p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            variant="outlined"
+            color="secondary"
+            disabled
+          >
+            {I18n.get("Setup a pub game")}
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>
+            Spel waarin teams raadsels, puzzels en opdrachten moeten doen om tot
+            het einde te komen.
+          </p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            variant="outlined"
+            color="secondary"
+            disabled
+          >
+            {I18n.get("Setup an online escape room")}
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>Speel solo en kies jouw puzzel uit de marktplaats.</p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            variant="outlined"
+            color="secondary"
+            disabled
+          >
+            {I18n.get("Play a solo puzzle")}
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>Complete vrijheid om jouw spel te maken.</p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            variant="outlined"
+            color="secondary"
+            disabled
+          >
+            {I18n.get("Custom game")}
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+    <Grid item sm={6} md={3} lg={2} xl={1}>
+      <Card variant="outlined">
+        <CardContent>
+          <p>Ga naar een overzicht van door jou opgeslagen spellen.</p>
+        </CardContent>
+        <CardActions>
+          <Button
+            component={Link}
+            to={url.GAMES}
+            color="secondary"
+            variant="outlined"
+          >
+            {I18n.get("Load stored games")}
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  </Grid>
 );
 
 export default GameTypeSelection;

@@ -1,3 +1,4 @@
+import { Box, Button } from "@mui/material";
 import React from "react";
 import colors from "../../../sharedResources/colors.json";
 import TextareaAutosize from "react-textarea-autosize";
@@ -15,13 +16,18 @@ const style = {
   margin: "$0",
   transition: "background-color .3s",
   display: "flex",
+  flexDirection: "column",
   alignItems: "center",
   boxShadow: "$default",
 
-  "&:hover": {
-    backgroundColor: "$answerBackgroundDark",
-    cursor: "pointer",
-  },
+  // "&:hover": {
+  //   backgroundColor: "$answerBackgroundDark",
+  //   cursor: "pointer",
+  // },
+  //
+  // "&:active": {
+  //   backgroundColor: "$light",
+  // },
 
   textarea: {
     textAlign: "center",
@@ -47,13 +53,13 @@ const style = {
   },
 };
 
-const StyledMultipleChoiceDiv = styled("div", style);
+const StyledMultipleChoiceDiv = styled(Box, style);
 
 const MultipleChoiceButton = ({
   useAnswerDescription,
   i,
   useEditing = () => [],
-  giveAnswer,
+  // giveAnswer,
   pageInput,
 }) => {
   const [editing, setEditing] = useEditing();
@@ -61,13 +67,12 @@ const MultipleChoiceButton = ({
 
   const onClickEdit = () => {
     if (setEditing) setEditing("answer" + i);
-    else if (giveAnswer) giveAnswer(i);
+    // else if (giveAnswer) giveAnswer(i);
   };
 
   return (
     <StyledMultipleChoiceDiv
       className="answer"
-      onClick={onClickEdit}
       number={i % colors.length}
       key={i}
     >
@@ -84,7 +89,9 @@ const MultipleChoiceButton = ({
           />
         </>
       ) : (
-        <span>{answerDescription.value}</span>
+        <Button variant="text" onClick={onClickEdit}>
+          {answerDescription.value || "Antwoord " + (i + 1)}
+        </Button>
       )}
     </StyledMultipleChoiceDiv>
   );

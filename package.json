@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.20",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "@mui/material": "^5.2.6",
     "@reduxjs/toolkit": "^1.6.2",
     "@stitches/react": "^1.2.6",
     "aws-amplify": "^4.3.10",

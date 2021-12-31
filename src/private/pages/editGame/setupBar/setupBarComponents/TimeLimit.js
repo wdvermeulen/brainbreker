@@ -1,36 +1,44 @@
+import { FormControlLabel, ListItem, Slider, Switch } from "@mui/material";
 import React from "react";
-import AutosizeInput from "react-input-autosize";
+
+const calculateValue = (value) => (value <= 12 ? 5 * value : (value - 12) * 60);
+
+function valueLabelFormat(value) {
+  const units = ["seconden", "minuten", "uur"];
+
+  let unitIndex = 0;
+  let scaledValue = value;
+
+  while (scaledValue >= 60 && unitIndex < units.length - 1) {
+    unitIndex += 1;
+    scaledValue /= 60;
+  }
+
+  return `${scaledValue} ${units[unitIndex]}`;
+}
 
 const TimeLimit = ({ hasTimeLimit, timeLimit }) => (
-  <>
-    <div className="row">
-      <input
-        id="hasTimeLimit"
-        name="hasTimeLimit"
-        aria-label="heeft een tijdslimiet"
-        type="checkbox"
-        {...hasTimeLimit}
+  <ListItem>
+    <FormControlLabel
+      control={<Switch {...hasTimeLimit} />}
+      label="Tijdslimiet"
+    />
+    {hasTimeLimit.checked && (
+      <Slider
+        id="timeLimit"
+        name="timeLimit"
+        aria-label="tijdslimiet in seconden"
+        min={1}
+        step={1}
+        max={42}
+        scale={calculateValue}
+        getAriaValueText={valueLabelFormat}
+        valueLabelFormat={valueLabelFormat}
+        valueLabelDisplay="auto"
+        {...timeLimit}
       />
-      <label htmlFor="hasTimeLimit">Heeft een tijdslimiet</label>
-    </div>
-    <div className="row">
-      {hasTimeLimit.checked && (
-        <>
-          <label htmlFor="timeLimit">Tijdslimiet: </label>
-          <AutosizeInput
-            id="timeLimit"
-            name="timeLimit"
-            aria-label="tijdslimiet in seconden"
-            type="number"
-            min="5"
-            max="1800"
-            {...timeLimit}
-          />{" "}
-          seconden
-        </>
-      )}
-    </div>
-  </>
+    )}
+  </ListItem>
 );
 
 export default TimeLimit;

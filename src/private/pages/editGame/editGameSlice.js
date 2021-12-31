@@ -80,8 +80,8 @@ const editGameSlice = createSlice({
     },
     setTimeLimit: (state, action) => {
       state.pages[state.currentPage].timeLimit = Math.min(
-        Math.max(action.payload, 5),
-        1800
+        Math.max(action.payload, 1),
+        42
       );
     },
     setCheckType: (state, action) => {

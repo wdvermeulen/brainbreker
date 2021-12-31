@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Box, Button, Card, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import AutosizeInput from "react-input-autosize/lib/AutosizeInput";
 import Logo from "../../components/logo/Logo";
@@ -6,40 +7,24 @@ import { styled } from "../../sharedStyles/theme";
 import { url } from "../../SiteRoute";
 import { useGame } from "./publicHomeHooks";
 
-const StyledHome = styled("div", {
-  flex: "1 1 auto",
+const StyledDivider = styled("div", {
+  margin: "10px 0",
   display: "flex",
-  flexDirection: "column",
   alignItems: "center",
-  justifyContent: "center",
-  margin: "0 auto",
-  maxWidth: "$columnMaxWidth",
+  gap: "$2",
 
-  button: {
+  "&::before": {
+    height: "1px",
+    backgroundColor: "$lightest",
     width: "100%",
-    marginLeft: "0",
-    marginRight: "0",
+    content: "",
   },
 
-  ".or": {
-    margin: "10px 0",
-    display: "flex",
-    alignItems: "center",
-    gap: "$2",
-
-    "&::before": {
-      height: "1px",
-      backgroundColor: "white",
-      width: "100%",
-      content: "",
-    },
-
-    "&::after": {
-      height: "1px",
-      backgroundColor: "white",
-      width: "100%",
-      content: "",
-    },
+  "&::after": {
+    height: "1px",
+    backgroundColor: "$lightest",
+    width: "100%",
+    content: "",
   },
 });
 
@@ -54,29 +39,50 @@ const Home = () => {
   const { game, setGame } = useGame();
 
   return (
-    <StyledHome>
+    <Box
+      sx={{
+        margin: "0 auto",
+        flex: "1 1 auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <Logo />
-      <div className="glass-tile center">
-        <div>Startcode</div>
-        <AutosizeInput
-          type="text"
-          placeholder="____"
-          maxLength={4}
-          minLength={4}
-          size={4}
-          value={pin}
-          onChange={onChangePin.bind(null, setPin, setGame)}
-        />
-        <br />
-        <Link to={url.PLAY_GAME} disabled={!game}>
-          <button>Meespelen</button>
-        </Link>
-        <div className="or">of</div>
-        <Link to={url.GAME_TYPE_SELECTION}>
-          <button type="button">Nieuw spel beginnen</button>
-        </Link>
-      </div>
-    </StyledHome>
+      <Card variant="outlined">
+        <CardContent>
+          <div>Startcode</div>
+          <AutosizeInput
+            type="text"
+            placeholder="____"
+            maxLength={4}
+            minLength={4}
+            size={4}
+            value={pin}
+            onChange={onChangePin.bind(null, setPin, setGame)}
+          />
+          <br />
+          <Button
+            variant="contained"
+            component={Link}
+            to={url.PLAY_GAME}
+            disabled={!game}
+            fullWidth={true}
+          >
+            Meespelen
+          </Button>
+          <StyledDivider>of</StyledDivider>
+          <Button
+            variant="contained"
+            component={Link}
+            to={url.GAME_TYPE_SELECTION}
+            fullWidth={true}
+          >
+            Nieuw spel beginnen
+          </Button>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

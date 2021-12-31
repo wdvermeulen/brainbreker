@@ -1,24 +1,31 @@
 import { faPlay, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, ListItem, TextField } from "@mui/material";
 import React from "react";
 import AutosizeInput from "react-input-autosize";
 
 const GameSettings = ({ name, saveGame, playGame }) => (
   <>
-    <label htmlFor="title">Naam van dit spel: </label>
-    <AutosizeInput
-      id="numberOfOptions"
-      name="numberOfOptions"
-      aria-label="Aantal opties"
-      type="text"
-      {...name}
-    />
-    <button onClick={saveGame}>
-      <FontAwesomeIcon icon={faSave} /> Opslaan
-    </button>
-    <button onClick={playGame}>
-      <FontAwesomeIcon icon={faPlay} /> Spelen
-    </button>
+    <ListItem>
+      <TextField label="Naam van dit spel" fullWidth {...name} />
+    </ListItem>
+
+    <Button
+      variant="outlined"
+      color="secondary"
+      onClick={saveGame}
+      startIcon={<FontAwesomeIcon icon={faSave} />}
+    >
+      Opslaan
+    </Button>
+    <Button
+      variant="outlined"
+      color="secondary"
+      onClick={playGame}
+      startIcon={<FontAwesomeIcon icon={faPlay} />}
+    >
+      Spelen
+    </Button>
   </>
 );
 

@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./app/App";
@@ -5,6 +6,7 @@ import PeerConnection from "./peer/PeerConnection";
 import reportWebVitals from "./reportWebVitals";
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
+import muiTheme from "./sharedStyles/muiTheme";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -13,9 +15,11 @@ Amplify.configure(config);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PeerConnection>
-        <App />
-      </PeerConnection>
+      <ThemeProvider theme={muiTheme}>
+        <PeerConnection>
+          <App />
+        </PeerConnection>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
