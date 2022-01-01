@@ -1,32 +1,23 @@
 import {
   faChevronLeft,
   faCog,
-  faExclamation,
   faPlay,
+  faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Paper,
-  TextField,
+  Drawer,
 } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { useFormInput } from "../../../utils";
-import { useLoadGame, usePage, useSetupBar } from "./editGameHooks";
+import { useLoadGame, usePage } from "./editGameHooks";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
-import SetupBar from "./setupBar/SetupBar";
-import GameSettings from "./setupBar/setupBarComponents/GameSettings";
-import PageSettings from "./setupBar/setupBarComponents/PageSettings";
-import ScoreSettings from "./setupBar/setupBarComponents/ScoreSettings";
-import TimeLimit from "./setupBar/setupBarComponents/TimeLimit";
+import GameSetup from "./setupBar/GameSetup";
+import PageSetup from "./setupBar/PageSetup";
 
 const loadGame = async (gameID, loadGameToState) => {
   const gameService = new PrivateGameService();
@@ -48,35 +39,31 @@ const EditGame = () => {
   const { gameID } = useParams();
   const page = usePage();
   const loadGameToState = useLoadGame();
-  const {
-    name,
-    pageType,
-    hasTimeLimit,
-    timeLimit,
-    checkType,
-    pointsForSpeed,
-    numberOfOptions,
-    answerValue,
-    saveGame,
-    playGame,
-  } = useSetupBar();
 
   useEffect(() => {
     loadGame(gameID, loadGameToState);
   }, [gameID, loadGameToState]);
 
-  const { setValue, ...selectAnswer } = useFormInput(0);
-
-  if (selectAnswer.value >= numberOfOptions.value)
-    setValue(numberOfOptions.value - 1);
-
-  const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
-
   return (
     <>
-      <Box sx={{ display: "flex", height: "100%" }}>
+      <Box sx={{ display: "flex", height: "100%", overflow: "auto" }}>
+        <Drawer
+          sx={{ display: { md: "block", xs: "none" }, width: "280px" }}
+          variant="persistent"
+          anchor="left"
+          open
+        >
+          <GameSetup />
+        </Drawer>
         <GameLayout {...page} />
-        <SetupBar />
+        <Drawer
+          sx={{ display: { md: "block", xs: "none" }, width: "280px" }}
+          variant="persistent"
+          anchor="right"
+          open
+        >
+          <PageSetup />
+        </Drawer>
       </Box>
       <BottomNavigation
         showLabels
@@ -87,60 +74,29 @@ const EditGame = () => {
         sx={{ display: { md: "none" } }}
       >
         <BottomNavigationAction
-          label="Terug"
-          value="goBack"
-          icon={<FontAwesomeIcon icon={faChevronLeft} />}
-        />
-        <BottomNavigationAction
-          label="Spel"
+          label="Spel instellingen"
           value="gameSettings"
           icon={<FontAwesomeIcon icon={faCog} />}
         />
         <BottomNavigationAction
-          label="Antwoord"
-          value="answerSettings"
-          icon={<FontAwesomeIcon icon={faExclamation} />}
-        />
-        <BottomNavigationAction
-          label="Starten"
-          value="startGame"
-          icon={<FontAwesomeIcon icon={faPlay} />}
+          label="Vraag instellingen"
+          value="pageSettings"
+          icon={<FontAwesomeIcon icon={faQuestion} />}
         />
       </BottomNavigation>
-      <Dialog
+      <Drawer
         open={navigationAction === "gameSettings"}
-        onClose={() => {
-          setNavigationAction(null);
-        }}
+        onClose={() => setNavigationAction(null)}
       >
-        <DialogTitle>Spel instellingen</DialogTitle>
-        <DialogContent>
-          <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
-        </DialogContent>
-      </Dialog>
-      <Dialog
-        open={navigationAction === "answerSettings"}
-        onClose={() => {
-          setNavigationAction(null);
-        }}
+        <GameSetup />
+      </Drawer>
+      <Drawer
+        open={navigationAction === "pageSettings"}
+        onClose={() => setNavigationAction(null)}
+        anchor="right"
       >
-        <DialogTitle>Antwoord instellingen</DialogTitle>
-        <DialogContent>
-          <PageSettings pageType={pageType} numberOfOptions={numberOfOptions} />
-
-          <TimeLimit hasTimeLimit={hasTimeLimit} timeLimit={timeLimit} />
-
-          <ScoreSettings
-            checkType={checkType}
-            hasTimeLimit={hasTimeLimit}
-            predefinedAnswer={predefinedAnswer}
-            pointsForSpeed={pointsForSpeed}
-            selectAnswer={selectAnswer}
-            answerValue={answerValue}
-            numberOfOptions={numberOfOptions}
-          />
-        </DialogContent>
-      </Dialog>
+        <PageSetup />
+      </Drawer>
     </>
   );
 };

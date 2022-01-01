@@ -33,14 +33,14 @@ const StyledGameLayout = styled(Col, {
 const GameLayout = ({ timeLimit, ...props }) => {
   const [secondsRemaining, setSecondsRemaining] = useState(timeLimit.value);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (secondsRemaining) setSecondsRemaining(secondsRemaining - 1);
-    }, 1000);
-
-    if (secondsRemaining <= 0) clearTimeout(timer);
-    return () => clearTimeout(timer);
-  });
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     if (secondsRemaining) setSecondsRemaining(secondsRemaining - 1);
+  //   }, 1000);
+  //
+  //   if (secondsRemaining <= 0) clearTimeout(timer);
+  //   return () => clearTimeout(timer);
+  // });
 
   return (
     <StyledGameLayout className="column">

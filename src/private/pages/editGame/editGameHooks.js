@@ -112,7 +112,9 @@ function useSetupBar() {
       (state) => state.editGame.pages[state.editGame.currentPage].title
     ),
     pageType: {
-      value: useSelector((state) => state.editGame.type),
+      value: useSelector(
+        (state) => state.editGame.pages[state.editGame.currentPage].pageType
+      ),
       onChange: (e) => {
         dispatch(setPageType(e.target.value));
       },

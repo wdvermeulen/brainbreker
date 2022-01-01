@@ -43,15 +43,6 @@ const ScoreSettings = ({
       </FormControl>
     </ListItem>
 
-    {hasTimeLimit.checked && predefinedAnswer && (
-      <ListItem>
-        <FormControlLabel
-          control={<Switch {...pointsForSpeed} />}
-          label="Punten voor snelheid"
-        />
-      </ListItem>
-    )}
-
     {predefinedAnswer && (
       <ListItem>
         <FormControl fullWidth>
@@ -77,7 +68,7 @@ const ScoreSettings = ({
         <TextField
           type="number"
           label={
-            hasTimeLimit.checked && pointsForSpeed.checked
+            pointsForSpeed.checked
               ? "Maximale beloning voor antwoord " +
                 (parseInt(selectAnswer.value) + 1)
               : "Beloning voor antwoord " + (parseInt(selectAnswer.value) + 1)
@@ -103,7 +94,7 @@ const ScoreSettings = ({
               <TextField
                 type="number"
                 label={
-                  hasTimeLimit.checked && pointsForSpeed.checked
+                  pointsForSpeed.checked
                     ? "Maximale beloning voor antwoord " + (i + 1)
                     : "Beloning voor antwoord " + (i + 1)
                 }

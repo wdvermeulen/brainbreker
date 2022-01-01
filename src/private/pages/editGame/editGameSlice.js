@@ -77,6 +77,7 @@ const editGameSlice = createSlice({
     },
     setHasTimeLimit: (state, action) => {
       state.pages[state.currentPage].hasTimeLimit = action.payload;
+      state.pages[state.currentPage].pointsForSpeed = action.payload;
     },
     setTimeLimit: (state, action) => {
       state.pages[state.currentPage].timeLimit = Math.min(

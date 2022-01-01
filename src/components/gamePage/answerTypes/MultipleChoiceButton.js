@@ -13,12 +13,11 @@ const style = {
   flex: "1 1 100%",
   backgroundColor: "$answerBackground",
   color: "$textDark",
-  margin: "$0",
   transition: "background-color .3s",
+  boxShadow: "$default",
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
-  boxShadow: "$default",
+  justifyContent: "center",
 
   // "&:hover": {
   //   backgroundColor: "$answerBackgroundDark",
@@ -35,17 +34,7 @@ const style = {
 
   ".label": {
     fontSize: "$3",
-    marginBottom: "$2",
-    marginRight: "$1",
     fontFamily: "$header",
-  },
-
-  "> :first-child": {
-    marginTop: "$0",
-  },
-
-  "> :last-child": {
-    marginBottom: "$0",
   },
 
   variants: {
@@ -53,7 +42,7 @@ const style = {
   },
 };
 
-const StyledMultipleChoiceDiv = styled(Box, style);
+const StyledMultipleChoiceDiv = styled("div", style);
 
 const MultipleChoiceButton = ({
   useAnswerDescription,

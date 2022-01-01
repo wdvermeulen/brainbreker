@@ -70,6 +70,13 @@ const muiTheme = createTheme({
         },
       },
     },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          maxWidth: "280px",
+        },
+      },
+    },
   },
 });
 

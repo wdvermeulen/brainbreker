@@ -1,18 +1,15 @@
-import { Box, Button, Drawer, List } from "@mui/material";
+import { Button, ButtonGroup, Divider, List, ListItem } from "@mui/material";
 import React from "react";
 import { useSetupBar } from "../editGameHooks";
 import { useFormInput } from "../../../../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faUndo } from "@fortawesome/free-solid-svg-icons";
-import GameSettings from "./setupBarComponents/GameSettings";
-import PageOverview from "./setupBarComponents/PageOverview";
 import ScoreSettings from "./setupBarComponents/ScoreSettings";
 import TimeLimit from "./setupBarComponents/TimeLimit";
 import PageSettings from "./setupBarComponents/PageSettings";
 
-const SetupBar = () => {
+const PageSetup = () => {
   const {
-    name,
     questionTitle,
     pageType,
     hasTimeLimit,
@@ -21,14 +18,8 @@ const SetupBar = () => {
     pointsForSpeed,
     numberOfOptions,
     answerValue,
-    gotoNextPage,
-    gotoPreviousPage,
-    gotoPage,
     resetPage,
     removePage,
-    saveGame,
-    playGame,
-    pages,
     currentPage,
   } = useSetupBar();
 
@@ -40,37 +31,44 @@ const SetupBar = () => {
   const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
 
   return (
-    <Drawer
-      sx={{ display: { md: "block", xs: "none" } }}
-      variant="persistent"
-      anchor="right"
-      open
-    >
+    <>
       <h3>
-        Instellingen voor {currentPage + 1}. {questionTitle}
+        Instellingen voor vraag {currentPage + 1}. {questionTitle}
       </h3>
 
+      <Divider />
+
       <List>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={resetPage}
-          startIcon={<FontAwesomeIcon icon={faUndo} />}
-        >
-          Reset
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={removePage}
-          startIcon={<FontAwesomeIcon icon={faTrash} />}
-        >
-          Verwijderen
-        </Button>
+        <ListItem>
+          <ButtonGroup variant="outlined" color="secondary">
+            <Button
+              onClick={resetPage}
+              startIcon={<FontAwesomeIcon icon={faUndo} />}
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={removePage}
+              startIcon={<FontAwesomeIcon icon={faTrash} />}
+            >
+              Verwijderen
+            </Button>
+          </ButtonGroup>
+        </ListItem>
+
+        <Divider />
 
         <PageSettings pageType={pageType} numberOfOptions={numberOfOptions} />
 
-        <TimeLimit hasTimeLimit={hasTimeLimit} timeLimit={timeLimit} />
+        <Divider />
+
+        <TimeLimit
+          hasTimeLimit={hasTimeLimit}
+          timeLimit={timeLimit}
+          pointsForSpeed={pointsForSpeed}
+        />
+
+        <Divider />
 
         <ScoreSettings
           checkType={checkType}
@@ -81,18 +79,9 @@ const SetupBar = () => {
           answerValue={answerValue}
           numberOfOptions={numberOfOptions}
         />
-
-        <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
-
-        <PageOverview
-          pages={pages}
-          gotoPage={gotoPage}
-          gotoPreviousPage={gotoPreviousPage}
-          gotoNextPage={gotoNextPage}
-        />
       </List>
-    </Drawer>
+    </>
   );
 };
 
-export default SetupBar;
+export default PageSetup;
