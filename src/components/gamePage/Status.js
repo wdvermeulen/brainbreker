@@ -1,3 +1,5 @@
+import { secondsToAutoUnit } from "../../utils";
+
 const { styled } = require("../../sharedStyles/theme");
 
 const StatusBar = styled("div", {
@@ -13,12 +15,13 @@ const StyledStatus = styled("div", {
   textShadow: "$default",
 });
 
-const Status = ({ secondsRemaining, timeLimit }) => (
+const Status = ({ secondsRemaining, totalSeconds }) => (
   <StyledStatus>
-    <></>
-    {secondsRemaining} seconden resterend
+    {secondsToAutoUnit(secondsRemaining)} resterend
     <StatusBar
-      style={{ width: ((secondsRemaining - 1) / timeLimit) * 100 + "%" }}
+      style={{
+        width: Math.min((secondsRemaining - 1) / totalSeconds, 1) * 100 + "%",
+      }}
     />
   </StyledStatus>
 );

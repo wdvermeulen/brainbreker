@@ -1,5 +1,5 @@
-import { Divider, List } from "@mui/material";
 import React from "react";
+import { Divider, List } from "@mui/material";
 import { useSetupBar } from "../editGameHooks";
 import GameSettings from "./setupBarComponents/GameSettings";
 import PageOverview from "./setupBarComponents/PageOverview";

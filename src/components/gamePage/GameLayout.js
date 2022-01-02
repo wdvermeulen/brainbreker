@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { timeSteps } from "../../sharedResources/constants";
 import { styled } from "../../sharedStyles/theme";
 import MultipleChoice from "./answerTypes/MultipleChoice";
 import Questions from "./Question";
@@ -31,7 +32,9 @@ const StyledGameLayout = styled(Col, {
 });
 
 const GameLayout = ({ timeLimit, ...props }) => {
-  const [secondsRemaining, setSecondsRemaining] = useState(timeLimit.value);
+  const [secondsRemaining, setSecondsRemaining] = useState(
+    timeSteps[timeLimit.value]
+  );
 
   // useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -47,7 +50,7 @@ const GameLayout = ({ timeLimit, ...props }) => {
       <Questions {...props} />
       {timeLimit && (
         <Status
-          timeLimit={timeLimit.value - 1}
+          totalSeconds={timeSteps[timeLimit.value]}
           secondsRemaining={secondsRemaining}
         />
       )}

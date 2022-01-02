@@ -24,4 +24,9 @@ const roomDefinition = {
   VICTORY: "victory",
 };
 
-export { pageTypeDefinition, checkTypeDefinition, roomDefinition };
+const timeSteps = [
+  5, 10, 15, 20, 30, 45, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 900,
+  1800, 2700, 3600,
+];
+
+export { pageTypeDefinition, checkTypeDefinition, roomDefinition, timeSteps };

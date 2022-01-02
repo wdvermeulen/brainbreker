@@ -1,21 +1,7 @@
 import { FormControlLabel, ListItem, Slider, Switch } from "@mui/material";
 import React from "react";
-
-const calculateValue = (value) => (value <= 12 ? 5 * value : (value - 12) * 60);
-
-function valueLabelFormat(value) {
-  const units = ["sec.", "min.", "uur"];
-
-  let unitIndex = 0;
-  let scaledValue = value;
-
-  while (scaledValue >= 60 && unitIndex < units.length - 1) {
-    unitIndex += 1;
-    scaledValue /= 60;
-  }
-
-  return `${scaledValue}${units[unitIndex]}`;
-}
+import { timeSteps } from "../../../../../sharedResources/constants";
+import { secondsToAutoUnit } from "../../../../../utils";
 
 const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
   <>
@@ -29,12 +15,14 @@ const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
           id="timeLimit"
           name="timeLimit"
           aria-label="tijdslimiet in seconden"
-          min={1}
+          min={0}
           step={1}
-          max={42}
-          scale={calculateValue}
-          getAriaValueText={valueLabelFormat}
-          valueLabelFormat={valueLabelFormat}
+          max={timeSteps.length - 1}
+          scale={(value) => {
+            return timeSteps[value];
+          }}
+          getAriaValueText={secondsToAutoUnit}
+          valueLabelFormat={secondsToAutoUnit}
           valueLabelDisplay="auto"
           {...timeLimit}
         />
@@ -45,6 +33,7 @@ const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
       <FormControlLabel
         control={<Switch {...pointsForSpeed} />}
         label="Punten voor snelheid"
+        disabled={!hasTimeLimit.checked}
       />
     </ListItem>
   </>

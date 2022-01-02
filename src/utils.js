@@ -22,6 +22,20 @@ const getRandomName = () =>
   " " +
   animals.default[getRandomInt(0, animals.default.length)];
 
+function secondsToAutoUnit(value) {
+  const units = ["seconden", "minuten", "uur"];
+
+  let unitIndex = 0;
+  let scaledValue = value;
+
+  while (scaledValue >= 60 && unitIndex < units.length - 1) {
+    unitIndex += 1;
+    scaledValue /= 60;
+  }
+
+  return `${scaledValue} ${units[unitIndex]}`;
+}
+
 const getTimeToLive = Math.floor(new Date() / 1000) + 24 * 60 * 60 * 7;
 
-export { useFormInput, getRandomName, getTimeToLive };
+export { useFormInput, getRandomName, getTimeToLive, secondsToAutoUnit };

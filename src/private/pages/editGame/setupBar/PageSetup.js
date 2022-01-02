@@ -23,11 +23,6 @@ const PageSetup = () => {
     currentPage,
   } = useSetupBar();
 
-  const { setValue, ...selectAnswer } = useFormInput(0);
-
-  if (selectAnswer.value >= numberOfOptions.value)
-    setValue(numberOfOptions.value - 1);
-
   const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
 
   return (
@@ -36,9 +31,8 @@ const PageSetup = () => {
         Instellingen voor vraag {currentPage + 1}. {questionTitle}
       </h3>
 
-      <Divider />
-
       <List>
+        <Divider />
         <ListItem>
           <ButtonGroup variant="outlined" color="secondary">
             <Button
@@ -72,12 +66,9 @@ const PageSetup = () => {
 
         <ScoreSettings
           checkType={checkType}
-          hasTimeLimit={hasTimeLimit}
           predefinedAnswer={predefinedAnswer}
           pointsForSpeed={pointsForSpeed}
-          selectAnswer={selectAnswer}
           answerValue={answerValue}
-          numberOfOptions={numberOfOptions}
         />
       </List>
     </>

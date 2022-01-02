@@ -1,14 +1,17 @@
 import {
   faChevronLeft,
   faChevronRight,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
   ButtonGroup,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
 } from "@mui/material";
 import React from "react";
@@ -31,23 +34,13 @@ const PageOverview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
             </ListItemButton>
           );
         })}
+        <ListItemButton onClick={gotoNextPage}>
+          <ListItemIcon>
+            <FontAwesomeIcon icon={faPlus} />
+          </ListItemIcon>
+          <ListItemText primary="Vraag toevoegen" />
+        </ListItemButton>
       </List>
-    </ListItem>
-    <ListItem>
-      <ButtonGroup variant="outlined" color="secondary">
-        <Button
-          onClick={gotoPreviousPage}
-          startIcon={<FontAwesomeIcon icon={faChevronLeft} />}
-        >
-          Vorige vraag
-        </Button>
-        <Button
-          onClick={gotoNextPage}
-          endIcon={<FontAwesomeIcon icon={faChevronRight} />}
-        >
-          Volgende vraag
-        </Button>
-      </ButtonGroup>
     </ListItem>
   </>
 );

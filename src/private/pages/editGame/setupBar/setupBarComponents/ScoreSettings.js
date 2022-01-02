@@ -2,7 +2,10 @@ import {
   FormControl,
   FormControlLabel,
   InputLabel,
+  List,
   ListItem,
+  ListItemButton,
+  ListItemText,
   MenuItem,
   Select,
   Switch,
@@ -17,12 +20,9 @@ import {
 
 const ScoreSettings = ({
   checkType,
-  hasTimeLimit,
   predefinedAnswer,
   pointsForSpeed,
-  selectAnswer,
   answerValue,
-  numberOfOptions,
 }) => (
   <>
     <ListItem>
@@ -44,71 +44,32 @@ const ScoreSettings = ({
     </ListItem>
 
     {predefinedAnswer && (
-      <ListItem>
-        <FormControl fullWidth>
-          <InputLabel id="correctAnswer">Punten voor antwoord: </InputLabel>
-          <Select
-            labelId="correctAnswer"
-            name="correctAnswer"
-            aria-label="Juiste antwoord"
-            {...selectAnswer}
-          >
-            {answerValue.values.map((value, i) => (
-              <MenuItem key={"answerValue-" + i} value={i}>
-                {"antwoord " + (i + 1)}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </ListItem>
-    )}
-
-    {predefinedAnswer && (
-      <ListItem>
-        <TextField
-          type="number"
-          label={
-            pointsForSpeed.checked
-              ? "Maximale beloning voor antwoord " +
-                (parseInt(selectAnswer.value) + 1)
-              : "Beloning voor antwoord " + (parseInt(selectAnswer.value) + 1)
-          }
-          value={answerValue.values[selectAnswer.value]}
-          onChange={(e) => {
-            answerValue.onChange(selectAnswer.value, e.target.value);
-          }}
-          fullWidth
-        />
-      </ListItem>
-    )}
-
-    {predefinedAnswer &&
-      answerValue.values.map((value, i) => {
-        if (
-          parseInt(selectAnswer.value) !== i &&
-          value !== 0 &&
-          i < numberOfOptions.value
-        ) {
-          return (
-            <ListItem key={"answerValue-" + i}>
+      <ListItem disablePadding>
+        <List sx={{ width: "100%" }}>
+          {answerValue.values.map((value, i) => (
+            <ListItem className="row" key={"answerValue-" + i}>
               <TextField
-                type="number"
                 label={
                   pointsForSpeed.checked
                     ? "Maximale beloning voor antwoord " + (i + 1)
                     : "Beloning voor antwoord " + (i + 1)
                 }
+                type="number"
+                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                min={-9999}
+                max={9999}
                 value={answerValue.values[i]}
                 onChange={(e) => {
                   answerValue.onChange(i, e.target.value);
                 }}
+                size="small"
                 fullWidth
               />
             </ListItem>
-          );
-        }
-        return null;
-      })}
+          ))}
+        </List>
+      </ListItem>
+    )}
   </>
 );
 

@@ -2,13 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   checkTypeDefinition,
   pageTypeDefinition,
+  timeSteps,
 } from "../../../sharedResources/constants";
 
 const defaultPage = {
   title: "",
   description: "",
   hasTimeLimit: true,
-  timeLimit: 10,
+  timeLimit: 3,
   checkType: Object.keys(checkTypeDefinition)[0],
   pointsForSpeed: true,
   file: "",
@@ -77,12 +78,13 @@ const editGameSlice = createSlice({
     },
     setHasTimeLimit: (state, action) => {
       state.pages[state.currentPage].hasTimeLimit = action.payload;
-      state.pages[state.currentPage].pointsForSpeed = action.payload;
+      if (!action.payload)
+        state.pages[state.currentPage].pointsForSpeed = action.payload;
     },
     setTimeLimit: (state, action) => {
       state.pages[state.currentPage].timeLimit = Math.min(
-        Math.max(action.payload, 1),
-        42
+        Math.max(action.payload, 0),
+        timeSteps.length
       );
     },
     setCheckType: (state, action) => {
@@ -128,7 +130,7 @@ const editGameSlice = createSlice({
     },
     setAnswerValue: (state, action) => {
       state.pages[state.currentPage].answers[action.payload.answerIndex].value =
-        action.payload.value;
+        parseInt(action.payload.value) || 0;
     },
   },
 });
