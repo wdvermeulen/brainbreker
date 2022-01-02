@@ -1,13 +1,6 @@
-import {
-  faChevronLeft,
-  faChevronRight,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  Button,
-  ButtonGroup,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -16,11 +9,10 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const PageOverview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
+const PageOverview = ({ pages, gotoPage, addNewPage }) => (
   <>
-    <h3>Overzicht</h3>
     <ListItem disablePadding>
-      <List sx={{ width: "100%" }}>
+      <List sx={{ width: "100%" }} subheader={<h3>Overzicht</h3>}>
         {pages.map((page, i) => {
           return (
             <ListItemButton
@@ -34,7 +26,7 @@ const PageOverview = ({ pages, gotoPage, gotoPreviousPage, gotoNextPage }) => (
             </ListItemButton>
           );
         })}
-        <ListItemButton onClick={gotoNextPage}>
+        <ListItemButton onClick={addNewPage}>
           <ListItemIcon>
             <FontAwesomeIcon icon={faPlus} />
           </ListItemIcon>

@@ -47,15 +47,10 @@ const editGameSlice = createSlice({
         0
       );
     },
-    nextPage: (state) => {
-      if (state.currentPage <= state.pages.length)
-        state.pages.push(defaultPage);
-      state.currentPage += 1;
+    addNewPage: (state) => {
+      state.pages.push(defaultPage);
+      state.currentPage = state.pages.length - 1;
     },
-    previousPage: (state) => {
-      state.currentPage = Math.max(state.currentPage - 1, 0);
-    },
-
     resetCurrentPage: (state) => {
       console.log("resetSlice");
       state.pages[state.currentPage] = defaultPage;
@@ -140,8 +135,7 @@ export const {
   setName,
   setEditing,
   setCurrentPage,
-  nextPage,
-  previousPage,
+  addNewPage,
   resetCurrentPage,
   removeCurrentPage,
   setQuestionTitle,

@@ -2,7 +2,6 @@ import { faPlay, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, ButtonGroup, ListItem, TextField } from "@mui/material";
 import React from "react";
-import AutosizeInput from "react-input-autosize";
 
 const GameSettings = ({ name, saveGame, playGame }) => (
   <>

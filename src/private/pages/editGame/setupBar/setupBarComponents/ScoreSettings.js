@@ -1,22 +1,15 @@
 import {
   FormControl,
-  FormControlLabel,
+  InputAdornment,
   InputLabel,
   List,
   ListItem,
-  ListItemButton,
-  ListItemText,
   MenuItem,
   Select,
-  Switch,
   TextField,
 } from "@mui/material";
 import React from "react";
-import AutosizeInput from "react-input-autosize";
-import {
-  checkTypeDefinition,
-  pageTypeDefinition,
-} from "../../../../../sharedResources/constants";
+import { checkTypeDefinition } from "../../../../../sharedResources/constants";
 
 const ScoreSettings = ({
   checkType,
@@ -54,6 +47,11 @@ const ScoreSettings = ({
                     ? "Maximale beloning voor antwoord " + (i + 1)
                     : "Beloning voor antwoord " + (i + 1)
                 }
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">punten</InputAdornment>
+                  ),
+                }}
                 type="number"
                 inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                 min={-9999}

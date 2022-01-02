@@ -5,28 +5,25 @@ import GameSettings from "./setupBarComponents/GameSettings";
 import PageOverview from "./setupBarComponents/PageOverview";
 
 const GameSetup = () => {
-  const {
-    name,
-    gotoNextPage,
-    gotoPreviousPage,
-    gotoPage,
-    saveGame,
-    playGame,
-    pages,
-  } = useSetupBar();
+  const { name, addNewPage, gotoPage, saveGame, playGame, pages } =
+    useSetupBar();
 
   return (
     <>
-      <h3>Instellingen voor spel</h3>
-
-      <List>
+      <List
+        subheader={
+          <>
+            <h3>Instellingen voor spel</h3>
+          </>
+        }
+      >
+        <Divider />
         <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
         <Divider />
         <PageOverview
           pages={pages}
           gotoPage={gotoPage}
-          gotoPreviousPage={gotoPreviousPage}
-          gotoNextPage={gotoNextPage}
+          addNewPage={addNewPage}
         />
       </List>
     </>

@@ -1,18 +1,17 @@
-import {
-  faChevronLeft,
-  faCog,
-  faPlay,
-  faQuestion,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCog, faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   BottomNavigation,
-  BottomNavigationAction,
   Box,
   Drawer,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import GameLayout from "../../../components/gamePage/GameLayout";
+import muiTheme from "../../../sharedStyles/muiTheme";
 import { useLoadGame, usePage } from "./editGameHooks";
 import { useParams } from "react-router-dom";
 import PrivateGameService from "../../services/PrivateGameService";
@@ -35,10 +34,13 @@ const loadGame = async (gameID, loadGameToState) => {
 };
 
 const EditGame = () => {
-  const [navigationAction, setNavigationAction] = useState(null);
+  const [navigationAction, setNavigationAction] = useState([]);
   const { gameID } = useParams();
   const page = usePage();
   const loadGameToState = useLoadGame();
+  const hasLargeScreen = useMediaQuery(muiTheme.breakpoints.up("md"));
+
+  const closeAction = () => setNavigationAction([]);
 
   useEffect(() => {
     loadGame(gameID, loadGameToState);
@@ -48,55 +50,70 @@ const EditGame = () => {
     <>
       <Box sx={{ display: "flex", height: "100%", overflow: "auto" }}>
         <Drawer
-          sx={{ display: { md: "block", xs: "none" }, width: "280px" }}
-          variant="persistent"
+          variant={hasLargeScreen ? "persistent" : "temporary"}
           anchor="left"
-          open
+          open={navigationAction.includes("gameSettings")}
+          onClose={closeAction}
         >
           <GameSetup />
         </Drawer>
         <GameLayout {...page} />
         <Drawer
-          sx={{ display: { md: "block", xs: "none" }, width: "280px" }}
-          variant="persistent"
+          variant={hasLargeScreen ? "persistent" : "temporary"}
           anchor="right"
-          open
+          open={navigationAction.includes("pageSettings")}
+          onClose={closeAction}
         >
           <PageSetup />
         </Drawer>
       </Box>
-      <BottomNavigation
-        showLabels
-        value={navigationAction}
-        onChange={(event, value) => {
-          setNavigationAction(value);
-        }}
-        sx={{ display: { md: "none" } }}
-      >
-        <BottomNavigationAction
-          label="Spel instellingen"
-          value="gameSettings"
-          icon={<FontAwesomeIcon icon={faCog} />}
-        />
-        <BottomNavigationAction
-          label="Vraag instellingen"
-          value="pageSettings"
-          icon={<FontAwesomeIcon icon={faQuestion} />}
-        />
-      </BottomNavigation>
-      <Drawer
-        open={navigationAction === "gameSettings"}
-        onClose={() => setNavigationAction(null)}
-      >
-        <GameSetup />
-      </Drawer>
-      <Drawer
-        open={navigationAction === "pageSettings"}
-        onClose={() => setNavigationAction(null)}
-        anchor="right"
-      >
-        <PageSetup />
-      </Drawer>
+      <Paper>
+        <ToggleButtonGroup
+          onChange={(event, value) => {
+            setNavigationAction(value);
+          }}
+          value={navigationAction}
+          size="small"
+        >
+          <ToggleButton value="gameSettings">
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon icon={faCog} />
+              Spel instellingen
+            </Box>
+          </ToggleButton>
+          <ToggleButton value="pageSettings">
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <FontAwesomeIcon icon={faQuestion} />
+              Vraag instellingen
+            </Box>
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Paper>
+      {/*<Drawer*/}
+      {/*  open={navigationAction === "gameSettings"}*/}
+      {/*  onClose={() => setNavigationAction(null)}*/}
+      {/*>*/}
+      {/*  <GameSetup />*/}
+      {/*</Drawer>*/}
+      {/*<Drawer*/}
+      {/*  open={navigationAction === "pageSettings"}*/}
+      {/*  onClose={() => setNavigationAction(null)}*/}
+      {/*  anchor="right"*/}
+      {/*>*/}
+      {/*  <PageSetup />*/}
+      {/*</Drawer>*/}
     </>
   );
 };

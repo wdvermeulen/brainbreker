@@ -44,6 +44,13 @@ const muiTheme = createTheme({
         },
       },
     },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "initial",
+        },
+      },
+    },
     MuiCardContent: {
       styleOverrides: {
         root: {

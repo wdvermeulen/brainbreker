@@ -3,8 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { url } from "../../../SiteRoute";
 import {
   setName,
-  nextPage,
-  previousPage,
+  addNewPage,
   removeCurrentPage,
   resetCurrentPage,
   setAnswerDescription,
@@ -174,11 +173,8 @@ function useSetupBar() {
         );
       },
     },
-    gotoNextPage: () => {
-      dispatch(nextPage(page));
-    },
-    gotoPreviousPage: () => {
-      dispatch(previousPage(page));
+    addNewPage: () => {
+      dispatch(addNewPage());
     },
     gotoPage: (pageNumber) => {
       dispatch(setCurrentPage({ page, pageNumber }));

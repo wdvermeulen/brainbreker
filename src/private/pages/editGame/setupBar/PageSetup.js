@@ -1,7 +1,6 @@
 import { Button, ButtonGroup, Divider, List, ListItem } from "@mui/material";
 import React from "react";
 import { useSetupBar } from "../editGameHooks";
-import { useFormInput } from "../../../../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faUndo } from "@fortawesome/free-solid-svg-icons";
 import ScoreSettings from "./setupBarComponents/ScoreSettings";
@@ -27,11 +26,13 @@ const PageSetup = () => {
 
   return (
     <>
-      <h3>
-        Instellingen voor vraag {currentPage + 1}. {questionTitle}
-      </h3>
-
-      <List>
+      <List
+        subheader={
+          <h3>
+            Instellingen voor vraag {currentPage + 1}. {questionTitle}
+          </h3>
+        }
+      >
         <Divider />
         <ListItem>
           <ButtonGroup variant="outlined" color="secondary">

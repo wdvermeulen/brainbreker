@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import React from "react";
 import colors from "../../../sharedResources/colors.json";
 import TextareaAutosize from "react-textarea-autosize";
