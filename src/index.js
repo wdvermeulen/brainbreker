@@ -1,23 +1,29 @@
-import { ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app/App";
+import { Provider } from "react-redux";
+import Amplify, { I18n } from "aws-amplify";
+import { ThemeProvider } from "@mui/material";
 import PeerConnection from "./peer/PeerConnection";
 import reportWebVitals from "./reportWebVitals";
-import Amplify from "aws-amplify";
 import config from "./aws-exports";
 import muiTheme from "./sharedStyles/muiTheme";
+import SiteRoute from "./SiteRoute";
 import store from "./store";
-import { Provider } from "react-redux";
+import "./sharedStyles/normalize.css";
+import "./index.scss";
+import * as STRINGS from "./strings.json";
 
 Amplify.configure(config);
+
+I18n.setLanguage("nl");
+I18n.putVocabulariesForLanguage("nl", STRINGS.nl);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={muiTheme}>
         <PeerConnection>
-          <App />
+          <SiteRoute />
         </PeerConnection>
       </ThemeProvider>
     </Provider>

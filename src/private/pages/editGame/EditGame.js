@@ -1,9 +1,13 @@
-import { faCog, faQuestion } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faCog,
+  faQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  BottomNavigation,
   Box,
   Drawer,
+  IconButton,
   Paper,
   ToggleButton,
   ToggleButtonGroup,
@@ -68,6 +72,9 @@ const EditGame = () => {
         </Drawer>
       </Box>
       <Paper>
+        <IconButton>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </IconButton>
         <ToggleButtonGroup
           onChange={(event, value) => {
             setNavigationAction(value);

@@ -8,9 +8,9 @@ import {
   AmplifySignUp,
 } from "@aws-amplify/ui-react";
 import "./Authenticated.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../../components/logo/Logo";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser } from "@fortawesome/free-solid-svg-icons";
+// import Logo from "../../components/logo/Logo";
 import { styled } from "../../sharedStyles/theme";
 
 const StyledLogoutBar = styled("div", {
@@ -73,14 +73,14 @@ const Authenticated = ({ children }) => {
 
   return authState === AuthState.SignedIn && user ? (
     <>
-      <StyledLogoutBar>
-        {/*<div>{user?.attributes.email}</div>*/}
-        {/*TODO build a user menu*/}
-        <button onClick={signOut} className="outline">
-          <FontAwesomeIcon icon={faUser} />
-        </button>
-        <Logo />
-      </StyledLogoutBar>
+      {/*<StyledLogoutBar>*/}
+      {/*  /!*<div>{user?.attributes.email}</div>*!/*/}
+      {/*  /!*TODO build a user menu*!/*/}
+      {/*  <button onClick={signOut} className="outline">*/}
+      {/*    <FontAwesomeIcon icon={faUser} />*/}
+      {/*  </button>*/}
+      {/*  <Logo />*/}
+      {/*</StyledLogoutBar>*/}
       {children}
     </>
   ) : (

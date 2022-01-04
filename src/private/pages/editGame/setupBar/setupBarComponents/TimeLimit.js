@@ -1,4 +1,10 @@
-import { FormControlLabel, ListItem, Slider, Switch } from "@mui/material";
+import {
+  Collapse,
+  FormControlLabel,
+  ListItem,
+  Slider,
+  Switch,
+} from "@mui/material";
 import React from "react";
 import { timeSteps } from "../../../../../sharedResources/constants";
 import { secondsToAutoUnit } from "../../../../../utils";
@@ -8,13 +14,20 @@ const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
     <ListItem>
       <FormControlLabel
         control={<Switch {...hasTimeLimit} />}
-        label="Tijdslimiet"
+        label={
+          hasTimeLimit.checked
+            ? `Tijdslimiet: ${secondsToAutoUnit(timeSteps[timeLimit.value])}`
+            : "Tijdslimiet"
+        }
       />
-      {hasTimeLimit.checked && (
+    </ListItem>
+
+    <Collapse in={hasTimeLimit.checked}>
+      <ListItem>
         <Slider
           id="timeLimit"
           name="timeLimit"
-          aria-label="tijdslimiet in seconden"
+          aria-label="Tijdslimiet"
           min={0}
           step={1}
           max={timeSteps.length - 1}
@@ -22,12 +35,11 @@ const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
             return timeSteps[value];
           }}
           getAriaValueText={secondsToAutoUnit}
-          valueLabelFormat={secondsToAutoUnit}
-          valueLabelDisplay="auto"
+          marks
           {...timeLimit}
         />
-      )}
-    </ListItem>
+      </ListItem>
+    </Collapse>
 
     <ListItem>
       <FormControlLabel

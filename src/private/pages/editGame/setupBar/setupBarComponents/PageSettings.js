@@ -34,7 +34,9 @@ const PageSettings = ({ pageType, numberOfOptions }) => (
       <TextField
         label="Aantal opties"
         InputProps={{
-          endAdornment: <InputAdornment position="end">opties</InputAdornment>,
+          endAdornment: (
+            <InputAdornment position="end">antwoorden</InputAdornment>
+          ),
         }}
         type="number"
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}

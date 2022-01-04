@@ -1,6 +1,6 @@
-@import '../sharedStyles/variables';
-@import '../sharedStyles/fonts';
-@import '../sharedStyles/mixins';
+@import 'src/sharedStyles/variables';
+@import 'src/sharedStyles/fonts';
+@import 'src/sharedStyles/mixins';
 
 @keyframes body-background-size {
   from {
@@ -17,10 +17,9 @@ html {
 
 #root {
   @include liquid-shape;
-}
 
-.App {
-  @include liquid-shape;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -34,7 +33,6 @@ body {
   font-family: $font-family-default;
   color: $color-text-light;
   text-align: center;
-  overflow: hidden;
   animation: body-background-size 10s infinite alternate;
 }
 
@@ -103,13 +101,6 @@ h2 {
 
 label[for]:hover {
   cursor: pointer;
-}
-
-.App {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
 .center {

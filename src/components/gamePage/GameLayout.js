@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { /*useEffect,*/ useState } from "react";
 import { timeSteps } from "../../sharedResources/constants";
 import { styled } from "../../sharedStyles/theme";
 import MultipleChoice from "./answerTypes/MultipleChoice";

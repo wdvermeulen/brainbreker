@@ -28,7 +28,7 @@ const editGameSlice = createSlice({
   initialState: {
     name: "Game 1",
     currentPage: 0,
-    pages: [defaultPage],
+    pages: [{ ...defaultPage, id: Math.random().toString() }],
   },
   reducers: {
     setGame: (state, action) => {
@@ -48,8 +48,16 @@ const editGameSlice = createSlice({
       );
     },
     addNewPage: (state) => {
-      state.pages.push(defaultPage);
+      state.pages.push({ ...defaultPage, id: Math.random().toString() });
       state.currentPage = state.pages.length - 1;
+    },
+    movePage: (state, { payload: { startIndex, endIndex } }) => {
+      const result = Array.from(state.pages);
+      const [removed] = result.splice(startIndex, 1);
+      result.splice(endIndex, 0, removed);
+
+      state.pages = result;
+      if (startIndex === state.currentPage) state.currentPage = endIndex;
     },
     resetCurrentPage: (state) => {
       console.log("resetSlice");
@@ -136,6 +144,7 @@ export const {
   setEditing,
   setCurrentPage,
   addNewPage,
+  movePage,
   resetCurrentPage,
   removeCurrentPage,
   setQuestionTitle,

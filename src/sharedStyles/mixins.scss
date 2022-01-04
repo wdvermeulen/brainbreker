@@ -69,29 +69,32 @@ $liquid-shape-colors: #4CC9F0, #7209B7, #7209B7, #29006C;
   --left: #{random_range(90vw, 10vw)};
   --top: #{random_range(90vh, 10vh)};
   --origin: #{random_range(-100%, 100%)} #{random_range(-100%, 100%)};
-  &::before {
-    content: '';
-    width: var(--width);
-    height: var(--height);
-    animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear -1s infinite;
-    transform-origin: var(--origin);
-    background-color: sample($liquid-shape-colors);
-    position: absolute;
-    left: var(--left);
-    top: var(--top);
-    pointer-events: none;
-    z-index: -2;
-  }
-  &::after {
-    content: '';
-    width: calc(var(--width) + 3px);
-    height: calc(var(--height) + 3px);
-    border: solid white thin;
-    animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear #{random_range(-2000ms, 0ms)} infinite;
-    transform-origin: var(--origin);
-    position: absolute;
-    left: var(--left);
-    top: var(--top);
-    z-index: -1;
-  }
+  overflow: hidden;
+  max-height: 100vh;
+  max-width: 100vw;
+  //&::before {
+  //  content: '';
+  //  width: var(--width);
+  //  height: var(--height);
+  //  animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear -1s infinite;
+  //  transform-origin: var(--origin);
+  //  background-color: sample($liquid-shape-colors);
+  //  position: absolute;
+  //  left: var(--left);
+  //  top: var(--top);
+  //  pointer-events: none;
+  //  z-index: -2;
+  //}
+  //&::after {
+  //  content: '';
+  //  width: calc(var(--width) + 3px);
+  //  height: calc(var(--height) + 3px);
+  //  border: solid white thin;
+  //  animation: morph var(--speed-of-morph) linear infinite alternate, var(--direction) var(--speed-of-spin) linear #{random_range(-2000ms, 0ms)} infinite;
+  //  transform-origin: var(--origin);
+  //  position: absolute;
+  //  left: var(--left);
+  //  top: var(--top);
+  //  z-index: -1;
+  //}
 }
