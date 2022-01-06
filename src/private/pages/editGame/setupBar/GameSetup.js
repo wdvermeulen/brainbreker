@@ -9,24 +9,19 @@ const GameSetup = () => {
     useSetupBar();
 
   return (
-    <>
-      <List
-        subheader={
-          <>
-            <h3>Instellingen voor spel</h3>
-          </>
-        }
-      >
-        <Divider />
-        <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
-        <Divider />
-        <PageOverview
-          pages={pages}
-          gotoPage={gotoPage}
-          addNewPage={addNewPage}
-        />
-      </List>
-    </>
+    <List
+      subheader={
+        <>
+          <h3>Instellingen voor spel</h3>
+        </>
+      }
+      sx={{ width: "280px" }}
+    >
+      <Divider />
+      <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
+      <Divider />
+      <PageOverview pages={pages} gotoPage={gotoPage} addNewPage={addNewPage} />
+    </List>
   );
 };
 

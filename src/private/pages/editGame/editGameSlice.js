@@ -57,7 +57,12 @@ const editGameSlice = createSlice({
       result.splice(endIndex, 0, removed);
 
       state.pages = result;
+
       if (startIndex === state.currentPage) state.currentPage = endIndex;
+      else if (startIndex < state.currentPage && endIndex >= state.currentPage)
+        state.currentPage--;
+      else if (startIndex > state.currentPage && endIndex <= state.currentPage)
+        state.currentPage++;
     },
     resetCurrentPage: (state) => {
       console.log("resetSlice");

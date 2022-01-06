@@ -1,5 +1,4 @@
-import { faPlay, faSave } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PlayArrowRounded, SaveRounded } from "@mui/icons-material";
 import { Button, ButtonGroup, ListItem, TextField } from "@mui/material";
 import React from "react";
 
@@ -11,16 +10,10 @@ const GameSettings = ({ name, saveGame, playGame }) => (
 
     <ListItem>
       <ButtonGroup variant="outlined" color="secondary" fullWidth>
-        <Button
-          onClick={saveGame}
-          startIcon={<FontAwesomeIcon icon={faSave} />}
-        >
+        <Button onClick={saveGame} startIcon={<SaveRounded />}>
           Opslaan
         </Button>
-        <Button
-          onClick={playGame}
-          startIcon={<FontAwesomeIcon icon={faPlay} />}
-        >
+        <Button onClick={playGame} startIcon={<PlayArrowRounded />}>
           Spelen
         </Button>
       </ButtonGroup>

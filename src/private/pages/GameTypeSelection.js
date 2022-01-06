@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { url } from "../../SiteRoute";
 
 const GameTypeSelection = () => (
-  <Grid container spacing={2}>
+  <Grid container spacing={2} sx={{ overflowY: "auto" }}>
     <Grid item sm={6} md={3} lg={2} xl={1}>
       <Card variant="outlined">
         <CardContent>

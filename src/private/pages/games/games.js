@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import Col from "../../../components/Col";
 import { styled } from "../../../sharedStyles/theme";
 import { url } from "../../../SiteRoute";
@@ -45,7 +44,7 @@ const Games = () => {
             className="outline"
             onClick={onClickDeleteGame.bind(null, game, setGames)}
           >
-            <FontAwesomeIcon icon={faTrash} /> Verwijderen
+            <DeleteForeverRoundedIcon /> Verwijderen
           </button>
         </Col>
       ))}

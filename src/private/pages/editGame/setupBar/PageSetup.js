@@ -1,8 +1,8 @@
 import { Button, ButtonGroup, Divider, List, ListItem } from "@mui/material";
 import React from "react";
 import { useSetupBar } from "../editGameHooks";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faUndo } from "@fortawesome/free-solid-svg-icons";
+import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import ReplayRoundedIcon from "@mui/icons-material/ReplayRounded";
 import ScoreSettings from "./setupBarComponents/ScoreSettings";
 import TimeLimit from "./setupBarComponents/TimeLimit";
 import PageSettings from "./setupBarComponents/PageSettings";
@@ -25,54 +25,47 @@ const PageSetup = () => {
   const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
 
   return (
-    <>
-      <List
-        subheader={
-          <h3>
-            Instellingen voor vraag {currentPage + 1}. {questionTitle}
-          </h3>
-        }
-      >
-        <Divider />
-        <ListItem>
-          <ButtonGroup variant="outlined" color="secondary">
-            <Button
-              onClick={resetPage}
-              startIcon={<FontAwesomeIcon icon={faUndo} />}
-            >
-              Reset
-            </Button>
-            <Button
-              onClick={removePage}
-              startIcon={<FontAwesomeIcon icon={faTrash} />}
-            >
-              Verwijderen
-            </Button>
-          </ButtonGroup>
-        </ListItem>
+    <List
+      subheader={
+        <h3>
+          Instellingen voor vraag {currentPage + 1}. {questionTitle}
+        </h3>
+      }
+      sx={{ width: "280px" }}
+    >
+      <Divider />
+      <ListItem>
+        <ButtonGroup variant="outlined" color="secondary">
+          <Button onClick={resetPage} startIcon={<ReplayRoundedIcon />}>
+            Reset
+          </Button>
+          <Button onClick={removePage} startIcon={<DeleteForeverRoundedIcon />}>
+            Verwijderen
+          </Button>
+        </ButtonGroup>
+      </ListItem>
 
-        <Divider />
+      <Divider />
 
-        <PageSettings pageType={pageType} numberOfOptions={numberOfOptions} />
+      <PageSettings pageType={pageType} numberOfOptions={numberOfOptions} />
 
-        <Divider />
+      <Divider />
 
-        <TimeLimit
-          hasTimeLimit={hasTimeLimit}
-          timeLimit={timeLimit}
-          pointsForSpeed={pointsForSpeed}
-        />
+      <TimeLimit
+        hasTimeLimit={hasTimeLimit}
+        timeLimit={timeLimit}
+        pointsForSpeed={pointsForSpeed}
+      />
 
-        <Divider />
+      <Divider />
 
-        <ScoreSettings
-          checkType={checkType}
-          predefinedAnswer={predefinedAnswer}
-          pointsForSpeed={pointsForSpeed}
-          answerValue={answerValue}
-        />
-      </List>
-    </>
+      <ScoreSettings
+        checkType={checkType}
+        predefinedAnswer={predefinedAnswer}
+        pointsForSpeed={pointsForSpeed}
+        answerValue={answerValue}
+      />
+    </List>
   );
 };
 

@@ -1,11 +1,10 @@
-import {
-  faChevronLeft,
-  faCog,
-  faQuestion,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import {
   Box,
+  Collapse,
+  Divider,
   Drawer,
   IconButton,
   Paper,
@@ -38,61 +37,61 @@ const loadGame = async (gameID, loadGameToState) => {
 };
 
 const EditGame = () => {
-  const [navigationAction, setNavigationAction] = useState([]);
+  const [navigationAction, setNavigationAction] = useState("");
   const { gameID } = useParams();
   const page = usePage();
   const loadGameToState = useLoadGame();
   const hasLargeScreen = useMediaQuery(muiTheme.breakpoints.up("md"));
 
-  const closeAction = () => setNavigationAction([]);
+  const closeAction = () => setNavigationAction("");
 
   useEffect(() => {
     loadGame(gameID, loadGameToState);
   }, [gameID, loadGameToState]);
 
   return (
-    <>
-      <Box sx={{ display: "flex", height: "100%", overflow: "auto" }}>
-        <Drawer
-          variant={hasLargeScreen ? "persistent" : "temporary"}
-          anchor="left"
-          open={navigationAction.includes("gameSettings")}
-          onClose={closeAction}
-        >
-          <GameSetup />
-        </Drawer>
-        <GameLayout {...page} />
-        <Drawer
-          variant={hasLargeScreen ? "persistent" : "temporary"}
-          anchor="right"
-          open={navigationAction.includes("pageSettings")}
-          onClose={closeAction}
-        >
-          <PageSetup />
-        </Drawer>
-      </Box>
-      <Paper>
+    <Box sx={{ display: "flex", height: "100%" }}>
+      <Collapse
+        orientation="horizontal"
+        in={hasLargeScreen && navigationAction === "gameSettings"}
+        component={Paper}
+        sx={{ maxWidth: "280px" }}
+      >
+        <GameSetup />
+      </Collapse>
+      <Collapse
+        orientation="horizontal"
+        in={hasLargeScreen && navigationAction === "pageSettings"}
+        component={Paper}
+        sx={{ maxWidth: "280px" }}
+      >
+        <PageSetup />
+      </Collapse>
+      <Paper
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
         <IconButton>
-          <FontAwesomeIcon icon={faChevronLeft} />
+          <ArrowBackIosRoundedIcon />
         </IconButton>
         <ToggleButtonGroup
-          onChange={(event, value) => {
-            setNavigationAction(value);
-          }}
+          exclusive
           value={navigationAction}
-          size="small"
+          onChange={(event, newNavigationAction) =>
+            setNavigationAction(newNavigationAction)
+          }
+          color="secondary"
+          orientation="vertical"
         >
-          <ToggleButton value="gameSettings">
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <FontAwesomeIcon icon={faCog} />
-              Spel instellingen
-            </Box>
+          <ToggleButton
+            value="gameSettings"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <SettingsRoundedIcon />
+            Spel
           </ToggleButton>
           <ToggleButton value="pageSettings">
             <Box
@@ -102,26 +101,33 @@ const EditGame = () => {
                 alignItems: "center",
               }}
             >
-              <FontAwesomeIcon icon={faQuestion} />
-              Vraag instellingen
+              <QuizRoundedIcon />
+              Pagina
             </Box>
           </ToggleButton>
         </ToggleButtonGroup>
       </Paper>
-      {/*<Drawer*/}
-      {/*  open={navigationAction === "gameSettings"}*/}
-      {/*  onClose={() => setNavigationAction(null)}*/}
-      {/*>*/}
-      {/*  <GameSetup />*/}
-      {/*</Drawer>*/}
-      {/*<Drawer*/}
-      {/*  open={navigationAction === "pageSettings"}*/}
-      {/*  onClose={() => setNavigationAction(null)}*/}
-      {/*  anchor="right"*/}
-      {/*>*/}
-      {/*  <PageSetup />*/}
-      {/*</Drawer>*/}
-    </>
+
+      <GameLayout {...page} />
+
+      <Drawer
+        variant="temporary"
+        anchor="right"
+        open={!hasLargeScreen && navigationAction === "gameSettings"}
+        onClose={closeAction}
+      >
+        <GameSetup />
+      </Drawer>
+
+      <Drawer
+        variant="temporary"
+        anchor="right"
+        open={!hasLargeScreen && navigationAction === "pageSettings"}
+        onClose={closeAction}
+      >
+        <PageSetup />
+      </Drawer>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { faPlus, faGripVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
 import {
   IconButton,
   List,
@@ -27,6 +27,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
             })
           );
       }}
+      sx={{ height: "100%", overflow: "auto" }}
     >
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
@@ -49,7 +50,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                               aria-label="Volgorde aanpassen"
                               {...provided.dragHandleProps}
                             >
-                              <FontAwesomeIcon icon={faGripVertical} />
+                              <DragIndicatorRoundedIcon />
                             </IconButton>
                           }
                           disablePadding
@@ -69,7 +70,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                 {provided.placeholder}
                 <ListItemButton onClick={addNewPage}>
                   <ListItemIcon>
-                    <FontAwesomeIcon icon={faPlus} />
+                    <AddCircleRoundedIcon />
                   </ListItemIcon>
                   <ListItemText primary="Vraag toevoegen" />
                 </ListItemButton>
