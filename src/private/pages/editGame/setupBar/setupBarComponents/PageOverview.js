@@ -27,7 +27,6 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
             })
           );
       }}
-      sx={{ height: "100%", overflow: "auto" }}
     >
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
@@ -72,7 +71,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                   <ListItemIcon>
                     <AddCircleRoundedIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Vraag toevoegen" />
+                  <ListItemText primary="Pagina toevoegen" />
                 </ListItemButton>
               </List>
             </ListItem>

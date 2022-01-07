@@ -1,5 +1,8 @@
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import RemoveCircleRoundedIcon from "@mui/icons-material/RemoveCircleRounded";
 import {
   FormControl,
+  IconButton,
   InputAdornment,
   InputLabel,
   ListItem,
@@ -14,11 +17,11 @@ const PageSettings = ({ pageType, numberOfOptions }) => (
   <>
     <ListItem>
       <FormControl fullWidth>
-        <InputLabel id="pageTypeSelect">Soort vraag</InputLabel>
+        <InputLabel id="pageTypeSelect">Soort pagina</InputLabel>
         <Select
           labelId="pageTypeSelect"
           name="pageType"
-          aria-label="soort vraag"
+          aria-label="soort pagina"
           {...pageType}
         >
           {Object.entries(pageTypeDefinition).map(([key, type]) => (
@@ -35,14 +38,29 @@ const PageSettings = ({ pageType, numberOfOptions }) => (
         label="Aantal opties"
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">antwoorden</InputAdornment>
+            <>
+              <InputAdornment position="end">antwoorden</InputAdornment>
+              <IconButton
+                onClick={() => numberOfOptions.set(numberOfOptions.value - 1)}
+              >
+                <RemoveCircleRoundedIcon />
+              </IconButton>
+              <IconButton
+                onClick={() =>
+                  numberOfOptions.set(parseInt(numberOfOptions.value) + 1)
+                }
+              >
+                <AddCircleRoundedIcon />
+              </IconButton>
+            </>
           ),
         }}
         type="number"
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
         min={1}
         max={99}
-        {...numberOfOptions}
+        value={numberOfOptions.value}
+        onChange={() => numberOfOptions.set(numberOfOptions.value)}
         fullWidth
       />
     </ListItem>

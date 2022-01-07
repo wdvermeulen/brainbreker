@@ -66,6 +66,7 @@ const muiTheme = createTheme({
           backgroundColor: "rgba(18, 18, 18, .3)",
           backdropFilter: "blur(20px)",
           borderRadius: "5px",
+          overflow: "auto",
         },
       },
     },

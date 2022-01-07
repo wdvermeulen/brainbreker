@@ -11,38 +11,38 @@ import "./Authenticated.scss";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faUser } from "@fortawesome/free-solid-svg-icons";
 // import Logo from "../../components/logo/Logo";
-import { styled } from "../../sharedStyles/theme";
+// import { styled } from "../../sharedStyles/theme";
 
-const StyledLogoutBar = styled("div", {
-  borderBottom: "solid $glassTileBorder thin",
-  borderRight: "solid $glassTileBorder thin",
-  backgroundColor: "$glassTileBackground",
-  display: "flex",
-  alignItems: "center",
-  margin: "0 auto $1 0",
-  borderBottomRightRadius: "$2",
-
-  div: {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-
-  button: {
-    margin: "0",
-    borderWidth: "0 $1 0 0",
-    borderRadius: "0",
-  },
-
-  "#Logo": {
-    fontSize: "$1",
-    marginLeft: "$2",
-    marginRight: "$2",
-    h1: {
-      margin: "0",
-    },
-  },
-});
+// const StyledLogoutBar = styled("div", {
+//   borderBottom: "solid $glassTileBorder thin",
+//   borderRight: "solid $glassTileBorder thin",
+//   backgroundColor: "$glassTileBackground",
+//   display: "flex",
+//   alignItems: "center",
+//   margin: "0 auto $1 0",
+//   borderBottomRightRadius: "$2",
+//
+//   div: {
+//     whiteSpace: "nowrap",
+//     overflow: "hidden",
+//     textOverflow: "ellipsis",
+//   },
+//
+//   button: {
+//     margin: "0",
+//     borderWidth: "0 $1 0 0",
+//     borderRadius: "0",
+//   },
+//
+//   "#Logo": {
+//     fontSize: "$1",
+//     marginLeft: "$2",
+//     marginRight: "$2",
+//     h1: {
+//       margin: "0",
+//     },
+//   },
+// });
 
 const Authenticated = ({ children }) => {
   const [authState, setAuthState] = useState();
@@ -62,14 +62,14 @@ const Authenticated = ({ children }) => {
     });
   });
 
-  async function signOut() {
-    try {
-      await Auth.signOut({ global: true });
-      setAuthState(AuthState.SignedOut);
-    } catch (error) {
-      console.warn("error signing out: ", error);
-    }
-  }
+  // async function signOut() {
+  //   try {
+  //     await Auth.signOut({ global: true });
+  //     setAuthState(AuthState.SignedOut);
+  //   } catch (error) {
+  //     console.warn("error signing out: ", error);
+  //   }
+  // }
 
   return authState === AuthState.SignedIn && user ? (
     <>

@@ -1,8 +1,9 @@
 const pageTypeDefinition = {
-  MULTIPLE_CHOICE: "Multiple choice",
+  MULTIPLE_CHOICE: "Multiple choice vraag",
+  TITLE_CARD: "Titel pagina",
   //TODO
-  // OPEN: "Open",
-  // OPEN_LIST: "Open list",
+  // OPEN: "Open vraag",
+  // OPEN_LIST: "Open lijst",
   // APPROXIMATION: "Approximation",
   // ORDER: "Order",
   // TITLE_CARD: "Title card",
@@ -11,8 +12,8 @@ const pageTypeDefinition = {
 };
 
 const checkTypeDefinition = {
-  PREDEFINED_ANSWER: "Predefined answer",
-  GAMEMASTERS_AFTERWARDS: "Check afterwards",
+  GAMEMASTERS_AFTERWARDS: "Achteraf controleren",
+  PREDEFINED_ANSWER: "Automatisch controleren",
   //TODO
   // USERS_VOTE: "Players vote",
   // GAMEMASTERS_VOTE: "Game masters vote",

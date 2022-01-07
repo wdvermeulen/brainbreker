@@ -1,5 +1,9 @@
+import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
+import RemoveCircleRoundedIcon from "@mui/icons-material/RemoveCircleRounded";
 import {
+  Collapse,
   FormControl,
+  IconButton,
   InputAdornment,
   InputLabel,
   List,
@@ -16,6 +20,7 @@ const ScoreSettings = ({
   predefinedAnswer,
   pointsForSpeed,
   answerValue,
+  hasTimeLimit,
 }) => (
   <>
     <ListItem>
@@ -36,38 +41,66 @@ const ScoreSettings = ({
       </FormControl>
     </ListItem>
 
-    {predefinedAnswer && (
+    <Collapse in={predefinedAnswer}>
       <ListItem disablePadding>
         <List sx={{ width: "100%" }}>
           {answerValue.values.map((value, i) => (
-            <ListItem className="row" key={"answerValue-" + i}>
+            <ListItem key={"answerValue-" + i}>
               <TextField
                 label={
-                  pointsForSpeed.checked
+                  pointsForSpeed.checked && hasTimeLimit.checked
                     ? "Maximale beloning voor antwoord " + (i + 1)
                     : "Beloning voor antwoord " + (i + 1)
                 }
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end">punten</InputAdornment>
+                    <>
+                      <InputAdornment position="end">punten</InputAdornment>
+                      <IconButton
+                        onClick={() =>
+                          answerValue.onChange(i, answerValue.values[i] - 1)
+                        }
+                      >
+                        <RemoveCircleRoundedIcon />
+                      </IconButton>
+                      <IconButton
+                        onClick={() =>
+                          answerValue.onChange(
+                            i,
+                            parseInt(answerValue.values[i]) + 1
+                          )
+                        }
+                      >
+                        <AddCircleRoundedIcon />
+                      </IconButton>
+                    </>
                   ),
                 }}
                 type="number"
                 inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                min={-9999}
-                max={9999}
+                min={-99}
+                max={99}
                 value={answerValue.values[i]}
                 onChange={(e) => {
                   answerValue.onChange(i, e.target.value);
                 }}
+                color={
+                  answerValue.values[i] > 0
+                    ? "success"
+                    : answerValue.values[i] < 0
+                    ? "error"
+                    : "primary"
+                }
+                focused={!!answerValue.values[i]}
                 size="small"
+                InputLabelProps={{ shrink: true }}
                 fullWidth
               />
             </ListItem>
           ))}
         </List>
       </ListItem>
-    )}
+    </Collapse>
   </>
 );
 

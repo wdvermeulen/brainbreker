@@ -1,4 +1,5 @@
-import React, { /*useEffect,*/ useState } from "react";
+import { Collapse } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { timeSteps } from "../../sharedResources/constants";
 import { styled } from "../../sharedStyles/theme";
 import MultipleChoice from "./answerTypes/MultipleChoice";
@@ -36,6 +37,11 @@ const GameLayout = ({ timeLimit, ...props }) => {
     timeSteps[timeLimit.value]
   );
 
+  useEffect(() => {
+    if (timeLimit.value !== false)
+      setSecondsRemaining(timeSteps[timeLimit.value]);
+  });
+
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     if (secondsRemaining) setSecondsRemaining(secondsRemaining - 1);
@@ -48,12 +54,12 @@ const GameLayout = ({ timeLimit, ...props }) => {
   return (
     <StyledGameLayout className="column">
       <Questions {...props} />
-      {timeLimit && (
+      <Collapse in={timeLimit.value !== false}>
         <Status
           totalSeconds={timeSteps[timeLimit.value]}
           secondsRemaining={secondsRemaining}
         />
-      )}
+      </Collapse>
       <MultipleChoice {...props} />
     </StyledGameLayout>
   );

@@ -28,14 +28,19 @@ const PageSetup = () => {
     <List
       subheader={
         <h3>
-          Instellingen voor vraag {currentPage + 1}. {questionTitle}
+          Instellingen voor pagina {currentPage + 1}. {questionTitle}
         </h3>
       }
-      sx={{ width: "280px" }}
+      sx={{
+        width: "280px",
+        height: "100%",
+        overflow: "auto",
+        maxWidth: "90vw",
+      }}
     >
       <Divider />
       <ListItem>
-        <ButtonGroup variant="outlined" color="secondary">
+        <ButtonGroup variant="outlined" color="secondary" fullWidth>
           <Button onClick={resetPage} startIcon={<ReplayRoundedIcon />}>
             Reset
           </Button>
@@ -64,6 +69,7 @@ const PageSetup = () => {
         predefinedAnswer={predefinedAnswer}
         pointsForSpeed={pointsForSpeed}
         answerValue={answerValue}
+        hasTimeLimit={hasTimeLimit}
       />
     </List>
   );

@@ -47,7 +47,9 @@ function usePage() {
     },
     timeLimit: {
       value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
+        (state) =>
+          state.editGame.pages[state.editGame.currentPage].hasTimeLimit &&
+          state.editGame.pages[state.editGame.currentPage].timeLimit
       ),
     },
     useAnswerDescription: function (answerIndex) {
@@ -151,8 +153,8 @@ function useSetupBar() {
         (state) =>
           state.editGame.pages[state.editGame.currentPage].numberOfOptions
       ),
-      onChange: (e) => {
-        dispatch(setNumberOfOptions(e.target.value));
+      set: (value) => {
+        dispatch(setNumberOfOptions(value));
       },
     },
     answerValue: {

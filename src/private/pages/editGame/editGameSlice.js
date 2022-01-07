@@ -8,7 +8,7 @@ import {
 const defaultPage = {
   title: "",
   description: "",
-  hasTimeLimit: true,
+  hasTimeLimit: false,
   timeLimit: 3,
   checkType: Object.keys(checkTypeDefinition)[0],
   pointsForSpeed: true,
@@ -86,8 +86,6 @@ const editGameSlice = createSlice({
     },
     setHasTimeLimit: (state, action) => {
       state.pages[state.currentPage].hasTimeLimit = action.payload;
-      if (!action.payload)
-        state.pages[state.currentPage].pointsForSpeed = action.payload;
     },
     setTimeLimit: (state, action) => {
       state.pages[state.currentPage].timeLimit = Math.min(
@@ -137,8 +135,14 @@ const editGameSlice = createSlice({
       }
     },
     setAnswerValue: (state, action) => {
-      state.pages[state.currentPage].answers[action.payload.answerIndex].value =
-        parseInt(action.payload.value) || 0;
+      if (action.payload.value === "-" || action.payload.value === "")
+        state.pages[state.currentPage].answers[
+          action.payload.answerIndex
+        ].value = action.payload.value;
+      else
+        state.pages[state.currentPage].answers[
+          action.payload.answerIndex
+        ].value = parseInt(action.payload.value);
     },
   },
 });

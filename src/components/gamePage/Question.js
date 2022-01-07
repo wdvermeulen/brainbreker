@@ -83,9 +83,7 @@ const Question = ({
               color="secondary"
             >
               {questionDescription.value ||
-                I18n.get(
-                  "Tap on text to edit. Swipe to go to the next question."
-                )}
+                I18n.get("Tap on text to edit. Swipe to go to the next page.")}
             </Button>
           )}
         </CardContent>

@@ -39,15 +39,14 @@ const TimeLimit = ({ hasTimeLimit, timeLimit, pointsForSpeed }) => (
           {...timeLimit}
         />
       </ListItem>
-    </Collapse>
 
-    <ListItem>
-      <FormControlLabel
-        control={<Switch {...pointsForSpeed} />}
-        label="Punten voor snelheid"
-        disabled={!hasTimeLimit.checked}
-      />
-    </ListItem>
+      <ListItem>
+        <FormControlLabel
+          control={<Switch {...pointsForSpeed} />}
+          label="Punten voor snelheid"
+        />
+      </ListItem>
+    </Collapse>
   </>
 );
 
