@@ -4,12 +4,13 @@ import EditGame from "./private/pages/editGame/EditGame";
 import Games from "./private/pages/games/games";
 import GameTypeSelection from "./private/pages/GameTypeSelection";
 import HostGame from "./private/pages/hostGame/HostGame";
+import NewGame from "./private/pages/editGame/NewGame";
 import Home from "./public/pages/Home";
 import PlayGame from "./public/pages/playGame/PlayGame";
 
 export const url = {
   HOME: "/",
-  NEW_GAME: "/gamemaster/editgame",
+  NEW_GAME: "/gamemaster/newgame",
   EDIT_GAME: "/gamemaster/editgame/",
   HOST_GAME: "/gamemaster/hostgame/",
   GAMES: "/gamemaster/games",
@@ -27,7 +28,7 @@ const SiteRoute = () => (
       </Route>
       <Route path={url.NEW_GAME}>
         <Authenticated>
-          <EditGame />
+          <NewGame />
         </Authenticated>
       </Route>
       <Route path={url.GAMES}>

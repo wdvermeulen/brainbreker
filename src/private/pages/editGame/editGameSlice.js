@@ -23,13 +23,15 @@ const defaultPage = {
   ],
 };
 
+const initialState = {
+  name: "",
+  currentPage: 0,
+  pages: [{ ...defaultPage, id: Math.random().toString() }],
+};
+
 const editGameSlice = createSlice({
   name: "editGame",
-  initialState: {
-    name: "Game 1",
-    currentPage: 0,
-    pages: [{ ...defaultPage, id: Math.random().toString() }],
-  },
+  initialState,
   reducers: {
     setGame: (state, action) => {
       state.name = action.payload.name;
@@ -144,6 +146,9 @@ const editGameSlice = createSlice({
           action.payload.answerIndex
         ].value = parseInt(action.payload.value);
     },
+    reset: (state, payload) => {
+      state = initialState;
+    },
   },
 });
 
@@ -168,6 +173,7 @@ export const {
   setAnswerDescription,
   setNumberOfOptions,
   setAnswerValue,
+  reset,
 } = editGameSlice.actions;
 
 export default editGameSlice.reducer;

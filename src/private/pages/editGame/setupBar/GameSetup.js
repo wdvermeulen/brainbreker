@@ -5,8 +5,7 @@ import GameSettings from "./setupBarComponents/GameSettings";
 import PageOverview from "./setupBarComponents/PageOverview";
 
 const GameSetup = () => {
-  const { name, addNewPage, gotoPage, saveGame, playGame, pages } =
-    useSetupBar();
+  const { name, addNewPage, gotoPage, pages } = useSetupBar();
 
   return (
     <List
@@ -23,7 +22,7 @@ const GameSetup = () => {
       }}
     >
       <Divider />
-      <GameSettings name={name} saveGame={saveGame} playGame={playGame} />
+      <GameSettings name={name} />
       <Divider />
       <PageOverview pages={pages} gotoPage={gotoPage} addNewPage={addNewPage} />
     </List>

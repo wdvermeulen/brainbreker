@@ -3,6 +3,7 @@ import React from "react";
 import muiTheme from "../../../../sharedStyles/muiTheme";
 import GameSetup from "./GameSetup";
 import PageSetup from "./PageSetup";
+import { navigationActionDefinitions } from "./SideBar";
 
 const Drawers = ({ navigationAction, setNavigationAction }) => {
   const hasLargeScreen = useMediaQuery(muiTheme.breakpoints.up("md"));
@@ -14,7 +15,10 @@ const Drawers = ({ navigationAction, setNavigationAction }) => {
       <Drawer
         variant="temporary"
         anchor="right"
-        open={!hasLargeScreen && navigationAction === "gameSettings"}
+        open={
+          !hasLargeScreen &&
+          navigationAction === navigationActionDefinitions.GAME_SETTINGS
+        }
         onClose={closeAction}
       >
         <GameSetup />
@@ -22,7 +26,10 @@ const Drawers = ({ navigationAction, setNavigationAction }) => {
       <Drawer
         variant="temporary"
         anchor="right"
-        open={!hasLargeScreen && navigationAction === "pageSettings"}
+        open={
+          !hasLargeScreen &&
+          navigationAction === navigationActionDefinitions.PAGE_SETTINGS
+        }
         onClose={closeAction}
       >
         <PageSetup />
@@ -32,9 +39,11 @@ const Drawers = ({ navigationAction, setNavigationAction }) => {
         orientation="horizontal"
         in={
           hasLargeScreen &&
-          (navigationAction === "gameSettings" ||
+          (navigationAction === navigationActionDefinitions.GAME_SETTINGS ||
             (Array.isArray(navigationAction) &&
-              navigationAction.includes("gameSettings")))
+              navigationAction.includes(
+                navigationActionDefinitions.GAME_SETTINGS
+              )))
         }
         component={Paper}
         sx={{ maxWidth: "280px" }}
@@ -46,9 +55,11 @@ const Drawers = ({ navigationAction, setNavigationAction }) => {
         orientation="horizontal"
         in={
           hasLargeScreen &&
-          (navigationAction === "pageSettings" ||
+          (navigationAction === navigationActionDefinitions.PAGE_SETTINGS ||
             (Array.isArray(navigationAction) &&
-              navigationAction.includes("pageSettings")))
+              navigationAction.includes(
+                navigationActionDefinitions.PAGE_SETTINGS
+              )))
         }
         component={Paper}
         sx={{ maxWidth: "280px" }}

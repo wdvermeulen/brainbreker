@@ -32,6 +32,8 @@ const EditGame = () => {
     loadGame(gameID, loadGameToState);
   }, [gameID, loadGameToState]);
 
+  useEffect(() => {});
+
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
       <Drawers

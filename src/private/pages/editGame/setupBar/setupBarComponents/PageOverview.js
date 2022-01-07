@@ -15,7 +15,7 @@ import { movePage } from "../../editGameSlice";
 
 const PageOverview = ({ pages, gotoPage, addNewPage }) => {
   const dispatch = useDispatch();
-
+  console.log(pages);
   return (
     <DragDropContext
       onDragEnd={(result) => {
@@ -36,12 +36,17 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                 sx={{ width: "100%" }}
                 subheader={<h4 style={{ textAlign: "center" }}>Overzicht</h4>}
               >
+                <ListItemButton disablePadding>
+                  <ListItemText
+                    primary="Lobby"
+                    secondary="Voordat het spel begint, verzamelt iedereen zich op deze pagina"
+                  />
+                </ListItemButton>
                 {pages.map((page, i) => (
                   <Draggable key={page.id} draggableId={page.id} index={i}>
                     {(provided, snapshot) => (
                       <div ref={provided.innerRef}>
                         <ListItem
-                          className="row"
                           {...provided.draggableProps}
                           secondaryAction={
                             <IconButton
@@ -59,7 +64,10 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                               gotoPage(i);
                             }}
                           >
-                            <ListItemText primary={`${i + 1}. ${page.title}`} />
+                            <ListItemText
+                              primary={`${i + 1}. ${page.title}`}
+                              secondary={page.description}
+                            />
                           </ListItemButton>
                         </ListItem>
                       </div>
@@ -67,6 +75,12 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                   </Draggable>
                 ))}
                 {provided.placeholder}
+                <ListItemButton disablePadding disabled>
+                  <ListItemText
+                    primary="Finish"
+                    secondary="Wanneer de resultaten binnen zijn komt hier een ranglijst"
+                  />
+                </ListItemButton>
                 <ListItemButton onClick={addNewPage}>
                   <ListItemIcon>
                     <AddCircleRoundedIcon />

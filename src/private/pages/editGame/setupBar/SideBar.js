@@ -1,6 +1,7 @@
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import QuizRoundedIcon from "@mui/icons-material/QuizRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import {
   Box,
   IconButton,
@@ -12,6 +13,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { url } from "../../../../SiteRoute";
 
+export const navigationActionDefinitions = {
+  GAME_SETTINGS: "gameSettings",
+  PAGE_SETTINGS: "pageSettings",
+  PLAYER_SETTINGS: "playerSettings",
+};
+
 const SideBar = ({ navigationAction, setNavigationAction }) => (
   <Paper
     sx={{
@@ -21,9 +28,11 @@ const SideBar = ({ navigationAction, setNavigationAction }) => (
       borderLeft: "1px solid rgba(255, 255, 255, 0.12)",
     }}
   >
-    <IconButton component={Link} to={url.GAME_TYPE_SELECTION}>
-      <ArrowBackIosRoundedIcon />
-    </IconButton>
+    <Link to={url.GAME_TYPE_SELECTION}>
+      <IconButton>
+        <ArrowBackIosRoundedIcon />
+      </IconButton>
+    </Link>
     <ToggleButtonGroup
       exclusive
       value={navigationAction}
@@ -34,7 +43,7 @@ const SideBar = ({ navigationAction, setNavigationAction }) => (
       orientation="vertical"
     >
       <ToggleButton
-        value="gameSettings"
+        value={navigationActionDefinitions.GAME_SETTINGS}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -44,7 +53,7 @@ const SideBar = ({ navigationAction, setNavigationAction }) => (
         <SettingsRoundedIcon />
         Spel
       </ToggleButton>
-      <ToggleButton value="pageSettings">
+      <ToggleButton value={navigationActionDefinitions.PAGE_SETTINGS}>
         <Box
           sx={{
             display: "flex",
@@ -54,6 +63,18 @@ const SideBar = ({ navigationAction, setNavigationAction }) => (
         >
           <QuizRoundedIcon />
           Pagina
+        </Box>
+      </ToggleButton>
+      <ToggleButton value={navigationActionDefinitions.PLAYER_SETTINGS}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <GroupRoundedIcon />
+          Spelers
         </Box>
       </ToggleButton>
     </ToggleButtonGroup>

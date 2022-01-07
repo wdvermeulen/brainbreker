@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { url } from "../../../SiteRoute";
+import PublicGameService from "../../services/PublicGameService";
+import { setPin } from "../hostGame/hostGameSlice";
 import {
   setName,
   addNewPage,
@@ -187,8 +189,6 @@ function useSetupBar() {
     removePage: () => {
       dispatch(removeCurrentPage());
     },
-    saveGame: useSaveGame(),
-    playGame: usePlayGame(),
     pages: useSelector((state) => state.editGame.pages),
     currentPage: useSelector((state) => state.editGame.currentPage),
   };
@@ -226,18 +226,4 @@ function useLoadGame() {
   };
 }
 
-function usePlayGame() {
-  const saveGame = useSaveGame();
-  const history = useHistory();
-  const { gameID } = useParams();
-
-  return async function () {
-    await saveGame();
-    console.log("Going to play: ", gameID);
-    if (gameID) {
-      history.push(`${url.HOST_GAME}${gameID}`);
-    }
-  };
-}
-
-export { usePage, useSetupBar, useLoadGame };
+export { usePage, useSetupBar, useSaveGame, useLoadGame };
