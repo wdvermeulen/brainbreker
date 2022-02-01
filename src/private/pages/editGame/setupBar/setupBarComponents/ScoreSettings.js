@@ -44,7 +44,7 @@ const ScoreSettings = ({
     <Collapse in={predefinedAnswer}>
       <ListItem disablePadding>
         <List sx={{ width: "100%" }}>
-          {answerValue.values.map((value, i) => (
+          {answerValue.values?.map((value, i) => (
             <ListItem key={"answerValue-" + i}>
               <TextField
                 label={

@@ -1,6 +1,5 @@
 import React from "react";
-import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-import DragIndicatorRoundedIcon from "@mui/icons-material/DragIndicatorRounded";
+import { DragHandleRounded, AddCircleRounded } from "@mui/icons-material";
 import {
   IconButton,
   List,
@@ -11,11 +10,15 @@ import {
 } from "@mui/material";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { url } from "../../../../../SiteRoute";
 import { movePage } from "../../editGameSlice";
 
 const PageOverview = ({ pages, gotoPage, addNewPage }) => {
   const dispatch = useDispatch();
-  console.log(pages);
+  const { gameID } = useParams();
+  const history = useHistory();
+
   return (
     <DragDropContext
       onDragEnd={(result) => {
@@ -36,7 +39,11 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                 sx={{ width: "100%" }}
                 subheader={<h4 style={{ textAlign: "center" }}>Overzicht</h4>}
               >
-                <ListItemButton disablePadding>
+                <ListItemButton
+                  onClick={() =>
+                    history.push(url.EDIT_GAME_LOBBY.replace(":gameID", gameID))
+                  }
+                >
                   <ListItemText
                     primary="Lobby"
                     secondary="Voordat het spel begint, verzamelt iedereen zich op deze pagina"
@@ -47,17 +54,17 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                     {(provided, snapshot) => (
                       <div ref={provided.innerRef}>
                         <ListItem
-                          {...provided.draggableProps}
+                          disablePadding
                           secondaryAction={
                             <IconButton
                               edge="end"
-                              aria-label="Volgorde aanpassen"
+                              aria-label="Sleep om de volgorde aan te passen"
                               {...provided.dragHandleProps}
                             >
-                              <DragIndicatorRoundedIcon />
+                              <DragHandleRounded />
                             </IconButton>
                           }
-                          disablePadding
+                          {...provided.draggableProps}
                         >
                           <ListItemButton
                             onClick={() => {
@@ -75,7 +82,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                   </Draggable>
                 ))}
                 {provided.placeholder}
-                <ListItemButton disablePadding disabled>
+                <ListItemButton disabled>
                   <ListItemText
                     primary="Finish"
                     secondary="Wanneer de resultaten binnen zijn komt hier een ranglijst"
@@ -83,7 +90,7 @@ const PageOverview = ({ pages, gotoPage, addNewPage }) => {
                 </ListItemButton>
                 <ListItemButton onClick={addNewPage}>
                   <ListItemIcon>
-                    <AddCircleRoundedIcon />
+                    <AddCircleRounded />
                   </ListItemIcon>
                   <ListItemText primary="Pagina toevoegen" />
                 </ListItemButton>

@@ -39,7 +39,7 @@ const Games = () => {
     <StyledGames>
       {games?.map((game) => (
         <Col className="glass-tile" key={game.id}>
-          <Link to={`${url.EDIT_GAME}${game.id}`}>{game.name}</Link>{" "}
+          <Link to={`${url.EDIT_GAME_PAGE}${game.id}/0`}>{game.name}</Link>{" "}
           <button
             className="outline"
             onClick={onClickDeleteGame.bind(null, game, setGames)}

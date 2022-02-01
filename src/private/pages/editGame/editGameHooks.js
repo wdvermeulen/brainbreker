@@ -6,12 +6,10 @@ import { setPin } from "../hostGame/hostGameSlice";
 import {
   setName,
   addNewPage,
-  removeCurrentPage,
-  resetCurrentPage,
+  removePage,
   setAnswerDescription,
   setAnswerValue,
   setCheckType,
-  setCurrentPage,
   setEditing,
   setHasTimeLimit,
   setNumberOfOptions,
@@ -26,47 +24,54 @@ import PrivateGameService from "../../services/PrivateGameService";
 
 function usePage() {
   const dispatch = useDispatch();
+  const { currentPage } = useParams();
 
   return {
     questionTitle: {
-      value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].title
-      ),
+      value: useSelector((state) => state.editGame.pages[currentPage]?.title),
       onChange: (e) => {
-        dispatch(setQuestionTitle(e.target.value));
+        dispatch(
+          setQuestionTitle({ title: e.target.value, pageNumber: currentPage })
+        );
       },
     },
     questionDescription: {
       value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].description
+        (state) => state.editGame.pages[currentPage]?.description
       ),
       onChange: (e) => {
-        dispatch(setQuestionDescription(e.target.value));
+        dispatch(
+          setQuestionDescription({
+            description: e.target.value,
+            pageNumber: currentPage,
+          })
+        );
       },
     },
     pageType: {
-      value: useSelector((state) => state.editGame.type),
+      value: useSelector(
+        (state) => state.editGame.pages[currentPage]?.pageType
+      ),
     },
     timeLimit: {
       value: useSelector(
         (state) =>
-          state.editGame.pages[state.editGame.currentPage].hasTimeLimit &&
-          state.editGame.pages[state.editGame.currentPage].timeLimit
+          state.editGame.pages[currentPage]?.hasTimeLimit &&
+          state.editGame.pages[currentPage]?.timeLimit
       ),
     },
     useAnswerDescription: function (answerIndex) {
       return {
         value: useSelector(
           (state) =>
-            state.editGame.pages[state.editGame.currentPage].answers[
-              answerIndex
-            ].description
+            state.editGame.pages[currentPage]?.answers[answerIndex].description
         ),
         onChange: (e) => {
           dispatch(
             setAnswerDescription({
               answerIndex,
               description: e.target.value,
+              pageNumber: currentPage,
             })
           );
         },
@@ -82,27 +87,27 @@ function usePage() {
     },
     numberOfOptions: {
       value: useSelector(
-        (state) =>
-          state.editGame.pages[state.editGame.currentPage].numberOfOptions
+        (state) => state.editGame.pages[currentPage]?.numberOfOptions
       ),
     },
     useEditing: () => [
       useSelector((state) => state.editGame.editing),
       (s) => dispatch(setEditing(s)),
     ],
-    currentPage: useSelector((state) => state.editGame.currentPage),
+    currentPage,
   };
 }
 
 function useSetupBar() {
   const dispatch = useDispatch();
+  const { gameID, currentPage } = useParams();
   const hasTimeLimitEnabled = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].hasTimeLimit
+    (state) => state.editGame.pages[currentPage]?.hasTimeLimit
   );
   const pointsForSpeedEnabled = useSelector(
-    (state) => state.editGame.pages[state.editGame.currentPage].pointsForSpeed
+    (state) => state.editGame.pages[currentPage]?.pointsForSpeed
   );
-  const page = useSelector((state) => state.editGame.page);
+  const history = useHistory();
 
   return {
     name: {
@@ -112,60 +117,77 @@ function useSetupBar() {
       },
     },
     questionTitle: useSelector(
-      (state) => state.editGame.pages[state.editGame.currentPage].title
+      (state) => state.editGame.pages[currentPage]?.title
     ),
     pageType: {
       value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].pageType
+        (state) => state.editGame.pages[currentPage]?.pageType
       ),
       onChange: (e) => {
-        dispatch(setPageType(e.target.value));
+        dispatch(
+          setPageType({ pageType: e.target.value, pageNumber: currentPage })
+        );
       },
     },
     hasTimeLimit: {
       checked: hasTimeLimitEnabled,
       onChange: () => {
-        dispatch(setHasTimeLimit(!hasTimeLimitEnabled));
+        dispatch(
+          setHasTimeLimit({
+            hasTimeLimit: !hasTimeLimitEnabled,
+            pageNumber: currentPage,
+          })
+        );
       },
     },
     timeLimit: {
       value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].timeLimit
+        (state) => state.editGame.pages[currentPage]?.timeLimit
       ),
       onChange: (e) => {
-        dispatch(setTimeLimit(e.target.value));
+        dispatch(
+          setTimeLimit({ timeLimit: e.target.value, pageNumber: currentPage })
+        );
       },
     },
     checkType: {
       value: useSelector(
-        (state) => state.editGame.pages[state.editGame.currentPage].checkType
+        (state) => state.editGame.pages[currentPage]?.checkType
       ),
       onChange: (e) => {
-        dispatch(setCheckType(e.target.value));
+        dispatch(
+          setCheckType({ checkType: e.target.value, pageNumber: currentPage })
+        );
       },
     },
     pointsForSpeed: {
       checked: pointsForSpeedEnabled,
       onChange: () => {
-        dispatch(setPointsForSpeed(!pointsForSpeedEnabled));
+        dispatch(
+          setPointsForSpeed({
+            checkType: !pointsForSpeedEnabled,
+            pageNumber: currentPage,
+          })
+        );
       },
     },
     numberOfOptions: {
       value: useSelector(
-        (state) =>
-          state.editGame.pages[state.editGame.currentPage].numberOfOptions
+        (state) => state.editGame.pages[currentPage]?.numberOfOptions
       ),
       set: (value) => {
-        dispatch(setNumberOfOptions(value));
+        dispatch(
+          setNumberOfOptions({
+            numberOfOptions: value,
+            pageNumber: currentPage,
+          })
+        );
       },
     },
     answerValue: {
       values: useSelector((state) =>
-        state.editGame.pages[state.editGame.currentPage].answers
-          .slice(
-            0,
-            state.editGame.pages[state.editGame.currentPage].numberOfOptions
-          )
+        state.editGame.pages[currentPage]?.answers
+          .slice(0, state.editGame.pages[currentPage]?.numberOfOptions)
           .map((answer) => answer.value)
       ),
       onChange: (answerIndex, value) => {
@@ -173,31 +195,33 @@ function useSetupBar() {
           setAnswerValue({
             answerIndex,
             value,
+            pageNumber: currentPage,
           })
         );
       },
     },
+    gotoPage: (pageNumber) =>
+      history.push(
+        url.EDIT_GAME_PAGE.replace(":gameID", gameID).replace(
+          ":currentPage",
+          pageNumber
+        )
+      ),
     addNewPage: () => {
       dispatch(addNewPage());
     },
-    gotoPage: (pageNumber) => {
-      dispatch(setCurrentPage({ page, pageNumber }));
-    },
-    resetPage: () => {
-      dispatch(resetCurrentPage());
-    },
     removePage: () => {
-      dispatch(removeCurrentPage());
+      dispatch(removePage(currentPage));
     },
     pages: useSelector((state) => state.editGame.pages),
-    currentPage: useSelector((state) => state.editGame.currentPage),
+    currentPage,
   };
 }
 
 function useSaveGame() {
   const game = useSelector((state) => state.editGame);
   const history = useHistory();
-  const { gameID } = useParams();
+  const { gameID, currentPage } = useParams();
   const gameService = new PrivateGameService();
 
   return async function () {
@@ -210,7 +234,12 @@ function useSaveGame() {
             createPrivateGame: { id },
           },
         } = await gameService.create(game);
-        history.push(`${url.EDIT_GAME}${id}`);
+        history.push(
+          url.EDIT_GAME_PAGE.replace(":gameID", id).replace(
+            ":currentPage",
+            currentPage || "0"
+          )
+        );
       }
     } catch (e) {
       console.error("editGameHooks.useSaveGame() error", e);
@@ -218,12 +247,4 @@ function useSaveGame() {
   };
 }
 
-function useLoadGame() {
-  const dispatch = useDispatch();
-
-  return function (game) {
-    dispatch(setGame(game));
-  };
-}
-
-export { usePage, useSetupBar, useSaveGame, useLoadGame };
+export { usePage, useSetupBar, useSaveGame };

@@ -4,7 +4,7 @@ import Col from "../../../components/Col";
 import { roomDefinition } from "../../../sharedResources/constants";
 import { styled } from "../../../sharedStyles/theme";
 import { url } from "../../../SiteRoute";
-import { useGotoPage, useHostGame } from "./hostGameHooks";
+import { useGotoPage, useHostGame } from "../hostGame/hostGameHooks";
 
 const StyledLobby = styled(Col, {
   maxWidth: "30rem",
@@ -14,12 +14,12 @@ const StyledLobby = styled(Col, {
 const Lobby = () => {
   const { gotoRoom, game, pin, players } = useHostGame();
   const gotoPage = useGotoPage();
-  const gameUrl = window.location.origin + url.PLAY_GAME + pin;
+  const gameUrl = window.location.origin + url.PLAY_GAME.replace(":pin", pin);
 
   return (
     <StyledLobby>
       <div className="glass-tile">
-        <h2>{game.name}</h2>
+        <h2>{game?.name}</h2>
         Startcode: {pin}
         <br />
         {gameUrl} <br />

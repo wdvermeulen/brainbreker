@@ -1,6 +1,5 @@
 export default class PrivatePage {
   constructor(reduxPage) {
-    console.log(reduxPage);
     this.answers = reduxPage.answers;
     this.checkType = reduxPage.checkType;
     this.description = reduxPage.description;

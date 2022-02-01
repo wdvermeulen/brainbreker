@@ -54,7 +54,7 @@ const Question = ({
             </>
           ) : (
             <h2>
-              {currentPage + 1 + ". "}
+              {parseInt(currentPage) + 1 + ". "}
               <Button
                 variant="text"
                 color="secondary"

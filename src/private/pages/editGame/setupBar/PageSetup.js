@@ -23,12 +23,12 @@ const PageSetup = () => {
   } = useSetupBar();
 
   const predefinedAnswer = checkType.value === "PREDEFINED_ANSWER";
-
+  console.log(pageType);
   return (
     <List
       subheader={
         <h3>
-          Instellingen voor pagina {currentPage + 1}. {questionTitle}
+          Instellingen voor pagina {parseInt(currentPage) + 1}. {questionTitle}
         </h3>
       }
       sx={{

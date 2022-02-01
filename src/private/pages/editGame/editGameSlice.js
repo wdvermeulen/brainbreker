@@ -25,7 +25,6 @@ const defaultPage = {
 
 const initialState = {
   name: "",
-  currentPage: 0,
   pages: [{ ...defaultPage, id: Math.random().toString() }],
 };
 
@@ -35,7 +34,10 @@ const editGameSlice = createSlice({
   reducers: {
     setGame: (state, action) => {
       state.name = action.payload.name;
-      state.pages = action.payload.pages;
+      state.pages = action.payload.pages.map((page) => ({
+        ...page,
+        id: Math.random().toString(),
+      }));
     },
     setName: (state, action) => {
       state.name = action.payload;
@@ -43,15 +45,8 @@ const editGameSlice = createSlice({
     setEditing: (state, action) => {
       state.editing = action.payload;
     },
-    setCurrentPage: (state, action) => {
-      state.currentPage = Math.max(
-        Math.min(action.payload.pageNumber, state.pages.length),
-        0
-      );
-    },
     addNewPage: (state) => {
       state.pages.push({ ...defaultPage, id: Math.random().toString() });
-      state.currentPage = state.pages.length - 1;
     },
     movePage: (state, { payload: { startIndex, endIndex } }) => {
       const result = Array.from(state.pages);
@@ -60,93 +55,93 @@ const editGameSlice = createSlice({
 
       state.pages = result;
 
-      if (startIndex === state.currentPage) state.currentPage = endIndex;
-      else if (startIndex < state.currentPage && endIndex >= state.currentPage)
-        state.currentPage--;
-      else if (startIndex > state.currentPage && endIndex <= state.currentPage)
-        state.currentPage++;
+      // if (startIndex === state.currentPage) state.currentPage = endIndex;
+      // else if (startIndex < state.currentPage && endIndex >= state.currentPage)
+      //   state.currentPage--;
+      // else if (startIndex > state.currentPage && endIndex <= state.currentPage)
+      //   state.currentPage++;
     },
-    resetCurrentPage: (state) => {
-      console.log("resetSlice");
-      state.pages[state.currentPage] = defaultPage;
-    },
-    removeCurrentPage: (state) => {
-      if (state.currentPage >= state.pages.length) {
-        state.currentPage -= 1;
-        state.pages.splice(state.currentPage + 1, 1);
+    removePage: (state, { payload }) => {
+      if (payload >= state.pages.length) {
+        state.pages.splice(payload, 1);
       } else if (state.pages.length !== 0) {
-        state.pages.splice(state.currentPage, 1);
+        state.pages.splice(payload, 1);
       } else {
-        state.pages[state.currentPage] = defaultPage;
+        state.pages[payload] = defaultPage;
       }
     },
-    setQuestionTitle: (state, action) => {
-      state.pages[state.currentPage].title = action.payload;
+    setQuestionTitle: (state, { payload: { title, pageNumber } }) => {
+      state.pages[pageNumber].title = title;
     },
-    setQuestionDescription: (state, action) => {
-      state.pages[state.currentPage].description = action.payload;
+    setQuestionDescription: (
+      state,
+      { payload: { description, pageNumber } }
+    ) => {
+      state.pages[pageNumber].description = description;
     },
-    setHasTimeLimit: (state, action) => {
-      state.pages[state.currentPage].hasTimeLimit = action.payload;
+    setHasTimeLimit: (state, { payload: { hasTimeLimit, pageNumber } }) => {
+      state.pages[pageNumber].hasTimeLimit = hasTimeLimit;
     },
-    setTimeLimit: (state, action) => {
-      state.pages[state.currentPage].timeLimit = Math.min(
-        Math.max(action.payload, 0),
+    setTimeLimit: (state, { payload: { timeLimit, pageNumber } }) => {
+      state.pages[pageNumber].timeLimit = Math.min(
+        Math.max(timeLimit, 0),
         timeSteps.length
       );
     },
-    setCheckType: (state, action) => {
-      state.pages[state.currentPage].checkType = action.payload;
+    setCheckType: (state, { payload: { checkType, pageNumber } }) => {
+      state.pages[pageNumber].checkType = checkType;
     },
-    setPointsForSpeed: (state, action) => {
-      state.pages[state.currentPage].pointsForSpeed = action.payload;
+    setPointsForSpeed: (state, { payload: { pointsForSpeed, pageNumber } }) => {
+      state.pages[pageNumber].pointsForSpeed = pointsForSpeed;
     },
-    setFile: (state, action) => {
-      state.pages[state.currentPage].file = action.payload;
+    setFile: (state, { payload: { file, pageNumber } }) => {
+      state.pages[pageNumber].file = file;
     },
-    setPageType: (state, action) => {
-      state.pages[state.currentPage].pageType = action.payload;
+    setPageType: (state, { payload: { pageType, pageNumber } }) => {
+      state.pages[pageNumber].pageType = pageType;
     },
-    setAnswerDescription: (state, action) => {
-      state.pages[state.currentPage].answers[
-        action.payload.answerIndex
-      ].description = action.payload.description;
+    setAnswerDescription: (
+      state,
+      { payload: { description, answerIndex, pageNumber } }
+    ) => {
+      state.pages[pageNumber].answers[answerIndex].description = description;
     },
-    setNumberOfOptions: (state, action) => {
-      state.pages[state.currentPage].numberOfOptions = Math.max(
-        Math.min(action.payload, 99),
+    setNumberOfOptions: (
+      state,
+      { payload: { numberOfOptions, pageNumber } }
+    ) => {
+      state.pages[pageNumber].numberOfOptions = Math.max(
+        Math.min(numberOfOptions, 99),
         0
       );
       while (
-        state.pages[state.currentPage].answers.length < 98 &&
-        state.pages[state.currentPage].answers.length < action.payload
+        state.pages[pageNumber].answers.length < 98 &&
+        state.pages[pageNumber].answers.length < numberOfOptions
       ) {
-        state.pages[state.currentPage].answers.push({
+        state.pages[pageNumber].answers.push({
           description: "",
           value: 0,
         });
       }
       while (
-        state.pages[state.currentPage].answers.length > 1 &&
-        state.pages[state.currentPage].answers.length > action.payload &&
-        state.pages[state.currentPage].answers[
-          state.pages[state.currentPage].answers.length - 1
+        state.pages[pageNumber].answers.length > 1 &&
+        state.pages[pageNumber].answers.length > numberOfOptions &&
+        state.pages[pageNumber].answers[
+          state.pages[pageNumber].answers.length - 1
         ].description === ""
       ) {
-        state.pages[state.currentPage].answers.pop();
+        state.pages[pageNumber].answers.pop();
       }
     },
-    setAnswerValue: (state, action) => {
-      if (action.payload.value === "-" || action.payload.value === "")
-        state.pages[state.currentPage].answers[
-          action.payload.answerIndex
-        ].value = action.payload.value;
-      else
-        state.pages[state.currentPage].answers[
-          action.payload.answerIndex
-        ].value = parseInt(action.payload.value);
+    setAnswerValue: (
+      state,
+      { payload: { value, answerIndex, pageNumber } }
+    ) => {
+      if (value === "-" || value === "")
+        state.pages[pageNumber].answers[answerIndex].value = value;
+      else state.pages[pageNumber].answers[answerIndex].value = parseInt(value);
     },
-    reset: (state, payload) => {
+    reset: (state) => {
       state = initialState;
     },
   },
@@ -156,11 +151,9 @@ export const {
   setGame,
   setName,
   setEditing,
-  setCurrentPage,
   addNewPage,
   movePage,
-  resetCurrentPage,
-  removeCurrentPage,
+  removePage,
   setQuestionTitle,
   setQuestionDescription,
   setHasTimeLimit,

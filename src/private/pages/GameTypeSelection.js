@@ -11,14 +11,11 @@ const GameTypeSelection = () => (
           <p>Een makkelijk op te zetten quiz met meerkeuzevragen.</p>
         </CardContent>
         <CardActions>
-          <Button
-            component={Link}
-            to={url.NEW_GAME}
-            variant="outlined"
-            color="secondary"
-          >
-            {I18n.get("Setup a standard game")}
-          </Button>
+          <Link to={url.NEW_GAME}>
+            <Button variant="outlined" color="secondary">
+              {I18n.get("Setup a standard game")}
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </Grid>

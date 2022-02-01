@@ -58,55 +58,15 @@ function useHostGame() {
 function useGotoPage() {
   const dispatch = useDispatch();
   const peerContext = useContext(PeerContext);
-  const pages = useSelector((state) => state.hostGame.game.pages);
+  const pages = useSelector((state) => state.editGame.pages);
 
   return (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    peerContext.broadcast(
-      setPage({ currentPage: pageNumber, ...pages[pageNumber] })
-    );
+    if (pages)
+      peerContext.broadcast(
+        setPage({ currentPage: pageNumber, ...pages[pageNumber] })
+      );
   };
 }
 
-function usePage() {
-  return {
-    questionTitle: {
-      value: useSelector(
-        (state) => state.hostGame.game?.pages[state.hostGame.currentPage].title
-      ),
-    },
-    questionDescription: {
-      value: useSelector(
-        (state) =>
-          state.hostGame.game?.pages[state.hostGame.currentPage].description
-      ),
-    },
-    pageType: {
-      value: useSelector((state) => state.hostGame.game?.type),
-    },
-    timeLimit: {
-      value: useSelector(
-        (state) =>
-          state.hostGame.game?.pages[state.hostGame.currentPage].timeLimit
-      ),
-    },
-    useAnswerDescription: function (answerIndex) {
-      return {
-        value: useSelector(
-          (state) =>
-            state.hostGame.game?.pages[state.hostGame.currentPage].answers[
-              answerIndex
-            ].description
-        ),
-      };
-    },
-    numberOfOptions: {
-      value: useSelector(
-        (state) =>
-          state.hostGame.game?.pages[state.hostGame.currentPage].numberOfOptions
-      ),
-    },
-    currentPage: useSelector((state) => state.hostGame.currentPage),
-  };
-}
-export { useHostGame, useGotoPage, usePage };
+export { useHostGame, useGotoPage };

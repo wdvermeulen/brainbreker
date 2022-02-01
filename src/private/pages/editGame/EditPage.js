@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import GameLayout from "../../../components/gamePage/GameLayout";
-import { useLoadGame, usePage } from "./editGameHooks";
+// import { useHostGame } from "../hostGame/hostGameHooks";
+import { usePage, useSaveGame } from "./editGameHooks";
 import PrivateGameService from "../../services/PrivateGameService";
+import { setGame } from "./editGameSlice";
+import Lobby from "./Lobby";
 import Drawers from "./setupBar/Drawers";
 import SideBar from "./setupBar/SideBar";
 
@@ -22,17 +26,30 @@ const loadGame = async (gameID, loadGameToState) => {
   }
 };
 
-const EditGame = () => {
+const EditPage = () => {
   const [navigationAction, setNavigationAction] = useState(null);
-  const { gameID } = useParams();
+  const params = useParams();
+  const { gameID, currentPage } = params;
   const page = usePage();
-  const loadGameToState = useLoadGame();
+  const dispatch = useDispatch();
+  const saveGame = useSaveGame();
+  // const { initGame, myID, game } = useHostGame();
 
   useEffect(() => {
-    loadGame(gameID, loadGameToState);
-  }, [gameID, loadGameToState]);
+    loadGame(gameID, (game) => dispatch(setGame(game)));
+  }, [gameID, dispatch]);
 
-  useEffect(() => {});
+  // Wait 5 seconds after edits to save the state
+  useEffect(() => {
+    const timer = setTimeout(saveGame, 5000);
+    return () => clearTimeout(timer);
+  }, [page, saveGame]);
+
+  // useEffect(() => {
+  //   if ((!game || game?.id !== gameID) && myID.length > 0) {
+  //     initGame(myID);
+  //   }
+  // }, [myID, game, gameID, initGame]);
 
   return (
     <Box sx={{ display: "flex", height: "100%" }}>
@@ -44,9 +61,9 @@ const EditGame = () => {
         navigationAction={navigationAction}
         setNavigationAction={setNavigationAction}
       />
-      <GameLayout {...page} />
+      {currentPage ? <GameLayout {...page} /> : <Lobby />}
     </Box>
   );
 };
 
-export default EditGame;
+export default EditPage;
